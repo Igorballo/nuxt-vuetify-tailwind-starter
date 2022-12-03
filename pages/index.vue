@@ -1,22 +1,21 @@
 <template>
   <div>
-    <div class="tw-h-[60vh] tw-bg-no-repeat tw-bg-cover tw-bg-center"
+    <div class="tw-h-full lg:tw-h-[60vh] tw-bg-no-repeat tw-bg-cover tw-bg-center"
          style="background-image: url(https://plus.unsplash.com/premium_photo-1661281272544-5204ea3a481a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80)">
-      <div class="tw-flex tw-flex-col tw-items-center tw-justify-center">
-        <form class="tw-bg-white tw-rounded-lg tw-h-full tw-my-20 tw-p-3 md:tw-p-6 lg:tw-p-12 tw-flex tw-flex-col">
-          <div class="tw-inline-flex tw-gap-8 tw-text-xl tw-font-light">
+      <div class="tw-flex tw-flex-col tw-items-center tw-justify-center tw-px-4 lg:tw-px-0">
+        <form class="tw-bg-white tw-rounded-lg tw-h-full tw-my-20 tw-gap-4 tw-p-3 md:tw-p-6 lg:tw-p-12 tw-flex tw-flex-col">
+          <div class="tw-inline-flex tw-gap-4 md:tw-gap-8 tw-text-xl tw-font-light">
             <span class="tw-inline-flex tw-items-center">
-              <input type="radio" class="tw-w-5 tw-h-5 checked:tw-bg-red-600" checked id="aller_simple" name="voyage">
+              <input type="radio" class="tw-w-5 tw-h-5 checked:tw-bg-red-600" value="true"  v-model="form.aller_simple" checked id="aller_simple" name="voyage">
               <label for="aller_simple" class="tw-ml-2">Aller Simple</label>
             </span>
             <span class="tw-inline-flex tw-items-center">
-              <input type="radio" class="tw-w-5 tw-h-5 checked:tw-bg-red-600" id="aller_retour" name="voyage">
+              <input type="radio" class="tw-w-5 tw-h-5 checked:tw-bg-red-600 tw-bg-gray-500" value="false" v-model="form.aller_simple" id="aller_retour" name="voyage">
               <label for="aller_retour" class="tw-ml-2">Aller-Retour</label>
             </span>
           </div>
-          <div class="tw-flex tw-flex-wrap tw-items-center tw-justify-between tw-gap-6 tw-mt-6 tw-w-full">
-            <div class="tw-inline-flex tw-gap-3 tw-items-center tw-bg-white">
-
+          <div class="tw-flex tw-flex-wrap tw-items-center tw-justify-between tw-gap-4 md:tw-gap-6 tw-w-full">
+            <div class="tw-flex tw-gap-3 tw-items-center tw-bg-white">
               <v-autocomplete
                 v-model="model"
                 :items="items"
@@ -114,7 +113,7 @@
             >
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
-                  v-model="date"
+                  v-model="form.date_depart"
                   label="Date de départ"
                   readonly
                   height="70"
@@ -159,7 +158,6 @@
                 <v-text-field
                   v-model="form.date_retour"
                   label="Date d'arrivée"
-                  hint="Label"
                   readonly
                   outlined
                   height="70"
@@ -190,7 +188,7 @@
               </v-date-picker>
             </v-menu>
 
-            <v-row justify="space-around">
+            <div class="tw-w-full">
               <v-menu
                 :key="text"
                 :rounded="rounded"
@@ -198,13 +196,14 @@
                 offset-y
               >
                 <template v-slot:activator="{ attrs, on }">
-                  <v-text-field
+                  <v-text-field class="tw-text-xl tw-font-bold"
                     readonly
                     v-bind="attrs"
                     v-on="on"
                     label="Nombre de passagers"
-                    solo
+                    outlined
                     height="70"
+                    v-model="totalPassagers"
                     dense
                   ></v-text-field>
                 </template>
@@ -218,8 +217,8 @@
                           <span class="tw-text-xl tw-font-bold tw-gray-800">Adultes (> 12 ans)</span>
                           <div class="tw-text-xl tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
                             <span class="hover:tw-cursor-pointer"><v-icon color="red">mdi-minus-circle-outline</v-icon></span>
-                            <span>5</span>
-                            <span><v-icon color="red">mdi-plus-circle-outline</v-icon></span>
+                            <span>{{ form.passagers.adultes }}</span>
+                            <span @click="form.nombre_passagers" class="hover:tw-cursor-pointer"><v-icon color="red">mdi-plus-circle-outline</v-icon></span>
                           </div>
                         </div>
                         <v-divider></v-divider>
@@ -227,8 +226,8 @@
                           <span class="tw-text-xl tw-font-bold tw-gray-800">Enfants (2-11 ans)</span>
                           <div class="tw-text-xl tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
                             <span class="hover:tw-cursor-pointer"><v-icon color="red">mdi-minus-circle-outline</v-icon></span>
-                            <span>2</span>
-                            <span><v-icon color="red">mdi-plus-circle-outline</v-icon></span>
+                            <span>{{ form.passagers.enfants }}</span>
+                            <span class="hover:tw-cursor-pointer"><v-icon color="red">mdi-plus-circle-outline</v-icon></span>
                           </div>
                         </div>
                         <v-divider></v-divider>
@@ -236,8 +235,8 @@
                           <span class="tw-text-xl tw-font-bold tw-gray-800">Bébés (< 2 ans)</span>
                           <div class="tw-text-xl tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
                             <span class="hover:tw-cursor-pointer"><v-icon color="red">mdi-minus-circle-outline</v-icon></span>
-                            <span>0</span>
-                            <span><v-icon color="red">mdi-plus-circle-outline</v-icon></span>
+                            <span>{{ form.passagers.bebes }}</span>
+                            <span class="hover:tw-cursor-pointer"><v-icon color="red">mdi-plus-circle-outline</v-icon></span>
                           </div>
                         </div>
                       </div>
@@ -245,10 +244,10 @@
                   </v-list-item>
                 </v-list>
               </v-menu>
-            </v-row>
+            </div>
           </div>
 
-          <div class="tw-flex tw-mt-6">
+          <div class="tw-flex">
             <button
               class="tw-rounded tw-px-6 tw-py-2 tw-bg-red-600 tw-text-white tw-text-lg tw-uppercase tw-font-semibold">
               Faire une demande de
@@ -349,12 +348,17 @@ export default {
       search: null,
       tab: null,
       form: {
-        aller_retour: true,
+        aller_simple: true,
         ville_depart: "",
         ville_retour: "",
         date_depart: "",
         date_retour: "",
-        nombre_passagers: "",
+        nombre_passagers: 1,
+        passagers: {
+          adultes: 1,
+          enfants: 0,
+          bebes: 0,
+        }
       },
       value: null,
       date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
@@ -367,6 +371,13 @@ export default {
         ['Custom', 'b-xl'],
       ],
       colors: ['deep-purple accent-4', 'error', 'teal darken-1'],
+    }
+  },
+
+  computed: {
+    totalPassagers() {
+      // cette methode retourne le nombre total de passagers
+      return this.form.passagers.adultes + this.form.passagers.enfants + this.form.passagers.bebes
     }
   },
 
