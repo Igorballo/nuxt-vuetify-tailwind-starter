@@ -14,7 +14,7 @@
               <label for="aller_retour" class="tw-ml-2">Aller-Retour</label>
             </span>
           </div>
-          <div class="tw-flex tw-flex-wrap tw-items-center tw-justify-between tw-gap-3 tw-mt-6 tw-w-full">
+          <div class="tw-flex tw-flex-wrap tw-items-center tw-justify-between tw-gap-6 tw-mt-6 tw-w-full">
             <div class="tw-inline-flex tw-gap-3 tw-items-center tw-bg-white">
 
               <v-autocomplete
@@ -29,7 +29,7 @@
                 item-text="name"
                 item-value="id"
                 label="Choisissez l'adresse de départ..."
-                solo
+                outlined
                 height="70"
               >
                 <template v-slot:no-data>
@@ -75,7 +75,7 @@
                 item-text="name"
                 item-value="id"
                 label="Choisissez l'adresse d'arrivée..."
-                solo
+                outlined
                 height="70"
               >
                 <template v-slot:no-data>
@@ -108,6 +108,7 @@
               :close-on-content-click="false"
               :return-value.sync="date"
               transition="scale-transition"
+              label="trex"
               offset-y
               min-width="auto"
             >
@@ -115,10 +116,9 @@
                 <v-text-field
                   v-model="date"
                   label="Date de départ"
-                  prepend-icon="mdi-calendar"
                   readonly
-                  solo
                   height="70"
+                  outlined
                   v-bind="attrs"
                   v-on="on"
                 ></v-text-field>
@@ -159,9 +159,9 @@
                 <v-text-field
                   v-model="form.date_retour"
                   label="Date d'arrivée"
-                  prepend-icon="mdi-calendar"
+                  hint="Label"
                   readonly
-                  solo
+                  outlined
                   height="70"
                   v-bind="attrs"
                   v-on="on"
@@ -198,23 +198,50 @@
                 offset-y
               >
                 <template v-slot:activator="{ attrs, on }">
-                  <v-btn
-                    :color="colors[index]"
-                    class="white--text ma-5"
+                  <v-text-field
+                    readonly
                     v-bind="attrs"
                     v-on="on"
-                  >
-                    {{ text }} Radius
-                  </v-btn>
+                    label="Nombre de passagers"
+                    solo
+                    height="70"
+                    dense
+                  ></v-text-field>
                 </template>
 
                 <v-list>
                   <v-list-item
-                    v-for="item in items"
-                    :key="item"
-                    link
                   >
-                    <v-list-item-title v-text="item"></v-list-item-title>
+                    <v-list-item-title >
+                      <div class="tw-flex tw-flex-col tw-gap-4 tw-w-full tw-p-4 tw-bg-white">
+                        <div class="tw-py-4 tw-flex tw-justify-between tw-gap-12">
+                          <span class="tw-text-xl tw-font-bold tw-gray-800">Adultes (> 12 ans)</span>
+                          <div class="tw-text-xl tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
+                            <span class="hover:tw-cursor-pointer"><v-icon color="red">mdi-minus-circle-outline</v-icon></span>
+                            <span>5</span>
+                            <span><v-icon color="red">mdi-plus-circle-outline</v-icon></span>
+                          </div>
+                        </div>
+                        <v-divider></v-divider>
+                        <div class="tw-py-4 tw-flex tw-justify-between tw-gap-12">
+                          <span class="tw-text-xl tw-font-bold tw-gray-800">Enfants (2-11 ans)</span>
+                          <div class="tw-text-xl tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
+                            <span class="hover:tw-cursor-pointer"><v-icon color="red">mdi-minus-circle-outline</v-icon></span>
+                            <span>2</span>
+                            <span><v-icon color="red">mdi-plus-circle-outline</v-icon></span>
+                          </div>
+                        </div>
+                        <v-divider></v-divider>
+                        <div class="tw-py-4 tw-flex tw-justify-between tw-gap-12">
+                          <span class="tw-text-xl tw-font-bold tw-gray-800">Bébés (< 2 ans)</span>
+                          <div class="tw-text-xl tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
+                            <span class="hover:tw-cursor-pointer"><v-icon color="red">mdi-minus-circle-outline</v-icon></span>
+                            <span>0</span>
+                            <span><v-icon color="red">mdi-plus-circle-outline</v-icon></span>
+                          </div>
+                        </div>
+                      </div>
+                    </v-list-item-title>
                   </v-list-item>
                 </v-list>
               </v-menu>
@@ -340,7 +367,6 @@ export default {
         ['Custom', 'b-xl'],
       ],
       colors: ['deep-purple accent-4', 'error', 'teal darken-1'],
-      items: [...Array(4)].map((_, i) => `Item ${i}`),
     }
   },
 
