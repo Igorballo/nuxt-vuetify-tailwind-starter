@@ -40,10 +40,10 @@
       <v-list nav>
         <v-list-item to="#">
           <v-list-item-action>
-            <v-icon>mdi-package-up</v-icon>
+            <v-icon>mdi-cog</v-icon>
           </v-list-item-action>
 
-          <v-list-item-title class="font-weight-light">Something else</v-list-item-title>
+          <v-list-item-title class="font-weight-light">Paramètres</v-list-item-title>
         </v-list-item>
       </v-list>
     </template>
@@ -70,17 +70,17 @@ export default {
       },
       {
         to: '/admin/reservation',
-        icon: 'mdi-view-dashboard',
+        icon: 'mdi-airplane-takeoff',
         text: 'Réservations',
       },
       {
         to: '/admin/hebergement',
-        icon: 'mdi-view-dashboard',
+        icon: 'mdi-store',
         text: 'Hébergements',
       },
       {
         to: '/admin/location-voiture',
-        icon: 'mdi-view-dashboard',
+        icon: 'mdi-car',
         text: 'Location voiture',
       },
       {
