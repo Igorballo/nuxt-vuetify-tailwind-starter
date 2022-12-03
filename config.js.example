@@ -1,0 +1,16 @@
+export default {
+  app_local: false,
+  app_local_url: 'http://localhost:3000',
+  app_live_url: 'https://devkara.karaevents.tg',
+  app_api_base_url: 'https://newbackend.karaevents.tg/api',
+  app_api_debug_url: 'http://192.168.1.65:8000/api',
+  globalFirebaseConfig: {
+    apiKey: process.env.FIREBASE_APIKEY,
+    authDomain: '...',
+    databaseURL: '...',
+    projectId: process.env.FIREBASE_PROJECTID,
+    storageBucket: '...',
+    messagingSenderId: '...',
+    appId: process.env.FIREBASE_APPID
+  }
+}
