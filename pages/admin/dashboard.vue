@@ -1,454 +1,380 @@
 <template>
-  <div>
-    <v-row class="ma-2">
-      <v-col sm="12" md="3" cols="12">
-        <v-card dark color="#607d8b">
-          <v-row
-            align="center"
-            justify="center"
-          >
-            <v-col cols="8">
-              <v-card-title>
-                Stations de voyages
-              </v-card-title>
-
-              <v-card-text class="text-h5 font-weight-bold">
-                0
-              </v-card-text>
-            </v-col>
-            <v-col cols="4">
-              <v-avatar
-                size="80"
-                color="#fff"
-              >
-                <v-icon x-large size="100" color="blue">mdi-city</v-icon>
-              </v-avatar>
-            </v-col>
-          </v-row>
-        </v-card>
+  <v-container fluid>
+    <v-row>
+      <v-col cols="12" sm="6" lg="3">
+        <material-stats-card
+          color="green"
+          icon="mdi-store"
+          title="Revenue"
+          value="$34,245"
+          sub-icon="mdi-calendar"
+          sub-text="Last 24 Hours"
+        />
       </v-col>
-      <v-col sm="12" md="3" cols="12">
-        <v-card color="#607d8b" dark>
-          <v-row
-            align="center"
-            justify="center"
-          >
-            <v-col cols="8">
-              <v-card-title>
-                Publicités actives
-              </v-card-title>
 
-              <v-card-text class="text-h5 font-weight-bold">
-                0
-              </v-card-text>
-            </v-col>
-            <v-col cols="4">
-              <v-avatar
-                size="80"
-                color="#fff"
-              >
-                <v-icon x-large size="100" color="orange">mdi-account-group-outline</v-icon>
-              </v-avatar>
-            </v-col>
-          </v-row>
-        </v-card>
+      <v-col cols="12" sm="6" lg="3">
+        <material-stats-card
+          color="orange"
+          icon="mdi-content-copy"
+          title="Used Space"
+          value="49/50"
+          small-value="GB"
+          sub-icon="mdi-alert"
+          sub-icon-color="error"
+          sub-text="Get More Space..."
+          sub-text-color="text-primary"
+        />
       </v-col>
-      <v-col sm="12" md="3" cols="12">
-        <v-card color="#607d8b" dark>
-          <v-row
-            align="center"
-            justify="center"
-          >
-            <v-col cols="8">
-              <v-card-title>
-                Evenements à venir
-              </v-card-title>
 
-              <v-card-text class="text-h5 font-weight-bold">
-                0
-              </v-card-text>
-            </v-col>
-            <v-col cols="4">
-              <v-avatar
-                size="80"
-                color="#fff"
-              >
-                <v-icon x-large size="100" color="green">mdi-account</v-icon>
-              </v-avatar>
-            </v-col>
-          </v-row>
-        </v-card>
+      <v-col cols="12" sm="6" lg="3">
+        <material-stats-card
+          color="red"
+          icon="mdi-information-outline"
+          title="Fixed Issues"
+          value="75"
+          sub-icon="mdi-tag"
+          sub-text="Tracked from Github"
+        />
       </v-col>
-      <v-col sm="12" md="3" cols="12">
-        <v-card color="#607d8b" dark>
-          <v-row
-            align="center"
-            justify="center"
-          >
-            <v-col cols="8">
-              <v-card-title>
-                Services
-              </v-card-title>
 
-              <v-card-text class="text-h5 font-weight-bold">
-                0
-              </v-card-text>
-            </v-col>
-            <v-col cols="4">
-              <v-avatar
-                size="80"
-                color="#fff"
-              >
-                <v-icon x-large size="100" color="green">mdi-account</v-icon>
-              </v-avatar>
-            </v-col>
-          </v-row>
-        </v-card>
+      <v-col cols="12" sm="6" lg="3">
+        <material-stats-card
+          color="info"
+          icon="mdi-twitter"
+          title="Followers"
+          value="+245"
+          sub-icon="mdi-update"
+          sub-text="Just Updated"
+        />
       </v-col>
-      <v-col sm="12" md="3" cols="12">
-        <v-card color="#607d8b" dark>
-          <v-row
-            align="center"
-            justify="center"
-          >
-            <v-col cols="8">
-              <v-card-title>
-                Services
-              </v-card-title>
 
-              <v-card-text class="text-h5 font-weight-bold">
-                0
-              </v-card-text>
-            </v-col>
-            <v-col cols="4">
-              <v-avatar
-                size="80"
-                color="#fff"
-              >
-                <v-icon x-large size="100" color="green">mdi-account</v-icon>
-              </v-avatar>
-            </v-col>
-          </v-row>
-        </v-card>
+      <v-col cols="12" lg="6">
+        <material-card color="orange" title="Employee Stats" text="New employees on 15th September, 2016">
+          <v-data-table :headers="headers" :items="items" hide-default-footer />
+        </material-card>
       </v-col>
-      <v-col sm="12" md="3" cols="12">
-        <v-card color="#607d8b" dark>
-          <v-row
-            align="center"
-            justify="center"
-          >
-            <v-col cols="8">
-              <v-card-title>
-                Services
-              </v-card-title>
 
-              <v-card-text class="text-h5 font-weight-bold">
-                0
-              </v-card-text>
-            </v-col>
-            <v-col cols="4">
-              <v-avatar
-                size="80"
-                color="#fff"
-              >
-                <v-icon x-large size="100" color="green">mdi-account</v-icon>
-              </v-avatar>
-            </v-col>
-          </v-row>
-        </v-card>
-      </v-col>
-      <v-col sm="12" md="3" cols="12">
-        <v-card color="#607d8b" dark>
-          <v-row
-            align="center"
-            justify="center"
-          >
-            <v-col cols="8">
-              <v-card-title>
-                Services
-              </v-card-title>
+      <v-col cols="12" lg="6">
+        <material-card class="card-tabs" color="green">
+          <template v-slot:header>
+            <v-tabs v-model="tabs" background-color="transparent" slider-color="white">
+              <span class="subheading font-weight-light mx-3" style="align-self: center">Tasks:</span>
+              <v-tab class="mr-3">
+                <v-icon class="mr-2">mdi-bug</v-icon>
+                Bugs
+              </v-tab>
+              <v-tab class="mr-3">
+                <v-icon class="mr-2">mdi-code-tags</v-icon>
+                Website
+              </v-tab>
+              <v-tab>
+                <v-icon class="mr-2">mdi-cloud</v-icon>
+                Server
+              </v-tab>
+            </v-tabs>
+          </template>
 
-              <v-card-text class="text-h5 font-weight-bold">
-                0
-              </v-card-text>
-            </v-col>
-            <v-col cols="4">
-              <v-avatar
-                size="80"
-                color="#fff"
-              >
-                <v-icon x-large size="100" color="green">mdi-account</v-icon>
-              </v-avatar>
-            </v-col>
-          </v-row>
-        </v-card>
-      </v-col>
-      <v-col sm="12" md="3" cols="12">
-        <v-card color="#607d8b" dark>
-          <v-row
-            align="center"
-            justify="center"
-          >
-            <v-col cols="8">
-              <v-card-title>
-                Services
-              </v-card-title>
+          <v-tabs-items v-model="tabs">
+            <v-tab-item v-for="n in 3" :key="n">
+              <v-list three-line class="py-0">
+                <v-list-item @click="complete(0)">
+                  <v-list-item-action class="align-self-center">
+                    <v-checkbox :value="list[0]" color="green" />
+                  </v-list-item-action>
 
-              <v-card-text class="text-h5 font-weight-bold">
-                0
-              </v-card-text>
-            </v-col>
-            <v-col cols="4">
-              <v-avatar
-                size="80"
-                color="#fff"
-              >
-                <v-icon x-large size="100" color="green">mdi-account</v-icon>
-              </v-avatar>
-            </v-col>
-          </v-row>
-        </v-card>
+                  <v-list-item-title>
+                    Sign contract for "What are conference organized afraid of?"
+                  </v-list-item-title>
+
+                  <div class="d-flex">
+                    <v-tooltip top content-class="top">
+                      <template v-slot:activator="{ attrs, on }">
+                        <v-btn
+                          class="v-btn--simple"
+                          color="green"
+                          icon
+                          v-bind="attrs"
+                          v-on="on"
+                        >
+                          <v-icon color="primary">mdi-pencil</v-icon>
+                        </v-btn>
+                      </template>
+                      <span>Edit</span>
+                    </v-tooltip>
+
+                    <v-tooltip top content-class="top">
+                      <template v-slot:activator="{ attrs, on }">
+                        <v-btn
+                          class="v-btn--simple"
+                          color="danger"
+                          icon
+                          v-bind="attrs"
+                          v-on="on"
+                        >
+                          <v-icon color="error">mdi-close</v-icon>
+                        </v-btn>
+                      </template>
+                      <span>Close</span>
+                    </v-tooltip>
+                  </div>
+                </v-list-item>
+
+                <v-divider />
+
+                <v-list-item @click="complete(1)">
+                  <v-list-item-action class="align-self-center">
+                    <v-checkbox :value="list[1]" color="green" />
+                  </v-list-item-action>
+
+                  <v-list-item-title>
+                    Lines From Great Russian Literature? Or E-mails From My Boss?
+                  </v-list-item-title>
+
+                  <div class="d-flex">
+                    <v-tooltip top content-class="top">
+                      <template v-slot:activator="{ attrs, on }">
+                        <v-btn
+                          class="v-btn--simple"
+                          color="green"
+                          icon
+                          v-bind="attrs"
+                          v-on="on"
+                        >
+                          <v-icon color="primary">mdi-pencil</v-icon>
+                        </v-btn>
+                      </template>
+                      <span>Edit</span>
+                    </v-tooltip>
+
+                    <v-tooltip top content-class="top">
+                      <template v-slot:activator="{ attrs, on }">
+                        <v-btn
+                          class="v-btn--simple"
+                          color="danger"
+                          icon
+                          v-bind="attrs"
+                          v-on="on"
+                        >
+                          <v-icon color="error">mdi-close</v-icon>
+                        </v-btn>
+                      </template>
+                      <span>Close</span>
+                    </v-tooltip>
+                  </div>
+                </v-list-item>
+
+                <v-divider />
+
+                <v-list-item @click="complete(2)">
+                  <v-list-item-action class="align-self-center">
+                    <v-checkbox :value="list[2]" color="green" />
+                  </v-list-item-action>
+
+                  <v-list-item-title>
+                    Flooded: One year later, assessing what was lost and what was found when a
+                    ravaging rain swept through metro Detroit
+                  </v-list-item-title>
+
+                  <div class="d-flex">
+                    <v-tooltip top content-class="top">
+                      <template v-slot:activator="{ attrs, on }">
+                        <v-btn
+                          class="v-btn--simple"
+                          color="green"
+                          icon
+                          v-bind="attrs"
+                          v-on="on"
+                        >
+                          <v-icon color="primary">mdi-pencil</v-icon>
+                        </v-btn>
+                      </template>
+                      <span>Edit</span>
+                    </v-tooltip>
+
+                    <v-tooltip top content-class="top">
+                      <template v-slot:activator="{ attrs, on }">
+                        <v-btn
+                          class="v-btn--simple"
+                          color="danger"
+                          icon
+                          v-bind="attrs"
+                          v-on="on"
+                        >
+                          <v-icon color="error">mdi-close</v-icon>
+                        </v-btn>
+                      </template>
+                      <span>Close</span>
+                    </v-tooltip>
+                  </div>
+                </v-list-item>
+              </v-list>
+            </v-tab-item>
+          </v-tabs-items>
+        </material-card>
       </v-col>
     </v-row>
-
-    <v-row class="mx-4 mt-4 fill-height">
-      <v-card elevation="2" width="100%">
-        <v-card-title>
-          <h1 class="text-h4 text-dark">Calendrier des évenements à venir</h1>
-          <v-spacer/>
-          <v-btn large color="accent" class="tw-py-2 tw-rounded-full">
-            <v-icon size="25" color="white">
-              mdi-calendar
-            </v-icon>
-            <v-spacer/>
-            <span class="mx-2">Nouvel Evenement</span>
-          </v-btn>
-        </v-card-title>
-        <v-card-text>
-          <v-col cols="12">
-            <v-sheet height="64">
-              <v-toolbar
-                flat
-              >
-                <v-btn
-                  outlined
-                  class="mr-4"
-                  color="grey darken-2"
-                  @click="setToday"
-                >
-                  Aujourd'hui
-                </v-btn>
-                <v-btn
-                  fab
-                  text
-                  small
-                  color="grey darken-2"
-                  @click="prev"
-                >
-                  <v-icon small>
-                    mdi-chevron-left
-                  </v-icon>
-                </v-btn>
-                <v-btn
-                  fab
-                  text
-                  small
-                  color="grey darken-2"
-                  @click="next"
-                >
-                  <v-icon small>
-                    mdi-chevron-right
-                  </v-icon>
-                </v-btn>
-                <v-toolbar-title v-if="$refs.calendar">
-                  {{ $refs.calendar.title }}
-                </v-toolbar-title>
-                <v-spacer></v-spacer>
-                <v-menu
-                  bottom
-                  right
-                >
-                  <template v-slot:activator="{ on, attrs }">
-                    <v-btn
-                      outlined
-                      color="grey darken-2"
-                      v-bind="attrs"
-                      v-on="on"
-                    >
-                      <span>{{ typeToLabel[type] }}</span>
-                      <v-icon right>
-                        mdi-menu-down
-                      </v-icon>
-                    </v-btn>
-                  </template>
-                  <v-list>
-                    <v-list-item @click="type = 'day'">
-                      <v-list-item-title>Jour</v-list-item-title>
-                    </v-list-item>
-                    <v-list-item @click="type = 'week'">
-                      <v-list-item-title>Semaine</v-list-item-title>
-                    </v-list-item>
-                    <v-list-item @click="type = 'month'">
-                      <v-list-item-title>Mois</v-list-item-title>
-                    </v-list-item>
-                    <v-list-item @click="type = '4day'">
-                      <v-list-item-title>4 jours</v-list-item-title>
-                    </v-list-item>
-                  </v-list>
-                </v-menu>
-              </v-toolbar>
-            </v-sheet>
-            <v-sheet height="600">
-              <v-calendar
-                ref="calendar"
-                v-model="focus"
-                color="primary"
-                :events="events"
-                :event-color="getEventColor"
-                :type="type"
-                @click:event="showEvent"
-                @click:more="viewDay"
-                @click:date="viewDay"
-                @change="updateRange"
-              ></v-calendar>
-              <v-menu
-                v-model="selectedOpen"
-                :close-on-content-click="false"
-                :activator="selectedElement"
-                offset-x
-              >
-                <v-card
-                  color="grey lighten-4"
-                  min-width="350px"
-                  flat
-                >
-                  <v-toolbar
-                    :color="selectedEvent.color"
-                    dark
-                  >
-                    <v-btn icon>
-                      <v-icon>mdi-pencil</v-icon>
-                    </v-btn>
-                    <v-toolbar-title v-html="selectedEvent.name"></v-toolbar-title>
-                    <v-spacer></v-spacer>
-                    <v-btn icon>
-                      <v-icon>mdi-heart</v-icon>
-                    </v-btn>
-                    <v-btn icon>
-                      <v-icon>mdi-dots-vertical</v-icon>
-                    </v-btn>
-                  </v-toolbar>
-                  <v-card-text>
-                    <span v-html="selectedEvent.details"></span>
-                  </v-card-text>
-                  <v-card-actions>
-                    <v-btn
-                      text
-                      color="secondary"
-                      @click="selectedOpen = false"
-                    >
-                      Cancel
-                    </v-btn>
-                  </v-card-actions>
-                </v-card>
-              </v-menu>
-            </v-sheet>
-          </v-col>
-        </v-card-text>
-      </v-card>
-    </v-row>
-  </div>
+  </v-container>
 </template>
 
 <script>
+// import Editor from '../components/helper/Editor.vue';
+
 export default {
-  name: "dashboard",
-  layout: 'admin',
-  data: () => ({
-    focus: '',
-    type: 'month',
-    typeToLabel: {
-      month: 'Ce Mois',
-      week: 'Cette Semaine',
-      day: 'Ce Jour',
-      '4day': 'Dans 4 Jours',
-    },
-    selectedEvent: {},
-    selectedElement: null,
-    selectedOpen: false,
-    events: [],
-    colors: ['blue', 'indigo', 'deep-purple', 'cyan', 'green', 'orange', 'grey darken-1'],
-    names: ['Meeting', 'Holiday', 'PTO', 'Travel', 'Event', 'Birthday', 'Conference', 'Party'],
-  }),
-  mounted () {
-    this.$refs.calendar.checkChange()
+  // components: { Editor },
+  layout: "admin",
+  data() {
+    return {
+      editorText:
+        '<h2>Material Dashboard</h2><blockquote><p>made by Rekryt (vk.com/krupkin.sergey)<br>sep 2019</p></blockquote><p>&nbsp;</p><p>Special thanks to:<br>https://nuxtjs.org<br>https://vuetifyjs.com<br>https://www.creative-tim.com</p>',
+      dailySalesChart: {
+        data: {
+          labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+          series: [[12, 17, 7, 17, 23, 18, 38]],
+        },
+        options: {
+          lineSmooth: this.$chartist.Interpolation.cardinal({
+            tension: 0,
+          }),
+          low: 0,
+          high: 50, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+          chartPadding: {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0,
+          },
+        },
+      },
+      dataCompletedTasksChart: {
+        data: {
+          labels: ['12am', '3pm', '6pm', '9pm', '12pm', '3am', '6am', '9am'],
+          series: [[230, 750, 450, 300, 280, 240, 200, 190]],
+        },
+        options: {
+          lineSmooth: this.$chartist.Interpolation.cardinal({
+            tension: 0,
+          }),
+          low: 0,
+          high: 1000, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+          chartPadding: {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0,
+          },
+        },
+      },
+      emailsSubscriptionChart: {
+        data: {
+          labels: ['Ja', 'Fe', 'Ma', 'Ap', 'Mai', 'Ju', 'Jul', 'Au', 'Se', 'Oc', 'No', 'De'],
+          series: [[542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895]],
+        },
+        options: {
+          axisX: {
+            showGrid: false,
+          },
+          low: 0,
+          high: 1000,
+          chartPadding: {
+            top: 0,
+            right: 5,
+            bottom: 0,
+            left: 0,
+          },
+        },
+        responsiveOptions: [
+          [
+            'screen and (max-width: 640px)',
+            {
+              seriesBarDistance: 5,
+              axisX: {
+                labelInterpolationFnc: function (value) {
+                  return value[0];
+                },
+              },
+            },
+          ],
+        ],
+      },
+      headers: [
+        {
+          sortable: false,
+          text: 'ID',
+          value: 'id',
+        },
+        {
+          sortable: false,
+          text: 'Name',
+          value: 'name',
+        },
+        {
+          sortable: false,
+          text: 'Salary',
+          value: 'salary',
+          align: 'right',
+        },
+        {
+          sortable: false,
+          text: 'Country',
+          value: 'country',
+          align: 'right',
+        },
+        {
+          sortable: false,
+          text: 'City',
+          value: 'city',
+          align: 'right',
+        },
+      ],
+      items: [
+        {
+          id: 1,
+          name: 'Dakota Rice',
+          country: 'Niger',
+          city: 'Oud-Tunrhout',
+          salary: '$35,738',
+        },
+        {
+          id: 2,
+          name: 'Minerva Hooper',
+          country: 'Curaçao',
+          city: 'Sinaai-Waas',
+          salary: '$23,738',
+        },
+        {
+          id: 3,
+          name: 'Sage Rodriguez',
+          country: 'Netherlands',
+          city: 'Overland Park',
+          salary: '$56,142',
+        },
+        {
+          id: 4,
+          name: 'Philip Chanley',
+          country: 'Korea, South',
+          city: 'Gloucester',
+          salary: '$38,735',
+        },
+        {
+          id: 5,
+          name: 'Doris Greene',
+          country: 'Malawi',
+          city: 'Feldkirchen in Kārnten',
+          salary: '$63,542',
+        },
+      ],
+      tabs: 0,
+      list: {
+        0: false,
+        1: false,
+        2: false,
+      },
+    };
   },
   methods: {
-    viewDay ({ date }) {
-      this.focus = date
-      this.type = 'day'
-    },
-    getEventColor (event) {
-      return event.color
-    },
-    setToday () {
-      this.focus = ''
-    },
-    prev () {
-      this.$refs.calendar.prev()
-    },
-    next () {
-      this.$refs.calendar.next()
-    },
-    showEvent ({ nativeEvent, event }) {
-      const open = () => {
-        this.selectedEvent = event
-        this.selectedElement = nativeEvent.target
-        requestAnimationFrame(() => requestAnimationFrame(() => this.selectedOpen = true))
-      }
-
-      if (this.selectedOpen) {
-        this.selectedOpen = false
-        requestAnimationFrame(() => requestAnimationFrame(() => open()))
-      } else {
-        open()
-      }
-
-      nativeEvent.stopPropagation()
-    },
-    updateRange ({ start, end }) {
-      const events = []
-
-      const min = new Date(`${start.date}T00:00:00`)
-      const max = new Date(`${end.date}T23:59:59`)
-      const days = (max.getTime() - min.getTime()) / 86400000
-      const eventCount = 4
-
-      for (let i = 0; i < eventCount; i++) {
-        const allDay = this.rnd(0, 3) === 0
-        const firstTimestamp = this.rnd(min.getTime(), max.getTime())
-        const first = new Date(firstTimestamp - (firstTimestamp % 900000))
-        const secondTimestamp = this.rnd(2, allDay ? 288 : 8) * 900000
-        const second = new Date(first.getTime() + secondTimestamp)
-
-        events.push({
-          name: this.names[this.rnd(0, this.names.length - 1)],
-          start: first,
-          end: second,
-          color: this.colors[this.rnd(0, this.colors.length - 1)],
-          timed: !allDay,
-        })
-      }
-
-      this.events = events
-    },
-    rnd (a, b) {
-      return Math.floor((b - a + 1) * Math.random()) + a
+    complete(index) {
+      this.list[index] = !this.list[index];
     },
   },
-}
+};
 </script>
-
-<style scoped>
-
-</style>

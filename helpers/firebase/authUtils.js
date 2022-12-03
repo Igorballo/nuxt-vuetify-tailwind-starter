@@ -89,7 +89,7 @@ class FirebaseAuthBackend {
 
     /**
      * Handle the error
-     * @param {*} error 
+     * @param {*} error
      */
     _handleError(error) {
         var errorMessage = error.message;
@@ -101,7 +101,7 @@ let _fireBaseBackend = null;
 
 /**
  * Initilize the backend
- * @param {*} config 
+ * @param {*} config
  */
 const initFirebaseBackend = (config) => {
     if (!_fireBaseBackend) {
