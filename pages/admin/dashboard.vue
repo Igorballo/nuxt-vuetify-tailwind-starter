@@ -47,8 +47,9 @@
           sub-text="Just Updated"
         />
       </v-col>
+    </v-row>
 
-
+    <v-row class="">
       <v-col cols="12" lg="12">
         <material-card class="card-tabs" color="primary">
           <template v-slot:header>
@@ -67,7 +68,7 @@
                 Rejetés
               </v-tab>
               <v-spacer/>
-              <v-btn text class="mr-2">Voir tout</v-btn>
+              <v-btn @click="$router.push('/admin/reservation')" text class="mr-2">Voir tout</v-btn>
             </v-tabs>
           </template>
 
@@ -83,35 +84,20 @@
                     Sign contract for "What are conference organized afraid of?"
                   </v-list-item-title>
 
-                  <div class="d-flex">
+                  <div class="">
                     <v-tooltip top content-class="top">
                       <template v-slot:activator="{ attrs, on }">
                         <v-btn
-                          class="v-btn--simple"
-                          color="green"
-                          icon
+                          class="tw-text-white"
+                          color="blue"
                           v-bind="attrs"
                           v-on="on"
                         >
-                          <v-icon color="primary">mdi-pencil</v-icon>
+                          <v-icon color="">mdi-hand-back-left</v-icon>
+                          Prendre la main
                         </v-btn>
                       </template>
-                      <span>Edit</span>
-                    </v-tooltip>
-
-                    <v-tooltip top content-class="top">
-                      <template v-slot:activator="{ attrs, on }">
-                        <v-btn
-                          class="v-btn--simple"
-                          color="danger"
-                          icon
-                          v-bind="attrs"
-                          v-on="on"
-                        >
-                          <v-icon color="error">mdi-close</v-icon>
-                        </v-btn>
-                      </template>
-                      <span>Close</span>
+                      <span>Prendre la main</span>
                     </v-tooltip>
                   </div>
                 </v-list-item>
