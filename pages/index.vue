@@ -271,6 +271,10 @@
                             </div>
                           </div>
                         </div>
+<!--                        <v-divider></v-divider>-->
+<!--                        <div class="tw-py-4 tw-flex tw-justify-between tw-gap-12">-->
+<!--                          <span class="tw-p-3 tw-rounded-lg tw-flex tw-w-full tw-text-red-600 tw-text-xl tw-font-bold">2 enfants maximum par adulte</span>-->
+<!--                        </div>-->
                       </div>
                     </v-list-item-title>
                   </v-list-item>
