@@ -70,7 +70,7 @@ export default {
       theme: {
         themes:{
           light: {
-            primary: '#0a6700',
+            primary: '#0630ab',
             secondary: '#b0bec5',
             dark: '#b0bec5',
             accent: '#006958',

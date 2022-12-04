@@ -66,7 +66,7 @@
 
                     <v-menu bottom left offset-y transition="slide-y-transition">
                         <template v-slot:activator="{ attrs, on }">
-                            <v-btn class="toolbar-items" icon to="/notifications" v-bind="attrs" v-on="on">
+                            <v-btn class="toolbar-items" icon v-bind="attrs" v-on="on">
                                 <v-badge color="error" overlap>
                                     <template slot="badge">
                                         {{ notifications.length }}
@@ -76,11 +76,36 @@
                             </v-btn>
                         </template>
 
-                        <v-card>
-                            <v-list dense>
-                                <v-list-item v-for="notification in notifications" :key="notification" @click="onClick">
-                                    <v-list-item-title v-text="notification" />
+                        <v-card class="tw-rounded-lg" width="300">
+                            <v-list dense three-line class="pb-0">
+                              <template v-for="(notification, index) in notifications">
+                                <v-list-item
+                                  :key="index"
+                                >
+                                  <v-list-item-avatar :color="notification.color">
+                                    <v-icon dark>
+                                      {{notification.icon}}
+                                    </v-icon>
+                                  </v-list-item-avatar>
+
+                                  <v-list-item-content>
+                                    <v-list-item-title v-html="notification.type_text"></v-list-item-title>
+                                    <v-list-item-subtitle v-html="notification.content"></v-list-item-subtitle>
+                                  </v-list-item-content>
                                 </v-list-item>
+                                <v-divider
+                                  v-if="index<notifications.length-1"
+                                  :key="index"
+                                  :inset="true"
+                                ></v-divider>
+                              </template>
+
+                              <v-divider/>
+                              <div class="tw-flex tw-bg-green-700 tw-items-center tw-py-3" style="border-radius: 10px">
+                                <v-btn text dark small>Voir tout</v-btn>
+
+                                <v-btn text dark small>Tout marquer comme lu</v-btn>
+                              </div>
                             </v-list>
                         </v-card>
                     </v-menu>
@@ -100,11 +125,30 @@ import { mapMutations } from 'vuex';
 export default {
     data: () => ({
         notifications: [
-            'Mike, John responded to your email',
-            'You have 5 new tasks',
-            "You're now a friend with Andrew",
-            'Another Notification',
-            'Another One',
+          {
+            type: "reservation_vol",
+            type_text: "Réservation de vol",
+            content: "+228 99 86 15 61, nouvelle demande de réservation",
+            icon: "mdi-airplane-takeoff",
+            color: "green",
+            dark: true,
+          },
+          {
+            type: "hebergement",
+            type_text: "Demande d'hébergement",
+            content: "+228 99 86 15 61, nouvelle demande de réservation",
+            icon: "mdi-store",
+            color: "orange",
+            dark: true,
+          },
+          {
+            type: "location_voiture",
+            type_text: "Location de voiture",
+            content: "+228 99 86 15 61, nouvelle demande de réservation",
+            icon: "mdi-car",
+            color: "red",
+            dark: true,
+          }
         ],
         title: null,
         responsive: false,

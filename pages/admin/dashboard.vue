@@ -4,24 +4,23 @@
       <v-col cols="12" sm="6" lg="3">
         <material-stats-card
           color="green"
-          icon="mdi-store"
-          title="Revenue"
-          value="$34,245"
+          icon="mdi-airplane-takeoff"
+          title="Reservations"
+          sub-text="Ce mois"
+          value="25"
           sub-icon="mdi-calendar"
-          sub-text="Last 24 Hours"
         />
       </v-col>
 
       <v-col cols="12" sm="6" lg="3">
         <material-stats-card
           color="orange"
-          icon="mdi-content-copy"
-          title="Used Space"
-          value="49/50"
-          small-value="GB"
-          sub-icon="mdi-alert"
+          icon="mdi-store"
+          title="Hébergements"
+          value="12"
+          sub-icon="mdi-calendar"
           sub-icon-color="error"
-          sub-text="Get More Space..."
+          sub-text="Ce mois"
           sub-text-color="text-primary"
         />
       </v-col>
@@ -29,11 +28,12 @@
       <v-col cols="12" sm="6" lg="3">
         <material-stats-card
           color="red"
-          icon="mdi-information-outline"
-          title="Fixed Issues"
+          icon="mdi-car"
+          title="Location voitures"
+          subText="Ce mois"
           value="75"
           sub-icon="mdi-tag"
-          sub-text="Tracked from Github"
+          sub-text="Ce mois"
         />
       </v-col>
 
@@ -48,29 +48,26 @@
         />
       </v-col>
 
-      <v-col cols="12" lg="6">
-        <material-card color="orange" title="Employee Stats" text="New employees on 15th September, 2016">
-          <v-data-table :headers="headers" :items="items" hide-default-footer />
-        </material-card>
-      </v-col>
 
-      <v-col cols="12" lg="6">
-        <material-card class="card-tabs" color="green">
+      <v-col cols="12" lg="12">
+        <material-card class="card-tabs" color="primary">
           <template v-slot:header>
             <v-tabs v-model="tabs" background-color="transparent" slider-color="white">
-              <span class="subheading font-weight-light mx-3" style="align-self: center">Tasks:</span>
+              <span class="subheading font-weight-light mx-3" style="align-self: center">Dernieres reservations de vols </span>
               <v-tab class="mr-3">
                 <v-icon class="mr-2">mdi-bug</v-icon>
-                Bugs
+                En attente
               </v-tab>
               <v-tab class="mr-3">
-                <v-icon class="mr-2">mdi-code-tags</v-icon>
-                Website
+                <v-icon class="mr-2">mdi-check</v-icon>
+                Déjà traité
               </v-tab>
               <v-tab>
                 <v-icon class="mr-2">mdi-cloud</v-icon>
-                Server
+                Rejetés
               </v-tab>
+              <v-spacer/>
+              <v-btn text class="mr-2">Voir tout</v-btn>
             </v-tabs>
           </template>
 
