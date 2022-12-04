@@ -2,7 +2,7 @@
   <div>
     <div class="tw-h-full lg:tw-h-[60vh] tw-bg-no-repeat tw-bg-cover tw-bg-center"
          style="background-image: url(https://plus.unsplash.com/premium_photo-1661281272544-5204ea3a481a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80)">
-      <div class="tw-flex tw-flex-col tw-items-center tw-justify-center tw-px-4 lg:tw-px-0">
+      <div class="tw-flex tw-flex-col tw-items-center tw-justify-center tw-px-4 2xl:tw-px-0">
         <form class="tw-bg-white tw-rounded-lg tw-h-full tw-my-20 tw-gap-4 tw-p-3 md:tw-p-6 lg:tw-p-12 tw-flex tw-flex-col">
           <div class="tw-inline-flex tw-gap-4 md:tw-gap-8 tw-text-xl tw-font-light">
             <span class="tw-inline-flex tw-items-center">
@@ -193,6 +193,7 @@
                 :key="text"
                 :rounded="rounded"
                 solo
+                :close-on-content-click="false"
                 offset-y
               >
                 <template v-slot:activator="{ attrs, on }">
@@ -216,27 +217,58 @@
                         <div class="tw-py-4 tw-flex tw-justify-between tw-gap-12">
                           <span class="tw-text-xl tw-font-bold tw-gray-800">Adultes (> 12 ans)</span>
                           <div class="tw-text-xl tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
-                            <span class="hover:tw-cursor-pointer"><v-icon color="red">mdi-minus-circle-outline</v-icon></span>
+                            <div v-if="form.passagers.adultes > 1 && form.passagers.enfants + form.passagers.bebes <= (form.passagers.adultes - 1) *2">
+                              <span @click="form.passagers.adultes--" class="hover:tw-cursor-pointer"><v-icon color="red">mdi-minus-circle-outline</v-icon></span>
+                            </div>
+                            <div v-else>
+                              <div class="hover:tw-cursor-not-drop"><v-icon color="grey">mdi-minus-circle-outline</v-icon></div>
+                            </div>
                             <span>{{ form.passagers.adultes }}</span>
-                            <span @click="form.nombre_passagers" class="hover:tw-cursor-pointer"><v-icon color="red">mdi-plus-circle-outline</v-icon></span>
+
+                            <div v-if="form.passagers.adultes < 9">
+                              <span @click="form.passagers.adultes++" class="hover:tw-cursor-pointer"><v-icon color="red">mdi-plus-circle-outline</v-icon></span>
+                            </div>
+                            <div v-else>
+                              <span class=""><v-icon color="grey">mdi-plus-circle-outline</v-icon></span>
+                            </div>
                           </div>
                         </div>
                         <v-divider></v-divider>
                         <div class="tw-py-4 tw-flex tw-justify-between tw-gap-12">
                           <span class="tw-text-xl tw-font-bold tw-gray-800">Enfants (2-11 ans)</span>
                           <div class="tw-text-xl tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
-                            <span class="hover:tw-cursor-pointer"><v-icon color="red">mdi-minus-circle-outline</v-icon></span>
+                            <div v-if="form.passagers.enfants > 0">
+                              <span @click="form.passagers.enfants--" class="hover:tw-cursor-pointer"><v-icon color="red">mdi-minus-circle-outline</v-icon></span>
+                            </div>
+                            <div v-else>
+                              <span class="hover:tw-cursor-no-drop"><v-icon color="grey">mdi-minus-circle-outline</v-icon></span>
+                            </div>
                             <span>{{ form.passagers.enfants }}</span>
-                            <span class="hover:tw-cursor-pointer"><v-icon color="red">mdi-plus-circle-outline</v-icon></span>
+                            <div v-if="form.passagers.enfants + form.passagers.bebes < totalChildrens">
+                              <span @click="form.passagers.enfants++" class="hover:tw-cursor-pointer"><v-icon color="red">mdi-plus-circle-outline</v-icon></span>
+                            </div>
+                            <div v-else>
+                              <span class=""><v-icon color="grey">mdi-plus-circle-outline</v-icon></span>
+                            </div>
                           </div>
                         </div>
                         <v-divider></v-divider>
                         <div class="tw-py-4 tw-flex tw-justify-between tw-gap-12">
                           <span class="tw-text-xl tw-font-bold tw-gray-800">Bébés (< 2 ans)</span>
                           <div class="tw-text-xl tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
-                            <span class="hover:tw-cursor-pointer"><v-icon color="red">mdi-minus-circle-outline</v-icon></span>
+                            <div v-if="form.passagers.bebes > 0">
+                              <span @click="form.passagers.bebes--" class="hover:tw-cursor-pointer"><v-icon color="red">mdi-minus-circle-outline</v-icon></span>
+                            </div>
+                            <div v-else>
+                              <span class=""><v-icon color="grey">mdi-minus-circle-outline</v-icon></span>
+                            </div>
                             <span>{{ form.passagers.bebes }}</span>
-                            <span class="hover:tw-cursor-pointer"><v-icon color="red">mdi-plus-circle-outline</v-icon></span>
+                            <div v-if="form.passagers.enfants + form.passagers.bebes < totalChildrens">
+                              <span @click="form.passagers.bebes++" class="hover:tw-cursor-pointer"><v-icon color="red">mdi-plus-circle-outline</v-icon></span>
+                            </div>
+                            <div v-else>
+                              <span class="hover:tw-cursor-pointer"><v-icon color="grey">mdi-plus-circle-outline</v-icon></span>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -365,12 +397,6 @@ export default {
       menu: false,
       modal: false,
       menu2: false,
-      btns: [
-        ['Removed', '0'],
-        ['Large', 'lg'],
-        ['Custom', 'b-xl'],
-      ],
-      colors: ['deep-purple accent-4', 'error', 'teal darken-1'],
     }
   },
 
@@ -378,6 +404,10 @@ export default {
     totalPassagers() {
       // cette methode retourne le nombre total de passagers
       return this.form.passagers.adultes + this.form.passagers.enfants + this.form.passagers.bebes
+    },
+
+    totalChildrens(){
+      return this.form.passagers.adultes * 2
     }
   },
 
