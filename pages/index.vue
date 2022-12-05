@@ -333,7 +333,12 @@
                           <v-col
                             cols="12"
                           >
-                            <v-text-field placeholder="XXXXXXXX" v-model="reservationForm.passport_id" required label="Numéro passport" outlined></v-text-field>
+                            <v-text-field placeholder="XXXXXXXX" v-model="reservationForm.passport_id" required label="Numéro passport*" outlined></v-text-field>
+                          </v-col>
+                          <v-col
+                            cols="12"
+                          >
+                            <v-text-field placeholder="Ex: hfx@gmail.com" v-model="reservationForm.email" required label="Votre adresse email*" outlined></v-text-field>
                           </v-col>
 
                           <v-row
@@ -349,7 +354,7 @@
                                 item-text="dial_code"
                                 item-value="id"
                                 outlined
-                                label="Indicatif de votre numéro"
+                                label="Indicatif de votre numéro*"
                               >
                                 <template v-slot:item="{ item }">
                                   <v-list-item-avatar
@@ -546,6 +551,7 @@ export default {
         comeback_date: "",
         lastname: "",
         firstname: "",
+        email: "",
         passport_id: "",
         phone_number: {
           code: "",

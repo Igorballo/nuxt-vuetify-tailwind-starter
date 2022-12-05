@@ -75,7 +75,7 @@
           <v-tabs-items v-model="tabs">
             <v-tab-item v-for="n in 3" :key="n">
               <v-list three-line class="py-0">
-                <v-list-item v-for="i in 3" @click="">
+                <v-list-item v-for="i in 3" :key="i" @click="">
                   <div class="tw-flex tw-items-center tw-text-lg tw-gap-2 tw-pr-5">
                     <span class="">12/08/2022</span>
                     <span class="">16h45min</span>
