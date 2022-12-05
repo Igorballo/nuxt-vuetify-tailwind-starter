@@ -77,29 +77,22 @@
               <v-list three-line class="py-0">
                 <v-list-item @click="complete(0)">
                   <v-list-item-action class="align-self-center">
-                    <v-checkbox :value="list[0]" color="green" />
+
                   </v-list-item-action>
 
                   <v-list-item-title>
                     Sign contract for "What are conference organized afraid of?"
                   </v-list-item-title>
 
-                  <div class="">
-                    <v-tooltip top content-class="top">
-                      <template v-slot:activator="{ attrs, on }">
-                        <v-btn
-                          class="tw-text-white"
-                          color="blue"
-                          v-bind="attrs"
-                          v-on="on"
-                        >
-                          <v-icon color="">mdi-hand-back-left</v-icon>
-                          Prendre la main
-                        </v-btn>
-                      </template>
-                      <span>Prendre la main</span>
-                    </v-tooltip>
-                  </div>
+                  <v-btn
+                    class="tw-text-white"
+                    color="primary"
+                    small
+                    @click="$router.push('reservation-vol/sjsjsk1882828')"
+                  >
+                    <v-icon small color="">mdi-hand-back-left</v-icon>
+                    commencer le traitement
+                  </v-btn>
                 </v-list-item>
 
                 <v-divider />
