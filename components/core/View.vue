@@ -1,6 +1,6 @@
 <template>
     <v-main class="grey lighten-3">
-        <div style="margin-top: 55px;">
+        <div style="margin-top: 75px;">
             <v-fade-transition mode="out-in">
                 <nuxt></nuxt>
             </v-fade-transition>
