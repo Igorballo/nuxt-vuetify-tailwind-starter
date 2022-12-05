@@ -588,9 +588,8 @@ export default {
 
   methods: {
     async reservation(){
-      console.log("reservation")
       this.btnLoading = true
-      await axios.post('http://7272-2c0f-f0f8-2be-f800-6528-ab93-b334-30ac.ngrok.io/reservation-vol/request-flight-reservation', this.reservationForm).then((response) => {
+      await axios.post(`/reservation-vol/request-flight-reservation`, this.reservationForm).then((response) => {
         if (response.data.error) {
           Swal.fire({
             title: 'Echec',
@@ -624,8 +623,8 @@ export default {
       this.loadingDeparts = true
 
       // Lazily load input items
-      // fetch(`${config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
-      fetch(`http://7272-2c0f-f0f8-2be-f800-6528-ab93-b334-30ac.ngrok.io/airports/get-by-name?filter_query=${val}`)
+      fetch(`/airports/get-by-name?filter_query=${val}`)
+      // fetch(`http://7272-2c0f-f0f8-2be-f800-6528-ab93-b334-30ac.ngrok.io/airports/get-by-name?filter_query=${val}`)
         .then(res => res.clone().json())
         .then(res => {
           this.departs = res.airports
@@ -643,8 +642,7 @@ export default {
       this.loadingDestinations = true
 
       // Lazily load input items
-      // fetch(`${config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
-      fetch(`http://7272-2c0f-f0f8-2be-f800-6528-ab93-b334-30ac.ngrok.io/airports/get-by-name?filter_query=${val}`)
+      fetch(`/airports/get-by-name?filter_query=${val}`)
         .then(res => res.clone().json())
         .then(res => {
           this.destinations = res.airports
