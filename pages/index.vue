@@ -285,14 +285,14 @@
             <template>
               <v-row justify="center">
                 <v-dialog
-                  v-model="dialog"
+                  v-model="userInfoDialog"
                   persistent
                   max-width="600px"
                 >
                   <template v-slot:activator="{ on, attrs }">
                     <v-btn
                       class=""
-                      color="error"
+                      color="error darken-1"
                       dark
                       v-bind="attrs"
                       v-on="on"
@@ -374,7 +374,7 @@
                       <v-spacer></v-spacer>
                       <v-btn
                         color="error darken-1"
-                        @click="dialog = false"
+                        @click="userInfoDialog = false"
                         text
                       >
                         Fermer
@@ -383,7 +383,7 @@
                         class=""
                         color="error darken-1"
                         :loading="btnLoading"
-                        @click="reservation()"
+                        @click="userInfoDialog = false, disclaimerDialog = true"
                       >
                         Envoyer la demande
                       </v-btn>
@@ -393,6 +393,47 @@
               </v-row>
             </template>
           </div>
+
+          <template>
+            <div class="text-center">
+              <v-dialog
+                v-model="disclaimerDialog"
+                width="500"
+              >
+
+                <v-card>
+                  <v-card-title class="text-h5 grey lighten-2">
+                    Politique de confidentialité
+                  </v-card-title>
+
+                  <v-card-text>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                  </v-card-text>
+
+                  <v-divider></v-divider>
+
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn
+                      color="primary"
+                      text
+                      @click="disclaimerDialog = false"
+                    >
+                      Annuler
+                    </v-btn>
+                    <v-btn
+                      color="primary"
+                      text
+                      @click="reservation()"
+                    >
+                      J'accepte
+                    </v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
+            </div>
+          </template>
+
         </form>
       </div>
     </div>
@@ -488,6 +529,8 @@ export default {
       loadingDestinations: false,
       btnLoading: false,
       isLoading: false,
+      userInfoDialog: false,
+      disclaimerDialog: false,
       departs: [],
       destinations: [],
       model: null,
@@ -519,7 +562,6 @@ export default {
       depart_menu: false,
       retour_menu: false,
       menu: false,
-      dialog: false,
       isEditing: false,
     }
   },
@@ -542,7 +584,7 @@ export default {
     async reservation(){
       console.log("reservation")
       this.btnLoading = true
-      await axios.post('http://9930-2c0f-f0f8-68e-ab00-29cd-9bf3-d18e-985d.ngrok.io/reservation-vol/request-flight-reservation', this.reservationForm).then((response) => {
+      await axios.post('http://cf5c-2c0f-f0f8-2be-f800-6c43-f02f-e42d-5944.ngrok.io/reservation-vol/request-flight-reservation', this.reservationForm).then((response) => {
         if (response.data.error) {
           Swal.fire({
             title: 'Echec',
@@ -552,11 +594,11 @@ export default {
           return
         }
         this.btnLoading = false
-        this.dialog = false
+        this.userInfoDialog = false
           this.showToast('success', 'Demande de reservation envoyée avec succès')
       }).catch(error => {
         this.btnLoading = false
-        this.dialog = false
+        this.userInfoDialog = false
         this.showToast('error', "Une erreur s'est produite")
       });
     }
@@ -575,7 +617,7 @@ export default {
 
       // Lazily load input items
       // fetch(`${config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
-      fetch(`http://9930-2c0f-f0f8-68e-ab00-29cd-9bf3-d18e-985d.ngrok.io/airports/get-by-name?filter_query=${val}`)
+      fetch(`http://cf5c-2c0f-f0f8-2be-f800-6c43-f02f-e42d-5944.ngrok.io/airports/get-by-name?filter_query=${val}`)
         .then(res => res.clone().json())
         .then(res => {
           this.departs = res.airports
@@ -594,7 +636,7 @@ export default {
 
       // Lazily load input items
       // fetch(`${config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
-      fetch(`http://9930-2c0f-f0f8-68e-ab00-29cd-9bf3-d18e-985d.ngrok.io/airports/get-by-name?filter_query=${val}`)
+      fetch(`http://cf5c-2c0f-f0f8-2be-f800-6c43-f02f-e42d-5944.ngrok.io/airports/get-by-name?filter_query=${val}`)
         .then(res => res.clone().json())
         .then(res => {
           this.destinations = res.airports

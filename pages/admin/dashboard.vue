@@ -75,10 +75,11 @@
           <v-tabs-items v-model="tabs">
             <v-tab-item v-for="n in 3" :key="n">
               <v-list three-line class="py-0">
-                <v-list-item @click="complete(0)">
-                  <v-list-item-action class="align-self-center">
-
-                  </v-list-item-action>
+                <v-list-item v-for="i in 3" @click="">
+                  <div class="tw-flex tw-items-center tw-text-lg tw-gap-2 tw-pr-5">
+                    <span class="">12/08/2022</span>
+                    <span class="">16h45min</span>
+                  </div>
 
                   <v-list-item-title>
                     Sign contract for "What are conference organized afraid of?"
@@ -96,93 +97,6 @@
                 </v-list-item>
 
                 <v-divider />
-
-                <v-list-item @click="complete(1)">
-                  <v-list-item-action class="align-self-center">
-                    <v-checkbox :value="list[1]" color="green" />
-                  </v-list-item-action>
-
-                  <v-list-item-title>
-                    Lines From Great Russian Literature? Or E-mails From My Boss?
-                  </v-list-item-title>
-
-                  <div class="d-flex">
-                    <v-tooltip top content-class="top">
-                      <template v-slot:activator="{ attrs, on }">
-                        <v-btn
-                          class="v-btn--simple"
-                          color="green"
-                          icon
-                          v-bind="attrs"
-                          v-on="on"
-                        >
-                          <v-icon color="primary">mdi-pencil</v-icon>
-                        </v-btn>
-                      </template>
-                      <span>Edit</span>
-                    </v-tooltip>
-
-                    <v-tooltip top content-class="top">
-                      <template v-slot:activator="{ attrs, on }">
-                        <v-btn
-                          class="v-btn--simple"
-                          color="danger"
-                          icon
-                          v-bind="attrs"
-                          v-on="on"
-                        >
-                          <v-icon color="error">mdi-close</v-icon>
-                        </v-btn>
-                      </template>
-                      <span>Close</span>
-                    </v-tooltip>
-                  </div>
-                </v-list-item>
-
-                <v-divider />
-
-                <v-list-item @click="complete(2)">
-                  <v-list-item-action class="align-self-center">
-                    <v-checkbox :value="list[2]" color="green" />
-                  </v-list-item-action>
-
-                  <v-list-item-title>
-                    Flooded: One year later, assessing what was lost and what was found when a
-                    ravaging rain swept through metro Detroit
-                  </v-list-item-title>
-
-                  <div class="d-flex">
-                    <v-tooltip top content-class="top">
-                      <template v-slot:activator="{ attrs, on }">
-                        <v-btn
-                          class="v-btn--simple"
-                          color="green"
-                          icon
-                          v-bind="attrs"
-                          v-on="on"
-                        >
-                          <v-icon color="primary">mdi-pencil</v-icon>
-                        </v-btn>
-                      </template>
-                      <span>Edit</span>
-                    </v-tooltip>
-
-                    <v-tooltip top content-class="top">
-                      <template v-slot:activator="{ attrs, on }">
-                        <v-btn
-                          class="v-btn--simple"
-                          color="danger"
-                          icon
-                          v-bind="attrs"
-                          v-on="on"
-                        >
-                          <v-icon color="error">mdi-close</v-icon>
-                        </v-btn>
-                      </template>
-                      <span>Close</span>
-                    </v-tooltip>
-                  </div>
-                </v-list-item>
               </v-list>
             </v-tab-item>
           </v-tabs-items>
@@ -197,9 +111,11 @@
 
 export default {
   // components: { Editor },
+  name: "dashboard",
   layout: "admin",
   data() {
     return {
+      reservation_vols: [],
       editorText:
         '<h2>Material Dashboard</h2><blockquote><p>made by Rekryt (vk.com/krupkin.sergey)<br>sep 2019</p></blockquote><p>&nbsp;</p><p>Special thanks to:<br>https://nuxtjs.org<br>https://vuetifyjs.com<br>https://www.creative-tim.com</p>',
       dailySalesChart: {
@@ -350,6 +266,15 @@ export default {
   methods: {
     complete(index) {
       this.list[index] = !this.list[index];
+    },
+
+    async getAllVolsReservations() {
+      const response = await axios.get('/bus-manager/reservations')
+        .then(resp => resp.data)
+        .catch(error => {
+          return;
+        })
+      this.reservation_vols = response.reservations
     },
   },
 };
