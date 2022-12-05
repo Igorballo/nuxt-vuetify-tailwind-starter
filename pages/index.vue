@@ -17,7 +17,7 @@
           <div class="tw-flex tw-flex-wrap tw-items-center tw-justify-between tw-gap-4 md:tw-gap-6 tw-w-full">
             <div class="tw-flex tw-gap-3 tw-items-center tw-bg-white">
               <v-autocomplete
-                v-model="reservationForm.ville_depart"
+                v-model="reservationForm.airport_depart"
                 :items="departs"
                 :loading="loadingDeparts"
                 :search-input.sync="searchDeparts"
@@ -25,7 +25,7 @@
                 hide-details
                 hide-selected
                 item-text="name"
-                item-value="id"
+                item-value="_id"
                 label="Choisissez l'adresse de départ..."
                 outlined
                 height="70"
@@ -62,7 +62,7 @@
 
               <v-autocomplete
                 class=""
-                v-model="reservationForm.ville_destination"
+                v-model="reservationForm.airport_destination"
                 :items="destinations"
                 :loading="loadingDestinations"
                 :search-input.sync="searchDestinations"
@@ -70,7 +70,7 @@
                 hide-details
                 hide-selected
                 item-text="name"
-                item-value="id"
+                item-value="_id"
                 label="Choisissez l'adresse d'arrivée..."
                 outlined
                 height="70"
@@ -109,7 +109,7 @@
             >
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
-                  v-model="reservationForm.date_depart"
+                  v-model="reservationForm.depart_date"
                   label="Date de départ"
                   readonly
                   height="70"
@@ -119,7 +119,7 @@
                 ></v-text-field>
               </template>
               <v-date-picker
-                v-model="reservationForm.date_depart"
+                v-model="reservationForm.depart_date"
                 no-title
                 scrollable
               >
@@ -152,7 +152,7 @@
             >
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
-                  v-model="reservationForm.date_retour"
+                  v-model="reservationForm.comeback_date"
                   label="Date de retour"
                   readonly
                   outlined
@@ -162,7 +162,7 @@
                 ></v-text-field>
               </template>
               <v-date-picker
-                v-model="reservationForm.date_retour"
+                v-model="reservationForm.comeback_date"
                 no-title
                 scrollable
               >
@@ -177,7 +177,7 @@
                 <v-btn
                   text
                   color="primary"
-                  @click="$refs.menu.save(reservationForm.date_retour)"
+                  @click="$refs.menu.save(reservationForm.comeback_date)"
                 >
                   OK
                 </v-btn>
@@ -187,7 +187,6 @@
             <div class="tw-w-full">
               <v-menu
                 :key="text"
-                :rounded="rounded"
                 solo
                 :close-on-content-click="false"
                 offset-y
@@ -286,13 +285,14 @@
             <template>
               <v-row justify="center">
                 <v-dialog
-                  v-model="dialog"
+                  v-model="userInfoDialog"
                   persistent
                   max-width="600px"
                 >
                   <template v-slot:activator="{ on, attrs }">
                     <v-btn
-                      class="tw-bg-red-600"
+                      class=""
+                      color="error darken-1"
                       dark
                       v-bind="attrs"
                       v-on="on"
@@ -316,7 +316,7 @@
                               label="Nom*"
                               required
                               outlined
-                              v-model="reservationForm.nom"
+                              v-model="reservationForm.lastname"
                             ></v-text-field>
                           </v-col>
                           <v-col
@@ -326,14 +326,14 @@
                             <v-text-field
                               label="Prénoms"
                               required outlined
-                              v-model="reservationForm.prenom"
+                              v-model="reservationForm.firstname"
                             ></v-text-field>
                           </v-col>
 
                           <v-col
                             cols="12"
                           >
-                            <v-text-field placeholder="XXXXXXXX" v-model="reservationForm.passport_id" required type="number" label="Numéro passport" outlined></v-text-field>
+                            <v-text-field placeholder="XXXXXXXX" v-model="reservationForm.passport_id" required label="Numéro passport" outlined></v-text-field>
                           </v-col>
 
                           <v-row
@@ -341,7 +341,7 @@
                           >
                             <v-col sm="6">
                               <v-autocomplete
-                                v-model="reservationForm.telephone.code"
+                                v-model="reservationForm.phone_number.code"
                                 :items="countries"
                                 :loading="isLoading"
                                 :search-input.sync="search"
@@ -364,7 +364,7 @@
                                 </template>
                               </v-autocomplete>
                             </v-col>
-                            <v-text-field v-model="reservationForm.telephone.number" justify="center" required type="number" label="Numéro de télephone" outlined></v-text-field>
+                            <v-text-field v-model="reservationForm.phone_number.number" justify="center" required type="number" label="Numéro de télephone" outlined></v-text-field>
                           </v-row>
                         </v-row>
                       </v-container>
@@ -373,16 +373,17 @@
                     <v-card-actions>
                       <v-spacer></v-spacer>
                       <v-btn
-                        color="blue darken-1"
+                        color="error darken-1"
+                        @click="userInfoDialog = false"
                         text
-                        @click="dialog = false"
                       >
                         Fermer
                       </v-btn>
                       <v-btn
-                        color="blue darken-1"
-                        text
-                        @click="dialog = false"
+                        class=""
+                        color="error darken-1"
+                        :loading="btnLoading"
+                        @click="userInfoDialog = false, disclaimerDialog = true"
                       >
                         Envoyer la demande
                       </v-btn>
@@ -392,6 +393,47 @@
               </v-row>
             </template>
           </div>
+
+          <template>
+            <div class="text-center">
+              <v-dialog
+                v-model="disclaimerDialog"
+                width="500"
+              >
+
+                <v-card>
+                  <v-card-title class="text-h5 grey lighten-2">
+                    Politique de confidentialité
+                  </v-card-title>
+
+                  <v-card-text>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                  </v-card-text>
+
+                  <v-divider></v-divider>
+
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn
+                      color="primary"
+                      text
+                      @click="disclaimerDialog = false"
+                    >
+                      Annuler
+                    </v-btn>
+                    <v-btn
+                      color="primary"
+                      text
+                      @click="reservation()"
+                    >
+                      J'accepte
+                    </v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
+            </div>
+          </template>
+
         </form>
       </div>
     </div>
@@ -485,22 +527,27 @@ export default {
       countries: json,
       loadingDeparts: false,
       loadingDestinations: false,
+      btnLoading: false,
+      isLoading: false,
+      userInfoDialog: false,
+      disclaimerDialog: false,
       departs: [],
       destinations: [],
       model: null,
+      search: null,
       searchDeparts: null,
       searchDestinations: null,
       tab: null,
       reservationForm: {
         aller_simple: true,
-        ville_depart: "",
-        ville_destination: "",
-        date_depart: "",
-        date_retour: "",
-        nom: "",
-        prenom: "",
+        airport_depart: "",
+        airport_destination: "",
+        depart_date: "",
+        comeback_date: "",
+        lastname: "",
+        firstname: "",
         passport_id: "",
-        telephone: {
+        phone_number: {
           code: "",
           number: '',
         },
@@ -515,27 +562,7 @@ export default {
       depart_menu: false,
       retour_menu: false,
       menu: false,
-      dialog: false,
       isEditing: false,
-      // model: null,
-      states: [
-        'Alabama', 'Alaska', 'American Samoa', 'Arizona',
-        'Arkansas', 'California', 'Colorado', 'Connecticut',
-        'Delaware', 'District of Columbia', 'Federated States of Micronesia',
-        'Florida', 'Georgia', 'Guam', 'Hawaii', 'Idaho',
-        'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky',
-        'Louisiana', 'Maine', 'Marshall Islands', 'Maryland',
-        'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi',
-        'Missouri', 'Montana', 'Nebraska', 'Nevada',
-        'New Hampshire', 'New Jersey', 'New Mexico', 'New York',
-        'North Carolina', 'North Dakota', 'Northern Mariana Islands', 'Ohio',
-        'Oklahoma', 'Oregon', 'Palau', 'Pennsylvania', 'Puerto Rico',
-        'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee',
-        'Texas', 'Utah', 'Vermont', 'Virgin Island', 'Virginia',
-        'Washington', 'West Virginia', 'Wisconsin', 'Wyoming',
-      ],
-      // modal: false,
-      // menu2: false,
     }
   },
 
@@ -554,6 +581,27 @@ export default {
   },
 
   methods: {
+    async reservation(){
+      console.log("reservation")
+      this.btnLoading = true
+      await axios.post('http://cf5c-2c0f-f0f8-2be-f800-6c43-f02f-e42d-5944.ngrok.io/reservation-vol/request-flight-reservation', this.reservationForm).then((response) => {
+        if (response.data.error) {
+          Swal.fire({
+            title: 'Echec',
+            text: 'Une Erreur s\'est produite',
+            icon: 'error'
+          })
+          return
+        }
+        this.btnLoading = false
+        this.userInfoDialog = false
+          this.showToast('success', 'Demande de reservation envoyée avec succès')
+      }).catch(error => {
+        this.btnLoading = false
+        this.userInfoDialog = false
+        this.showToast('error', "Une erreur s'est produite")
+      });
+    }
   },
 
   watch: {
@@ -568,7 +616,8 @@ export default {
       this.loadingDeparts = true
 
       // Lazily load input items
-      fetch(`${config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
+      // fetch(`${config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
+      fetch(`http://cf5c-2c0f-f0f8-2be-f800-6c43-f02f-e42d-5944.ngrok.io/airports/get-by-name?filter_query=${val}`)
         .then(res => res.clone().json())
         .then(res => {
           this.departs = res.airports
@@ -586,7 +635,8 @@ export default {
       this.loadingDestinations = true
 
       // Lazily load input items
-      fetch(`${config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
+      // fetch(`${config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
+      fetch(`http://cf5c-2c0f-f0f8-2be-f800-6c43-f02f-e42d-5944.ngrok.io/airports/get-by-name?filter_query=${val}`)
         .then(res => res.clone().json())
         .then(res => {
           this.destinations = res.airports
