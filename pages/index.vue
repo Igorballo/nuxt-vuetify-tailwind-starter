@@ -590,7 +590,7 @@ export default {
     async reservation(){
       console.log("reservation")
       this.btnLoading = true
-      await axios.post('http://cf5c-2c0f-f0f8-2be-f800-6c43-f02f-e42d-5944.ngrok.io/reservation-vol/request-flight-reservation', this.reservationForm).then((response) => {
+      await axios.post('http://7272-2c0f-f0f8-2be-f800-6528-ab93-b334-30ac.ngrok.io/reservation-vol/request-flight-reservation', this.reservationForm).then((response) => {
         if (response.data.error) {
           Swal.fire({
             title: 'Echec',
@@ -601,10 +601,12 @@ export default {
         }
         this.btnLoading = false
         this.userInfoDialog = false
-          this.showToast('success', 'Demande de reservation envoyée avec succès')
+        this.disclaimerDialog = false
+        this.showToast('success', 'Demande de reservation envoyée avec succès')
       }).catch(error => {
         this.btnLoading = false
         this.userInfoDialog = false
+        this.disclaimerDialog = false
         this.showToast('error', "Une erreur s'est produite")
       });
     }
@@ -623,7 +625,7 @@ export default {
 
       // Lazily load input items
       // fetch(`${config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
-      fetch(`http://cf5c-2c0f-f0f8-2be-f800-6c43-f02f-e42d-5944.ngrok.io/airports/get-by-name?filter_query=${val}`)
+      fetch(`http://7272-2c0f-f0f8-2be-f800-6528-ab93-b334-30ac.ngrok.io/airports/get-by-name?filter_query=${val}`)
         .then(res => res.clone().json())
         .then(res => {
           this.departs = res.airports
@@ -642,7 +644,7 @@ export default {
 
       // Lazily load input items
       // fetch(`${config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
-      fetch(`http://cf5c-2c0f-f0f8-2be-f800-6c43-f02f-e42d-5944.ngrok.io/airports/get-by-name?filter_query=${val}`)
+      fetch(`http://7272-2c0f-f0f8-2be-f800-6528-ab93-b334-30ac.ngrok.io/airports/get-by-name?filter_query=${val}`)
         .then(res => res.clone().json())
         .then(res => {
           this.destinations = res.airports

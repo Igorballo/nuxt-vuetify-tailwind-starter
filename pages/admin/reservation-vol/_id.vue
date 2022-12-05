@@ -152,13 +152,13 @@
             </div>
             <v-icon>mdi-airplane</v-icon>
             <div class="tw-text-md">
-              <span>Départ: </span>
-              <span class="tw-font-semibold">Airpot Tokoin</span>
+              <span>Destination: </span>
+              <span class="tw-font-semibold">Airpot Montréal</span>
             </div>
           </div>
           <v-card-title>
             <v-spacer/>
-            <v-btn small class="primary">+ nouvelle offre</v-btn>
+            <v-btn small class="blue tw-text-white">+ nouvelle offre</v-btn>
           </v-card-title>
         </div>
         <v-card-text>
@@ -169,38 +169,71 @@
               </v-alert>
             </v-col>
           </v-row>
+
           <v-card>
             <v-card-title class="tw-mt-4">
-              <v-btn @click="nombre_escale++" small color="green" dark>ajouter escale a ce plan</v-btn>
+              <v-btn @click="nombre_escale++" small color="blue" dark><v-icon>mdi-airplane-edit</v-icon> ajouter une escale</v-btn>
               <v-spacer/>
               <v-icon small color="red">mdi-delete</v-icon>
             </v-card-title>
             <v-card-text>
-              <v-autocomplete dense label="Compagnie de voyage" outlined/>
-              <v-text-field label="Prix d'achat du billet" outlined dense/>
-              <v-text-field label="Prix de revente du billet" outlined dense/>
+              <v-autocomplete class="tw-mb-6"
+                v-model="offres.airline"
+                :items="airlines"
+                clearable
+                hide-details
+                hide-selected
+                item-text="label"
+                item-value="_id"
+                label="Compagnie de voyage"
+                outlined
+              >
+                <template v-slot:no-data>
+                  <v-list-item>
+                    <v-list-item-title>
+                      Tapez le nom de la compagnie aérienne
+                      <strong>Compagnie</strong>
+                    </v-list-item-title>
+                  </v-list-item>
+                </template>
 
-              <div v-for="i in nombre_escale" :key="i" class="tw-flex tw-items-center tw-justify-between tw-px-2 tw-border tw-border-gray-900 tw-rounded-lg tw-gap-4 tw-mb-6">
+                <template v-slot:item="{ item }">
+                  <v-list-item-avatar
+                    class="text-h5 font-weight-light white--text"
+                  >
+                    <v-icon>mdi-airplane</v-icon>
+                  </v-list-item-avatar>
+                  <v-list-item-content>
+                    <v-list-item-title v-text="item.label"></v-list-item-title>
+                  </v-list-item-content>
+                </template>
+              </v-autocomplete>
+
+
+              <v-text-field v-model="offres.amountbuy" label="Prix d'achat du billet" type="number" outlined dense/>
+              <v-text-field v-model="offres.amountsell" label="Prix de revente du billet" type="number" outlined dense/>
+
+              <div v-for="i in nombre_escale" :key="i" class="tw-flex tw-items-center tw-justify-between tw-px-2 tw-border tw-border-gray-900 tw-rounded tw-gap-4 tw-mb-6">
                 <span
                   class="tw-rounded-full tw-p-2 tw-h-8 tw-w-8 tw-flex tw-items-center tw-justify-center tw-text-white tw-font-semibold tw-bg-blue-800">{{ i }}</span>
                 <v-autocomplete
                   v-model="model"
-                  :items="items"
-                  :loading="loadingDeparts"
-                  :search-input.sync="searchDeparts"
+                  :items="escales"
+                  :loading="loadingEscales"
+                  :search-input.sync="searchEscales"
                   clearable
                   hide-details
                   hide-selected
                   item-text="name"
                   item-value="_id"
                   label="Choisissez l'aéroport d'escale..."
-                  outlined
+                  solo
                 >
                   <template v-slot:no-data>
                     <v-list-item>
                       <v-list-item-title>
-                        Tapez le nom de l'aéroport
-                        <strong>Aéroport</strong>
+                        Tapez le nom de compagnie
+                        <strong>Compagnie</strong>
                       </v-list-item-title>
                     </v-list-item>
                   </template>
@@ -217,13 +250,12 @@
                     </v-list-item-content>
                   </template>
                 </v-autocomplete>
-                <v-datetime-picker outlined ships v-model="datetime"></v-datetime-picker>
+                <v-datetime-picker solo outlined ships v-model="datetime"></v-datetime-picker>
               </div>
             </v-card-text>
           </v-card>
+          <v-btn color="red" class="tw-text-white tw-w-full tw-mt-8">Enrégistrer et envoyer au client</v-btn>
         </v-card-text>
-
-        <v-btn color="red" class="tw-text-white tw-hidden">Enrégistrer et envoyer au client</v-btn>
       </v-card>
     </v-dialog>
   </v-container>
@@ -237,8 +269,61 @@ export default {
       nombre_escale: 0,
       showEscaleForm: false,
       dialogAddOffre: false,
+      loadingEscales: false,
+      searchEscales: null,
+      escales: [],
+      offres: {
+        airline: "",
+        amountbuy: "",
+        amountsell: "",
+        escales: false,
+      },
+      airlines: [],
+      modal: "",
     }
-  }
+  },
+
+  mounted(){
+    this.getAirlines()
+  },
+
+  methods: {
+      async getAirlines() {
+        const response = await axios.get('http://7272-2c0f-f0f8-2be-f800-6528-ab93-b334-30ac.ngrok.io/airlines/get-airlines')
+          // console.log(response.data)
+          .then(res => {
+            this.airlines = res.data.airlines
+          })
+          .catch(error => {
+            return;
+          })
+      },
+  },
+
+  watch: {
+    model(val) {
+      if (val != null) this.tab = 0
+      else this.tab = null
+    },
+    searchEscales(val) {
+      // Items have already been loaded
+      if (this.escales.length > 0) return
+
+      this.loadingEscales = true
+
+      // Lazily load input items
+      // fetch(`${config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
+      fetch(`http://7272-2c0f-f0f8-2be-f800-6528-ab93-b334-30ac.ngrok.io/airports/get-by-name?filter_query=${val}`)
+        .then(res => res.clone().json())
+        .then(res => {
+          this.escales = res.airports
+        })
+        .catch(err => {
+          console.log(err)
+        })
+        .finally(() => (this.loadingEscales = false))
+    },
+  },
 }
 </script>
 

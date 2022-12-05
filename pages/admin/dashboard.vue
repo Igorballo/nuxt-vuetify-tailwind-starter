@@ -116,6 +116,7 @@ export default {
   data() {
     return {
       reservation_vols: [],
+      airlines: [],
       editorText:
         '<h2>Material Dashboard</h2><blockquote><p>made by Rekryt (vk.com/krupkin.sergey)<br>sep 2019</p></blockquote><p>&nbsp;</p><p>Special thanks to:<br>https://nuxtjs.org<br>https://vuetifyjs.com<br>https://www.creative-tim.com</p>',
       dailySalesChart: {
@@ -263,10 +264,14 @@ export default {
       },
     };
   },
+
+  mounted(){
+  },
   methods: {
     complete(index) {
       this.list[index] = !this.list[index];
     },
+
 
     async getAllVolsReservations() {
       const response = await axios.get('/bus-manager/reservations')
