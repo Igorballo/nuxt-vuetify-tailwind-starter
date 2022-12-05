@@ -10,36 +10,145 @@
             </span>
           <div class="tw-flex tw-flex-col tw-gap-6 tw-mt-6 tw-w-full">
             <div class="tw-inline-flex tw-w-full tw-gap-6 tw-items-center">
-              <div class="tw-border tw-border-gray-400 tw-text-lg tw-rounded-lg tw-w-full tw-flex tw-flex-col tw-p-3">
+              <div class=" tw-text-lg tw-rounded-lg tw-w-full tw-flex tw-flex-col tw-p-3">
                 <span class="tw-text-gray-600 tw-mb-1 ">Lieu de prise en charge :</span>
-                <input class="tw-text-lg tw-placeholder-gray-400 tw-font-semibold tw-uppercase tw-outline-none tw-h-10 tw-bg-gray-50"
-                       placeholder="D'ou partez-vous ?">
+                <v-text-field
+                v-model="form.lieu_prise_en_charge"
+                outlined
+                placeholder="Lieu de prise en charge"
+                >
+                </v-text-field>
               </div>
 
-              <div class="tw-border tw-border-gray-400 tw-text-lg tw-rounded-lg tw-w-full tw-flex tw-flex-col tw-p-3">
+              <div class=" tw-text-lg tw-rounded-lg tw-w-full tw-flex tw-flex-col tw-p-3">
                 <span class="tw-text-gray-600 tw-mb-1 ">Lieu de restitution :</span>
-                <input class="tw-text-lg tw-placeholder-gray-400 tw-font-semibold tw-uppercase tw-outline-none tw-h-10 tw-bg-gray-50"
-                       placeholder="Ou allez-vous ?">
+                 <v-text-field
+                 v-model="form.lieu_de_restitution"
+                 outlined
+                 placeholder="Lieu de restitution">
+                </v-text-field>
               </div>
             </div>
 
-            <div class="tw-flex tw-items-center tw-w-full tw-gap-6">
-              <div class="tw-border tw-border-gray-400 tw-text-lg tw-rounded-lg tw-w-full tw-flex tw-flex-col tw-p-3">
+            <div class="tw-flex tw-items-center tw-w-full tw-gap-4">
+              <div class=" tw-text-lg tw-rounded-lg tw-w-full tw-flex tw-flex-col tw-p-3">
                 <span class="tw-text-gray-600 tw-mb-1 ">Date de début :</span>
-                <input class="tw-text-lg tw-placeholder-gray-400 tw-font-semibold tw-uppercase tw-outline-none tw-h-10 tw-bg-gray-50"
-                       placeholder="Ex: 05/12/2022">
+                <v-menu
+
+              ref="menu"
+              v-model="menu"
+              :close-on-content-click="false"
+              :return-value.sync="date"
+              transition="scale-transition"
+              offset-y
+              min-width="auto"
+            >
+              <template v-slot:activator="{ on, attrs }">
+                <v-text-field
+                  v-model="form.date_debut"
+                  placeholder="Date de début: 05/12/2022"
+                  readonly
+                  outlined
+                  height="70"
+                  v-bind="attrs"
+                  v-on="on"
+                ></v-text-field>
+              </template>
+              <v-date-picker
+                v-model="form.date_debut"
+                no-title
+                scrollable
+              >
+                <v-spacer></v-spacer>
+                <v-btn
+                  text
+                  color="primary"
+                  @click="menu = false"
+                >
+                  Cancel
+                </v-btn>
+                <v-btn
+                  text
+                  color="primary"
+                  @click="$refs.menu.save(form.date_debut)"
+                  
+                >
+                  OK
+                </v-btn>
+              </v-date-picker>
+            </v-menu>
               </div>
 
-              <div class="tw-border tw-border-gray-400 tw-text-lg tw-rounded-lg tw-w-full tw-flex tw-flex-col tw-p-3">
+              <div class=" tw-text-lg tw-rounded-lg tw-w-full tw-flex tw-flex-col tw-p-3">
                 <span class="tw-text-gray-600 tw-mb-1 ">Date de fin :</span>
-                <input class="tw-text-lg tw-placeholder-gray-400 tw-font-semibold tw-uppercase tw-outline-none tw-h-10 tw-bg-gray-50"
-                       placeholder="Ex: 15/01/2023">
+                  <v-menu
+              ref="menu"
+              v-model="menu"
+              :close-on-content-click="false"
+              :return-value.sync="date"
+              transition="scale-transition"
+              offset-y
+              min-width="auto"
+            >
+              <template v-slot:activator="{ on, attrs }">
+                <v-text-field
+                  v-model="form.date_fin"
+                  placeholder="Date de fin : 05/12/2022"
+                  readonly
+                  outlined
+                  height="70"
+                  v-bind="attrs"
+                  v-on="on"
+                ></v-text-field>
+              </template>
+              <v-date-picker
+                v-model="form.date_fin"
+                no-title
+                scrollable
+              >
+                <v-spacer></v-spacer>
+                <v-btn
+                  text
+                  color="primary"
+                  @click="menu = false"
+                >
+                  Cancel
+                </v-btn>
+                <v-btn
+                  text
+                  color="primary"
+                  @click="$refs.menu.save(form.date_fin)"
+                  
+                >
+                  OK
+                </v-btn>
+              </v-date-picker>
+            </v-menu>
+
+            
               </div>
+
+               <v-col
+        
+        md="6"
+      >
+        <v-textarea
+        v-model="form.description_voiture"
+          label="Description de la Voiture"
+          name="input-7-1"
+          outlined
+       ></v-textarea>
+      </v-col>
             </div>
           </div>
 
           <div class="tw-flex tw-mt-6">
-            <button class="tw-rounded tw-px-6 tw-py-2 tw-bg-red-600 tw-text-white tw-text-lg tw-uppercase tw-font-semibold">Faire une reservation de voiture</button>
+             <v-btn
+                      color="red"
+                      @click="reservation()"
+                    >
+                      Faire une reservation de voiture
+                    </v-btn>
           </div>
         </form>
       </div>
@@ -124,7 +233,41 @@
 <script>
 export default {
   name: 'car-location',
-  layout: 'master'
+  layout: 'master',
+
+   data() {
+    return {
+      btnLoading: false,
+      form: {
+        lieu_prise_en_charge: "",
+        lieu_de_restitution: "",
+        date_debut: "",
+        date_fin: "",
+        description_voiture: ""
+      }
+    }
+    },
+
+     methods: {
+    async reservation(){
+      this.btnLoading = true
+      await axios.post('', this.form).then((response) => {
+        if (response.data.error) {
+          Swal.fire({
+            title: 'Echec',
+            text: 'Une Erreur s\'est produite',
+            icon: 'error'
+          })
+          return
+        }
+        this.btnLoading = false
+          this.showToast('success', 'Demande de reservation envoyée avec succès')
+      }).catch(error => {
+        this.btnLoading = false
+        this.showToast('error', "Une erreur s'est produite")
+      });
+    }
+  },
 }
 </script>
 

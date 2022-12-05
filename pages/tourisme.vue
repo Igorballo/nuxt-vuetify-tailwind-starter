@@ -6,7 +6,50 @@
           v-for="(item,i) in items"
           :key="i"
           :src="item.src"
-        ></v-carousel-item>
+        >
+         <div class="tw-flex tw-flex-col tw-items-center tw-justify-center tw-pb-8">
+        <form class="tw-bg-white tw-w-3/5 tw-rounded-lg tw-h-full tw-my-20 tw-p-3 md:tw-p-6 lg:tw-p-12 tw-flex tw-flex-col tw-pb-8">
+            <span class="tw-inline-flex tw-items-center">
+              <input type="radio" class="tw-w-5 tw-h-5 checked:tw-bg-red-600" checked id="aller_simple" name="voyage">
+              <label for="aller_simple" class="tw-ml-2">Lieu de retour différent</label>
+            </span>
+          <div class="tw-flex tw-flex-col tw-gap-6 tw-mt-6 tw-w-full">
+            <div class="tw-inline-flex tw-w-full tw-gap-6 tw-items-center">
+              <div class="tw-border tw-border-gray-400 tw-text-lg tw-rounded-lg tw-w-full tw-flex tw-flex-col tw-p-3">
+                <span class="tw-text-gray-600 tw-mb-1 ">Lieu de prise en charge :</span>
+                <input class="tw-text-lg tw-placeholder-gray-400 tw-font-semibold tw-uppercase tw-outline-none tw-h-10 tw-bg-gray-50"
+                       placeholder="D'ou partez-vous ?">
+              </div>
+
+              <div class="tw-border tw-border-gray-400 tw-text-lg tw-rounded-lg tw-w-full tw-flex tw-flex-col tw-p-3">
+                <span class="tw-text-gray-600 tw-mb-1 ">Lieu de restitution :</span>
+                <input class="tw-text-lg tw-placeholder-gray-400 tw-font-semibold tw-uppercase tw-outline-none tw-h-10 tw-bg-gray-50"
+                       placeholder="Ou allez-vous ?">
+              </div>
+            </div>
+
+            <div class="tw-flex tw-items-center tw-w-full tw-gap-6">
+              <div class="tw-border tw-border-gray-400 tw-text-lg tw-rounded-lg tw-w-full tw-flex tw-flex-col tw-p-3">
+                <span class="tw-text-gray-600 tw-mb-1 ">Date de début :</span>
+                <input class="tw-text-lg tw-placeholder-gray-400 tw-font-semibold tw-uppercase tw-outline-none tw-h-10 tw-bg-gray-50"
+                       placeholder="Ex: 05/12/2022">
+              </div>
+
+              <div class="tw-border tw-border-gray-400 tw-text-lg tw-rounded-lg tw-w-full tw-flex tw-flex-col tw-p-3">
+                <span class="tw-text-gray-600 tw-mb-1 ">Date de fin :</span>
+                <input class="tw-text-lg tw-placeholder-gray-400 tw-font-semibold tw-uppercase tw-outline-none tw-h-10 tw-bg-gray-50"
+                       placeholder="Ex: 15/01/2023">
+              </div>
+            </div>
+          </div>
+
+          <div class="tw-flex tw-mt-6">
+            <button class="tw-rounded tw-px-6 tw-py-2 tw-bg-red-600 tw-text-white tw-text-lg tw-uppercase tw-font-semibold">Faire une reservation de voiture</button>
+          </div>
+        </form>
+      </div>
+      
+      </v-carousel-item>
       </v-carousel>
     </template>
 
@@ -158,6 +201,7 @@
 
 
       </div>
+
 
     </section>
 
