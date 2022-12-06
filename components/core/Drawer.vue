@@ -88,6 +88,11 @@ export default {
         icon: 'mdi-view-dashboard',
         text: 'Tourisme',
       },
+      {
+        to: '/admin/utilisateur',
+        icon: 'mdi-view-dashboard',
+        text: 'Utilisateur',
+      },
 
     ],
   }),
