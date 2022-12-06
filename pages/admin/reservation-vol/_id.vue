@@ -185,7 +185,7 @@
             </v-card-title>
             <v-card-text>
               <v-autocomplete class="tw-mb-6"
-                              v-model="offres.airline"
+                              v-model="offre.airline"
                               :items="airlines"
                               clearable
                               hide-details
@@ -216,16 +216,19 @@
               </v-autocomplete>
 
 
-              <v-text-field outlined v-model="offres.amountbuy" label="Prix d'achat du billet" type="number" dense/>
-              <v-text-field outlined v-model="offres.amountsell" label="Prix de revente du billet" type="number" dense/>
+              <v-text-field outlined v-model="offre.amountbuy" label="Prix d'achat du billet" type="number" dense/>
+              <v-text-field outlined v-model="offre.amountsell" label="Prix de revente du billet" type="number" dense/>
 
-              <div v-for="(escale, escale_index) in offres[index].escales" :key="escale_index"
+              <div v-for="(escale, escale_index) in offre.escales" :key="escale_index"
                    class="tw-rounded tw-mb-6 tw-mt-8">
-                <v-icon @click="escales.splice(escale_index, 1)" color="red" class="tw-mx-2">mdi-delete</v-icon>
+                <v-icon @click="offre.escales.splice(escale_index, 1)" color="red" class="tw-mx-2">mdi-delete</v-icon>
                 <div class="tw-flex tw-items-center tw-justify-between tw-px-2 tw-gap-4">
-                  <span class="tw-rounded-full tw-p-2 tw-h-8 tw-w-8 tw-flex tw-items-center tw-justify-center tw-text-white tw-font-semibold tw-bg-blue-800">{{ escale_index + 1 }}</span>
+                  <span
+                    class="tw-rounded-full tw-p-2 tw-h-8 tw-w-8 tw-flex tw-items-center tw-justify-center tw-text-white tw-font-semibold tw-bg-blue-800">
+                    {{
+                      escale_index + 1}}</span>
                   <v-autocomplete
-                    v-model="escales[index].airport"
+                    v-model="escale.airport"
                     :items="escales"
                     :loading="loadingEscales"
                     :search-input.sync="searchEscales"
@@ -260,7 +263,8 @@
                 </div>
 
                 <div class="tw-flex tw-items-center tw-justify-between tw-px-2 tw-mt-6 tw-gap-4">
-                  <v-datetime-picker outlined  ships label="Jour et heure d'arrivée" v-model="escales[escale_index].arrive">
+                  <v-datetime-picker outlined ships label="Jour et heure d'arrivée"
+                                     v-model="escale.arrive">
                     <template slot="dateIcon">
                       <v-icon>mdi-calendar</v-icon>
                     </template>
@@ -268,7 +272,8 @@
                       <v-icon>mdi-clock-outline</v-icon>
                     </template>
                   </v-datetime-picker>
-                  <v-datetime-picker outlined ships label="Jour et heure de départ" v-model="escales[escale_index].departure">
+                  <v-datetime-picker outlined ships label="Jour et heure de départ"
+                                     v-model="escale.departure">
                     <template slot="dateIcon">
                       <v-icon>mdi-calendar</v-icon>
                     </template>
@@ -299,14 +304,13 @@ export default {
       dialogAddOffre: false,
       loadingEscales: false,
       searchEscales: null,
+      escales: [],
       sendSupplyBtn: false,
-      // escales: [],
       offres: [
         {
           airline: "",
           amountbuy: "",
           amountsell: "",
-          // escaless: false,
           escales: [],
         }
       ],
