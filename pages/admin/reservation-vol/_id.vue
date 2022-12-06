@@ -158,7 +158,7 @@
           </div>
           <v-card-title>
             <v-spacer/>
-            <v-btn @click="offres.push({airline: 'igor', amountbuy: '', amountsell: '', escales: []})" small
+            <v-btn @click="offres.push({airline: '', amountbuy: '', amountsell: '', escales: []})" small
                    class="blue tw-text-white">+ nouvelle offre
             </v-btn>
           </v-card-title>
@@ -179,7 +179,6 @@
                 <v-icon>mdi-airplane-edit</v-icon>
                 ajouter une escale
 
-                {{ offre.airline }}
               </v-btn>
               <v-spacer/>
               <v-icon @click="offres.splice(index,1)" small color="red">mdi-delete</v-icon>
@@ -304,7 +303,7 @@ export default {
       // escales: [],
       offres: [
         {
-          airline: "ballo",
+          airline: "",
           amountbuy: "",
           amountsell: "",
           // escaless: false,
