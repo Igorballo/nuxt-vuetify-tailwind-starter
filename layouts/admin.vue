@@ -15,6 +15,7 @@ export default {
   props: {
     source: String,
   },
+  middleware: 'isauthenticated',
   data: () => ({
     drawer: null,
   }),
