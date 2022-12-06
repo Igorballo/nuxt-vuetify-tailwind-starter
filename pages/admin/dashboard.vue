@@ -53,7 +53,7 @@
       <v-col cols="12" lg="12">
         <material-card class="card-tabs" color="primary">
           <template v-slot:header>
-            <v-tabs v-model="tabs" background-color="transparent" slider-color="white">
+            <v-tabs v-model="tabsReservationVols" background-color="transparent" slider-color="white">
               <span class="subheading font-weight-light mx-3" style="align-self: center">Dernieres reservations de vols </span>
               <v-tab class="mr-3">
                 <v-icon class="mr-2">mdi-bug</v-icon>
@@ -72,7 +72,7 @@
             </v-tabs>
           </template>
 
-          <v-tabs-items v-model="tabs">
+          <v-tabs-items v-model="tabsReservationVols">
             <v-tab-item v-for="n in 3" :key="n">
               <v-list three-line class="py-0">
                 <v-list-item v-for="i in 3" :key="i" @click="">
@@ -95,7 +95,6 @@
                     commencer le traitement
                   </v-btn>
                 </v-list-item>
-
                 <v-divider />
               </v-list>
             </v-tab-item>
@@ -115,6 +114,7 @@ export default {
   layout: "admin",
   data() {
     return {
+
       reservation_vols: [],
       editorText:
         '<h2>Material Dashboard</h2><blockquote><p>made by Rekryt (vk.com/krupkin.sergey)<br>sep 2019</p></blockquote><p>&nbsp;</p><p>Special thanks to:<br>https://nuxtjs.org<br>https://vuetifyjs.com<br>https://www.creative-tim.com</p>',
@@ -261,12 +261,19 @@ export default {
         1: false,
         2: false,
       },
+
+      tabsReservationVols: null
+
     };
+  },
+  mounted(){
+    this.getLatestFlightReservation()
   },
   methods: {
     complete(index) {
       this.list[index] = !this.list[index];
     },
+
 
     async getAllVolsReservations() {
       const response = await axios.get('/bus-manager/reservations')
@@ -276,6 +283,10 @@ export default {
         })
       this.reservation_vols = response.reservations
     },
+    async getLatestFlightReservation(){
+      const response = await axios.get("/reservation-vol/admin-get-latest-flight-reservation")
+    }
+
   },
 };
 </script>
