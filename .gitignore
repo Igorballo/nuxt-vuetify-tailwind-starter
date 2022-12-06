@@ -91,7 +91,7 @@ sw.*
 
 # Vim swap files
 *.swp
-config.js
+#config.js
 
 # Main css files
 *.swp
