@@ -74,27 +74,42 @@
 
           <v-tabs-items v-model="tabsReservationVols">
             <v-tab-item v-for="n in 3" :key="n">
-              <v-list three-line class="py-0">
-                <v-list-item @click="complete(0)">
-                  <v-list-item-action class="align-self-center">
+              <v-list class="py-0">
+                <v-list-item
+                  v-for="reservation in reservationsvols"
+                  :key="reservation._id"
+                >
+                  <v-list-item-avatar>
+                    <v-icon
+                      class="grey lighten-1"
+                      dark
+                    >
+                      mdi-folder
+                    </v-icon>
+                  </v-list-item-avatar>
 
+                  <v-list-item-content>
+                    <v-list-item-title>
+                      {{reservation.customer.firstname}} {{reservation.customer.lastname}}, {{reservation.customer.lastPhoneNumber.code }} {{reservation.customer.lastPhoneNumber.number }}
+                    </v-list-item-title>
+
+                    <v-list-item-subtitle>
+                      Hello world
+                    </v-list-item-subtitle>
+                  </v-list-item-content>
+
+                  <v-list-item-action>
+                    <v-btn
+                      class="tw-text-white"
+                      color="primary darken-2"
+                      small
+                      @click="$router.push(`reservation-vol/${reservation._id}`)"
+                    >
+                      <v-icon small color="">mdi-hand-back-left</v-icon>
+                      commencer le traitement
+                    </v-btn>
                   </v-list-item-action>
-
-                  <v-list-item-title>
-                    Sign contract for "What are conference organized afraid of?"
-                  </v-list-item-title>
-
-                  <v-btn
-                    class="tw-text-white"
-                    color="primary"
-                    small
-                    @click="$router.push('reservation-vol/sjsjsk1882828')"
-                  >
-                    <v-icon small color="">mdi-hand-back-left</v-icon>
-                    commencer le traitement
-                  </v-btn>
                 </v-list-item>
-                <v-divider />
               </v-list>
             </v-tab-item>
           </v-tabs-items>
@@ -112,7 +127,23 @@ export default {
   layout: "admin",
   data() {
     return {
-      tabsReservationVols: null
+      tabsReservationVols: null,
+      reservationsvols: [],
+      errorMsg: null,
+      folders: [
+        {
+          subtitle: 'Jan 9, 2014',
+          title: 'Photos',
+        },
+        {
+          subtitle: 'Jan 17, 2014',
+          title: 'Recipes',
+        },
+        {
+          subtitle: 'Jan 28, 2014',
+          title: 'Work',
+        },
+      ],
     };
   },
   mounted(){
@@ -124,6 +155,15 @@ export default {
     },
     async getLatestFlightReservation(){
       const response = await axios.get("/reservation-vol/admin-get-latest-flight-reservation")
+      .then(res => res.data)
+      .catch(error => error.response)
+
+      if (response.data?.errors) {
+        this.errorMsg = response.data.errors.msg
+        return
+      }
+
+      this.reservationsvols = response.latestreservations
     }
   },
 };
