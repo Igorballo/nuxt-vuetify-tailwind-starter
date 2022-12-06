@@ -158,7 +158,9 @@
           </div>
           <v-card-title>
             <v-spacer/>
-            <v-btn small class="blue tw-text-white">+ nouvelle offre</v-btn>
+            <v-btn @click="offres.push({airline: 'igor', amountbuy: '', amountsell: '', escales: []})" small
+                   class="blue tw-text-white">+ nouvelle offre
+            </v-btn>
           </v-card-title>
         </div>
         <v-card-text>
@@ -172,20 +174,26 @@
 
           <v-card v-for="(offre, index) in offres" :key="index" class="tw-mb-6">
             <v-card-title class="tw-mt-4">
-              <v-btn @click="escales.push({index: 0, airport: '', arrive: '', departure: ''})" small color="blue" dark><v-icon>mdi-airplane-edit</v-icon> ajouter une escale</v-btn>
+              <v-btn @click="offre.escales.push({index: 0, airport: '', arrive: '', departure: ''})" small
+                     color="blue" dark>
+                <v-icon>mdi-airplane-edit</v-icon>
+                ajouter une escale
+
+                {{ offre.airline }}
+              </v-btn>
               <v-spacer/>
-              <v-icon small color="red">mdi-delete</v-icon>
+              <v-icon @click="offres.splice(index,1)" small color="red">mdi-delete</v-icon>
             </v-card-title>
             <v-card-text>
               <v-autocomplete class="tw-mb-6"
-                v-model="offres.airline"
-                :items="airlines"
-                clearable
-                hide-details
-                hide-selected
-                item-text="label"
-                item-value="_id"
-                label="Compagnie de voyage"
+                              v-model="offres.airline"
+                              :items="airlines"
+                              clearable
+                              hide-details
+                              hide-selected
+                              item-text="label"
+                              item-value="_id"
+                              label="Compagnie de voyage"
                               outlined
               >
                 <template v-slot:no-data>
@@ -209,71 +217,74 @@
               </v-autocomplete>
 
 
-              <v-text-field outlined v-model="offres.amountbuy" label="Prix d'achat du billet" type="number"  dense/>
-              <v-text-field outlined v-model="offres.amountsell" label="Prix de revente du billet" type="number"  dense/>
+              <v-text-field outlined v-model="offres.amountbuy" label="Prix d'achat du billet" type="number" dense/>
+              <v-text-field outlined v-model="offres.amountsell" label="Prix de revente du billet" type="number" dense/>
 
-                <div v-for="(escale, index) in escales" :key="index" class="tw-rounded tw-mb-6 tw-mt-8">
-                  <v-icon @click="escales.splice(index, 1)" color="red" class="tw-mx-2">mdi-delete</v-icon>
-                  <div class="tw-flex tw-items-center tw-justify-between tw-px-2 tw-gap-4">
-                  <span class="tw-rounded-full tw-p-2 tw-h-8 tw-w-8 tw-flex tw-items-center tw-justify-center tw-text-white tw-font-semibold tw-bg-blue-800">{{ index + 1 }}</span>
-                    <v-autocomplete
-                      v-model="escales[index].airport"
-                      :items="escales"
-                      :loading="loadingEscales"
-                      :search-input.sync="searchEscales"
-                      clearable
-                      hide-details
-                      hide-selected
-                      item-text="name"
-                      item-value="_id"
-                      label="Choisissez l'aéroport d'escale..."
-                      outlined
-                    >
-                      <template v-slot:no-data>
-                        <v-list-item>
-                          <v-list-item-title>
-                            Tapez le nom de compagnie
-                          </v-list-item-title>
-                        </v-list-item>
-                      </template>
+              <div v-for="(escale, escale_index) in offres[index].escales" :key="escale_index"
+                   class="tw-rounded tw-mb-6 tw-mt-8">
+                <v-icon @click="escales.splice(escale_index, 1)" color="red" class="tw-mx-2">mdi-delete</v-icon>
+                <div class="tw-flex tw-items-center tw-justify-between tw-px-2 tw-gap-4">
+                  <span class="tw-rounded-full tw-p-2 tw-h-8 tw-w-8 tw-flex tw-items-center tw-justify-center tw-text-white tw-font-semibold tw-bg-blue-800">{{ escale_index + 1 }}</span>
+                  <v-autocomplete
+                    v-model="escales[index].airport"
+                    :items="escales"
+                    :loading="loadingEscales"
+                    :search-input.sync="searchEscales"
+                    clearable
+                    hide-details
+                    hide-selected
+                    item-text="name"
+                    item-value="_id"
+                    label="Choisissez l'aéroport d'escale..."
+                    outlined
+                  >
+                    <template v-slot:no-data>
+                      <v-list-item>
+                        <v-list-item-title>
+                          Tapez le nom de compagnie
+                        </v-list-item-title>
+                      </v-list-item>
+                    </template>
 
-                      <template v-slot:item="{ item }">
-                        <v-list-item-avatar
-                          class="text-h5 font-weight-light white--text"
-                        >
-                          <v-icon>mdi-airplane</v-icon>
-                        </v-list-item-avatar>
-                        <v-list-item-content>
-                          <v-list-item-title v-text="item.name"></v-list-item-title>
-                          <v-list-item-subtitle v-text="item.cn"></v-list-item-subtitle>
-                        </v-list-item-content>
-                      </template>
-                    </v-autocomplete>
-                  </div>
+                    <template v-slot:item="{ item }">
+                      <v-list-item-avatar
+                        class="text-h5 font-weight-light white--text"
+                      >
+                        <v-icon>mdi-airplane</v-icon>
+                      </v-list-item-avatar>
+                      <v-list-item-content>
+                        <v-list-item-title v-text="item.name"></v-list-item-title>
+                        <v-list-item-subtitle v-text="item.cn"></v-list-item-subtitle>
+                      </v-list-item-content>
+                    </template>
+                  </v-autocomplete>
+                </div>
 
-                  <div class="tw-flex tw-items-center tw-justify-between tw-px-2 tw-mt-6 tw-gap-4">
-                    <v-datetime-picker outlined  ships label="Jour et heure d'arrivée" v-model="escales[index].arrive">
-                      <template slot="dateIcon">
-                        <v-icon>mdi-calendar</v-icon>
-                      </template>
-                      <template slot="timeIcon">
-                        <v-icon>mdi-clock-outline</v-icon>
-                      </template>
-                    </v-datetime-picker>
-                    <v-datetime-picker outlined ships label="Jour et heure de départ" v-model="escales[index].departure">
-                      <template slot="dateIcon">
-                        <v-icon>mdi-calendar</v-icon>
-                      </template>
-                      <template slot="timeIcon">
-                        <v-icon>mdi-clock-outline</v-icon>
-                      </template>
-                    </v-datetime-picker>
-                  </div>
-                  <v-divider></v-divider>
+                <div class="tw-flex tw-items-center tw-justify-between tw-px-2 tw-mt-6 tw-gap-4">
+                  <v-datetime-picker outlined  ships label="Jour et heure d'arrivée" v-model="escales[escale_index].arrive">
+                    <template slot="dateIcon">
+                      <v-icon>mdi-calendar</v-icon>
+                    </template>
+                    <template slot="timeIcon">
+                      <v-icon>mdi-clock-outline</v-icon>
+                    </template>
+                  </v-datetime-picker>
+                  <v-datetime-picker outlined ships label="Jour et heure de départ" v-model="escales[escale_index].departure">
+                    <template slot="dateIcon">
+                      <v-icon>mdi-calendar</v-icon>
+                    </template>
+                    <template slot="timeIcon">
+                      <v-icon>mdi-clock-outline</v-icon>
+                    </template>
+                  </v-datetime-picker>
+                </div>
+                <v-divider></v-divider>
               </div>
             </v-card-text>
           </v-card>
-          <v-btn @click="sendSupply()" color="red" :loading="sendSupplyBtn" class="tw-text-white tw-w-full tw-mt-8">Enrégistrer et envoyer au client</v-btn>
+          <v-btn @click="sendSupply()" color="red" :loading="sendSupplyBtn" class="tw-text-white tw-w-full tw-mt-8">
+            Enrégistrer et envoyer au client
+          </v-btn>
         </v-card-text>
       </v-card>
     </v-dialog>
@@ -290,13 +301,14 @@ export default {
       loadingEscales: false,
       searchEscales: null,
       sendSupplyBtn: false,
-      escales: [],
+      // escales: [],
       offres: [
         {
-          airline: "",
+          airline: "ballo",
           amountbuy: "",
           amountsell: "",
-          escales: false,
+          // escaless: false,
+          escales: [],
         }
       ],
       airlines: [],
@@ -304,22 +316,22 @@ export default {
     }
   },
 
-  mounted(){
+  mounted() {
     this.getAirlines()
   },
 
   methods: {
-      async getAirlines() {
-        const response = await axios.get('/airlines/get-airlines')
-          .then(res => {
-            this.airlines = res.data.airlines
-          })
-          .catch(error => {
-            return;
-          })
-      },
+    async getAirlines() {
+      const response = await axios.get('/airlines/get-airlines')
+        .then(res => {
+          this.airlines = res.data.airlines
+        })
+        .catch(error => {
+          return;
+        })
+    },
 
-    async sendSupply(){
+    async sendSupply() {
       this.sendSupplyBtn = true
       await axios.post(`/reservation-vol/request-flight-reservation`, this.reservationForm).then((response) => {
         if (response.data.error) {
