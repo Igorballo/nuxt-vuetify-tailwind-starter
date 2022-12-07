@@ -71,8 +71,8 @@
             <div class="tw-flex tw-flex-col">
               <div class="tw-flex tw-justify-between">
                 <span class="tw-font-semibold tw-text-lg">Date de retour</span>
-                <span v-if="reservation.comebackDate" class="tw-text-lg">{{reservation.comebackDate}}</span>
-                <span v-else class="tw-text-lg">Non défini</span>
+                <v-chip v-if="reservation.comebackDate" class="tw-text-lg">{{reservation.comebackDate}}</v-chip>
+                <v-chip v-else>Non défini</v-chip>
                 <div>
                   <v-btn color="green" dark x-small>confirmer</v-btn>
                   <v-btn color="purple" dark x-small>modifier</v-btn>
@@ -84,7 +84,7 @@
             <div class="tw-flex tw-flex-col">
               <div class="tw-flex tw-justify-between">
                 <span class="tw-font-semibold tw-text-lg">Aéroport de départ</span>
-                <span class="tw-text-lg">EB&666</span>
+                <v-chip>{{reservation.airport_dep_populated.cm}}, {{reservation.airport_dep_populated.cn}}</v-chip>
                 <div>
                   <v-btn color="green" dark x-small>confirmer</v-btn>
                   <v-btn color="purple" dark x-small>modifier</v-btn>
@@ -96,7 +96,7 @@
             <div class="tw-flex tw-flex-col">
               <div class="tw-flex tw-justify-between">
                 <span class="tw-font-semibold tw-text-lg">Aéroport d'arrivée</span>
-                <span class="tw-text-lg">EB&666</span>
+                <v-chip>{{reservation.airport_dest_populated.cm}}, {{reservation.airport_dest_populated.cn}}</v-chip>
                 <div>
                   <v-btn color="green" dark x-small>confirmer</v-btn>
                   <v-btn color="purple" dark x-small>modifier</v-btn>
