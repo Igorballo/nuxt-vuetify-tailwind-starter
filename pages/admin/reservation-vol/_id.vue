@@ -10,9 +10,7 @@
       <v-col class="tw-flex tw-flex-col tw-gap-4">
         <v-card v-if="reservation">
           <v-card-title>
-            <v-spacer/>
             Informations du client
-            <v-spacer/>
           </v-card-title>
           <v-card-text class="tw-px-8 tw-flex tw-flex-col tw-gap-4">
             <div class="tw-flex tw-flex-col">
@@ -53,7 +51,6 @@
           <v-card-title class="mb-4">
             <h2 class="tw-text-xl">Informations du voyage</h2>
             <v-spacer/>
-            <v-btn small @click="dialogAddOffre = true" color="primary">Ajouter des offres</v-btn>
           </v-card-title>
           <v-card-text class="tw-px-8 tw-flex tw-flex-col tw-gap-4">
             <div class="tw-flex tw-flex-col">
@@ -158,9 +155,76 @@
                 <span class="tw-text-lg">{{reservation.passengers.bebes}}</span>
               </div>
             </div>
+          </v-card-text>
+        </v-card>
+      </v-col>
 
-            <v-card-actions>
-              <v-btn color="primary" @click="dialogAddOffre = true" block>Ajouter des offres</v-btn>
+      <v-col lg="4" class="tw-flex tw-flex-col tw-gap-4">
+        <v-card v-if="reservation">
+          <v-card-title class="mb-4">
+            <span>Liste des offres</span>
+            <v-spacer/>
+            <v-btn small @click="dialogAddOffre = true" color="primary">Ajouter des offres</v-btn>
+          </v-card-title>
+          <v-card-text class="tw-px-4 tw-flex tw-flex-col tw-gap-4">
+            <template>
+              <v-container>
+                <v-row justify="space-around">
+                  <v-card width="400">
+                    <v-img
+                      height="150px"
+                      src="https://cdn.pixabay.com/photo/2020/07/12/07/47/bee-5396362_1280.jpg"
+                    >
+                      <v-app-bar
+                        flat
+                        color="rgba(0, 0, 0, 0)"
+                      >
+                        <v-toolbar-title class="text-h6 white--text pl-0">
+                          <div class="tw-py-0.5 tw-px-4 tw-rounded-full tw-border tw-border-white">
+                            Air Burkina
+                          </div>
+                        </v-toolbar-title>
+
+                        <v-spacer/>
+                        <v-toolbar-title class="text-h6 white--text pl-0">
+                          <div class="tw-py-0.5 tw-px-4 tw-rounded-full tw-border tw-border-white">
+                            500 $
+                          </div>
+                        </v-toolbar-title>
+                      </v-app-bar>
+                    </v-img>
+
+                    <v-card-text>
+                      <div class="font-weight-bold ml-8 mb-2">
+                        Plan du vol
+                      </div>
+
+                      <v-timeline
+                        align-top
+                        dense
+                      >
+                        <v-timeline-item
+                          v-for="message in messages"
+                          :key="message.time"
+                          :color="message.color"
+                          small
+                        >
+                          <div>
+                            <div class="font-weight-normal">
+                              <strong>{{ message.from }}</strong> @{{ message.time }}
+                            </div>
+                            <div>{{ message.message }}</div>
+                          </div>
+                        </v-timeline-item>
+                      </v-timeline>
+                    </v-card-text>
+                  </v-card>
+                </v-row>
+              </v-container>
+            </template>
+
+            <v-card-actions class="">
+              <v-btn color="primary" @click="dialogAddOffre = true" block>Envoyer cette offre au client</v-btn>
             </v-card-actions>
           </v-card-text>
         </v-card>
@@ -345,6 +409,26 @@ export default {
       ],
       airlines: [],
       modal: "",
+      messages: [
+        {
+          from: 'You',
+          message: `Sure, I'll see you later.`,
+          time: '10:42am',
+          color: 'deep-purple lighten-1',
+        },
+        {
+          from: 'John Doe',
+          message: 'Yeah, sure. Does 1:00pm work?',
+          time: '10:37am',
+          color: 'green',
+        },
+        {
+          from: 'You',
+          message: 'Did you still want to grab lunch today?',
+          time: '9:47am',
+          color: 'deep-purple lighten-1',
+        },
+      ],
     }
   },
 
