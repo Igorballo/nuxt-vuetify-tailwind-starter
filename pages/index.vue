@@ -333,12 +333,7 @@
                           <v-col
                             cols="12"
                           >
-                            <v-text-field placeholder="XXXXXXXX" v-model="reservationForm.passport_id" required label="Numéro passport*" outlined></v-text-field>
-                          </v-col>
-                          <v-col
-                            cols="12"
-                          >
-                            <v-text-field placeholder="Ex: hfx@gmail.com" v-model="reservationForm.email" required label="Votre adresse email*" outlined></v-text-field>
+                            <v-text-field placeholder="XXXXXXXX" v-model="reservationForm.passport_id" required label="Numéro passport" outlined></v-text-field>
                           </v-col>
 
                           <v-row
@@ -354,7 +349,7 @@
                                 item-text="dial_code"
                                 item-value="id"
                                 outlined
-                                label="Indicatif de votre numéro*"
+                                label="Indicatif de votre numéro"
                               >
                                 <template v-slot:item="{ item }">
                                   <v-list-item-avatar
@@ -551,7 +546,6 @@ export default {
         comeback_date: "",
         lastname: "",
         firstname: "",
-        email: "",
         passport_id: "",
         phone_number: {
           code: "",
@@ -588,8 +582,9 @@ export default {
 
   methods: {
     async reservation(){
+      console.log("reservation")
       this.btnLoading = true
-      await axios.post(`/reservation-vol/request-flight-reservation`, this.reservationForm).then((response) => {
+      await axios.post('http://cf5c-2c0f-f0f8-2be-f800-6c43-f02f-e42d-5944.ngrok.io/reservation-vol/request-flight-reservation', this.reservationForm).then((response) => {
         if (response.data.error) {
           Swal.fire({
             title: 'Echec',
@@ -600,12 +595,10 @@ export default {
         }
         this.btnLoading = false
         this.userInfoDialog = false
-        this.disclaimerDialog = false
-        this.showToast('success', 'Demande de reservation envoyée avec succès')
+          this.showToast('success', 'Demande de reservation envoyée avec succès')
       }).catch(error => {
         this.btnLoading = false
         this.userInfoDialog = false
-        this.disclaimerDialog = false
         this.showToast('error', "Une erreur s'est produite")
       });
     }
@@ -623,9 +616,11 @@ export default {
       this.loadingDeparts = true
 
       // Lazily load input items
-      axios.get(`/airports/get-by-name?filter_query=${val}`)
+      // fetch(`${config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
+      fetch(`http://cf5c-2c0f-f0f8-2be-f800-6c43-f02f-e42d-5944.ngrok.io/airports/get-by-name?filter_query=${val}`)
+        .then(res => res.clone().json())
         .then(res => {
-          this.departs = res.data.airports
+          this.departs = res.airports
         })
         .catch(err => {
           console.log(err)
@@ -640,9 +635,11 @@ export default {
       this.loadingDestinations = true
 
       // Lazily load input items
-      axios.get(`/airports/get-by-name?filter_query=${val}`)
+      // fetch(`${config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
+      fetch(`http://cf5c-2c0f-f0f8-2be-f800-6c43-f02f-e42d-5944.ngrok.io/airports/get-by-name?filter_query=${val}`)
+        .then(res => res.clone().json())
         .then(res => {
-          this.destinations = res.data.airports
+          this.destinations = res.airports
         })
         .catch(err => {
           console.log(err)

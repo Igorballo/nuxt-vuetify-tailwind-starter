@@ -19,7 +19,7 @@
             <img class="tw-h-25 tw-w-full tw-relative tw-bg-cover tw-bg-center tw-rounded-lg"
                  src="https://images.unsplash.com/photo-1565349479047-d6211d4efc90?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
                  alt="">
-            <h1 class="tw-text-2xl tw-font-bold tw-px-4 tw-py-2 tw-text-black tw-uppercase">Kigali</h1>
+            <h1 class="tw-text-2xl tw-font-bold tw-px-4 tw-py-2 tw-text-black tw-uppercase">Kpalimé</h1>
             <p class="tw-text-xl tw-px-4 tw-py-2 tw-italic ">
               Location des Voitures de Luxe à diffèrentes modèles
             </p>
@@ -50,7 +50,7 @@
             <img class="tw-h-25 tw-w-full tw-relative tw-bg-cover tw-bg-center tw-rounded-lg"
                  src="https://images.unsplash.com/photo-1546412414-8035e1776c9a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
                  alt="">
-            <h1 class="tw-text-2xl tw-font-bold tw-px-4 tw-py-2 tw-text-black tw-uppercase">Dubai</h1>
+            <h1 class="tw-text-2xl tw-font-bold tw-px-4 tw-py-2 tw-text-black tw-uppercase">Lomé</h1>
             <p class="tw-text-xl tw-px-4 tw-py-2 tw-italic ">
               Location des Voitures de Luxe à diffèrentes modèles
             </p>
@@ -71,7 +71,7 @@
             <img class="tw-h-25 tw-w-full tw-relative tw-bg-cover tw-bg-center tw-rounded-lg"
                  src="https://images.unsplash.com/photo-1604348489791-f95132c5d8c0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
                  alt="">
-            <h1 class="tw-text-2xl tw-font-bold tw-px-4 tw-py-2 tw-text-black tw-uppercase">Johannesburg</h1>
+            <h1 class="tw-text-2xl tw-font-bold tw-px-4 tw-py-2 tw-text-black tw-uppercase">Kara</h1>
             <p class="tw-text-xl tw-px-4 tw-py-2 tw-italic ">
               Location des Voitures de Luxe à diffèrentes modèles
             </p>
@@ -87,7 +87,7 @@
               class="tw-h-25 tw-w-full tw-relative tw-bg-cover tw-bg-center tw-rounded-lg"
               src="https://images.unsplash.com/photo-1483653364400-eedcfb9f1f88?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
               alt="">
-            <h1 class="tw-text-2xl tw-font-bold tw-px-4 tw-py-2 tw-text-black tw-uppercase">New York</h1>
+            <h1 class="tw-text-2xl tw-font-bold tw-px-4 tw-py-2 tw-text-black tw-uppercase">Aneho</h1>
             <p class="tw-text-xl tw-px-4 tw-py-2 tw-italic ">
               Location des Voitures de Luxe à diffèrentes modèles
             </p>
@@ -101,7 +101,7 @@
             <img class="tw-h-25 tw-w-full tw-relative tw-bg-cover tw-bg-center tw-rounded-lg"
                  src="https://images.unsplash.com/photo-1533929736458-ca588d08c8be?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
                  alt="">
-            <h1 class="tw-text-2xl tw-font-bold tw-px-4 tw-py-2 tw-text-black tw-uppercase">Londre</h1>
+            <h1 class="tw-text-2xl tw-font-bold tw-px-4 tw-py-2 tw-text-black tw-uppercase">Tsévié</h1>
             <p class="tw-text-xl tw-px-4 tw-py-2 tw-italic ">
               Location des Voitures de Luxe à diffèrentes modèles
             </p>
