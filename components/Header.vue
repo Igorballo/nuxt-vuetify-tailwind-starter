@@ -3,7 +3,7 @@
     <div class="tw-container tw-mx-auto tw-px-4 tw-pt-2 lg:tw-px-0">
       <div class="tw-flex tw-items-center tw-justify-between tw-w-full tw-bg-white">
         <!--      Manglam Logo-->
-        <img class="tw-h-full tw-h-16 tw-w-44" src="../assets/img/IATA.png" alt="Manglam-logo">
+        <img class="tw-h-full tw-h-16 tw-w-44" src="../assets/img/logo.png" alt="Manglam-logo">
         <div class="tw-inline-flex tw-items-center tw-gap-6">
           <!--  Choose language button      -->
           <div class="tw-hidden md:tw-inline-flex tw-items-center tw-gap-2">
