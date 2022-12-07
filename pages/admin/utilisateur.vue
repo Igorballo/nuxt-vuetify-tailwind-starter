@@ -22,7 +22,7 @@
 
               <v-card-text>
                 <v-container>
-                  <v-form ref="formBus" v-model="formBus">
+                  <v-form ref="formBus" v-model="formUser">
                     <div class="">
 
                          <v-text-field :rules="nomRules" outlined required label="Nom Complet" placeholder="Nom Complet" v-model="form.name"></v-text-field>
@@ -134,7 +134,7 @@ export default {
      password: "",
      role: ""
     },
-    formBus: false,
+    formUser: false,
     dialogDelete: false,
     users: [],
     headers: [
