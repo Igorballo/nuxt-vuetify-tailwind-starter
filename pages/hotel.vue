@@ -85,7 +85,7 @@
           <div class="tw-flex tw-mt-6">
             <button
               class="tw-rounded tw-px-6 tw-py-2 tw-bg-red-600 tw-text-white tw-text-lg tw-uppercase tw-font-semibold">Faire
-              une reservation de voiture</button>
+              une reservation d'hotel</button>
           </div>
         </form>
       </div>
