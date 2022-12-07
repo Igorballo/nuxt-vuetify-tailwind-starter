@@ -16,8 +16,8 @@
           <v-card-text class="tw-px-8 tw-flex tw-flex-col tw-gap-4">
             <div class="tw-flex tw-flex-col">
               <div class="tw-flex tw-justify-between">
-                <span class="tw-font-semibold tw-text-lg">Numéro Passport</span>
-                <span class="tw-text-lg">EB&666</span>
+                <span class="tw-font-semibold tw-text-lg">Nom & Prénoms</span>
+                <span class="tw-text-lg">Ballo Igor</span>
               </div>
             </div>
             <v-divider/>
@@ -28,23 +28,22 @@
                 <span class="tw-text-lg">EB&666</span>
               </div>
             </div>
-            <v-divider/>
+            <divider/>
 
             <div class="tw-flex tw-flex-col">
               <div class="tw-flex tw-justify-between">
-                <span class="tw-font-semibold tw-text-lg">Numéro Passport</span>
-                <span class="tw-text-lg">EB&666</span>
+                <span class="tw-font-semibold tw-text-lg">Numéro de télephone</span>
+                <span class="tw-text-lg">+228 96690981</span>
               </div>
             </div>
-            <v-divider/>
+            <divider/>
 
             <div class="tw-flex tw-flex-col">
               <div class="tw-flex tw-justify-between">
-                <span class="tw-font-semibold tw-text-lg">Numéro Passport</span>
-                <span class="tw-text-lg">EB&666</span>
+                <span class="tw-font-semibold tw-text-lg">Email</span>
+                <span class="tw-text-lg">balloigor@gmail.com</span>
               </div>
             </div>
-
           </v-card-text>
         </v-card>
 
@@ -55,30 +54,6 @@
             <v-btn small @click="dialogAddOffre = true" color="primary">Ajouter des offres</v-btn>
           </v-card-title>
           <v-card-text class="tw-px-8 tw-flex tw-flex-col tw-gap-4">
-            <div class="tw-flex tw-flex-col">
-              <div class="tw-flex tw-justify-between">
-                <span class="tw-font-semibold tw-text-lg">Date de départ</span>
-                <span class="tw-text-lg">EB&666</span>
-                <div>
-                  <v-btn color="green" dark x-small>confirmer</v-btn>
-                  <v-btn color="purple" dark x-small>modifier</v-btn>
-                </div>
-              </div>
-            </div>
-            <v-divider/>
-
-            <div class="tw-flex tw-flex-col">
-              <div class="tw-flex tw-justify-between">
-                <span class="tw-font-semibold tw-text-lg">Date de retour</span>
-                <span class="tw-text-lg">EB&666</span>
-                <div>
-                  <v-btn color="green" dark x-small>confirmer</v-btn>
-                  <v-btn color="purple" dark x-small>modifier</v-btn>
-                </div>
-              </div>
-            </div>
-            <v-divider/>
-
             <div class="tw-flex tw-flex-col">
               <div class="tw-flex tw-justify-between">
                 <span class="tw-font-semibold tw-text-lg">Aéroport de départ</span>
@@ -94,6 +69,30 @@
             <div class="tw-flex tw-flex-col">
               <div class="tw-flex tw-justify-between">
                 <span class="tw-font-semibold tw-text-lg">Aéroport d'arrivée</span>
+                <span class="tw-text-lg">EB&666</span>
+                <div>
+                  <v-btn color="green" dark x-small>confirmer</v-btn>
+                  <v-btn color="purple" dark x-small>modifier</v-btn>
+                </div>
+              </div>
+            </div>
+            <v-divider/>
+
+            <div class="tw-flex tw-flex-col">
+              <div class="tw-flex tw-justify-between">
+                <span class="tw-font-semibold tw-text-lg">Date de départ</span>
+                <span class="tw-text-lg">EB&666</span>
+                <div>
+                  <v-btn color="green" dark x-small>confirmer</v-btn>
+                  <v-btn color="purple" dark x-small>modifier</v-btn>
+                </div>
+              </div>
+            </div>
+            <v-divider/>
+
+            <div class="tw-flex tw-flex-col">
+              <div class="tw-flex tw-justify-between">
+                <span class="tw-font-semibold tw-text-lg">Date de retour</span>
                 <span class="tw-text-lg">EB&666</span>
                 <div>
                   <v-btn color="green" dark x-small>confirmer</v-btn>
@@ -304,6 +303,7 @@ export default {
       dialogAddOffre: false,
       loadingEscales: false,
       searchEscales: null,
+      reservation: {},
       escales: [],
       sendSupplyBtn: false,
       offres: [
@@ -332,6 +332,16 @@ export default {
         .catch(error => {
           return;
         })
+    },
+
+    async getReservationById() {
+      const response = await axios.get(`/reservation-vol/${$route.params.id}`)
+        // .then(res => {
+        //   this.reservation = res.data.airlines
+        // })
+        // .catch(error => {
+        //   return;
+        // })
     },
 
     async sendSupply() {
