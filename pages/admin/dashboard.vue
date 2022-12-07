@@ -7,7 +7,7 @@
           icon="mdi-airplane-takeoff"
           title="Reservations"
           sub-text="Ce mois"
-          value="25"
+          :value="currentMonthFlightReservationCount"
           sub-icon="mdi-calendar"
         />
       </v-col>
@@ -17,7 +17,7 @@
           color="orange"
           icon="mdi-store"
           title="Hébergements"
-          value="12"
+          value="0"
           sub-icon="mdi-calendar"
           sub-icon-color="error"
           sub-text="Ce mois"
@@ -31,7 +31,7 @@
           icon="mdi-car"
           title="Location voitures"
           subText="Ce mois"
-          value="75"
+          value="0"
           sub-icon="mdi-tag"
           sub-text="Ce mois"
         />
@@ -40,9 +40,9 @@
       <v-col cols="12" sm="6" lg="3">
         <material-stats-card
           color="info"
-          icon="mdi-twitter"
-          title="Followers"
-          value="+245"
+          icon="mdi-cash"
+          title="Chiffre d'affaire"
+          value="0"
           sub-icon="mdi-update"
           sub-text="Just Updated"
         />
@@ -127,6 +127,7 @@ export default {
   layout: "admin",
   data() {
     return {
+      currentMonthFlightReservationCount: 0,
       tabsReservationVols: null,
       reservationsvols: [],
       errorMsg: null,
@@ -148,8 +149,21 @@ export default {
   },
   mounted(){
     this.getLatestFlightReservation()
+    this.currentMonthFlightReservation()
   },
   methods: {
+    async currentMonthFlightReservation(){
+      const response = await axios.get("/dashboard/get-this-month-flight-reservation")
+        .then(res => res.data)
+        .catch(error => error.response)
+
+      if (response.data?.errors) {
+        this.errorMsg = response.data.errors.msg
+        return
+      }
+
+      this.currentMonthFlightReservationCount = response.count
+    },
     complete(index) {
       this.list[index] = !this.list[index];
     },

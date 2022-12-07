@@ -93,8 +93,6 @@ export default {
     /*'bootstrap-vue/nuxt',*/
     'nuxt-i18n',
     'nuxt-client-init-module',
-    // Simple usage
-    'nuxt-leaflet',
     // With options
     ['nuxt-leaflet', { /* module options */ }],
   ],

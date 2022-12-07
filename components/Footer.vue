@@ -53,87 +53,31 @@
 
         </div>
       </div>
-      <hr class="container tw-items-center tw-justify-center tw-border-black tw-cursor-pointer"/>
+      <hr class=" tw-items-center tw-justify-center tw-border-black tw-cursor-pointer"/>
     </section>
 
-    <section class="tw-py-8 tw-px-12 tw-bg-blue-900 tw-flex-col tw-gap-4">
-      <div class="tw-flex md:tw-flex-row tw-flex-col tw-w-full tw-gap-12 tw-items-center tw-pb-4">
+    <section class="tw-py-8 tw-px-12 tw-bg-blue-900 tw-flex-col tw-gap-8">
+      <div class="tw-items-center tw-pb-4">
 
-        <div class="basis-1/3">
-          <h1 class="tw-text-left tw-py-4 md:tw-text-2xl lg:tw-text-2xl tw-uppercase tw-font-extrabold tw-text-red-700 tw-italic tw-mb-4"> About
-            MANGLAM </h1>
-
-          <p class="text-md tw-text-white tw-font-normal tw-text-justify tw-font-serif">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio, alias, architecto est repudiandae natus,
-            mollitia itaque optio nisi debitis impedit magnam deleniti consequatur libero laudantium id amet esse quis
-            minus. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio, alias, architecto est repudiandae
-            natus, mollitia itaque optio nisi debitis impedit magnam deleniti consequatur libero laudantium id amet esse
-            quis minus.
-          </p>
-
-        </div>
+        <div class="tw-basis-1/3 tw-grid tw-grid-cols-1 tw-text-left">
+          <h1 class="tw-py-4 md:tw-text-2xl lg:tw-text-2xl tw-text-4xl tw-uppercase tw-justify-center tw-text-center tw-font-extrabold tw-text-red-700 tw-italic">
+          Services
+          </h1>
 
 
-        <div class="basis-1/3  tw-grid md:tw-grid-cols-1 tw-divide-y-2 tw-text-left tw-gap-2">
-          <h1 class="tw-text-left tw-py-4 md:tw-text-2xl lg:tw-text-2xl tw-text-4xl tw-uppercase tw-font-extrabold tw-text-red-700 tw-italic tw-mb-2">
-            Stay in the Know </h1>
-          <div
-            class="tw-font-sans tw-text-left tw-text-white tw-text-justify text-md">
-            <nuxt-link to="/">News</nuxt-link>
-          </div>
-          <div
-            class="tw-font-sans tw-text-left tw-text-white tw-text-justify  text-md">
-            <nuxt-link to="/service">Services</nuxt-link>
-          </div>
-          <div
-            class="tw-font-sans tw-text-left tw-text-white tw-text-justify  text-md">
-            <nuxt-link to="/entreprise">About us</nuxt-link>
-          </div>
-          <div
-            class="tw-font-sans tw-text-left tw-text-white tw-text-justify  text-md">
-            <nuxt-link to="/contact">Contact</nuxt-link>
-          </div>
-
-
-        </div>
-        <div class=" basis-1/3 tw-grid tw-grid-cols-1 tw-text-left">
-          <h1 class="tw-text-left tw-py-4 md:tw-text-2xl lg:tw-text-2xl tw-text-4xl tw-uppercase tw-font-extrabold tw-text-red-700 tw-italic tw-mb-2">
-            Contact</h1>
-
-          <p class="text-md tw-text-white tw-font-normal tw-flex tw-flex-col md:tw-flex-row tw-text-justify tw-font-serif tw-pb-2">
-            <a href="http://" class="text-md" target="_blank" rel="noopener noreferrer">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                   stroke="currentColor" class="tw-w-10 tw-h-5">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
-                <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
-              </svg>
-
-            </a>
-            Manglam Agency
-          </p>
-
-          <p class="text-md tw-text-white tw-flex tw-flex-col tw-gap-2 tw-font-normal tw-text-justify tw-font-serif">
-        <span>
-          Adresse: Lomé, Centre Ville, Togo
-        </span>
-            <span>
-          Phone: +228 90505025
-        </span>
-            <span>
-          Email: info@manglam.com
-        </span>
-
-
-          </p>
-
-
-        </div>
+                <nav class="tw-flex lg:tw-flex-row tw-flex-col tw-mt-4 tw-text-base tw-text-gray-300 tw-gap-8 tw-justify-center">
+                  <NuxtLink to="/" class="hover:tw-opacity-75 tw-text-white"> Reservation de Ticket</NuxtLink>
+                  <NuxtLink to="/hotel" class="hover:tw-opacity-75 tw-text-white"> Hébergements </NuxtLink>
+                  <NuxtLink to="/car-location" class="hover:tw-opacity-75 tw-text-white"> Location de voitures </NuxtLink>
+                  <NuxtLink to="/tourisme" class="hover:tw-opacity-75 tw-text-white"> Tourisme </NuxtLink>
+                  <NuxtLink to="/" class="hover:tw-opacity-75 tw-text-white"> Visa & Assurance</NuxtLink>
+                </nav>
+             
 
 
       </div>
 
+      </div>
     </section>
 
 
