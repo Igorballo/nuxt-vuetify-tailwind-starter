@@ -208,6 +208,11 @@ export default {
       this.getUser();
     
     },
+     editItem(item) {
+      this.isEditing = true
+      this.form = item
+      this.dialog = true
+    },
     close () {
       this.dialog = false
       this.$nextTick(() => {
@@ -248,6 +253,23 @@ export default {
 
     complete(index) {
       this.list[index] = !this.list[index];
+    },
+    update() {
+      this.btnloading = true
+      axios.put('/users/' + this.form.id, this.form)
+        .then(response => {
+          console.log(response);
+          this.btnloading = false
+          this.dialog = false
+          this.initialize()
+          this.form = {
+              name: "",
+              email: "",
+              phone: "",
+              password: "",
+              role: ""
+          }
+        })
     },
       save() {
       this.btnloading = true
