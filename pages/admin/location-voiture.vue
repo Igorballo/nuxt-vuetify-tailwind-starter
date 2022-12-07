@@ -179,6 +179,9 @@ export default {
       val || this.closeDelete()
     },
   },
+   created () {
+    this.initialize()
+  },
  methods: {
      handleCreate() {
       this.isEditing = false
@@ -192,7 +195,7 @@ export default {
           photo: ""
       }
     },
-     getUser() {
+     getCar() {
       axios.get('/cars')
         .then(response => {
           console.log(response);
@@ -200,7 +203,7 @@ export default {
         })
     },
     initialize() {
-      this.getUser();
+      this.getCar();
     
     },
     close () {
