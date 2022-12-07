@@ -59,10 +59,33 @@
             <div class="tw-flex tw-flex-col">
               <div class="tw-flex tw-justify-between">
                 <span class="tw-font-semibold tw-text-lg">Date de départ</span>
-                <span class="tw-text-lg">{{reservation.departDate|moment('d - MM - YYYY')}}</span>
+                <div class="tw-flex tw-gap-2">
+                  <v-chip>{{reservation.departDate|moment('d / MM / YYYY')}}</v-chip>
+                  <v-chip v-if="confirmedDate"> <v-icon>mdi-check</v-icon> {{confirmedDate|moment('d / MM / YYYY')}}</v-chip>
+                </div>
                 <div>
                   <v-btn color="green" dark x-small>confirmer</v-btn>
-                  <v-btn color="purple" dark x-small>modifier</v-btn>
+
+                  <v-menu
+                    ref="departDatePicker"
+                    v-model="departDatePicker"
+                    :close-on-content-click="false"
+                    transition="scale-transition"
+                    offset-y
+                    left
+                    max-width="290px"
+                    min-width="auto"
+                  >
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-btn v-bind="attrs"
+                             v-on="on" color="purple" dark x-small>modifier</v-btn>
+                    </template>
+                    <v-date-picker
+                      v-model="confirmedDate"
+                      no-title
+                      @input="departDatePicker = false"
+                    ></v-date-picker>
+                  </v-menu>
                 </div>
               </div>
             </div>
@@ -302,6 +325,8 @@ export default {
   layout: "admin",
   data() {
     return {
+      confirmedDate: null,
+      departDatePicker: false,
       showEscaleForm: false,
       dialogAddOffre: false,
       loadingEscales: false,
