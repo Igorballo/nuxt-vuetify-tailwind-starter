@@ -65,6 +65,7 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
+    '@vueuse/nuxt',
     ['@nuxtjs/vuetify', {
       iconfont: "mdi", // 'md' || 'mdi' || 'fa' || 'fa4'
       theme: {
