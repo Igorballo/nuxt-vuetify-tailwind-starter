@@ -121,7 +121,7 @@
 
 <script>
 // import Editor from '../components/helper/Editor.vue';
-
+import Pusher from "pusher-js"
 export default {
   // components: { Editor },
   layout: "admin",
@@ -130,6 +130,9 @@ export default {
       currentMonthFlightReservationCount: 0,
       tabsReservationVols: null,
       reservationsvols: [],
+      pusher: new Pusher('e81f2769b500679d8e80', {
+        cluster: 'mt1'
+      }),
       errorMsg: null,
       folders: [
         {
@@ -150,8 +153,16 @@ export default {
   mounted(){
     this.getLatestFlightReservation()
     this.currentMonthFlightReservation()
+    this.suscribeToReceiveNewRequests()
   },
   methods: {
+    suscribeToReceiveNewRequests(){
+      let channel = this.pusher.subscribe('reservationvol');
+      channel.bind('new', function(data) {
+        console.log("Pusher event received on frontend")
+        console.log(data)
+      });
+    },
     async currentMonthFlightReservation(){
       const response = await axios.get("/dashboard/get-this-month-flight-reservation")
         .then(res => res.data)
