@@ -11,8 +11,12 @@
           <v-btn class="mx-2" @click="initialize">
             <v-icon>mdi-refresh</v-icon>
           </v-btn>
-          <v-btn @click="handleCreate" color="primary" dark class="mb-2">
+          <v-btn @click="handleCreate" color="primary" dark class="mx-2">
             Ajouter Une Voiture
+          </v-btn>
+          
+           <v-btn @click="$router.push('/admin/cars')" color="primary" dark class="mx-2">
+            Voiture
           </v-btn>
           <v-dialog v-model="dialog" max-width="700px">
             <v-card>
@@ -179,6 +183,9 @@ export default {
       val || this.closeDelete()
     },
   },
+   created () {
+    this.initialize()
+  },
  methods: {
      handleCreate() {
       this.isEditing = false
@@ -192,7 +199,7 @@ export default {
           photo: ""
       }
     },
-     getUser() {
+     getCar() {
       axios.get('/cars')
         .then(response => {
           console.log(response);
@@ -200,7 +207,7 @@ export default {
         })
     },
     initialize() {
-      this.getUser();
+      this.getCar();
     
     },
     close () {
