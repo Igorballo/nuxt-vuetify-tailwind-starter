@@ -16,7 +16,7 @@
           </v-btn>
           
            <v-btn @click="$router.push('/admin/cars')" color="primary" dark class="mx-2">
-            Voiture
+            Les Demandes
           </v-btn>
           <v-dialog v-model="dialog" max-width="700px">
             <v-card>
@@ -229,7 +229,7 @@ export default {
         cancelButtonText: "annuler",
         preConfirm: async () => {
           Swal.showLoading()
-          await axios.delete('/cars/'+ item.id)
+          await axios.delete('/cars/'+ item._id)
             .then(response => {
               this.showToast('success', 'Station supprimée avec succès')
               this.initialize()

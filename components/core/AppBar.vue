@@ -110,7 +110,7 @@
                         </v-card>
                     </v-menu>
 
-                    <v-btn to="/user-profile" icon>
+                    <v-btn to="/admin/user-profile" icon>
                         <v-icon color="tertiary">mdi-account</v-icon>
                     </v-btn>
                 </v-row>

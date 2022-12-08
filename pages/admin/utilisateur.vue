@@ -232,7 +232,7 @@ export default {
         cancelButtonText: "annuler",
         preConfirm: async () => {
           Swal.showLoading()
-          await axios.delete('/users/'+ item.id)
+          await axios.delete('/users/'+ item._id)
             .then(response => {
               this.showToast('success', 'Station supprimée avec succès')
               this.initialize()
@@ -256,7 +256,7 @@ export default {
     },
     update() {
       this.btnloading = true
-      axios.put('/users/' + this.form.id, this.form)
+      axios.patch('/users/' + this.form._id, this.form)
         .then(response => {
           console.log(response);
           this.btnloading = false

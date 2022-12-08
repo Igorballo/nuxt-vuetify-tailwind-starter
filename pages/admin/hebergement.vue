@@ -11,8 +11,11 @@
           <v-btn class="mx-2" @click="initialize">
             <v-icon>mdi-refresh</v-icon>
           </v-btn>
-          <v-btn @click="handleCreate" color="primary" dark class="mb-2">
+          <v-btn @click="handleCreate" color="primary" dark class="mx-2">
             Ajouter Un Hôtel
+          </v-btn>
+          <v-btn @click="$router.push('/admin/hotels')" color="primary" dark class="mx-2">
+            Les Demandes
           </v-btn>
           <v-dialog v-model="dialog" max-width="700px">
             <v-card>
