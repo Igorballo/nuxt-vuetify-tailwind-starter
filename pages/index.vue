@@ -550,7 +550,7 @@ export default {
       this.loadingDeparts = true
 
       // Lazily load input items
-      fetch(`/airports/get-by-name?filter_query=${val}`)
+      fetch(`${config.app_local?config.app_api_debug_url:config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
         .then(res => res.clone().json())
         .then(res => {
           this.departs = res.airports
@@ -568,7 +568,7 @@ export default {
       this.loadingDestinations = true
 
       // Lazily load input items
-      fetch(`/airports/get-by-name?filter_query=${val}`)
+      fetch(`${config.app_local?config.app_api_debug_url:config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
         .then(res => res.clone().json())
         .then(res => {
           this.destinations = res.airports
