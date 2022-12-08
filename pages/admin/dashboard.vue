@@ -103,7 +103,7 @@
                       class="tw-text-white"
                       color="primary darken-2"
                       small
-                      @click="$router.push(`reservation-vol/${reservation._id}`)"
+                      @click="getReservationDetail(reservation._id)"
                     >
                       <v-icon small color="">mdi-hand-back-left</v-icon>
                       commencer le traitement
@@ -159,6 +159,9 @@ export default {
     this.suscribeToReceiveNewRequests()
   },
   methods: {
+    getReservationDetail(reservation_id){
+      this.$router.push(`reservation-vol/${reservation_id}`)
+    },
     suscribeToReceiveNewRequests(){
       let self = this
       let channel = this.pusher.subscribe('reservationvol');

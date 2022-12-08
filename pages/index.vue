@@ -5,14 +5,6 @@
       <div class="tw-flex tw-flex-col tw-items-center tw-justify-center tw-px-4 2xl:tw-px-0">
         <form class="tw-bg-white tw-rounded-lg tw-h-full tw-my-20 tw-gap-4 tw-p-3 md:tw-p-6 lg:tw-p-12 tw-flex tw-flex-col">
           <div class="tw-inline-flex tw-gap-4 md:tw-gap-8 tw-text-xl tw-font-light">
-<!--            <span class="tw-inline-flex tw-items-center">-->
-<!--              <input type="radio" class="tw-w-5 tw-h-5 checked:tw-bg-red-600" value="true"  v-model="reservationForm.aller_simple" checked id="aller_simple" name="voyage">-->
-<!--              <label for="aller_simple" class="tw-ml-2">Aller Simple</label>-->
-<!--            </span>-->
-<!--            <span class="tw-inline-flex tw-items-center">-->
-<!--              <input type="radio" class="tw-w-5 tw-h-5 tw-bg-red-600 tw-bg-blue-800" value="false" v-model="reservationForm.aller_simple" id="aller_retour" name="voyage">-->
-<!--              <label for="aller_retour" class="tw-ml-2">Aller-Retour</label>-->
-<!--            </span>-->
             <v-radio-group
               row
               v-model="reservationForm.aller_simple"
@@ -527,13 +519,53 @@ export default {
           })
           return
         }
-        this.btnLoading = false
-        this.userInfoDialog = false
           this.showToast('success', 'Demande de reservation envoyée avec succès')
-      }).catch(error => {
         this.btnLoading = false
         this.userInfoDialog = false
+        this.disclaimerDialog = false
+        this.reservationForm = {
+          aller_simple: true,
+          airport_depart: "",
+          airport_destination: "",
+          depart_date: "",
+          comeback_date: "",
+          lastname: "",
+          firstname: "",
+          passport_id: "",
+          phone_number: {
+            code: "",
+            number: '',
+          },
+          passengers: {
+            adultes: 1,
+            enfants: 0,
+            bebes: 0,
+          }
+        }
+      }).catch(error => {
         this.showToast('error', "Une erreur s'est produite")
+        this.btnLoading = false
+        this.userInfoDialog = false
+        this.disclaimerDialog = false
+        this.reservationForm = {
+          aller_simple: true,
+            airport_depart: "",
+            airport_destination: "",
+            depart_date: "",
+            comeback_date: "",
+            lastname: "",
+            firstname: "",
+            passport_id: "",
+            phone_number: {
+            code: "",
+              number: '',
+          },
+          passengers: {
+            adultes: 1,
+              enfants: 0,
+              bebes: 0,
+          }
+        }
       });
     }
   },
