@@ -536,7 +536,6 @@ export default {
       this.loadingDeparts = true
 
       // Lazily load input items
-      // fetch(`${config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
       fetch(`http://cf5c-2c0f-f0f8-2be-f800-6c43-f02f-e42d-5944.ngrok.io/airports/get-by-name?filter_query=${val}`)
         .then(res => res.clone().json())
         .then(res => {
@@ -555,7 +554,6 @@ export default {
       this.loadingDestinations = true
 
       // Lazily load input items
-      // fetch(`${config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
       fetch(`http://cf5c-2c0f-f0f8-2be-f800-6c43-f02f-e42d-5944.ngrok.io/airports/get-by-name?filter_query=${val}`)
         .then(res => res.clone().json())
         .then(res => {
