@@ -210,12 +210,12 @@
           <div class="tw-flex tw-justify-between tw-gap-6 tw-mb-4 tw-items-center">
             <div class="tw-text-md">
               <span>Départ: </span>
-              <span class="tw-font-semibold">{{ reservation.airport_dep_populated.cm }}, {{ reservation.airport_dep_populated.cn }}</span>
+              <span class="tw-font-semibold">{{ reservation?.airport_dep_populated.cm }}, {{ reservation?.airport_dep_populated.cn }}</span>
             </div>
             <v-icon>mdi-airplane</v-icon>
             <div class="tw-text-md">
               <span>Destination: </span>
-              <span class="tw-font-semibold">{{ reservation.airport_dest_populated.cm }}, {{ reservation.airport_dest_populated.cm }}</span>
+              <span class="tw-font-semibold">{{ reservation?.airport_dest_populated.cm }}, {{ reservation?.airport_dest_populated.cm }}</span>
             </div>
           </div>
         </div>
@@ -561,7 +561,7 @@ export default {
       this.loadingDeparts = true
 
       // Lazily load input items
-      fetch(`http://cf5c-2c0f-f0f8-2be-f800-6c43-f02f-e42d-5944.ngrok.io/airports/get-by-name?filter_query=${val}`)
+      fetch(`/airports/get-by-name?filter_query=${val}`)
         .then(res => res.clone().json())
         .then(res => {
           this.departs = res.airports

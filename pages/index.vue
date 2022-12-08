@@ -10,7 +10,7 @@
               <label for="aller_simple" class="tw-ml-2">Aller Simple</label>
             </span>
             <span class="tw-inline-flex tw-items-center">
-              <input type="radio" class="tw-w-5 tw-h-5 checked:tw-bg-red-600 tw-bg-gray-500" value="false" v-model="reservationForm.aller_simple" id="aller_retour" name="voyage">
+              <input type="radio" class="tw-w-5 tw-h-5 tw-bg-red-600 tw-bg-blue-800" value="false" v-model="reservationForm.aller_simple" id="aller_retour" name="voyage">
               <label for="aller_retour" class="tw-ml-2">Aller-Retour</label>
             </span>
           </div>
@@ -504,7 +504,7 @@ export default {
     async reservation(){
       console.log("reservation")
       this.btnLoading = true
-      await axios.post('http://cf5c-2c0f-f0f8-2be-f800-6c43-f02f-e42d-5944.ngrok.io/reservation-vol/request-flight-reservation', this.reservationForm).then((response) => {
+      await axios.post('/reservation-vol/request-flight-reservation', this.reservationForm).then((response) => {
         if (response.data.error) {
           Swal.fire({
             title: 'Echec',
@@ -536,7 +536,7 @@ export default {
       this.loadingDeparts = true
 
       // Lazily load input items
-      fetch(`http://cf5c-2c0f-f0f8-2be-f800-6c43-f02f-e42d-5944.ngrok.io/airports/get-by-name?filter_query=${val}`)
+      fetch(`/airports/get-by-name?filter_query=${val}`)
         .then(res => res.clone().json())
         .then(res => {
           this.departs = res.airports
@@ -554,7 +554,7 @@ export default {
       this.loadingDestinations = true
 
       // Lazily load input items
-      fetch(`http://cf5c-2c0f-f0f8-2be-f800-6c43-f02f-e42d-5944.ngrok.io/airports/get-by-name?filter_query=${val}`)
+      fetch(`/airports/get-by-name?filter_query=${val}`)
         .then(res => res.clone().json())
         .then(res => {
           this.destinations = res.airports
