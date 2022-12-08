@@ -68,7 +68,7 @@
                 Rejetés
               </v-tab>
               <v-spacer/>
-              <v-btn @click="$router.push('/admin/reservation')" text class="mr-2">Voir tout</v-btn>
+              <v-btn text class="mr-2">Voir tout</v-btn>
             </v-tabs>
           </template>
 
@@ -122,11 +122,13 @@
 <script>
 // import Editor from '../components/helper/Editor.vue';
 import Pusher from "pusher-js"
+import sound from '../../assets/beep.mp3'
 export default {
   // components: { Editor },
   layout: "admin",
   data() {
     return {
+      flightReservationSound: null,
       currentMonthFlightReservationCount: 0,
       tabsReservationVols: null,
       reservationsvols: [],
@@ -151,6 +153,7 @@ export default {
     };
   },
   mounted(){
+    this.flightReservationSound = new Audio(sound);
     this.getLatestFlightReservation()
     this.currentMonthFlightReservation()
     this.suscribeToReceiveNewRequests()
@@ -160,10 +163,13 @@ export default {
       this.$router.push(`reservation-vol/${reservation_id}`)
     },
     suscribeToReceiveNewRequests(){
+      let self = this
       let channel = this.pusher.subscribe('reservationvol');
-      channel.bind('new', function(data) {
+      channel.bind('new', (data) => {
+        self.getLatestFlightReservation()
         console.log("Pusher event received on frontend")
         console.log(data)
+        // self.flightReservationSound.play();
       });
     },
     async currentMonthFlightReservation(){

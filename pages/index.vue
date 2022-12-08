@@ -519,13 +519,53 @@ export default {
           })
           return
         }
-        this.btnLoading = false
-        this.userInfoDialog = false
           this.showToast('success', 'Demande de reservation envoyée avec succès')
-      }).catch(error => {
         this.btnLoading = false
         this.userInfoDialog = false
+        this.disclaimerDialog = false
+        this.reservationForm = {
+          aller_simple: true,
+          airport_depart: "",
+          airport_destination: "",
+          depart_date: "",
+          comeback_date: "",
+          lastname: "",
+          firstname: "",
+          passport_id: "",
+          phone_number: {
+            code: "",
+            number: '',
+          },
+          passengers: {
+            adultes: 1,
+            enfants: 0,
+            bebes: 0,
+          }
+        }
+      }).catch(error => {
         this.showToast('error', "Une erreur s'est produite")
+        this.btnLoading = false
+        this.userInfoDialog = false
+        this.disclaimerDialog = false
+        this.reservationForm = {
+          aller_simple: true,
+            airport_depart: "",
+            airport_destination: "",
+            depart_date: "",
+            comeback_date: "",
+            lastname: "",
+            firstname: "",
+            passport_id: "",
+            phone_number: {
+            code: "",
+              number: '',
+          },
+          passengers: {
+            adultes: 1,
+              enfants: 0,
+              bebes: 0,
+          }
+        }
       });
     }
   },
@@ -542,7 +582,7 @@ export default {
       this.loadingDeparts = true
 
       // Lazily load input items
-      fetch(`/airports/get-by-name?filter_query=${val}`)
+      fetch(`${config.app_local?config.app_api_debug_url:config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
         .then(res => res.clone().json())
         .then(res => {
           this.departs = res.airports
@@ -560,7 +600,7 @@ export default {
       this.loadingDestinations = true
 
       // Lazily load input items
-      fetch(`/airports/get-by-name?filter_query=${val}`)
+      fetch(`${config.app_local?config.app_api_debug_url:config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
         .then(res => res.clone().json())
         .then(res => {
           this.destinations = res.airports

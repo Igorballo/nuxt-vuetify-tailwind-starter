@@ -116,16 +116,15 @@ export default {
   ** See https://nuxtjs.org/api/configuration-build/
   */
   build: {
-    // babel: {
-    //   plugins: [
-    //     [
-    //       'component', {
-    //       libraryName: 'maz-ui',
-    //       styleLibraryName: 'css'
-    //     }
-    //     ]
-    //   ]
-    // }
+    extend(config, ctx) {
+      config.module.rules.push({
+        test: /\.(ogg|mp3|wav|mpe?g)$/i,
+        loader: 'file-loader',
+        options: {
+          name: '[path][name].[ext]'
+        }
+      })
+    },
   },
   env: {
     auth: process.env.VUE_APP_DEFAULT_AUTH,
