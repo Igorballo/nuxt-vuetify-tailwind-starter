@@ -510,7 +510,8 @@ export default {
     async reservation(){
       console.log("reservation")
       this.btnLoading = true
-      await axios.post('/reservation-vol/request-flight-reservation', this.reservationForm).then((response) => {
+      await axios.post('/reservation-vol/request-flight-reservation', this.reservationForm)
+        .then((response) => {
         if (response.data.error) {
           Swal.fire({
             title: 'Echec',

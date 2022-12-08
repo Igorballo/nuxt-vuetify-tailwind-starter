@@ -101,12 +101,13 @@
                   <v-list-item-action>
                     <v-btn
                       class="tw-text-white"
-                      color="primary darken-2"
+                      :color="reservation.processedBy ? 'green darken-2': 'primary darken'"
                       small
                       @click="getReservationDetail(reservation._id)"
                     >
                       <v-icon small color="">mdi-hand-back-left</v-icon>
-                      commencer le traitement
+                      <span v-if="reservation.processedBy">continuer le traitement</span>
+                      <span v-else>commencer le traitement</span>
                     </v-btn>
                   </v-list-item-action>
                 </v-list-item>
@@ -159,7 +160,8 @@ export default {
     this.suscribeToReceiveNewRequests()
   },
   methods: {
-    getReservationDetail(reservation_id){
+    async getReservationDetail(reservation_id){
+       const response = await axios.post(`reservation-vol/begin-process/${reservation_id}`)
       this.$router.push(`reservation-vol/${reservation_id}`)
     },
     suscribeToReceiveNewRequests(){

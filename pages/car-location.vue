@@ -15,7 +15,7 @@
               label="Lieu de retour différent"
             ></v-checkbox>
           </span>
-          <div class="tw-flex tw-flex-col tw-gap-6 tw-mt-6 tw-w-full">
+          <div class="tw-flex tw-flex-col tw-w-full">
             <div class="tw-inline-flex tw-w-full tw-gap-6 tw-items-center">
               <div class=" tw-text-lg tw-rounded-lg tw-w-full tw-flex tw-flex-col tw-p-3">
                 <span class="tw-text-gray-600 tw-mb-1 ">Lieu de prise en charge :</span>
@@ -24,8 +24,7 @@
                 </v-text-field>
               </div>
 
-              <div v-if="carReservationForm.autre_lieu_restitution"
-                   class="tw-text-lg tw-rounded-lg tw-w-full tw-flex tw-flex-col tw-p-3">
+              <div v-if="carReservationForm.autre_lieu_restitution" class="tw-text-lg tw-rounded-lg tw-w-full tw-flex tw-flex-col tw-p-3">
                 <span class="tw-text-gray-600 tw-mb-1 ">Lieu de restitution :</span>
                 <v-text-field v-model="carReservationForm.lieu_de_restitution"
                               :rules="LieuRestitutionRules" required outlined placeholder="Lieu de restitution">
@@ -33,26 +32,48 @@
               </div>
             </div>
 
-            <div class="tw-flex tw-items-center tw-justify-between tw-px-2 tw-mt-6 tw-gap-4">
-              <v-datetime-picker outlined ships label="Jour et heure de départ"
-                                 v-model="modal">
-                <template slot="dateIcon">
-                  <v-icon>mdi-calendar</v-icon>
-                </template>
-                <template slot="timeIcon">
-                  <v-icon>mdi-clock-outline</v-icon>
-                </template>
-              </v-datetime-picker>
+            <div class="tw-flex tw-items-center tw-w-full tw-gap-4">
+              <div class=" tw-text-lg tw-rounded-lg tw-w-full tw-flex tw-flex-col tw-p-3">
+                <span class="tw-text-gray-600 tw-mb-1 ">Date de début :</span>
+                <v-menu ref="debut_menu" v-model="debut_menu" :close-on-content-click="false" :return-value.sync="date"
+                        transition="scale-transition" offset-y min-width="auto">
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-text-field v-model="carReservationForm.date_debut" placeholder="Date de début: 05/12/2022"
+                                  readonly outlined
+                                  height="70" v-bind="attrs" v-on="on"></v-text-field>
+                  </template>
+                  <v-date-picker v-model="carReservationForm.date_debut" no-title scrollable>
+                    <v-spacer></v-spacer>
+                    <v-btn text color="primary" @click="debut_menu = false">
+                      Cancel
+                    </v-btn>
+                    <v-btn text color="primary" @click="$refs.debut_menu.save(carReservationForm.date_debut)">
+                      OK
+                    </v-btn>
+                  </v-date-picker>
+                </v-menu>
+              </div>
 
-              <v-datetime-picker outlined ships label="Jour et heure de retour"
-                                 v-model="modal">
-                <template slot="dateIcon">
-                  <v-icon>mdi-calendar</v-icon>
-                </template>
-                <template slot="timeIcon">
-                  <v-icon>mdi-clock-outline</v-icon>
-                </template>
-              </v-datetime-picker>
+              <div class=" tw-text-lg tw-rounded-lg tw-w-full tw-flex tw-flex-col tw-p-3">
+                <span class="tw-text-gray-600 tw-mb-1 ">Date de fin :</span>
+                <v-menu ref="fin_menu" v-model="fin_menu" :close-on-content-click="false" :return-value.sync="date"
+                        transition="scale-transition" offset-y min-width="auto">
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-text-field v-model="carReservationForm.date_fin" placeholder="Date de fin : 05/12/2022" readonly
+                                  outlined
+                                  height="70" v-bind="attrs" v-on="on"></v-text-field>
+                  </template>
+                  <v-date-picker v-model="carReservationForm.date_fin" no-title scrollable>
+                    <v-spacer></v-spacer>
+                    <v-btn text color="primary" @click="fin_menu = false">
+                      Cancel
+                    </v-btn>
+                    <v-btn text color="primary" @click="$refs.fin_menu.save(carReservationForm.date_fin)">
+                      OK
+                    </v-btn>
+                  </v-date-picker>
+                </v-menu>
+              </div>
             </div>
 
             <v-col sm="6">

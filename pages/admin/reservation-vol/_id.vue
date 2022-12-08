@@ -87,7 +87,7 @@
               <div class="tw-flex tw-justify-between">
                 <span class="tw-font-semibold tw-text-lg">Date de retour</span>
                 <v-chip v-if="reservation.comebackDate" class="tw-text-lg">{{ reservation.comebackDate }}</v-chip>
-                <v-chip v-else>Non défini</v-chip>
+                <v-chip v-else>Aller Simple</v-chip>
               </div>
             </div>
             <v-divider/>
@@ -263,7 +263,7 @@
 
               <div class="tw-flex tw-gap-3 tw-mb-6 tw-items-center tw-bg-white">
                 <v-autocomplete
-                  v-model="modal"
+                  v-model="offre.airport_depart"
                   :items="departs"
                   :loading="loadingDeparts"
                   :search-input.sync="searchDeparts"
@@ -297,22 +297,23 @@
                 </v-autocomplete>
 
                 <v-autocomplete
-                  v-model="modal"
-                  :items="departs"
-                  :loading="loadingDeparts"
-                  :search-input.sync="searchDeparts"
+                  class=""
+                  v-model="offre.airport_destination"
+                  :items="destinations"
+                  :loading="loadingDestinations"
+                  :search-input.sync="searchDestinations"
                   clearable
                   hide-details
                   hide-selected
                   item-text="name"
                   item-value="_id"
-                  label="Choisissez l'aéroport d'arrivée..."
+                  label="Choisissez l'adresse d'arrivée..."
                   outlined
                 >
                   <template v-slot:no-data>
                     <v-list-item>
                       <v-list-item-title>
-                        Tapez le nom de l'aéroport
+                        Tapez le nom de la ville
                       </v-list-item-title>
                     </v-list-item>
                   </template>
@@ -331,9 +332,10 @@
                 </v-autocomplete>
               </div>
 
+
               <div class="tw-flex tw-items-center tw-justify-between tw-px-2 tw-mt-6 tw-gap-4">
                 <v-datetime-picker outlined ships label="Jour et heure de départ"
-                                   v-model="offre.confirmedDepartDate">
+                                   v-model="offre.confirmed_depart_date">
                   <template slot="dateIcon">
                     <v-icon>mdi-calendar</v-icon>
                   </template>
@@ -343,7 +345,7 @@
                 </v-datetime-picker>
 
                 <v-datetime-picker outlined ships label="Jour et heure de retour"
-                                   v-model="offre.confirmedComebackDate">
+                                   v-model="offre.confirmed_comeback_date">
                   <template slot="dateIcon">
                     <v-icon>mdi-calendar</v-icon>
                   </template>
@@ -435,6 +437,8 @@
 </template>
 
 <script>
+import config from "../../../config";
+
 export default {
   layout: "admin",
   data() {
@@ -446,7 +450,10 @@ export default {
       loadingEscales: false,
       loadingDeparts: false,
       searchDeparts: null,
+      loadingDestinations: false,
+      searchDestinations: null,
       departs: [],
+      destinations: [],
       searchEscales: null,
       escales: [],
       sendSupplyBtn: false,
@@ -459,8 +466,10 @@ export default {
           amountbuy: "",
           amountsell: "",
           escale: false,
-          confirmedDepartDate: "",
-          confirmedComebackDate: "",
+          airport_depart: "",
+          airport_destination: "",
+          confirmed_depart_date: "",
+          confirmed_comeback_date: "",
           escales: [],
         },
       airlines: [],
@@ -523,11 +532,27 @@ export default {
       this.sendSupplyBtn = true
       if (this.offre.escales.length > 0)
         this.offre.escale = true
-      for(let $i=0; $i = this.offre.escales; $i++){
-        this.offre.escales[$i] = $i + 1
-      }
-      const response = await axios.post(`/reservation-vol/request-flight-reservation`, this.offre)
-      console.log(response)
+      // for(let $i=0; $i = this.offre.escales; $i++){
+      //   this.offre.escales[$i].index = $i + 1
+      // }
+      const response = await axios.post(`/reservation-vol/admin-update-offre/${this.$route.params.id}`, this.offre).then(res => {
+        if(res.data.error){
+          this.sendSupplyBtn = false
+
+          Swal.fire({
+            title: 'Echec',
+            text: 'Une Erreur s\'est produite',
+            icon: 'error'
+          })
+          return
+        }
+
+        this.offres = res.offres
+        this.sendSupplyBtn = false
+        this.showToast('success', 'Offre enrégistrée avec succès')
+      }).catch(error => {
+        return;
+      })
     }
   },
 
@@ -543,7 +568,7 @@ export default {
       this.loadingEscales = true
 
       // Lazily load input items
-      fetch(`/airports/get-by-name?filter_query=${val}`)
+      fetch(`${config.app_local?config.app_api_debug_url:config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
         .then(res => res.clone().json())
         .then(res => {
           this.escales = res.airports
@@ -561,7 +586,7 @@ export default {
       this.loadingDeparts = true
 
       // Lazily load input items
-      fetch(`/airports/get-by-name?filter_query=${val}`)
+      fetch(`${config.app_local?config.app_api_debug_url:config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
         .then(res => res.clone().json())
         .then(res => {
           this.departs = res.airports
@@ -570,6 +595,24 @@ export default {
           console.log(err)
         })
         .finally(() => (this.loadingDeparts = false))
+    },
+
+    searchDestinations(val) {
+      // Items have already been loaded
+      if (this.destinations.length > 0) return
+
+      this.loadingDestinations = true
+
+      // Lazily load input items
+      fetch(`${config.app_local?config.app_api_debug_url:config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
+        .then(res => res.clone().json())
+        .then(res => {
+          this.destinations = res.airports
+        })
+        .catch(err => {
+          console.log(err)
+        })
+        .finally(() => (this.loadingDestinations = false))
     },
   },
 }
