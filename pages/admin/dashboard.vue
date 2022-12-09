@@ -167,9 +167,11 @@ export default {
       let channel = this.pusher.subscribe('reservationvol');
       channel.bind('new', (data) => {
         self.getLatestFlightReservation()
-        console.log("Pusher event received on frontend")
+      });
+
+      channel.bind('beginprocess', (data) => {
         console.log(data)
-        // self.flightReservationSound.play();
+        self.getLatestFlightReservation()
       });
     },
     async currentMonthFlightReservation(){

@@ -71,11 +71,11 @@ export default {
       theme: {
         themes:{
           light: {
-            primary: '#0630ab',
+            primary: '#b71c1c',
             secondary: '#b0bec5',
             dark: '#b0bec5',
             accent: '#006958',
-            error: '#b71c1c',
+            error: '#0630ab',
             success: '#5cb85c',
             warning:'#f0ad4e',
             background: '#f8f8f8'
