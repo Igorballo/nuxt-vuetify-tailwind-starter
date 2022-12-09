@@ -111,11 +111,12 @@
           </v-card>
         </v-menu>
 
-        <v-btn to="/user-profile" icon>
-          <v-icon color="tertiary">mdi-account</v-icon>
-        </v-btn>
-      </v-row>
-    </v-toolbar-items>
+                    <v-btn to="/admin/user-profile" icon>
+                        <v-icon color="tertiary">mdi-account</v-icon>
+                    </v-btn>
+                </v-row>
+            </v-toolbar-items>
+
   </v-app-bar>
 </template>
 
@@ -145,6 +146,12 @@ export default {
     let self = this
     let channel = this.pusher.subscribe('reservationvol');
     channel.bind('new', (data) => {
+      console.log(data)
+      self.notifications = data.reservation.notification.data
+      self.notificationsLength = data.reservation.notification.length
+      // self.flightReservationSound.play();
+    });
+    channel.bind('beginprocess', (data) => {
       console.log(data)
       self.notifications = data.reservation.notification.data
       self.notificationsLength = data.reservation.notification.length

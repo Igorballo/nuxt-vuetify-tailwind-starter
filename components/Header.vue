@@ -75,7 +75,7 @@
 
         <li
           class="tw-text-white tw-font-bold tw-text-sm md:tw-text-lg tw-uppercase">
-          <button @click="$router.push('/')"
+          <button @click="$router.push('/visa-assurance')"
                   class="tw-inline-flex tw-items-center tw-gap-3 tw-py-3 tw-px-6 tw-rounded-lg tw-border tw-border-white">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                  stroke="currentColor" class="tw-w-6 tw-h-6">
