@@ -137,57 +137,88 @@
             <v-btn small @click="dialogAddOffre = true" color="primary">Ajouter des offres</v-btn>
           </v-card-title>
           <v-card-text class="tw-px-4 tw-flex tw-flex-col tw-gap-4">
-            <v-container color="grey" class="tw-bg-gray-50 tw-text-lg">Aucune offre n'est proposée pour le moment
+            <v-container v-if="offres.length < 0" color="grey" class="tw-bg-gray-50 tw-text-lg">Aucune offre n'est
+              proposée pour le moment
             </v-container>
             <v-container>
               <div v-for="(offre, offre_index) in offres" :key="offre_index">
-                <v-row justify="space-around">
+                <v-row justify="space-around" class="tw-mb-6">
                   <v-card width="400">
                     <v-img
-                      height="150px"
-                      src="https://cdn.pixabay.com/photo/2020/07/12/07/47/bee-5396362_1280.jpg"
+                      height="170px"
+                      src="https://images.unsplash.com/photo-1540582258098-bb52b08799bd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
                     >
-                      <v-app-bar
-                        flat
-                        color="rgba(0, 0, 0, 0)"
+                      <div class="tw-h-full"
                       >
-                        <v-toolbar-title class="text-h6 white--text pl-0">
-                          <div class="tw-py-0.5 tw-px-4 tw-rounded-full tw-border tw-border-white">
-                            Air Burkina
+                        <div
+                          class="tw-text-xl tw-mx-2 tw-py-4 tw-text-white tw-font-semibold tw-justify-between tw-items-center tw-h-full tw-flex tw-flex-col">
+                          <div class="tw-py-0.5">
+                            {{ offre.airline }}
                           </div>
-                        </v-toolbar-title>
 
-                        <v-spacer/>
-                        <v-toolbar-title class="text-h6 white--text pl-0">
-                          <div class="tw-py-0.5 tw-px-4 tw-rounded-full tw-border tw-border-white">
-                            500 $
+                          <div style="width: fit-content"
+                               class="tw-py-0.5 tw-px-4 tw-rounded-full tw-border tw-border-white">
+                            {{ offre.amountsell }} XOF
                           </div>
-                        </v-toolbar-title>
-                        <!--                        <v-icon @click="offre.splice(index,1)" small color="red">mdi-delete</v-icon>-->
-                      </v-app-bar>
+                        </div>
+                      </div>
                     </v-img>
 
                     <v-card-text>
-                      <div class="font-weight-bold ml-8 mb-2">
+                      <div class="tw-font-bold tw-uppercase ml-8 mb-2">
                         Plan du vol
                       </div>
 
+                      <!-- Retour Detail-->
                       <v-timeline
                         align-top
                         dense
                       >
+                        <v-timeline
+                          align-top
+                          dense
+                        >
+                          <v-timeline-item
+                            color="primary"
+                            small
+                          >
+                            <div>
+                              <div class="font-weight-normal tw-flex tw-items-center tw-gap-2">
+                                <v-icon>mdi-airplane</v-icon>
+                                <strong class="tw-font-bold">{{ offre.airportDepart }}</strong>
+                              </div>
+                              <strong>{{ offre.confirmedDepartDate|moment('MMMM Do YYYY, h:mm:ss a') }}</strong>
+                            </div>
+                          </v-timeline-item>
+                        </v-timeline>
+
                         <v-timeline-item
-                          v-for="message in messages"
-                          :key="message.time"
-                          :color="message.color"
+                          v-for="(escale, escale_index) in offre.escales"
+                          :key="escale_index"
+                          color="secondary"
                           small
                         >
                           <div>
-                            <div class="font-weight-normal">
-                              <strong>{{ message.from }}</strong> @{{ message.time }}
+                            <div class="font-weight-normal tw-flex tw-items-center tw-gap-2">
+                              <v-icon>mdi-airplane-landing</v-icon>
+                              <div class="tw-font-bold">{{ escale.airport }}</div>
                             </div>
-                            <div>{{ message.message }}</div>
+                            <strong>Arrivée: {{ escale.arrive|moment('MMMM Do YYYY, h:mm:ss a') }}</strong> <br>
+                            <strong>Départ: {{ escale.departure|moment('MMMM Do YYYY, h:mm:ss a') }}</strong>
                           </div>
+                        </v-timeline-item>
+
+                        <!-- Retour Detail-->
+                        <v-timeline-item
+                          color="primary"
+                          small
+                        >
+                          <div class="font-weight-normal tw-flex tw-items-center tw-gap-2">
+                            <v-icon>mdi-airplane-landing</v-icon>
+                            <strong class="tw-font-bold">{{ offre.airportDestination }}</strong>
+                          </div>
+                          <strong>{{ offre.confirmedComebackDate|moment('MMMM Do YYYY, h:mm:ss a') }}</strong>
+
                         </v-timeline-item>
                       </v-timeline>
                     </v-card-text>
@@ -210,12 +241,16 @@
           <div class="tw-flex tw-justify-between tw-gap-6 tw-mb-4 tw-items-center">
             <div class="tw-text-md">
               <span>Départ: </span>
-              <span class="tw-font-semibold">{{ reservation?.airport_dep_populated.cm }}, {{ reservation?.airport_dep_populated.cn }}</span>
+              <span class="tw-font-semibold">{{
+                  reservation?.airport_dep_populated.cm
+                }}, {{ reservation?.airport_dep_populated.cn }}</span>
             </div>
             <v-icon>mdi-airplane</v-icon>
             <div class="tw-text-md">
               <span>Destination: </span>
-              <span class="tw-font-semibold">{{ reservation?.airport_dest_populated.cm }}, {{ reservation?.airport_dest_populated.cm }}</span>
+              <span class="tw-font-semibold">{{
+                  reservation?.airport_dest_populated.cm
+                }}, {{ reservation?.airport_dest_populated.cm }}</span>
             </div>
           </div>
         </div>
@@ -500,7 +535,16 @@ export default {
   mounted() {
     this.getAirlines()
     this.getReservationInfos()
+    this.getAllSupply()
   },
+
+  // computed: {
+  //   escale(){
+  //     if (this.offre.escales.length > 0)
+  //
+  //       return true
+  //   }
+  // },
 
   methods: {
     async getReservationInfos() {
@@ -528,15 +572,25 @@ export default {
         })
     },
 
+    async getAllSupply() {
+      // this.offre.escale = this.escale
+      const response = await axios.get(`/reservation-vol/get-offres/${this.$route.params.id}`)
+        .then(res => {
+          this.offres = res.data.offres
+        })
+        .catch(error => {
+          return;
+        })
+
+    },
+
     async sendSupply() {
       this.sendSupplyBtn = true
       if (this.offre.escales.length > 0)
         this.offre.escale = true
-      // for(let $i=0; $i = this.offre.escales; $i++){
-      //   this.offre.escales[$i].index = $i + 1
-      // }
       const response = await axios.post(`/reservation-vol/admin-update-offre/${this.$route.params.id}`, this.offre).then(res => {
-        if(res.data.error){
+
+        if (res.data.error) {
           this.sendSupplyBtn = false
 
           Swal.fire({
@@ -568,7 +622,7 @@ export default {
       this.loadingEscales = true
 
       // Lazily load input items
-      fetch(`${config.app_local?config.app_api_debug_url:config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
+      fetch(`${config.app_local ? config.app_api_debug_url : config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
         .then(res => res.clone().json())
         .then(res => {
           this.escales = res.airports
@@ -586,7 +640,7 @@ export default {
       this.loadingDeparts = true
 
       // Lazily load input items
-      fetch(`${config.app_local?config.app_api_debug_url:config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
+      fetch(`${config.app_local ? config.app_api_debug_url : config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
         .then(res => res.clone().json())
         .then(res => {
           this.departs = res.airports
@@ -604,7 +658,7 @@ export default {
       this.loadingDestinations = true
 
       // Lazily load input items
-      fetch(`${config.app_local?config.app_api_debug_url:config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
+      fetch(`${config.app_local ? config.app_api_debug_url : config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
         .then(res => res.clone().json())
         .then(res => {
           this.destinations = res.airports
