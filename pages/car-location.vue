@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="h-[60vh] tw-bg-no-repeat tw-bg-cover tw-bg-center"
+    <div class="h-[75vh] tw-bg-no-repeat tw-bg-cover tw-bg-center"
          style="background-image: url(https://images.unsplash.com/photo-1602019025788-20997a1c2d09?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1638&q=80)">
       <div class="tw-flex tw-flex-col tw-items-center tw-justify-center">
         <v-form

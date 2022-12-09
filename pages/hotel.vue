@@ -43,51 +43,108 @@
       </div>
     </div>
 
-    <div class="tw-bg-no-repeat tw-bg-cover tw-bg-center tw-w-full tw-h-[60vh]"
+    <div class="tw-bg-no-repeat tw-bg-cover tw-bg-center tw-w-full tw-h-[75vh]"
       style="background-image: url(https://images.unsplash.com/photo-1615460549969-36fa19521a4f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80)">
       <div class="tw-flex tw-flex-col tw-items-center tw-justify-center">
-        <form
-          class="tw-bg-white tw-w-3/5 tw-rounded-lg tw-h-full tw-my-20 tw-p-3 md:tw-p-6 lg:tw-p-12 tw-flex tw-flex-col">
-          <div class="tw-flex tw-flex-col tw-gap-6 tw-mt-6 tw-w-full">
-            <div class="tw-inline-flex tw-w-full tw-gap-6 tw-items-center">
-              <div class="tw-border tw-border-gray-400 tw-text-lg tw-rounded-lg tw-w-full tw-flex tw-flex-col tw-p-3">
-                <span class="tw-text-gray-600 tw-mb-1 ">Lieu de prise en charge :</span>
-                <input
-                  class="tw-text-lg tw-placeholder-gray-400 tw-font-semibold tw-uppercase tw-outline-none tw-h-10 tw-bg-gray-50"
-                  placeholder="D'ou partez-vous ?">
-              </div>
+        <v-form v-model="valid" class="tw-bg-white tw-w-3/5 tw-rounded-lg tw-h-full tw-my-20 tw-p-4 md:tw-p-8 lg:tw-p-12 tw-flex tw-flex-col">
+    <v-container>
+        <v-row>
+        <v-col
+          cols="12"
+          md="6"
+        >
+          <v-text-field
+            v-model="arrival"
+            :rules="nameRules"
+            label="Destination"
+            outlined
+            required
+          ></v-text-field>
+        </v-col>
 
-              <div class="tw-border tw-border-gray-400 tw-text-lg tw-rounded-lg tw-w-full tw-flex tw-flex-col tw-p-3">
-                <span class="tw-text-gray-600 tw-mb-1 ">Lieu de restitution :</span>
-                <input
-                  class="tw-text-lg tw-placeholder-gray-400 tw-font-semibold tw-uppercase tw-outline-none tw-h-10 tw-bg-gray-50"
-                  placeholder="Ou allez-vous ?">
-              </div>
+        <v-col
+          cols="12"
+          md="3"
+        >
+          <div>
+              <v-datetime-picker outlined required label="Jour et heure d'arrivé"
+                                 v-model="modal">
+                <template slot="dateIcon">
+                  <v-icon>mdi-calendar</v-icon>
+                </template>
+                <template slot="timeIcon">
+                  <v-icon>mdi-clock-outline</v-icon>
+                </template>
+              </v-datetime-picker>
+
             </div>
+        </v-col>
 
-            <div class="tw-flex tw-items-center tw-w-full tw-gap-6">
-              <div class="tw-border tw-border-gray-400 tw-text-lg tw-rounded-lg tw-w-full tw-flex tw-flex-col tw-p-3">
-                <span class="tw-text-gray-600 tw-mb-1 ">Date de début :</span>
-                <input
-                  class="tw-text-lg tw-placeholder-gray-400 tw-font-semibold tw-uppercase tw-outline-none tw-h-10 tw-bg-gray-50"
-                  placeholder="Ex: 05/12/2022">
-              </div>
+        <v-col
+          cols="12"
+          md="3"
+        >
+          <v-text-field
+            v-model="numberDay"
+            :rules="nameRules"
+            label="Nombre de Jour"
+            required
+            outlined
+          ></v-text-field>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col
+          cols="12"
+          md="6"
+        >
+          <v-text-field
+            v-model="typeRoom"
+            :rules="nameRules"
+            label="Type de Chambre"
+            required
+            outlined
+          ></v-text-field>
+        </v-col>
 
-              <div class="tw-border tw-border-gray-400 tw-text-lg tw-rounded-lg tw-w-full tw-flex tw-flex-col tw-p-3">
-                <span class="tw-text-gray-600 tw-mb-1 ">Date de fin :</span>
-                <input
-                  class="tw-text-lg tw-placeholder-gray-400 tw-font-semibold tw-uppercase tw-outline-none tw-h-10 tw-bg-gray-50"
-                  placeholder="Ex: 15/01/2023">
-              </div>
-            </div>
-          </div>
+        <v-col
+          cols="12"
+          md="6"
+        >
+          <v-text-field
+            v-model="occupation"
+            :rules="nameRules"
+            label="Occupations"
+            required
+            outlined
+          ></v-text-field>
+        </v-col>
 
-          <div class="tw-flex tw-mt-6">
-            <button
-              class="tw-rounded tw-px-6 tw-py-2 tw-bg-red-600 tw-text-white tw-text-lg tw-uppercase tw-font-semibold">Faire
-              une reservation d'hotel</button>
-          </div>
-        </form>
+       
+      </v-row>
+      <v-row>
+       <v-col
+          cols="12"
+          md="6"
+        >
+          <v-textarea
+            v-model="description"
+            :rules="emailRules"
+            label="Description"
+            required
+            outlined
+          ></v-textarea>
+        </v-col>
+      </v-row>
+      <v-btn
+      depressed
+      color="primary"
+    >
+      Faire une reservation d'Hôtel
+    </v-btn>
+    </v-container>
+  </v-form>
+        
       </div>
     </div>
 
