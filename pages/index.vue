@@ -1,7 +1,8 @@
 <template>
   <div>
     <div class="tw-relative">
-      <div style="z-index: 500" class="tw-flex tw-absolute tw-flex-col tw-rounded-lg tw-bg-white tw-shadow-md tw-px-6 tw-py-6 tw-w-[75%] tw-bottom-[30%] tw-right-[10%]">
+      <div style="z-index: 500"
+           class="tw-flex tw-absolute tw-flex-col tw-rounded-lg tw-bg-white tw-shadow-md tw-px-6 tw-py-6 tw-w-[75%] tw-bottom-[30%] tw-right-[10%]">
         <div>
           <v-radio-group row v-model="reservationForm.typevoyage">
             <v-radio
@@ -24,42 +25,60 @@
             <div class="tw-flex tw-flex-col tw-w-full md:tw-gap-4 md:tw-items-center md:tw-flex-row">
               <v-col cols="5">
                 <v-row class="tw-relative">
-                  <v-autocomplete append-icon="" background-color="white" class="tw-w-1/3 tw-duration-300 focus:tw-outline-none tw-rounded-l-md tw-rounded-r-none placeholder:tw-text-gray-800" label="Adresse de départ" return-object :items="[]" outlined>
-                    <!--                  <template v-slot:selection="data">-->
-                    <!--                    <v-chip-->
-                    <!--                      v-bind="data.attrs"-->
-                    <!--                      :input-value="data.selected"-->
-                    <!--                      close-->
-                    <!--                      @click="data.select"-->
-                    <!--                      @click:close="remove(data.item)"-->
-                    <!--                    >-->
-                    <!--                      <v-avatar left>-->
-                    <!--                        <v-icon>mdi-home</v-icon>-->
-                    <!--                      </v-avatar>-->
-                    <!--                      {{ data.item.adresse }}-->
-                    <!--                    </v-chip>-->
-                    <!--                  </template>-->
-                    <!--                  <template v-slot:item="data">-->
-                    <!--                    <template v-if="typeof data.item !== 'object'">-->
-                    <!--                      <v-list-item-content v-text="data.item"></v-list-item-content>-->
-                    <!--                    </template>-->
-                    <!--                    <template v-else>-->
-                    <!--                      <v-list-item-avatar>-->
-                    <!--                        <v-icon>mdi-home</v-icon>-->
-                    <!--                      </v-list-item-avatar>-->
-                    <!--                      <v-list-item-content>-->
-                    <!--                        <v-list-item-title v-html="data.item.adresse"></v-list-item-title>-->
-                    <!--                        <v-list-item-subtitle v-html="data.item.ville?.nom"></v-list-item-subtitle>-->
-                    <!--                      </v-list-item-content>-->
-                    <!--                    </template>-->
-                    <!--                  </template>-->
+                  <v-autocomplete append-icon="" background-color="white"
+                                  class="tw-w-1/3 tw-duration-300 focus:tw-outline-none tw-rounded-l-md tw-rounded-r-none placeholder:tw-text-gray-800"
+                                  v-model="reservationForm.airport_depart"
+                                  :items="departs"
+                                  :loading="loadingDeparts"
+                                  :search-input.sync="searchDeparts"
+                                  clearable
+                                  hide-details
+                                  hide-selected
+                                  item-text="name"
+                                  item-value="_id"
+                                  label="Choisissez l'adresse de départ..." outlined>
+                    <template v-slot:no-data>
+                      <v-list-item>
+                        <v-list-item-title>
+                          Tapez le nom de la ville
+                          <strong>Ville</strong>
+                        </v-list-item-title>
+                      </v-list-item>
+                    </template>
+
+                    <template v-slot:item="{ item }">
+                      <v-list-item-avatar
+                        class="text-h5 font-weight-light white--text"
+                      >
+                        <v-icon>mdi-airplane</v-icon>
+                      </v-list-item-avatar>
+                      <v-list-item-content>
+                        <v-list-item-title v-text="item.name"></v-list-item-title>
+                        <v-list-item-subtitle v-text="item.cn"></v-list-item-subtitle>
+                      </v-list-item-content>
+                    </template>
                   </v-autocomplete>
-                  <span class="tw-inline-flex tw-items-center tw-justify-center tw-absolute tw-right-[46%] tw-top-3" style="z-index: 200">
-                    <svg class="tw-w-8 tw-h-8 tw-bg-white tw-col-span-1 tw-rounded-full tw-border-2 tw-border-red-800 tw-p-1" fill="none" stroke="red" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                  <span class="tw-inline-flex tw-items-center tw-justify-center tw-absolute tw-right-[47%] tw-top-3"
+                        style="z-index: 200">
+                    <svg
+                      class="tw-w-6 tw-h-6 tw-bg-white tw-col-span-1 tw-rounded-full tw-border-2 tw-border-red-800 tw-p-1"
+                      fill="none" stroke="red" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
                     </svg>
                     </span>
-                  <v-autocomplete append-icon="" background-color="white" class="tw-w-1/3 focus:tw-outline-none tw-duration-300 placeholder:tw-text-gray-800 tw-rounded-l-none tw-rounded-r-md" label="Adresse d'arrivée" :items="[]" return-object outlined>
+                  <v-autocomplete
+                    append-icon=""
+                    background-color="white"
+                    class="tw-w-1/3 focus:tw-outline-none tw-duration-300 placeholder:tw-text-gray-800 tw-rounded-l-none tw-rounded-r-md"
+                    v-model="reservationForm.airport_destination"
+                    :items="destinations"
+                    :loading="loadingDestinations"
+                    :search-input.sync="searchDestinations"
+                    clearable
+                    item-text="name"
+                    item-value="_id"
+                    label="Choisissez l'adresse d'arrivée..." outlined>
                     <!--                  <template v-slot:selection="data">-->
                     <!--                    <v-chip-->
                     <!--                      v-bind="data.attrs"-->
@@ -174,21 +193,26 @@
                   <v-list>
                     <v-list-item
                     >
-                      <v-list-item-title >
+                      <v-list-item-title>
                         <div class="tw-flex tw-flex-col tw-gap-4 tw-w-full tw-p-4 tw-bg-white">
                           <div class="tw-py-4 tw-flex tw-justify-between tw-gap-12">
                             <span class="tw-text-xl tw-font-bold tw-gray-800">Adultes (> 12 ans)</span>
                             <div class="tw-text-xl tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
-                              <div v-if="reservationForm.passengers.adultes > 1 && reservationForm.passengers.enfants + reservationForm.passengers.bebes <= (reservationForm.passengers.adultes - 1) *2">
-                                <span @click="reservationForm.passengers.adultes--" class="hover:tw-cursor-pointer"><v-icon color="red">mdi-minus-circle-outline</v-icon></span>
+                              <div
+                                v-if="reservationForm.passengers.adultes > 1 && reservationForm.passengers.enfants + reservationForm.passengers.bebes <= (reservationForm.passengers.adultes - 1) *2">
+                                <span @click="reservationForm.passengers.adultes--" class="hover:tw-cursor-pointer"><v-icon
+                                  color="red">mdi-minus-circle-outline</v-icon></span>
                               </div>
                               <div v-else>
-                                <div class="hover:tw-cursor-not-drop"><v-icon color="grey">mdi-minus-circle-outline</v-icon></div>
+                                <div class="hover:tw-cursor-not-drop">
+                                  <v-icon color="grey">mdi-minus-circle-outline</v-icon>
+                                </div>
                               </div>
                               <span>{{ reservationForm.passengers.adultes }}</span>
 
                               <div v-if="reservationForm.passengers.adultes < 9">
-                                <span @click="reservationForm.passengers.adultes++" class="hover:tw-cursor-pointer"><v-icon color="red">mdi-plus-circle-outline</v-icon></span>
+                                <span @click="reservationForm.passengers.adultes++" class="hover:tw-cursor-pointer"><v-icon
+                                  color="red">mdi-plus-circle-outline</v-icon></span>
                               </div>
                               <div v-else>
                                 <span class=""><v-icon color="grey">mdi-plus-circle-outline</v-icon></span>
@@ -200,14 +224,18 @@
                             <span class="tw-text-xl tw-font-bold tw-gray-800">Enfants (2-11 ans)</span>
                             <div class="tw-text-xl tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
                               <div v-if="reservationForm.passengers.enfants > 0">
-                                <span @click="reservationForm.passengers.enfants--" class="hover:tw-cursor-pointer"><v-icon color="red">mdi-minus-circle-outline</v-icon></span>
+                                <span @click="reservationForm.passengers.enfants--" class="hover:tw-cursor-pointer"><v-icon
+                                  color="red">mdi-minus-circle-outline</v-icon></span>
                               </div>
                               <div v-else>
-                                <span class="hover:tw-cursor-no-drop"><v-icon color="grey">mdi-minus-circle-outline</v-icon></span>
+                                <span class="hover:tw-cursor-no-drop"><v-icon
+                                  color="grey">mdi-minus-circle-outline</v-icon></span>
                               </div>
                               <span>{{ reservationForm.passengers.enfants }}</span>
-                              <div v-if="reservationForm.passengers.enfants + reservationForm.passengers.bebes < totalChildrens">
-                                <span @click="reservationForm.passengers.enfants++" class="hover:tw-cursor-pointer"><v-icon color="red">mdi-plus-circle-outline</v-icon></span>
+                              <div
+                                v-if="reservationForm.passengers.enfants + reservationForm.passengers.bebes < totalChildrens">
+                                <span @click="reservationForm.passengers.enfants++" class="hover:tw-cursor-pointer"><v-icon
+                                  color="red">mdi-plus-circle-outline</v-icon></span>
                               </div>
                               <div v-else>
                                 <span class=""><v-icon color="grey">mdi-plus-circle-outline</v-icon></span>
@@ -219,23 +247,28 @@
                             <span class="tw-text-xl tw-font-bold tw-gray-800">Bébés (< 2 ans)</span>
                             <div class="tw-text-xl tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
                               <div v-if="reservationForm.passengers.bebes > 0">
-                                <span @click="reservationForm.passengers.bebes--" class="hover:tw-cursor-pointer"><v-icon color="red">mdi-minus-circle-outline</v-icon></span>
+                                <span @click="reservationForm.passengers.bebes--" class="hover:tw-cursor-pointer"><v-icon
+                                  color="red">mdi-minus-circle-outline</v-icon></span>
                               </div>
                               <div v-else>
                                 <span class=""><v-icon color="grey">mdi-minus-circle-outline</v-icon></span>
                               </div>
                               <span>{{ reservationForm.passengers.bebes }}</span>
-                              <div v-if="reservationForm.passengers.enfants + reservationForm.passengers.bebes < totalChildrens">
-                                <span @click="reservationForm.passengers.bebes++" class="hover:tw-cursor-pointer"><v-icon color="red">mdi-plus-circle-outline</v-icon></span>
+                              <div
+                                v-if="reservationForm.passengers.enfants + reservationForm.passengers.bebes < totalChildrens">
+                                <span @click="reservationForm.passengers.bebes++" class="hover:tw-cursor-pointer"><v-icon
+                                  color="red">mdi-plus-circle-outline</v-icon></span>
                               </div>
                               <div v-else>
-                                <span class="hover:tw-cursor-pointer"><v-icon color="grey">mdi-plus-circle-outline</v-icon></span>
+                                <span class="hover:tw-cursor-pointer"><v-icon
+                                  color="grey">mdi-plus-circle-outline</v-icon></span>
                               </div>
                             </div>
                           </div>
                           <v-divider></v-divider>
                           <div class="tw-py-4 tw-flex tw-justify-between tw-gap-12">
-                            <div class="tw-p-3 tw-gap-2 tw-rounded-lg tw-items-center tw-flex tw-w-full tw-bg-red-200 tw-text-red-600 tw-text-xl tw-font-light">
+                            <div
+                              class="tw-p-3 tw-gap-2 tw-rounded-lg tw-items-center tw-flex tw-w-full tw-bg-red-200 tw-text-red-600 tw-text-xl tw-font-light">
                               <v-icon color="red">mdi-alert-octagon-outline</v-icon>
                               <span>2 enfants maximum par adulte</span>
                             </div>
@@ -249,7 +282,8 @@
             </div>
           </div>
 
-          <v-btn class="tw-w-[fit-content] tw-absolute tw-right-24 tw-rounded-full tw-py-6 tw-px-4 tw-text-green-800 tw-ease-in tw-font-semibold tw-bg-white tw-border-2 tw-border-green-700 tw-duration-300">
+          <v-btn
+            class="tw-w-[fit-content] tw-absolute tw-right-24 tw-rounded-full tw-py-6 tw-px-4 tw-text-red-500 tw-ease-in tw-font-semibold tw-bg-white tw-border-2 tw-border-red-700 tw-duration-300">
             Rechercher des vols
           </v-btn>
         </div>
@@ -354,7 +388,7 @@ export default {
     }
   },
 
-  mounted(){
+  mounted() {
   },
 
   computed: {
@@ -363,13 +397,13 @@ export default {
       return this.reservationForm.passengers.adultes + this.reservationForm.passengers.enfants + this.reservationForm.passengers.bebes
     },
 
-    totalChildrens(){
+    totalChildrens() {
       return this.reservationForm.passengers.adultes * 2
     },
   },
 
   methods: {
-    async reservation(){
+    async reservation() {
       console.log("reservation")
       this.btnLoading = true
       await axios.post('/reservation-vol/request-flight-reservation', this.reservationForm).then((response) => {
@@ -383,7 +417,7 @@ export default {
         }
         this.btnLoading = false
         this.userInfoDialog = false
-          this.showToast('success', 'Demande de reservation envoyée avec succès')
+        this.showToast('success', 'Demande de reservation envoyée avec succès')
       }).catch(error => {
         this.btnLoading = false
         this.userInfoDialog = false
@@ -404,7 +438,7 @@ export default {
       this.loadingDeparts = true
 
       // Lazily load input items
-      fetch(`${config.app_local?config.app_api_debug_url:config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
+      fetch(`${config.app_local ? config.app_api_debug_url : config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
         .then(res => res.clone().json())
         .then(res => {
           this.departs = res.airports
@@ -422,7 +456,7 @@ export default {
       this.loadingDestinations = true
 
       // Lazily load input items
-      fetch(`${config.app_local?config.app_api_debug_url:config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
+      fetch(`${config.app_local ? config.app_api_debug_url : config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
         .then(res => res.clone().json())
         .then(res => {
           this.destinations = res.airports
