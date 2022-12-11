@@ -32,6 +32,10 @@
               </div>
             </div>
 
+
+            <datetime format="MM/DD/YYYY" width="300px" v-model="val"></datetime>
+
+
             <div class="tw-flex tw-items-center tw-w-full tw-gap-4">
               <div class=" tw-text-lg tw-rounded-lg tw-w-full tw-flex tw-flex-col tw-p-3">
                 <span class="tw-text-gray-600 tw-mb-1 ">Date de début :</span>

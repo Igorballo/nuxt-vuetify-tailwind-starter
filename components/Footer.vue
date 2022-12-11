@@ -72,7 +72,7 @@
                   <NuxtLink to="/tourisme" class="hover:tw-opacity-75 tw-text-white"> Tourisme </NuxtLink>
                   <NuxtLink to="/" class="hover:tw-opacity-75 tw-text-white"> Visa & Assurance</NuxtLink>
                 </nav>
-             
+
 
 
       </div>
