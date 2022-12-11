@@ -1,99 +1,171 @@
 <template>
   <div>
-    <div class="h-[75vh] tw-bg-no-repeat tw-bg-cover tw-bg-center"
-         style="background-image: url(https://images.unsplash.com/photo-1602019025788-20997a1c2d09?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1638&q=80)">
-      <div class="tw-flex tw-flex-col tw-items-center tw-justify-center">
-        <v-form
-          ref="form"
-          v-model="valid"
-          lazy-validation
-          class="tw-bg-white tw-w-3/5 tw-rounded-lg tw-h-full tw-my-20 tw-p-3 md:tw-p-4 lg:tw-p-12 tw-flex tw-flex-col">
-          <span class="tw-inline-flex tw-items-center">
-            <v-checkbox
-              class="tx-rounded-full"
-              v-model="carReservationForm.autre_lieu_restitution"
-              label="Lieu de retour différent"
-            ></v-checkbox>
-          </span>
-          <div class="tw-flex tw-flex-col tw-w-full">
-            <div class="tw-inline-flex tw-w-full tw-gap-6 tw-items-center">
-              <div class=" tw-text-lg tw-rounded-lg tw-w-full tw-flex tw-flex-col tw-p-3">
-                <span class="tw-text-gray-600 tw-mb-1 ">Lieu de prise en charge :</span>
-                <v-text-field v-model="carReservationForm.lieu_prise_en_charge"
-                              :rules="lieuPriseEnChargeRules" required outlined placeholder="Lieu de prise en charge">
-                </v-text-field>
-              </div>
+    <div class="tw-relative">
+      <div style="z-index: 500"
+           class="tw-flex tw-absolute tw-flex-col tw-rounded-lg tw-bg-white tw-shadow-md tw-px-6 tw-py-6 tw-pb-10 tw-w-[75%] tw-bottom-[30%] tw-right-[10%]">
+        <form class="tw-flex tw-flex-col tw-gap">
+          <v-checkbox
+            v-model="carReservationForm.autre_lieu_restitution"
+            label="Lieu de restitution différent"
+          ></v-checkbox>
 
-              <div v-if="carReservationForm.autre_lieu_restitution" class="tw-text-lg tw-rounded-lg tw-w-full tw-flex tw-flex-col tw-p-3">
-                <span class="tw-text-gray-600 tw-mb-1 ">Lieu de restitution :</span>
-                <v-text-field v-model="carReservationForm.lieu_de_restitution"
-                              :rules="LieuRestitutionRules" required outlined placeholder="Lieu de restitution">
-                </v-text-field>
-              </div>
-            </div>
-
-
-            <datetime format="MM/DD/YYYY" width="300px" v-model="val"></datetime>
-
-
-            <div class="tw-flex tw-items-center tw-w-full tw-gap-4">
-              <div class=" tw-text-lg tw-rounded-lg tw-w-full tw-flex tw-flex-col tw-p-3">
-                <span class="tw-text-gray-600 tw-mb-1 ">Date de début :</span>
-                <v-menu ref="debut_menu" v-model="debut_menu" :close-on-content-click="false" :return-value.sync="date"
-                        transition="scale-transition" offset-y min-width="auto">
+          <div class="tw-flex tw-items-center tw-gap-6">
+            <v-text-field
+              label="Lieu de prise en charge"
+              outlined
+              v-model="carReservationForm.lieu_prise_en_charge"
+            ></v-text-field>
+            <v-text-field
+              label="Lieu de restitution"
+              outlined
+              v-if="carReservationForm.autre_lieu_restitution"
+              v-model="carReservationForm.lieu_de_restitution"
+            ></v-text-field>
+          </div>
+          <div class="tw-flex tw-items-center tw-justify-between tw-gap-6">
+            <div class="tw-flex">
+              <v-col class="tw-px-0">
+                <v-menu
+                  ref="depart_menu"
+                  v-model="depart_menu"
+                  :return-value.sync="date"
+                  transition="scale-transition"
+                  offset-y
+                  min-width="auto"
+                >
                   <template v-slot:activator="{ on, attrs }">
-                    <v-text-field v-model="carReservationForm.date_debut" placeholder="Date de début: 05/12/2022"
-                                  readonly outlined
-                                  height="70" v-bind="attrs" v-on="on"></v-text-field>
+                    <v-text-field
+                      v-model="carReservationForm.date_debut"
+                      label="Date de prise en charge"
+                      readonly
+                      outlined
+                      v-bind="attrs"
+                      v-on="on"
+                      class="tw-rounded-r-none"
+                    ></v-text-field>
                   </template>
-                  <v-date-picker v-model="carReservationForm.date_debut" no-title scrollable>
-                    <v-spacer></v-spacer>
-                    <v-btn text color="primary" @click="debut_menu = false">
-                      Cancel
-                    </v-btn>
-                    <v-btn text color="primary" @click="$refs.debut_menu.save(carReservationForm.date_debut)">
-                      OK
-                    </v-btn>
+                  <v-date-picker
+                    v-model="carReservationForm.date_debut"
+                    no-title
+                    scrollable
+                  >
                   </v-date-picker>
                 </v-menu>
-              </div>
-
-              <div class=" tw-text-lg tw-rounded-lg tw-w-full tw-flex tw-flex-col tw-p-3">
-                <span class="tw-text-gray-600 tw-mb-1 ">Date de fin :</span>
-                <v-menu ref="fin_menu" v-model="fin_menu" :close-on-content-click="false" :return-value.sync="date"
-                        transition="scale-transition" offset-y min-width="auto">
+              </v-col>
+              <v-col class="tw-px-0">
+                <v-menu
+                  ref="heure_depart_ref"
+                  v-model="heure_depart_menu"
+                  :close-on-content-click="false"
+                  :nudge-right="40"
+                  :return-value.sync="carReservationForm.heure_depart"
+                  transition="scale-transition"
+                  offset-y
+                  max-width="290px"
+                  min-width="290px"
+                >
                   <template v-slot:activator="{ on, attrs }">
-                    <v-text-field v-model="carReservationForm.date_fin" placeholder="Date de fin : 05/12/2022" readonly
-                                  outlined
-                                  height="70" v-bind="attrs" v-on="on"></v-text-field>
+                    <v-text-field
+                      v-model="carReservationForm.heure_depart"
+                      label="Heure de prise en charge"
+                      readonly
+                      v-bind="attrs"
+                      v-on="on"
+                      outlined
+                      class="tw-rounded-l-none"
+                    ></v-text-field>
                   </template>
-                  <v-date-picker v-model="carReservationForm.date_fin" no-title scrollable>
-                    <v-spacer></v-spacer>
-                    <v-btn text color="primary" @click="fin_menu = false">
-                      Cancel
-                    </v-btn>
-                    <v-btn text color="primary" @click="$refs.fin_menu.save(carReservationForm.date_fin)">
-                      OK
-                    </v-btn>
+                  <v-time-picker
+                    v-if="heure_depart_menu"
+                    v-model="carReservationForm.heure_depart"
+                    full-width
+                    @click:minute="$refs.heure_depart_ref.save(carReservationForm.heure_depart)"
+                  ></v-time-picker>
+                </v-menu>
+              </v-col>
+            </div>
+            <div class="tw-flex">
+              <v-col class="tw-px-0">
+                <v-menu
+                  ref="date_destination_ref"
+                  v-model="date_depart_menu"
+                  :return-value.sync="date"
+                  transition="scale-transition"
+                  offset-y
+                  min-width="auto"
+                >
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-text-field
+                      v-model="carReservationForm.date_fin"
+                      label="Date de prise en charge"
+                      readonly
+                      outlined
+                      v-bind="attrs"
+                      v-on="on"
+                      class="tw-rounded-r-none"
+                    ></v-text-field>
+                  </template>
+                  <v-date-picker
+                    v-model="carReservationForm.date_fin"
+                    no-title
+                    scrollable
+                  >
                   </v-date-picker>
                 </v-menu>
-              </div>
+              </v-col>
+              <v-col class="tw-px-0">
+                  <v-menu
+                    ref="restitution_heure_ref"
+                    v-model="heure_restitution_menu"
+                    :close-on-content-click="false"
+                    :nudge-right="40"
+                    :return-value.sync=carReservationForm.heure_fin
+                    transition="scale-transition"
+                    offset-y
+                    max-width="290px"
+                    min-width="290px"
+                  >
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-text-field
+                        v-model="carReservationForm.heure_fin"
+                        label="Heure de restitution"
+                        class="tw-rounded-l-none"
+                        readonly
+                        v-bind="attrs"
+                        v-on="on"
+                        outlined
+                      ></v-text-field>
+                    </template>
+                    <v-time-picker
+                      v-if="heure_restitution_menu"
+                      v-model="carReservationForm.heure_fin"
+                      full-width
+                      @click:minute="$refs.restitution_heure_ref.save(carReservationForm.heure_fin)"
+                    ></v-time-picker>
+                  </v-menu>
+              </v-col>
             </div>
-
-            <v-col sm="6">
-              <v-textarea rows="3" v-model="carReservationForm.description_voiture"
-                          label="Faites une breve description de la voiture que vous voulez" name="input-7-1"
-                          outlined></v-textarea>
-            </v-col>
           </div>
 
-          <div class="tw-flex tw-mt-6">
-            <v-btn dark color="red" @click="reservation()">
-              Faire une reservation de voiture
-            </v-btn>
-          </div>
-        </v-form>
+          <v-btn
+            class="tw-w-[fit-content] tw-absolute tw-bottom-4 tw-rounded-full tw-py-6 tw-px-4 tw-text-white tw-ease-in tw-font-semibold tw-bg-blue-800 tw-border-2 tw-border-red-700 tw-duration-300">
+            Rechercher des voitures
+          </v-btn>
+        </form>
       </div>
+      <v-carousel
+        cycle
+        height="500"
+        hide-delimiter-background
+        show-arrows-on-hover
+      >
+        <v-carousel-item
+          v-for="(slide, i) in 3"
+          src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+          :key="i"
+        >
+        </v-carousel-item>
+      </v-carousel>
     </div>
 
     <!-- Our partners section   -->
@@ -131,6 +203,14 @@ export default {
 
   data() {
     return {
+      time: null,
+
+      heure_depart_menu: false,
+      heure_restitution_menu: false,
+      date_depart_menu: false,
+      heure_depart: false,
+      heure_fin: false,
+      modal: "",
       lieuPriseEnChargeRules: [
         v => !!v || 'Lieu de prise en charge est requis',
         /* v => (v && v.length <= 10) || 'Name must be less than 10 characters', */
@@ -145,13 +225,12 @@ export default {
         autre_lieu_restitution: false,
         lieu_prise_en_charge: "",
         lieu_de_restitution: "",
+        heure_depart: "",
+        heure_fin: "",
         date_debut: "",
         date_fin: "",
-        description_voiture: ""
       },
       date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
-      debut_menu: false,
-      fin_menu: false,
     }
 
   },
