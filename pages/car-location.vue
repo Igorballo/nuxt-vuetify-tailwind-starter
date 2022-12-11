@@ -2,7 +2,7 @@
   <div>
     <div class="tw-relative">
       <div style="z-index: 500"
-           class="tw-flex tw-absolute tw-flex-col tw-rounded-lg tw-bg-white tw-shadow-md tw-px-6 tw-py-6 tw-pb-10 tw-w-[75%] tw-bottom-[30%] tw-right-[10%]">
+           class="tw-flex tw-absolute tw-flex-col tw-rounded-lg tw-bg-white tw-shadow-md tw-px-6 tw-py-6 tw-pb-10 tw-w-[75%] tw-bottom-[18%] tw-right-[10%]">
         <form class="tw-flex tw-flex-col tw-gap">
           <v-checkbox
             v-model="carReservationForm.autre_lieu_restitution"
@@ -22,8 +22,8 @@
               v-model="carReservationForm.lieu_de_restitution"
             ></v-text-field>
           </div>
-          <div class="tw-flex tw-items-center tw-justify-between tw-gap-6">
-            <div class="tw-flex">
+          <div class="tw-flex tw-items-center tw-gap-6">
+            <div class="tw-flex  tw-w-full">
               <v-col class="tw-px-0">
                 <v-menu
                   ref="depart_menu"
@@ -84,7 +84,7 @@
                 </v-menu>
               </v-col>
             </div>
-            <div class="tw-flex">
+            <div class="tw-flex tw-w-full">
               <v-col class="tw-px-0">
                 <v-menu
                   ref="date_destination_ref"
@@ -114,35 +114,35 @@
                 </v-menu>
               </v-col>
               <v-col class="tw-px-0">
-                  <v-menu
-                    ref="restitution_heure_ref"
-                    v-model="heure_restitution_menu"
-                    :close-on-content-click="false"
-                    :nudge-right="40"
-                    :return-value.sync=carReservationForm.heure_fin
-                    transition="scale-transition"
-                    offset-y
-                    max-width="290px"
-                    min-width="290px"
-                  >
-                    <template v-slot:activator="{ on, attrs }">
-                      <v-text-field
-                        v-model="carReservationForm.heure_fin"
-                        label="Heure de restitution"
-                        class="tw-rounded-l-none"
-                        readonly
-                        v-bind="attrs"
-                        v-on="on"
-                        outlined
-                      ></v-text-field>
-                    </template>
-                    <v-time-picker
-                      v-if="heure_restitution_menu"
+                <v-menu
+                  ref="restitution_heure_ref"
+                  v-model="heure_restitution_menu"
+                  :close-on-content-click="false"
+                  :nudge-right="40"
+                  :return-value.sync=carReservationForm.heure_fin
+                  transition="scale-transition"
+                  offset-y
+                  max-width="290px"
+                  min-width="290px"
+                >
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-text-field
                       v-model="carReservationForm.heure_fin"
-                      full-width
-                      @click:minute="$refs.restitution_heure_ref.save(carReservationForm.heure_fin)"
-                    ></v-time-picker>
-                  </v-menu>
+                      label="Heure de restitution"
+                      class="tw-rounded-l-none"
+                      readonly
+                      v-bind="attrs"
+                      v-on="on"
+                      outlined
+                    ></v-text-field>
+                  </template>
+                  <v-time-picker
+                    v-if="heure_restitution_menu"
+                    v-model="carReservationForm.heure_fin"
+                    full-width
+                    @click:minute="$refs.restitution_heure_ref.save(carReservationForm.heure_fin)"
+                  ></v-time-picker>
+                </v-menu>
               </v-col>
             </div>
           </div>
@@ -160,8 +160,8 @@
         show-arrows-on-hover
       >
         <v-carousel-item
-          v-for="(slide, i) in 3"
-          src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+          v-for="i in items.length"
+          :src="items[i]"
           :key="i"
         >
         </v-carousel-item>
@@ -203,6 +203,11 @@ export default {
 
   data() {
     return {
+      items: [
+        'https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+      'https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+      'https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+      ],
       time: null,
 
       heure_depart_menu: false,
