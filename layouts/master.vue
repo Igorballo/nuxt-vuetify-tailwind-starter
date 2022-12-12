@@ -29,7 +29,6 @@
       </div>
     </div>
 
-
     <div style="position: sticky; top: 0; z-index: 999" class="tw-bg-blue-800 tw-py-4 tw-px-12 tw-flex tw-justify-between">
       <ul class="tw-flex tw-items-center tw-gap-6 tw-px-0">
         <li class="tw-text-white tw-font-semifont-bold">
