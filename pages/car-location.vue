@@ -2,7 +2,7 @@
   <div>
     <div class="tw-relative">
       <div style="z-index: 500"
-           class="tw-flex tw-absolute tw-flex-col tw-rounded-lg tw-bg-white tw-shadow-md tw-px-6 tw-py-6 tw-pb-10 tw-w-[75%] tw-bottom-[18%] tw-right-[10%]">
+           class="tw-flex tw-absolute tw-flex-col tw-rounded-lg tw-bg-white tw-shadow-md tw-px-6 tw-py-6 tw-pb-12 tw-w-[75%] tw-bottom-[18%] tw-right-[10%]">
         <form class="tw-flex tw-flex-col tw-gap">
           <v-checkbox
             v-model="carReservationForm.autre_lieu_restitution"
@@ -148,7 +148,7 @@
           </div>
 
           <v-btn @click="$router.push('/filter')"
-            class="tw-w-[fit-content] tw-absolute tw-bottom-4 tw-rounded-full tw-py-6 tw-px-4 tw-text-white tw-ease-in tw-font-semibold tw-bg-blue-800 tw-border-2 tw-border-red-700 tw-duration-300">
+            class="tw-w-[fit-content] tw-absolute tw-bottom-4 tw-rounded-full tw-py-6 tw-px-4 tw-text-white tw-ease-in tw-font-semibold tw-bg-red-600 tw-border-2 tw-border-red-700 tw-duration-300">
             Rechercher des voitures
           </v-btn>
         </form>
@@ -172,22 +172,22 @@
     <!-- Our partners section   -->
     <div class="tw-mx-auto tw-px-4 tw-my-20">
       <div class="tw-flex tw-flex-wrap tw-items-center tw-justify-evenly tw-gap-8">
-        <img class="tw-mt-2 tw-h-16 tw-fill-current" src="../assets/img/IATA.png" alt="IATA">
+        <img class="tw-mt-2 tw-h-12 lg:tw-h-16 tw-fill-current" src="../assets/img/IATA.png" alt="IATA">
 
-        <img class="tw-mt-2 tw-h-16 tw-fill-current"
+        <img class="tw-mt-2 tw-h-12 lg:tw-h-16 tw-fill-current"
              src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Ethiopian_Airlines_Logo.svg/2560px-Ethiopian_Airlines_Logo.svg.png"
              alt="air-france">
 
-        <img class="tw-mt-2 tw-h-16 tw-fill-current"
+        <img class="tw-mt-2 tw-h-12 lg:tw-h-16 tw-fill-current"
              src="https://i.pinimg.com/originals/2f/48/a7/2f48a7c799b4995d9578ed9580b40fbe.jpg"
              alt="air-france">
 
-        <img class="tw-mt-2 tw-h-20 tw-fill-current"
+        <img class="tw-mt-2 tw-h-16 lg:tw-h-20 tw-fill-current"
              src="https://wallpapercave.com/wp/wp11304533.png"
              alt="air-france">
 
-        <img class="tw-mt-2 tw-h-16 tw-fill-current"
-             src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Airfrance_Logo.svg/2560px-Airfrance_Logo.svg.png"
+        <img class="tw-mt-2 tw-h-24 lg:tw-h-16 tw-fill-current"
+             src="https://www.internationalboost.com/wp-content/uploads/2018/12/logo-air-france.png"
              alt="air-france">
       </div>
     </div>

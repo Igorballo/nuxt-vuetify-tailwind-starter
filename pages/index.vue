@@ -2,8 +2,8 @@
   <div>
     <div class="tw-relative">
       <div style="z-index: 500"
-           class="tw-flex tw-absolute tw-flex-col tw-rounded-lg tw-bg-white tw-shadow-md tw-px-6 tw-py-6 tw-w-[75%] tw-bottom-[30%] tw-right-[10%]">
-        <div>
+           class="tw-flex tw-justify-center tw-items-center tw-absolute tw-inset-0">
+        <div class="tw-flex tw-flex-col tw-rounded-lg tw-bg-white tw-shadow-md tw-p-4 md:tw-p-6 tw-w-[90%] md:tw-w-[75%]">
           <v-radio-group row v-model="reservationForm.typevoyage">
             <v-radio
               label="Aller-retour"
@@ -23,7 +23,7 @@
 
           <div class="tw-flex tw-items-center">
             <div class="tw-flex tw-flex-col tw-w-full md:tw-gap-4 md:tw-items-center md:tw-flex-row">
-              <v-col cols="5">
+              <v-col>
                 <v-row class="tw-relative">
                   <v-autocomplete append-icon="" background-color="white"
                                   class="tw-w-1/3 tw-duration-300 focus:tw-outline-none tw-rounded-l-md tw-rounded-r-none placeholder:tw-text-gray-800"
@@ -110,7 +110,7 @@
                   </v-autocomplete>
                 </v-row>
               </v-col>
-              <v-col cols="4">
+              <v-col>
                 <v-row>
                   <v-col class="tw-px-0">
                     <v-menu
@@ -170,7 +170,7 @@
                   </v-col>
                 </v-row>
               </v-col>
-              <v-col cols="2">
+              <v-col>
                 <v-menu
                   :key="text"
                   solo
@@ -283,13 +283,14 @@
           </div>
 
           <v-btn
-            class="tw-w-[fit-content] tw-absolute tw-right-24 tw-rounded-full tw-py-6 tw-px-4 tw-text-red-500 tw-ease-in tw-font-semibold tw-bg-white tw-border-2 tw-border-red-700 tw-duration-300">
+            class="tw-w-[fit-content] tw-rounded-full tw-py-6 tw-px-4 tw-text-white tw-ease-in tw-font-semibold tw-bg-red-600 tw-border-2 tw-border-red-700 tw-duration-300">
             Rechercher des vols
           </v-btn>
         </div>
       </div>
       <v-carousel
         cycle
+        class=""
         height="500"
         hide-delimiter-background
         show-arrows-on-hover
@@ -299,8 +300,6 @@
           src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
           :key="i"
         >
-
-
         </v-carousel-item>
       </v-carousel>
     </div>
@@ -308,22 +307,22 @@
     <!-- Our partners section   -->
     <div class="tw-mx-auto tw-px-4 tw-my-20">
       <div class="tw-flex tw-flex-wrap tw-items-center tw-justify-evenly tw-gap-8">
-        <img class="tw-mt-2 tw-h-16 tw-fill-current" src="../assets/img/IATA.png" alt="IATA">
+        <img class="tw-mt-2 tw-h-12 lg:tw-h-16 tw-fill-current" src="../assets/img/IATA.png" alt="IATA">
 
-        <img class="tw-mt-2 tw-h-16 tw-fill-current"
+        <img class="tw-mt-2 tw-h-12 lg:tw-h-16 tw-fill-current"
              src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Ethiopian_Airlines_Logo.svg/2560px-Ethiopian_Airlines_Logo.svg.png"
              alt="air-france">
 
-        <img class="tw-mt-2 tw-h-16 tw-fill-current"
+        <img class="tw-mt-2 tw-h-12 lg:tw-h-16 tw-fill-current"
              src="https://i.pinimg.com/originals/2f/48/a7/2f48a7c799b4995d9578ed9580b40fbe.jpg"
              alt="air-france">
 
-        <img class="tw-mt-2 tw-h-20 tw-fill-current"
+        <img class="tw-mt-2 tw-h-16 lg:tw-h-20 tw-fill-current"
              src="https://wallpapercave.com/wp/wp11304533.png"
              alt="air-france">
 
-        <img class="tw-mt-2 tw-h-16 tw-fill-current"
-             src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Airfrance_Logo.svg/2560px-Airfrance_Logo.svg.png"
+        <img class="tw-mt-2 tw-h-24 lg:tw-h-16 tw-fill-current"
+             src="https://www.internationalboost.com/wp-content/uploads/2018/12/logo-air-france.png"
              alt="air-france">
       </div>
     </div>
