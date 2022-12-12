@@ -86,6 +86,8 @@
           <div @click="$router.push('/contact')" class="tw-flex tw-items-center tw-gap-2 tw-cursor-pointer">
             <span class="tw-whitespace-nowrap">Nous contacter</span>
           </div>
+        </li>
+      </ul>
     </div>
 
     <!--Aside Bar-->

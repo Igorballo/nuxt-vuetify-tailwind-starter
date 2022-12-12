@@ -1,8 +1,8 @@
 <template>
   <div>
+    
     <div class="tw-relative">
       <div style="z-index: 500"
-<<<<<<< HEAD
            class="tw-flex tw-justify-center tw-items-center tw-absolute tw-inset-0">
         <div class="tw-flex tw-flex-col tw-rounded-lg tw-bg-white tw-shadow-md tw-p-4 md:tw-p-6 tw-w-[90%] md:tw-w-[75%]">
           <v-radio-group row v-model="reservationForm.typevoyage">
@@ -10,16 +10,6 @@
               label="Aller-retour"
               value="allerretour"
             ></v-radio>
-=======
-           class="tw-flex tw-absolute tw-flex-col tw-rounded-lg tw-bg-white tw-shadow-md tw-px-6 tw-py-6 tw-w-[75%] tw-bottom-[30%] tw-right-[10%]">
-        <div>
-          <div class="tw-flex tw-justify-between tw-items-center tw-pr-16">
-            <v-radio-group row v-model="reservationForm.typevoyage">
-              <v-radio
-                label="Aller-retour"
-                value="allerretour"
-              ></v-radio>
->>>>>>> f4317263749230cabfdb22945a781e5b06a7775f
 
               <v-radio
                 label="Aller simple"
@@ -430,15 +420,11 @@
             </v-card>
           </v-dialog>
           <v-btn
-<<<<<<< HEAD
-            class="tw-w-[fit-content] tw-rounded-full tw-py-6 tw-px-4 tw-text-white tw-ease-in tw-font-semibold tw-bg-red-600 tw-border-2 tw-border-red-700 tw-duration-300">
-            Rechercher des vols
-=======
-            :loading="btnLoading"
+          :loading="btnLoading"
             @click="userInfoDialog = true"
             class="tw-w-[fit-content] tw-absolute tw-right-24 tw-rounded-full tw-py-6 tw-px-4 tw-text-red-500 tw-ease-in tw-font-semibold tw-bg-white tw-border-2 tw-border-red-700 tw-duration-300">
             Demander reservation
->>>>>>> f4317263749230cabfdb22945a781e5b06a7775f
+
           </v-btn>
         </div>
       </div>
@@ -458,31 +444,9 @@
       </v-carousel>
     </div>
 
-    <!-- Our partners section   -->
-    <div class="tw-mx-auto tw-px-4 tw-my-20">
-      <div class="tw-flex tw-flex-wrap tw-items-center tw-justify-evenly tw-gap-8">
-        <img class="tw-mt-2 tw-h-12 lg:tw-h-16 tw-fill-current" src="../assets/img/IATA.png" alt="IATA">
-
-        <img class="tw-mt-2 tw-h-12 lg:tw-h-16 tw-fill-current"
-             src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Ethiopian_Airlines_Logo.svg/2560px-Ethiopian_Airlines_Logo.svg.png"
-             alt="air-france">
-
-        <img class="tw-mt-2 tw-h-12 lg:tw-h-16 tw-fill-current"
-             src="https://i.pinimg.com/originals/2f/48/a7/2f48a7c799b4995d9578ed9580b40fbe.jpg"
-             alt="air-france">
-
-        <img class="tw-mt-2 tw-h-16 lg:tw-h-20 tw-fill-current"
-             src="https://wallpapercave.com/wp/wp11304533.png"
-             alt="air-france">
-
-        <img class="tw-mt-2 tw-h-24 lg:tw-h-16 tw-fill-current"
-             src="https://www.internationalboost.com/wp-content/uploads/2018/12/logo-air-france.png"
-             alt="air-france">
-      </div>
-    </div>
-
-    <Cards/>
+    
   </div>
+  
 </template>
 
 <script>
