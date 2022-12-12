@@ -2,7 +2,7 @@
   <div>
     <section class="tw-py-8 tw-px-32 tw-bg-white tw-flex-col tw-gap-4 tw-shadow-lg">
       <div class="tw-flex tw-flex-col lg:tw-flex-row tw-w-full tw-justify-between tw-items-center tw-pb-4">
-        <img src="~/assets/img/logo.png" class="tw-w-56 tw-h-44" alt="image">
+        <!-- <img src="~/assets/img/logo.png" class="tw-w-56 tw-h-44" alt="image"> -->
 
         <div class="tw-flex tw-gap-8 tw-mt-4">
           <a href="#">

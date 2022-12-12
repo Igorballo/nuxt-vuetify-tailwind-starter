@@ -66,7 +66,8 @@
           </div>
         </li>
         <li class="tw-text-white tw-font-semifont-bold">
-          <div @click="$router.push('/')" class="tw-flex tw-items-center tw-gap-2 tw-cursor-pointer">
+          
+          <div @click="$router.push('/visa-assurance')" class="tw-flex tw-items-center tw-gap-2 tw-cursor-pointer">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                  stroke="currentColor" class="tw-w-4 tw-h-4">
               <path stroke-linecap="round" stroke-linejoin="round"
@@ -80,12 +81,12 @@
       </ul>
 
       <ul class="tw-flex tw-text-white tw-font-semibold tw-gap-6">
-        <li>
-          A propos
+        <li class="tw-text-white tw-font-semifont-bold">
+          <NuxtLink to="/about" class="hover:tw-opacity-75 tw-text-white">A propos</NuxtLink>
         </li>
 
-        <li>
-          Nous contacter
+        <li class="tw-text-white tw-font-semifont-bold">
+            <NuxtLink to="/contact" class="hover:tw-opacity-75 tw-text-white">Nous contacter</NuxtLink>
         </li>
       </ul>
     </div>

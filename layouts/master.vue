@@ -33,13 +33,13 @@
       <ul class="tw-flex tw-items-center tw-gap-6 tw-px-0">
         <li class="tw-text-white tw-font-semifont-bold">
           <div @click="$router.push('/')"
-               class="tw-flex tw-items-center tw-gap-2">
+               class="tw-flex tw-items-center tw-gap-2 tw-cursor-pointer">
             <img class="tw-h-4 tw-w-4 tw-text-white" src="../assets/svg/airplane.svg">
             <span class="tw-whitespace-nowrap">Reservation de tickets</span>
           </div>
         </li>
         <li class="tw-text-white tw-font-semifont-bold">
-          <div @click="$router.push('/hotel')" class="tw-flex tw-items-center tw-gap-2">
+          <div @click="$router.push('/hotel')" class="tw-flex tw-items-center tw-gap-2 tw-cursor-pointer">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                  stroke="currentColor" class="tw-w-4 tw-h-4">
               <path stroke-linecap="round" stroke-linejoin="round"
@@ -48,14 +48,14 @@
             <span class="tw-whitespace-nowrap">Hébergements</span>
           </div>
         </li>
-        <li class="tw-text-white tw-font-semifont-bold">
+        <li class="tw-text-white tw-font-semifont-bold tw-cursor-pointer">
           <div @click="$router.push('/car-location')" class="tw-flex tw-items-center tw-gap-2">
             <img class="tw-h-4 tw-w-4 tw-text-white" src="../assets/svg/car.svg">
             <span class="tw-whitespace-nowrap">Location de voitures</span>
           </div>
         </li>
         <li class="tw-text-white tw-font-semifont-bold">
-          <div @click="$router.push('/tourisme')" class="tw-flex tw-items-center tw-gap-2">
+          <div @click="$router.push('/tourisme')" class="tw-flex tw-items-center tw-gap-2 tw-cursor-pointer">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                  stroke="currentColor" class="tw-w-4 tw-h-4">
               <path stroke-linecap="round" stroke-linejoin="round"
@@ -65,7 +65,7 @@
           </div>
         </li>
         <li class="tw-text-white tw-font-semifont-bold">
-          <div @click="$router.push('/')" class="tw-flex tw-items-center tw-gap-2">
+          <div @click="$router.push('/visa-assurance')" class="tw-flex tw-items-center tw-gap-2 tw-cursor-pointer">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                  stroke="currentColor" class="tw-w-4 tw-h-4">
               <path stroke-linecap="round" stroke-linejoin="round"
@@ -79,13 +79,20 @@
       </ul>
 
       <ul class="tw-flex tw-text-white tw-font-semibold tw-gap-6">
-        <li>
-          A propos
+      
+
+        <li class="tw-text-white tw-font-semifont-bold">
+          <div @click="$router.push('/about')" class="tw-flex tw-items-center tw-gap-2 tw-cursor-pointer">
+            <span class="tw-whitespace-nowrap">A propos</span>
+          </div>
         </li>
 
-        <li>
-          Nous contacter
+        <li class="tw-text-white tw-font-semifont-bold">
+          <div @click="$router.push('/contact')" class="tw-flex tw-items-center tw-gap-2 tw-cursor-pointer">
+            <span class="tw-whitespace-nowrap">Nous contacter</span>
+          </div>
         </li>
+
       </ul>
     </div>
 
