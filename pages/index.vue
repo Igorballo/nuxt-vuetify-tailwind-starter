@@ -142,8 +142,8 @@
                   </v-col>
                   <v-col v-if="reservationForm.typevoyage === 'allerretour'" class="tw-px-0">
                     <v-menu
-                      ref="menu"
-                      v-model="menu"
+                      ref="retour_menu"
+                      v-model="retour_menu"
                       :return-value.sync="date"
                       transition="scale-transition"
                       offset-y
@@ -161,7 +161,7 @@
                         ></v-text-field>
                       </template>
                       <v-date-picker
-                        v-model="reservationForm.depart_date"
+                        v-model="reservationForm.comeback_date"
                         no-title
                         scrollable
                       >
@@ -283,6 +283,8 @@
           </div>
 
           <v-btn
+            :loading="btnLoading"
+            @click="userInfoDialog = true"
             class="tw-w-[fit-content] tw-rounded-full tw-py-6 tw-px-4 tw-text-white tw-ease-in tw-font-semibold tw-bg-red-600 tw-border-2 tw-border-red-700 tw-duration-300">
             Rechercher des vols
           </v-btn>
