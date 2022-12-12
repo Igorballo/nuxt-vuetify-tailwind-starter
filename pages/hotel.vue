@@ -2,8 +2,9 @@
   <div>
     <div class="tw-relative">
       <div style="z-index: 500"
-           class="tw-flex tw-absolute tw-flex-col tw-rounded-lg tw-bg-white tw-shadow-md tw-px-6 tw-py-6 tw-pb-12 tw-w-[75%] tw-bottom-[40%] tw-right-[12%]">
-        <form class="tw-flex tw-flex-col tw-gap">
+           class="tw-flex tw-justify-center tw-items-center tw-absolute tw-inset-0">
+        <form
+          class="tw-flex tw-flex-col tw-rounded-lg tw-bg-white tw-shadow-md tw-p-4 md:tw-p-6 tw-w-[90%] md:tw-w-[75%]">
           <div class="tw-flex tw-items-center tw-gap-6">
             <v-text-field
               label="Ex: pays, ville, quartier ou site d'intérêt"
@@ -161,16 +162,16 @@
                 </v-list>
               </v-menu>
             </div>
-
           </div>
 
 
           <v-btn
-            class="tw-w-[fit-content] tw-absolute tw-bottom-4 tw-rounded-full tw-py-6 tw-px-4 tw-text-white tw-ease-in tw-font-semibold tw-bg-red-600 tw-border-2 tw-border-red-700 tw-duration-300">
+            class="tw-w-[fit-content] tw-rounded-full tw-py-6 tw-px-4 tw-text-white tw-ease-in tw-font-semibold tw-bg-red-600 tw-border-2 tw-border-red-700 tw-duration-300">
             Rechercher des hotêls
           </v-btn>
         </form>
       </div>
+
       <v-carousel
         cycle
         height="500"
