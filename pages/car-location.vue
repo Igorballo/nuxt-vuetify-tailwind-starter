@@ -147,7 +147,7 @@
             </div>
           </div>
 
-          <v-btn
+          <v-btn @click="$router.push('/filter')"
             class="tw-w-[fit-content] tw-absolute tw-bottom-4 tw-rounded-full tw-py-6 tw-px-4 tw-text-white tw-ease-in tw-font-semibold tw-bg-blue-800 tw-border-2 tw-border-red-700 tw-duration-300">
             Rechercher des voitures
           </v-btn>
@@ -167,6 +167,7 @@
         </v-carousel-item>
       </v-carousel>
     </div>
+
 
     <!-- Our partners section   -->
     <div class="tw-mx-auto tw-px-4 tw-my-20">
