@@ -4,22 +4,28 @@
       <div style="z-index: 500"
            class="tw-flex tw-absolute tw-flex-col tw-rounded-lg tw-bg-white tw-shadow-md tw-px-6 tw-py-6 tw-w-[75%] tw-bottom-[30%] tw-right-[10%]">
         <div>
-          <v-radio-group row v-model="reservationForm.typevoyage">
-            <v-radio
-              label="Aller-retour"
-              value="allerretour"
-            ></v-radio>
+          <div class="tw-flex tw-justify-between tw-items-center tw-pr-16">
+            <v-radio-group row v-model="reservationForm.typevoyage">
+              <v-radio
+                label="Aller-retour"
+                value="allerretour"
+              ></v-radio>
 
-            <v-radio
-              label="Aller simple"
-              value="allersimple"
-            ></v-radio>
+              <v-radio
+                label="Aller simple"
+                value="allersimple"
+              ></v-radio>
 
-            <v-radio
-              label="Destination multiple"
-              value="destinationmultiple"
-            ></v-radio>
-          </v-radio-group>
+              <v-radio
+                label="Destination multiple"
+                value="destinationmultiple"
+              ></v-radio>
+            </v-radio-group>
+            <select class="tw-border-1 tw-border-red-600 tw-rounded-md">
+              <option>Business Class</option>
+              <option>Economic Class</option>
+            </select>
+          </div>
 
           <div class="tw-flex tw-items-center">
             <div class="tw-flex tw-flex-col tw-w-full md:tw-gap-4 md:tw-items-center md:tw-flex-row">
@@ -282,9 +288,142 @@
             </div>
           </div>
 
+          <v-dialog
+            v-model="userInfoDialog"
+            max-width="600px"
+          >
+            <v-card>
+              <v-card-title>
+                <span class="text-h5">Une dernière étape</span>
+              </v-card-title>
+              <v-card-text>
+                <v-container>
+                  <v-row>
+                    <v-col
+                      cols="12"
+                      sm="6"
+                    >
+                      <v-text-field
+                        label="Nom*"
+                        required
+                        outlined
+                        v-model="reservationForm.lastname"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col
+                      cols="12"
+                      sm="6"
+                    >
+                      <v-text-field
+                        label="Prénoms"
+                        required outlined
+                        v-model="reservationForm.firstname"
+                      ></v-text-field>
+                    </v-col>
+
+                    <v-col
+                      cols="12"
+                    >
+                      <v-text-field placeholder="XXXXXXXX" v-model="reservationForm.passport_id" required label="Numéro passport" outlined></v-text-field>
+                    </v-col>
+
+                    <v-row
+                      cols="12" class="tw-mx-1"
+                    >
+                      <v-col sm="6">
+                        <v-autocomplete
+                          v-model="reservationForm.phone_number.code"
+                          :items="countries"
+                          :loading="isLoading"
+                          :search-input.sync="search"
+                          clearable
+                          item-text="dial_code"
+                          item-value="id"
+                          outlined
+                          label="Indicatif de votre numéro"
+                        >
+                          <template v-slot:item="{ item }">
+                            <v-list-item-avatar
+                              color="indigo"
+                              class="text-h10 tw-p-4 font-weight-light white--text"
+                            >
+                              {{ item.dial_code}}
+                            </v-list-item-avatar>
+                            <v-list-item-content>
+                              <v-list-item-title>{{ item.name}}</v-list-item-title>
+                            </v-list-item-content>
+                          </template>
+                        </v-autocomplete>
+                      </v-col>
+                      <v-col>
+                        <v-text-field v-model="reservationForm.phone_number.number" required type="number" label="Numéro de télephone" outlined></v-text-field>
+                      </v-col>
+                    </v-row>
+                  </v-row>
+                </v-container>
+                <small>*Indique un champ obligatoire</small>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn
+                  color="error darken-1"
+                  @click="userInfoDialog = false"
+                  text
+                >
+                  Fermer
+                </v-btn>
+                <v-btn
+                  class=""
+                  color="error darken-1"
+                  :loading="btnLoading"
+                  @click="userInfoDialog = false, disclaimerDialog = true"
+                >
+                  Envoyer la demande
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+
+          <v-dialog
+            v-model="disclaimerDialog"
+            width="500"
+          >
+
+            <v-card>
+              <v-card-title class="text-h5 grey lighten-2">
+                Politique de confidentialité
+              </v-card-title>
+
+              <v-card-text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </v-card-text>
+
+              <v-divider></v-divider>
+
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn
+                  color="primary"
+                  text
+                  @click="disclaimerDialog = false"
+                >
+                  Annuler
+                </v-btn>
+                <v-btn
+                  color="primary"
+                  text
+                  @click="reservation()"
+                >
+                  J'accepte
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
           <v-btn
+            :loading="btnLoading"
+            @click="userInfoDialog = true"
             class="tw-w-[fit-content] tw-absolute tw-right-24 tw-rounded-full tw-py-6 tw-px-4 tw-text-red-500 tw-ease-in tw-font-semibold tw-bg-white tw-border-2 tw-border-red-700 tw-duration-300">
-            Rechercher des vols
+            Demander reservation
           </v-btn>
         </div>
       </div>
