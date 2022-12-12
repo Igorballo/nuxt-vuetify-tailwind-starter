@@ -17,7 +17,7 @@
               </v-toolbar>
               <v-card-text>
                 <form class="mt-5" ref="form" @submit.prevent="login()">
-                  <v-alert color="red darken-1" dark dismissible border="top" elevation="1" transition="all"
+                  <v-alert color="warning darken-1" dark dismissible border="top" elevation="1" transition="all"
                            align="center" v-if="errorMsg">{{ getFormattedMessage }}
                   </v-alert>
                   <v-text-field
@@ -69,6 +69,9 @@ export default {
       if (this.errorMsg === 'USER_DOES_NOT_EXIST' || this.errorMsg === 'WRONG_PASSWORD')
         return "Invalid Credentials"
 
+      if(this.errorMsg === 'NETWWORK_ERROR')
+        return "Erreur lié au réseau"
+
       return "Unknow error"
     }
   },
@@ -84,8 +87,12 @@ export default {
       console.log(response)
       this.loginInProgress = false
 
-      if (response.data?.errors) {
-        this.errorMsg = response.data.errors.msg
+      if(!response){
+        this.errorMsg = "NETWWORK_ERROR"
+        return
+      }
+      if (response?.data?.errors) {
+        this.errorMsg = response?.data?.errors.msg
         return
       }
 
