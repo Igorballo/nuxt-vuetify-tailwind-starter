@@ -190,10 +190,10 @@
                       <v-list-item
                       >
                         <v-list-item-title>
-                          <div class="tw-flex tw-flex-col tw-gap-4 tw-w-full tw-p-4 tw-bg-white">
-                            <div class="tw-py-4 tw-flex tw-justify-between tw-gap-12">
-                              <span class="tw-text-xl tw-font-bold tw-gray-800">Adultes (> 12 ans)</span>
-                              <div class="tw-text-xl tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
+                          <div class="tw-flex tw-flex-col tw-gap-4 tw-text-sm md:tw-text-xl tw-w-full tw-p-2 md:tw-p-4 tw-bg-white">
+                            <div class="tw-py-2 md:tw-py-4 tw-flex tw-justify-between tw-gap-12">
+                              <span class="tw-font-bold tw-gray-800">Adultes (> 12 ans)</span>
+                              <div class="tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
                                 <div
                                   v-if="reservationForm.passengers.adultes > 1 && reservationForm.passengers.enfants + reservationForm.passengers.bebes <= (reservationForm.passengers.adultes - 1) *2">
                                 <span @click="reservationForm.passengers.adultes--" class="hover:tw-cursor-pointer"><v-icon
@@ -216,9 +216,9 @@
                               </div>
                             </div>
                             <v-divider></v-divider>
-                            <div class="tw-py-4 tw-flex tw-justify-between tw-gap-12">
-                              <span class="tw-text-xl tw-font-bold tw-gray-800">Enfants (2-11 ans)</span>
-                              <div class="tw-text-xl tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
+                            <div class="tw-py-2 md:tw-py-4 tw-flex tw-justify-between tw-gap-12">
+                              <span class=" tw-font-bold tw-gray-800">Enfants (2-11 ans)</span>
+                              <div class=" tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
                                 <div v-if="reservationForm.passengers.enfants > 0">
                                 <span @click="reservationForm.passengers.enfants--" class="hover:tw-cursor-pointer"><v-icon
                                   color="red">mdi-minus-circle-outline</v-icon></span>
@@ -239,9 +239,9 @@
                               </div>
                             </div>
                             <v-divider></v-divider>
-                            <div class="tw-py-4 tw-flex tw-justify-between tw-gap-12">
-                              <span class="tw-text-xl tw-font-bold tw-gray-800">Bébés (< 2 ans)</span>
-                              <div class="tw-text-xl tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
+                            <div class="tw-py-2 md:tw-py-4 tw-flex tw-justify-between tw-gap-12">
+                              <span class=" tw-font-bold tw-gray-800">Bébés (< 2 ans)</span>
+                              <div class=" tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
                                 <div v-if="reservationForm.passengers.bebes > 0">
                                 <span @click="reservationForm.passengers.bebes--" class="hover:tw-cursor-pointer"><v-icon
                                   color="red">mdi-minus-circle-outline</v-icon></span>
@@ -262,9 +262,9 @@
                               </div>
                             </div>
                             <v-divider></v-divider>
-                            <div class="tw-py-4 tw-flex tw-justify-between tw-gap-12">
+                            <div class="tw-py-2 md:tw-py-4 tw-flex tw-justify-between tw-gap-12">
                               <div
-                                class="tw-p-3 tw-gap-2 tw-rounded-lg tw-items-center tw-flex tw-w-full tw-bg-red-200 tw-text-red-600 tw-text-xl tw-font-light">
+                                class="tw-p-3 tw-gap-2 tw-rounded-lg tw-items-center tw-flex tw-w-full tw-bg-red-200 tw-text-red-600 tw-text-sm md:tw-text-xl tw-font-light">
                                 <v-icon color="red">mdi-alert-octagon-outline</v-icon>
                                 <span>2 enfants maximum par adulte</span>
                               </div>
@@ -684,7 +684,7 @@
 
 
           <div class="tw-flex tw-justify-between">
-            <div v-if="reservationForm.typevoyage === 'destinationmultiple'"
+            <div v-if="false"
                  @click="reservationForm.escales.push({airport_depart: '', airport_destination: '', depart_date: '',})"
                  class="tw-flex tw-items-center tw-mb-4 tw-text-sm tw-gap-2 tw-text-red-600 hover:tw-cursor-pointer">
               <svg style="width:20px;height:20px" viewBox="0 0 24 24">
@@ -706,8 +706,7 @@
       </div>
       <v-carousel
         cycle
-        height="700px"
-        :height="reservationForm.typevoyage === 'destinationmultiple' ? '800px': '500px'"
+        height="600px"
         hide-delimiter-background
         show-arrows-on-hover
       >
@@ -915,8 +914,6 @@ export default {
       fetch(`${config.app_local ? config.app_api_debug_url : config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
         .then(res => res.clone().json())
         .then(res => {
-          alert("will replace destinations")
-          alert(res.airports.length)
           this.destinations = res.airports
         })
         .catch(err => {
@@ -932,8 +929,6 @@ export default {
       fetch(`${config.app_local ? config.app_api_debug_url : config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
         .then(res => res.clone().json())
         .then(res => {
-          alert("will replace destinations")
-          alert(res.airports.length)
           this.destinations = res.airports
         })
         .catch(err => {
