@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <div class="tw-relative tw-flex tw-items-center tw-px-4 lg:tw-px-12 tw-py-2 tw-justify-between tw-w-full tw-bg-white">
+    <div class="tw-flex tw-items-center tw-px-4 lg:tw-px-12 tw-py-2 tw-justify-between tw-w-full tw-bg-white">
       <!--      Manglam Logo-->
       <img class="tw-h-full tw-h-12 tw-w-12" src="../assets/img/logo.png" alt="Manglam-logo">
       <div class="tw-inline-flex tw-items-center tw-gap-4">
@@ -21,7 +21,7 @@
       </div>
     </div>
 
-    <div style="position: sticky; top: 0; z-index: 999" :class="showMenu ? 'tw-flex tw-flex-col': 'tw-hidden md:tw-flex md:tw-flex-row'" class="tw-absolute tw-top-12 tw-inset-x-0 tw-bg-blue-800 tw-text-sm tw-py-4 tw-px-4 md:tw-px-12 md:tw-flex-row md:tw-items-center tw-justify-between">
+    <div style="z-index: 999" :class="showMenu ? 'tw-flex tw-flex-col': 'tw-hidden md:tw-flex md:tw-flex-row'" class="tw-inset-x-0 tw-absolute tw-top-12 md:tw-sticky md:tw-top-0 tw-bg-blue-800 tw-text-sm tw-py-4 tw-px-4 md:tw-px-12 md:tw-flex-row md:tw-items-center tw-justify-between">
       <ul class="tw-flex tw-flex-col md:tw-flex-row md:tw-items-center tw-pb-4 md:tw-pb-0 tw-gap-4 md:tw-gap-6 tw-px-0">
         <li class="tw-text-white tw-font-semifont-bold tw-cursor-pointer">
           <div @click="$router.push('/')"
