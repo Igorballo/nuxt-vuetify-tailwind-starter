@@ -75,10 +75,10 @@
             Reservation de Ticket
           </li>
           <li class="hover:tw-opacity-75 tw-text-white tw-cursor-pointer" @click="$router.push('/hotel')"> Hébergements</li>
-          <li to="/car-location" class="hover:tw-opacity-75 tw-text-white tw-cursor-pointer"> Location de voitures
+          <li class="hover:tw-opacity-75 tw-text-white tw-cursor-pointer"  @click="$router.push('/car-location')"> Location de voitures
           </li>
-          <li to="/tourisme" class="hover:tw-opacity-75 tw-text-white tw-cursor-pointer"> Tourisme</li>
-          <li to="/" class="hover:tw-opacity-75 tw-text-white tw-cursor-pointer"> Visa & Assurance</li>
+          <li  class="hover:tw-opacity-75 tw-text-white tw-cursor-pointer"  @click="$router.push('/tourisme')"> Tourisme</li>
+          <li class="hover:tw-opacity-75 tw-text-white tw-cursor-pointer"  @click="$router.push('/visa-assurance')"> Visa & Assurance</li>
         </ul>
 
 
