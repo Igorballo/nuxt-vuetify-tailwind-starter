@@ -15,14 +15,14 @@
           </svg>
         </button>
         <!--Show sidebar button-->
-        <button class="tw-hidden">
-          <img class="tw-h-7 tw-w-7" src="../assets/svg/menu.svg" alt="Menu-icon">
+        <button @click="showMenu =! showMenu" class="md:tw-hidden">
+          <img class="tw-h-6 tw-w-6" src="../assets/svg/menu.svg" alt="Menu-icon">
         </button>
       </div>
     </div>
 
-    <div style="position: sticky; top: 0; z-index: 999" class="tw-bg-blue-800 tw-py-4 tw-px-12 tw-flex tw-justify-between">
-      <ul class="tw-hidden md:tw-flex tw-items-center tw-gap-6 tw-px-0">
+    <div style="z-index: 999" :class="showMenu ? 'tw-flex tw-flex-col': 'tw-hidden md:tw-flex md:tw-flex-row'" class="tw-inset-x-0 tw-absolute tw-top-12 md:tw-sticky md:tw-top-0 tw-bg-blue-800 tw-text-sm tw-py-4 tw-px-4 md:tw-px-12 md:tw-flex-row md:tw-items-center tw-justify-between">
+      <ul class="tw-flex tw-flex-col md:tw-flex-row md:tw-items-center tw-pb-4 md:tw-pb-0 tw-gap-4 md:tw-gap-6 tw-px-0">
         <li class="tw-text-white tw-font-semifont-bold tw-cursor-pointer">
           <div @click="$router.push('/')"
                class="tw-flex tw-items-center tw-gap-2">
@@ -68,7 +68,7 @@
         </li>
       </ul>
 
-      <ul class="tw-hidden md:tw-flex tw-hidden tw-text-white tw-font-semibold tw-text-sm tw-gap-6">
+      <ul class="lg:tw-flex tw-hidden tw-text-white tw-font-semibold tw-text-sm tw-gap-6">
         <li>
           A propos
         </li>
@@ -96,7 +96,12 @@ import Header from "../components/Header";
 
 export default {
   name: 'master',
-  components: {Header}
+  components: {Header},
+  data(){
+    return {
+      showMenu: false,
+    }
+  }
 }
 </script>
 

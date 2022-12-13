@@ -43,16 +43,17 @@
                                     :loading="loadingDeparts"
                                     :search-input.sync="searchDeparts"
                                     clearable
+                                    :filter="customFilter"
                                     hide-details
                                     hide-selected
+                                    :cache-items="false"
                                     item-text="name"
                                     item-value="_id"
                                     label="Choisissez l'adresse de départ..." outlined>
                       <template v-slot:no-data>
                         <v-list-item>
                           <v-list-item-title>
-                            Tapez le nom de la ville
-                            <strong>Ville</strong>
+                            Tapez le nom d'une ville ou pays ou Code Iata
                           </v-list-item-title>
                         </v-list-item>
                       </template>
@@ -65,7 +66,12 @@
                         </v-list-item-avatar>
                         <v-list-item-content>
                           <v-list-item-title v-text="item.name"></v-list-item-title>
-                          <v-list-item-subtitle v-text="item.cn"></v-list-item-subtitle>
+                          <v-list-item-subtitle>
+                            <v-row justify="between">
+                              <v-col><span>{{item.country}}, {{item.city}}</span></v-col>
+                              <v-col cols="3"><v-chip small>{{item.iata_code}}</v-chip></v-col>
+                            </v-row>
+                          </v-list-item-subtitle>
                         </v-list-item-content>
                       </template>
                     </v-autocomplete>
@@ -90,34 +96,7 @@
                       item-text="name"
                       item-value="_id"
                       label="Choisissez l'adresse d'arrivée..." outlined>
-                      <!--                  <template v-slot:selection="data">-->
-                      <!--                    <v-chip-->
-                      <!--                      v-bind="data.attrs"-->
-                      <!--                      :input-value="data.selected"-->
-                      <!--                      close-->
-                      <!--                      @click="data.select"-->
-                      <!--                      @click:close="remove(data.item)"-->
-                      <!--                    >-->
-                      <!--                      <v-avatar left>-->
-                      <!--                        <v-icon>mdi-home</v-icon>-->
-                      <!--                      </v-avatar>-->
-                      <!--                      {{ data.item.adresse }}-->
-                      <!--                    </v-chip>-->
-                      <!--                  </template>-->
-                      <!--                  <template v-slot:item="data">-->
-                      <!--                    <template v-if="typeof data.item !== 'object'">-->
-                      <!--                      <v-list-item-content v-text="data.item"></v-list-item-content>-->
-                      <!--                    </template>-->
-                      <!--                    <template v-else>-->
-                      <!--                      <v-list-item-avatar>-->
-                      <!--                        <v-icon>mdi-home</v-icon>-->
-                      <!--                      </v-list-item-avatar>-->
-                      <!--                      <v-list-item-content>-->
-                      <!--                        <v-list-item-title v-html="data.item.adresse"></v-list-item-title>-->
-                      <!--                        <v-list-item-subtitle v-html="data.item.ville?.nom"></v-list-item-subtitle>-->
-                      <!--                      </v-list-item-content>-->
-                      <!--                    </template>-->
-                      <!--                  </template>-->
+
                     </v-autocomplete>
                   </v-row>
                 </v-col>
@@ -301,7 +280,7 @@
                                     class="tw-w-1/3 tw-duration-300 focus:tw-outline-none tw-rounded-l-md tw-rounded-r-none placeholder:tw-text-gray-800"
                                     v-model="escale.airport_depart"
                                     :items="departs"
-                                    :loading="loadingDeparts"
+                                    :loading="e_loadingDeparts"
                                     clearable
                                     hide-details
                                     hide-selected
@@ -754,6 +733,14 @@ export default {
     deleteEscaleById(item){
       this.reservationForm.escales.splice(item,1)
     },
+    customFilter (item, queryText, itemText) {
+      const country = item.country.toLowerCase()
+      const name = item.name.toLowerCase()
+      const codeiata = item.iata_code.toLowerCase()
+      const searchText = queryText.toLowerCase()
+
+      return country.indexOf(searchText) > -1 || name.indexOf(searchText) > -1 || codeiata.indexOf(searchText) > -1
+    },
     async reservation() {
       await axios.post('/reservation-vol/request-flight-reservation', this.reservationForm).then((response) => {
         if (response.data.error) {
@@ -806,9 +793,6 @@ export default {
       else this.tab = null
     },
     searchDeparts(val) {
-      // Items have already been loaded
-      if (this.departs.length > 0) return
-
       this.loadingDeparts = true
 
       // Lazily load input items
