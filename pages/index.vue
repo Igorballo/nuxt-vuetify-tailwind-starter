@@ -99,10 +99,37 @@
                       :items="destinations"
                       :loading="loadingDestinations"
                       :search-input.sync="searchDestinations"
+                      :filter="customFilter"
                       clearable
                       item-text="name"
                       item-value="_id"
                       label="Choisissez l'adresse d'arrivée..." outlined>
+                      <template v-slot:no-data>
+                        <v-list-item>
+                          <v-list-item-title>
+                            Tapez le nom d'une ville ou pays ou Code Iata
+                          </v-list-item-title>
+                        </v-list-item>
+                      </template>
+
+                      <template v-slot:item="{ item }">
+                        <v-list-item-avatar
+                          class="text-h5 font-weight-light white--text"
+                        >
+                          <v-icon>mdi-airplane</v-icon>
+                        </v-list-item-avatar>
+                        <v-list-item-content>
+                          <v-list-item-title v-text="item.name"></v-list-item-title>
+                          <v-list-item-subtitle>
+                            <v-row justify="between">
+                              <v-col><span>{{ item.country }}, {{ item.city }}</span></v-col>
+                              <v-col cols="3">
+                                <v-chip small>{{ item.iata_code }}</v-chip>
+                              </v-col>
+                            </v-row>
+                          </v-list-item-subtitle>
+                        </v-list-item-content>
+                      </template>
                     </v-autocomplete>
                   </v-row>
                 </v-col>
