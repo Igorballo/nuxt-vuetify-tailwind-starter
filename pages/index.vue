@@ -3,10 +3,10 @@
     <div class="tw-relative">
       <div style="z-index: 500" class="tw-flex tw-justify-center tw-items-center tw-absolute tw-inset-0">
         <form
-          class="tw-flex tw-flex-col tw-rounded-lg tw-bg-white tw-shadow-md tw-p-4 md:tw-p-6 tw-w-[90%] md:tw-w-[75%]">
-          <div class="tw-flex-row tw-items-center tw-gap-2 md:tw-gap-6">
+          class="tw-flex tw-flex-col tw-rounded-lg tw-bg-white tw-shadow-md tw-p-2 md:tw-p-6 tw-w-[90%] md:tw-w-[75%]">
+          <div class="tw-flex-row tw-items-center md:tw-gap-6">
 
-            <div class="tw-flex tw-items-center tw-justify-between">
+            <div class="tw-flex tw-flex-col md:tw-flex-row tw-items-center tw-justify-between">
               <v-radio-group row v-model="reservationForm.typevoyage">
                 <v-radio
                   label="Aller-retour"
@@ -24,12 +24,18 @@
                   value="destinationmultiple"
                 ></v-radio>
               </v-radio-group>
-              <select v-model="reservationForm.typeclasse" class="tw-rounded-md">
-                <option value="economic">Classe économique</option>
-                <option value="economic_premium">Classe économique premium</option>
-                <option value="business">Classe affaire</option>
-                <option value="premiere">Première classe</option>
-              </select>
+              <v-col
+                class="d-flex"
+                cols="12"
+                xs="12"
+                sm="3"
+              >
+                <v-select
+                  v-model="reservationForm.typeclasse"
+                  :items="type_classe"
+                  class="tw-w-">
+                </v-select>
+              </v-col>
             </div>
 
             <div class="tw-flex tw-items-center">
@@ -414,9 +420,11 @@
                   </v-row>
                 </v-col>
                 <v-col>
-                  <div v-if="escale_index > 0" @click="deleteEscaleById(escale_index)" class="tw-flex tw-items-center tw-gap-2 tw-text-red-600 hover:tw-cursor-pointer">
+                  <div v-if="escale_index > 0" @click="deleteEscaleById(escale_index)"
+                       class="tw-flex tw-items-center tw-gap-2 tw-text-red-600 hover:tw-cursor-pointer">
                     <svg style="width:20px;height:20px" viewBox="0 0 24 24">
-                      <path fill="currentColor" d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" />
+                      <path fill="currentColor"
+                            d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z"/>
                     </svg>
                     <span>Supprimer</span>
                   </div>
@@ -575,10 +583,12 @@
 
 
           <div class="tw-flex tw-justify-between">
-            <div v-if="reservationForm.typevoyage === 'destinationmultiple'" @click="reservationForm.escales.push({airport_depart: '', airport_destination: '', depart_date: '',})"
+            <div v-if="reservationForm.typevoyage === 'destinationmultiple'"
+                 @click="reservationForm.escales.push({airport_depart: '', airport_destination: '', depart_date: '',})"
                  class="tw-flex tw-items-center tw-mb-4 tw-text-sm tw-gap-2 tw-text-red-600 hover:tw-cursor-pointer">
               <svg style="width:20px;height:20px" viewBox="0 0 24 24">
-                <path fill="currentColor" d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" />
+                <path fill="currentColor"
+                      d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z"/>
               </svg>
               <span class="tw-whitespace-nowrap">Ajouter un autre vol</span>
             </div>
@@ -595,7 +605,7 @@
       </div>
       <v-carousel
         cycle
-        height="500"
+        height="600px"
         hide-delimiter-background
         show-arrows-on-hover
       >
@@ -610,8 +620,8 @@
 
 
     <!-- Our partners section   -->
-    <div class="tw-mx-auto tw-px-4 tw-my-20">
-      <div class="tw-flex tw-flex-wrap tw-items-center tw-justify-evenly tw-gap-8">
+    <div class="tw-mx-auto tw-px-4 tw-my-10 md:tw-my-20">
+      <div class="tw-flex tw-flex-wrap tw-items-center tw-justify-evenly tw-gap-4 md:tw-gap-8">
         <img class="tw-mt-2 tw-h-12 lg:tw-h-16 tw-fill-current" src="../assets/img/IATA.png" alt="IATA">
 
         <img class="tw-mt-2 tw-h-12 lg:tw-h-16 tw-fill-current"
@@ -626,7 +636,7 @@
              src="https://wallpapercave.com/wp/wp11304533.png"
              alt="air-france">
 
-        <img class="tw-mt-2 tw-h-24 lg:tw-h-16 tw-fill-current"
+        <img class="tw-mt-2 tw-h-16 md:tw-h-24 lg:tw-h-16 tw-fill-current"
              src="https://www.internationalboost.com/wp-content/uploads/2018/12/logo-air-france.png"
              alt="air-france">
       </div>
@@ -646,6 +656,7 @@ export default {
 
   data() {
     return {
+      type_classe: ['Classe économique', 'Classe économique premium', 'Classe affaire', 'Première classe'],
       date_depart: null,
       modalDay: false,
       countries: json,
@@ -716,16 +727,16 @@ export default {
     //   }
     // },
 
-    deleteEscales(){
-      if (this.reservationForm.typevoyage !== "destinationmultiple"){
+    deleteEscales() {
+      if (this.reservationForm.typevoyage !== "destinationmultiple") {
         this.reservationForm.escales = []
       }
     },
   },
 
   methods: {
-    deleteEscaleById(item){
-      this.reservationForm.escales.splice(item,1)
+    deleteEscaleById(item) {
+      this.reservationForm.escales.splice(item, 1)
     },
     async reservation() {
       await axios.post('/reservation-vol/request-flight-reservation', this.reservationForm).then((response) => {

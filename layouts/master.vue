@@ -106,5 +106,10 @@ export default {
 </script>
 
 <style>
+.v-input__control {
 
+}
+
+.v-text-field__details{
+}
 </style>
