@@ -509,26 +509,6 @@ export default {
         },
       airlines: [],
       modal: "",
-      messages: [
-        {
-          from: 'You',
-          message: `Sure, I'll see you later.`,
-          time: '10:42am',
-          color: 'deep-purple lighten-1',
-        },
-        {
-          from: 'John Doe',
-          message: 'Yeah, sure. Does 1:00pm work?',
-          time: '10:37am',
-          color: 'green',
-        },
-        {
-          from: 'You',
-          message: 'Did you still want to grab lunch today?',
-          time: '9:47am',
-          color: 'deep-purple lighten-1',
-        },
-      ],
     }
   },
 
@@ -537,14 +517,6 @@ export default {
     this.getReservationInfos()
     this.getAllSupply()
   },
-
-  // computed: {
-  //   escale(){
-  //     if (this.offre.escales.length > 0)
-  //
-  //       return true
-  //   }
-  // },
 
   methods: {
     async getReservationInfos() {
