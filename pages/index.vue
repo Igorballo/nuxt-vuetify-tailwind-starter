@@ -2,7 +2,8 @@
   <div>
     <div class="tw-relative">
       <div style="z-index: 500" class="tw-flex tw-justify-center tw-items-center tw-absolute tw-inset-0">
-        <form class="tw-flex tw-flex-col tw-rounded-lg tw-bg-white tw-shadow-md tw-p-4 md:tw-p-6 tw-w-[90%] md:tw-w-[75%]">
+        <form
+          class="tw-flex tw-flex-col tw-rounded-lg tw-bg-white tw-shadow-md tw-p-4 md:tw-p-6 tw-w-[90%] md:tw-w-[75%]">
           <div class="tw-flex-row tw-items-center tw-gap-6">
 
             <div class="tw-flex tw-flex-col md:tw-flex-row tw-items-center tw-justify-between">
@@ -18,7 +19,6 @@
                 ></v-radio>
 
                 <v-radio
-                  @click="reservationForm.escales.push({airport_depart: '', airport_destination: '', depart_date: '',})"
                   label="Destination multiple"
                   value="destinationmultiple"
                 ></v-radio>
@@ -41,19 +41,20 @@
               <div class="tw-flex tw-flex-col tw-w-full md:tw-gap-4 md:tw-items-center md:tw-flex-row">
                 <v-col>
                   <v-row class="tw-relative">
-                    <v-autocomplete append-icon="" background-color="white"
-                                    class="tw-w-1/3 tw-duration-300 focus:tw-outline-none tw-rounded-l-md tw-rounded-r-none placeholder:tw-text-gray-800"
-                                    v-model="reservationForm.airport_depart"
-                                    :items="departs"
-                                    :loading="loadingDeparts"
-                                    :search-input.sync="searchDeparts"
-                                    clearable
-                                    :filter="customFilter"
-                                    hide-details
-                                    hide-selected
-                                    item-text="name"
-                                    item-value="_id"
-                                    label="Choisissez l'adresse de départ..." outlined>
+                    <v-autocomplete
+                      append-icon="" background-color="white"
+                      class="tw-w-1/3 tw-duration-300 focus:tw-outline-none tw-rounded-l-md tw-rounded-r-none placeholder:tw-text-gray-800"
+                      v-model="reservationForm.airport_depart"
+                      :items="departs"
+                      :loading="loadingDeparts"
+                      :search-input.sync="searchDeparts"
+                      clearable
+                      :filter="customFilter"
+                      hide-details
+                      hide-selected
+                      item-text="name"
+                      item-value="_id"
+                      label="Choisissez l'adresse de départ..." outlined>
                       <template v-slot:no-data>
                         <v-list-item>
                           <v-list-item-title>
@@ -72,8 +73,10 @@
                           <v-list-item-title v-text="item.name"></v-list-item-title>
                           <v-list-item-subtitle>
                             <v-row justify="between">
-                              <v-col><span>{{item.country}}, {{item.city}}</span></v-col>
-                              <v-col cols="3"><v-chip small>{{item.iata_code}}</v-chip></v-col>
+                              <v-col><span>{{ item.country }}, {{ item.city }}</span></v-col>
+                              <v-col cols="3">
+                                <v-chip small>{{ item.iata_code }}</v-chip>
+                              </v-col>
                             </v-row>
                           </v-list-item-subtitle>
                         </v-list-item-content>
@@ -100,7 +103,6 @@
                       item-text="name"
                       item-value="_id"
                       label="Choisissez l'adresse d'arrivée..." outlined>
-
                     </v-autocomplete>
                   </v-row>
                 </v-col>
@@ -166,21 +168,21 @@
                 </v-col>
                 <v-col>
                   <v-menu
-                    :key="text"
                     solo
                     left
                     :close-on-content-click="false"
                   >
                     <template v-slot:activator="{ attrs, on }">
-                      <v-text-field class="tw-text-xl tw-font-bold mb-1"
-                                    readonly
-                                    v-bind="attrs"
-                                    v-on="on"
-                                    label="Nombre de passagers"
-                                    outlined
-                                    height="55"
-                                    v-model="totalPassagers"
-                                    dense
+                      <v-text-field
+                        class="tw-text-xl tw-font-bold mb-1"
+                        readonly
+                        v-bind="attrs"
+                        v-on="on"
+                        label="Nombre de passagers"
+                        outlined
+                        height="55"
+                        v-model="totalPassagers"
+                        dense
                       ></v-text-field>
                     </template>
 
@@ -276,165 +278,260 @@
               </div>
             </div>
 
-            <div v-for="(escale, escale_index) in reservationForm.escales" class="tw-flex tw-items-center">
-              <div class="tw-flex tw-flex-col tw-w-full md:tw-gap-4 md:tw-items-center md:tw-flex-row">
-                <v-col>
-                  <v-row class="tw-relative">
-                    <v-autocomplete append-icon="" background-color="white"
-                                    class="tw-w-1/3 tw-duration-300 focus:tw-outline-none tw-rounded-l-md tw-rounded-r-none placeholder:tw-text-gray-800"
-                                    v-model="escale.airport_depart"
-                                    :items="departs"
-                                    :loading="e_loadingDeparts"
-                                    clearable
-                                    hide-details
-                                    hide-selected
-                                    item-text="name"
-                                    item-value="_id"
-                                    label="Choisissez l'adresse de départ..." outlined>
-                      <template v-slot:no-data>
-                        <v-list-item>
-                          <v-list-item-title>
-                            Tapez le nom de la ville
-                            <strong>Ville</strong>
-                          </v-list-item-title>
-                        </v-list-item>
-                      </template>
+<!--            <div v-for="(escale, escale_index) in reservationForm.escales" class="tw-flex tw-items-center">-->
+<!--              <div class="tw-flex tw-flex-col tw-w-full md:tw-gap-4 md:tw-items-center md:tw-flex-row">-->
+<!--                <v-col v-if="escale_index === 0">-->
+<!--                  <v-row class="tw-relative">-->
+<!--                    <v-autocomplete-->
+<!--                      readonly-->
+<!--                      append-icon="" background-color="white"-->
+<!--                      class="tw-w-1/3 tw-duration-300 focus:tw-outline-none tw-rounded-l-md tw-rounded-r-none placeholder:tw-text-gray-800"-->
+<!--                      v-model="reservationForm.escales[escale_index].airport_destination"-->
+<!--                      :items="destinations"-->
+<!--                      :loading="e_loadingDeparts"-->
+<!--                      clearable-->
+<!--                      hide-details-->
+<!--                      hide-selected-->
+<!--                      item-text="name"-->
+<!--                      item-value="_id"-->
+<!--                      label="Choisissez l'adresse de départ..." outlined>-->
+<!--                      <template v-slot:no-data>-->
+<!--                        <v-list-item>-->
+<!--                          <v-list-item-title>-->
+<!--                            Rechercher un aéroport-->
+<!--                          </v-list-item-title>-->
+<!--                        </v-list-item>-->
+<!--                      </template>-->
 
-                      <template v-slot:item="{ item }">
-                        <v-list-item-avatar
-                          class="text-h5 font-weight-light white--text"
-                        >
-                          <v-icon>mdi-airplane</v-icon>
-                        </v-list-item-avatar>
-                        <v-list-item-content>
-                          <v-list-item-title v-text="item.name"></v-list-item-title>
-                          <v-list-item-subtitle v-text="item.cn"></v-list-item-subtitle>
-                        </v-list-item-content>
-                      </template>
-                    </v-autocomplete>
-                    <span class="tw-inline-flex tw-items-center tw-justify-center tw-absolute tw-right-[47%] tw-top-3"
-                          style="z-index: 200">
-                    <svg
-                      class="tw-w-6 tw-h-6 tw-bg-white tw-col-span-1 tw-rounded-full tw-border-2 tw-border-red-800 tw-p-1"
-                      fill="none" stroke="red" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
-                    </svg>
-                    </span>
-                    <v-autocomplete
-                      append-icon=""
-                      background-color="white"
-                      class="tw-w-1/3 focus:tw-outline-none tw-duration-300 placeholder:tw-text-gray-800 tw-rounded-l-none tw-rounded-r-md"
-                      v-model="escale.airport_destination"
-                      :items="destinations"
-                      :loading="loadingDestinations"
-                      clearable
-                      item-text="name"
-                      item-value="_id"
-                      label="Choisissez l'adresse d'arrivée..." outlined>
-                      <!--                  <template v-slot:selection="data">-->
-                      <!--                    <v-chip-->
-                      <!--                      v-bind="data.attrs"-->
-                      <!--                      :input-value="data.selected"-->
-                      <!--                      close-->
-                      <!--                      @click="data.select"-->
-                      <!--                      @click:close="remove(data.item)"-->
-                      <!--                    >-->
-                      <!--                      <v-avatar left>-->
-                      <!--                        <v-icon>mdi-home</v-icon>-->
-                      <!--                      </v-avatar>-->
-                      <!--                      {{ data.item.adresse }}-->
-                      <!--                    </v-chip>-->
-                      <!--                  </template>-->
-                      <!--                  <template v-slot:item="data">-->
-                      <!--                    <template v-if="typeof data.item !== 'object'">-->
-                      <!--                      <v-list-item-content v-text="data.item"></v-list-item-content>-->
-                      <!--                    </template>-->
-                      <!--                    <template v-else>-->
-                      <!--                      <v-list-item-avatar>-->
-                      <!--                        <v-icon>mdi-home</v-icon>-->
-                      <!--                      </v-list-item-avatar>-->
-                      <!--                      <v-list-item-content>-->
-                      <!--                        <v-list-item-title v-html="data.item.adresse"></v-list-item-title>-->
-                      <!--                        <v-list-item-subtitle v-html="data.item.ville?.nom"></v-list-item-subtitle>-->
-                      <!--                      </v-list-item-content>-->
-                      <!--                    </template>-->
-                      <!--                  </template>-->
-                    </v-autocomplete>
-                  </v-row>
-                </v-col>
-                <v-col>
-                  <v-row>
-                    <v-col class="tw-px-0">
-                      <v-menu
-                        ref="escale_depart_menu"
-                        v-model="escale_depart_menu"
-                        :return-value.sync="date"
-                        transition="scale-transition"
-                        offset-y
-                        min-width="auto"
-                      >
-                        <template v-slot:activator="{ on, attrs }">
-                          <v-text-field
-                            v-model="escale.depart_date"
-                            label="Date de départ"
-                            readonly
-                            outlined
-                            v-bind="attrs"
-                            v-on="on"
-                            :class="{'tw-rounded-r-none':reservationForm.typevoyage === 'allerretour'}"
-                          ></v-text-field>
-                        </template>
-                        <v-date-picker
-                          v-model="escale.depart_date"
-                          no-title
-                          scrollable
-                        >
-                        </v-date-picker>
-                      </v-menu>
-                    </v-col>
-                    <v-col v-if="reservationForm.typevoyage === 'allerretour'" class="tw-px-0">
-                      <v-menu
-                        ref="retour_menu"
-                        v-model="retour_menu"
-                        :return-value.sync="date"
-                        transition="scale-transition"
-                        offset-y
-                        min-width="auto"
-                      >
-                        <template v-slot:activator="{ on, attrs }">
-                          <v-text-field
-                            v-model="reservationForm.comeback_date"
-                            label="Date de retour"
-                            readonly
-                            outlined
-                            class="tw-rounded-l-none"
-                            v-bind="attrs"
-                            v-on="on"
-                          ></v-text-field>
-                        </template>
-                        <v-date-picker
-                          v-model="reservationForm.comeback_date"
-                          no-title
-                          scrollable
-                        >
-                        </v-date-picker>
-                      </v-menu>
-                    </v-col>
-                  </v-row>
-                </v-col>
-                <v-col>
-                  <div v-if="escale_index > 0" @click="deleteEscaleById(escale_index)"
-                       class="tw-flex tw-items-center tw-gap-2 tw-text-red-600 hover:tw-cursor-pointer">
-                    <svg style="width:20px;height:20px" viewBox="0 0 24 24">
-                      <path fill="currentColor"
-                            d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z"/>
-                    </svg>
-                    <span>Supprimer</span>
-                  </div>
-                </v-col>
-              </div>
-            </div>
+<!--                      <template v-slot:item="{ item }">-->
+<!--                        <v-list-item-avatar-->
+<!--                          class="text-h5 font-weight-light white&#45;&#45;text"-->
+<!--                        >-->
+<!--                          <v-icon>mdi-airplane</v-icon>-->
+<!--                        </v-list-item-avatar>-->
+<!--                        <v-list-item-content>-->
+<!--                          <v-list-item-title v-text="item.name"></v-list-item-title>-->
+<!--                          <v-list-item-subtitle>-->
+<!--                            <v-row justify="between">-->
+<!--                              <v-col><span>{{ item.country }}, {{ item.city }}</span></v-col>-->
+<!--                              <v-col cols="3">-->
+<!--                                <v-chip small>{{ item.iata_code }}</v-chip>-->
+<!--                              </v-col>-->
+<!--                            </v-row>-->
+<!--                          </v-list-item-subtitle>-->
+<!--                        </v-list-item-content>-->
+<!--                      </template>-->
+<!--                    </v-autocomplete>-->
+<!--                    <span class="tw-inline-flex tw-items-center tw-justify-center tw-absolute tw-right-[47%] tw-top-3"-->
+<!--                          style="z-index: 200">-->
+<!--                    <svg-->
+<!--                      class="tw-w-6 tw-h-6 tw-bg-white tw-col-span-1 tw-rounded-full tw-border-2 tw-border-red-800 tw-p-1"-->
+<!--                      fill="none" stroke="red" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">-->
+<!--                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"-->
+<!--                            d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>-->
+<!--                    </svg>-->
+<!--                    </span>-->
+<!--                    <v-autocomplete-->
+<!--                      append-icon=""-->
+<!--                      background-color="white"-->
+<!--                      class="tw-w-1/3 focus:tw-outline-none tw-duration-300 placeholder:tw-text-gray-800 tw-rounded-l-none tw-rounded-r-md"-->
+<!--                      v-model="escale.airport_destination"-->
+<!--                      :items="destinations"-->
+<!--                      :loading="loadingDestinations"-->
+<!--                      clearable-->
+<!--                      item-text="name"-->
+<!--                      item-value="_id"-->
+<!--                      label="Choisissez l'adresse d'arrivée..." outlined>-->
+<!--                      &lt;!&ndash;                  <template v-slot:selection="data">&ndash;&gt;-->
+<!--                      &lt;!&ndash;                    <v-chip&ndash;&gt;-->
+<!--                      &lt;!&ndash;                      v-bind="data.attrs"&ndash;&gt;-->
+<!--                      &lt;!&ndash;                      :input-value="data.selected"&ndash;&gt;-->
+<!--                      &lt;!&ndash;                      close&ndash;&gt;-->
+<!--                      &lt;!&ndash;                      @click="data.select"&ndash;&gt;-->
+<!--                      &lt;!&ndash;                      @click:close="remove(data.item)"&ndash;&gt;-->
+<!--                      &lt;!&ndash;                    >&ndash;&gt;-->
+<!--                      &lt;!&ndash;                      <v-avatar left>&ndash;&gt;-->
+<!--                      &lt;!&ndash;                        <v-icon>mdi-home</v-icon>&ndash;&gt;-->
+<!--                      &lt;!&ndash;                      </v-avatar>&ndash;&gt;-->
+<!--                      &lt;!&ndash;                      {{ data.item.adresse }}&ndash;&gt;-->
+<!--                      &lt;!&ndash;                    </v-chip>&ndash;&gt;-->
+<!--                      &lt;!&ndash;                  </template>&ndash;&gt;-->
+<!--                      &lt;!&ndash;                  <template v-slot:item="data">&ndash;&gt;-->
+<!--                      &lt;!&ndash;                    <template v-if="typeof data.item !== 'object'">&ndash;&gt;-->
+<!--                      &lt;!&ndash;                      <v-list-item-content v-text="data.item"></v-list-item-content>&ndash;&gt;-->
+<!--                      &lt;!&ndash;                    </template>&ndash;&gt;-->
+<!--                      &lt;!&ndash;                    <template v-else>&ndash;&gt;-->
+<!--                      &lt;!&ndash;                      <v-list-item-avatar>&ndash;&gt;-->
+<!--                      &lt;!&ndash;                        <v-icon>mdi-home</v-icon>&ndash;&gt;-->
+<!--                      &lt;!&ndash;                      </v-list-item-avatar>&ndash;&gt;-->
+<!--                      &lt;!&ndash;                      <v-list-item-content>&ndash;&gt;-->
+<!--                      &lt;!&ndash;                        <v-list-item-title v-html="data.item.adresse"></v-list-item-title>&ndash;&gt;-->
+<!--                      &lt;!&ndash;                        <v-list-item-subtitle v-html="data.item.ville?.nom"></v-list-item-subtitle>&ndash;&gt;-->
+<!--                      &lt;!&ndash;                      </v-list-item-content>&ndash;&gt;-->
+<!--                      &lt;!&ndash;                    </template>&ndash;&gt;-->
+<!--                      &lt;!&ndash;                  </template>&ndash;&gt;-->
+<!--                    </v-autocomplete>-->
+<!--                  </v-row>-->
+<!--                </v-col>-->
+<!--                <v-col v-else>-->
+<!--                  <v-row class="tw-relative">-->
+<!--                    <v-autocomplete-->
+<!--                      readonly-->
+<!--                      append-icon="" background-color="white"-->
+<!--                      class="tw-w-1/3 tw-duration-300 focus:tw-outline-none tw-rounded-l-md tw-rounded-r-none placeholder:tw-text-gray-800"-->
+<!--                      v-model=" reservationForm.escales[escale_index].airport_destination"-->
+<!--                      :items="departs"-->
+<!--                      :loading="e_loadingDeparts"-->
+<!--                      clearable-->
+<!--                      hide-details-->
+<!--                      hide-selected-->
+<!--                      item-text="name"-->
+<!--                      item-value="_id"-->
+<!--                      label="Choisissez l'adresse de départ..." outlined>-->
+<!--                      <template v-slot:no-data>-->
+<!--                        <v-list-item>-->
+<!--                          <v-list-item-title>-->
+<!--                            Tapez le nom de la ville-->
+<!--                            <strong>Ville</strong>-->
+<!--                          </v-list-item-title>-->
+<!--                        </v-list-item>-->
+<!--                      </template>-->
+
+<!--                      <template v-slot:item="{ item }">-->
+<!--                        <v-list-item-avatar-->
+<!--                          class="text-h5 font-weight-light white&#45;&#45;text"-->
+<!--                        >-->
+<!--                          <v-icon>mdi-airplane</v-icon>-->
+<!--                        </v-list-item-avatar>-->
+<!--                        <v-list-item-content>-->
+<!--                          <v-list-item-title v-text="item.name"></v-list-item-title>-->
+<!--                          <v-list-item-subtitle v-text="item.cn"></v-list-item-subtitle>-->
+<!--                        </v-list-item-content>-->
+<!--                      </template>-->
+<!--                    </v-autocomplete>-->
+<!--                    <span class="tw-inline-flex tw-items-center tw-justify-center tw-absolute tw-right-[47%] tw-top-3"-->
+<!--                          style="z-index: 200">-->
+<!--                    <svg-->
+<!--                      class="tw-w-6 tw-h-6 tw-bg-white tw-col-span-1 tw-rounded-full tw-border-2 tw-border-red-800 tw-p-1"-->
+<!--                      fill="none" stroke="red" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">-->
+<!--                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"-->
+<!--                            d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>-->
+<!--                    </svg>-->
+<!--                    </span>-->
+<!--                    <v-autocomplete-->
+<!--                      append-icon=""-->
+<!--                      background-color="white"-->
+<!--                      class="tw-w-1/3 focus:tw-outline-none tw-duration-300 placeholder:tw-text-gray-800 tw-rounded-l-none tw-rounded-r-md"-->
+<!--                      v-model="escale.airport_destination"-->
+<!--                      :items="destinations"-->
+<!--                      :loading="loadingDestinations"-->
+<!--                      clearable-->
+<!--                      item-text="name"-->
+<!--                      item-value="_id"-->
+<!--                      label="Choisissez l'adresse d'arrivée..." outlined>-->
+<!--                      &lt;!&ndash;                  <template v-slot:selection="data">&ndash;&gt;-->
+<!--                      &lt;!&ndash;                    <v-chip&ndash;&gt;-->
+<!--                      &lt;!&ndash;                      v-bind="data.attrs"&ndash;&gt;-->
+<!--                      &lt;!&ndash;                      :input-value="data.selected"&ndash;&gt;-->
+<!--                      &lt;!&ndash;                      close&ndash;&gt;-->
+<!--                      &lt;!&ndash;                      @click="data.select"&ndash;&gt;-->
+<!--                      &lt;!&ndash;                      @click:close="remove(data.item)"&ndash;&gt;-->
+<!--                      &lt;!&ndash;                    >&ndash;&gt;-->
+<!--                      &lt;!&ndash;                      <v-avatar left>&ndash;&gt;-->
+<!--                      &lt;!&ndash;                        <v-icon>mdi-home</v-icon>&ndash;&gt;-->
+<!--                      &lt;!&ndash;                      </v-avatar>&ndash;&gt;-->
+<!--                      &lt;!&ndash;                      {{ data.item.adresse }}&ndash;&gt;-->
+<!--                      &lt;!&ndash;                    </v-chip>&ndash;&gt;-->
+<!--                      &lt;!&ndash;                  </template>&ndash;&gt;-->
+<!--                      &lt;!&ndash;                  <template v-slot:item="data">&ndash;&gt;-->
+<!--                      &lt;!&ndash;                    <template v-if="typeof data.item !== 'object'">&ndash;&gt;-->
+<!--                      &lt;!&ndash;                      <v-list-item-content v-text="data.item"></v-list-item-content>&ndash;&gt;-->
+<!--                      &lt;!&ndash;                    </template>&ndash;&gt;-->
+<!--                      &lt;!&ndash;                    <template v-else>&ndash;&gt;-->
+<!--                      &lt;!&ndash;                      <v-list-item-avatar>&ndash;&gt;-->
+<!--                      &lt;!&ndash;                        <v-icon>mdi-home</v-icon>&ndash;&gt;-->
+<!--                      &lt;!&ndash;                      </v-list-item-avatar>&ndash;&gt;-->
+<!--                      &lt;!&ndash;                      <v-list-item-content>&ndash;&gt;-->
+<!--                      &lt;!&ndash;                        <v-list-item-title v-html="data.item.adresse"></v-list-item-title>&ndash;&gt;-->
+<!--                      &lt;!&ndash;                        <v-list-item-subtitle v-html="data.item.ville?.nom"></v-list-item-subtitle>&ndash;&gt;-->
+<!--                      &lt;!&ndash;                      </v-list-item-content>&ndash;&gt;-->
+<!--                      &lt;!&ndash;                    </template>&ndash;&gt;-->
+<!--                      &lt;!&ndash;                  </template>&ndash;&gt;-->
+<!--                    </v-autocomplete>-->
+<!--                  </v-row>-->
+<!--                </v-col>-->
+<!--                <v-col>-->
+<!--                  <v-row>-->
+<!--                    <v-col class="tw-px-0">-->
+<!--                      <v-menu-->
+<!--                        ref="escale_depart_menu"-->
+<!--                        v-model="escale_depart_menu"-->
+<!--                        :return-value.sync="date"-->
+<!--                        transition="scale-transition"-->
+<!--                        offset-y-->
+<!--                        min-width="auto"-->
+<!--                      >-->
+<!--                        <template v-slot:activator="{ on, attrs }">-->
+<!--                          <v-text-field-->
+<!--                            v-model="escale.depart_date"-->
+<!--                            label="Date de départ"-->
+<!--                            readonly-->
+<!--                            outlined-->
+<!--                            v-bind="attrs"-->
+<!--                            v-on="on"-->
+<!--                            :class="{'tw-rounded-r-none':reservationForm.typevoyage === 'allerretour'}"-->
+<!--                          ></v-text-field>-->
+<!--                        </template>-->
+<!--                        <v-date-picker-->
+<!--                          v-model="escale.depart_date"-->
+<!--                          no-title-->
+<!--                          scrollable-->
+<!--                        >-->
+<!--                        </v-date-picker>-->
+<!--                      </v-menu>-->
+<!--                    </v-col>-->
+<!--                    <v-col v-if="reservationForm.typevoyage === 'allerretour'" class="tw-px-0">-->
+<!--                      <v-menu-->
+<!--                        ref="retour_menu"-->
+<!--                        v-model="retour_menu"-->
+<!--                        :return-value.sync="date"-->
+<!--                        transition="scale-transition"-->
+<!--                        offset-y-->
+<!--                        min-width="auto"-->
+<!--                      >-->
+<!--                        <template v-slot:activator="{ on, attrs }">-->
+<!--                          <v-text-field-->
+<!--                            v-model="reservationForm.comeback_date"-->
+<!--                            label="Date de retour"-->
+<!--                            readonly-->
+<!--                            outlined-->
+<!--                            class="tw-rounded-l-none"-->
+<!--                            v-bind="attrs"-->
+<!--                            v-on="on"-->
+<!--                          ></v-text-field>-->
+<!--                        </template>-->
+<!--                        <v-date-picker-->
+<!--                          v-model="reservationForm.comeback_date"-->
+<!--                          no-title-->
+<!--                          scrollable-->
+<!--                        >-->
+<!--                        </v-date-picker>-->
+<!--                      </v-menu>-->
+<!--                    </v-col>-->
+<!--                  </v-row>-->
+<!--                </v-col>-->
+<!--                <v-col>-->
+<!--                  <div v-if="escale_index > 0" @click="deleteEscaleById(escale_index)"-->
+<!--                       class="tw-flex tw-items-center tw-gap-2 tw-text-red-600 hover:tw-cursor-pointer">-->
+<!--                    <svg style="width:20px;height:20px" viewBox="0 0 24 24">-->
+<!--                      <path fill="currentColor"-->
+<!--                            d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z"/>-->
+<!--                    </svg>-->
+<!--                    <span>Supprimer</span>-->
+<!--                  </div>-->
+<!--                </v-col>-->
+<!--              </div>-->
+<!--            </div>-->
 
             <v-dialog
               v-model="userInfoDialog"
@@ -654,6 +751,7 @@
 <script>
 import json from '../data/CountryCodes.json'
 import config from "../config";
+
 export default {
   name: 'index',
   layout: 'master',
@@ -663,6 +761,7 @@ export default {
       date_depart: null,
       modalDay: false,
       countries: json,
+      e_loadingDeparts: false,
       loadingDeparts: false,
       loadingDestinations: false,
       btnLoading: false,
@@ -738,7 +837,7 @@ export default {
     deleteEscaleById(item) {
       this.reservationForm.escales.splice(item, 1)
     },
-    customFilter (item, queryText, itemText) {
+    customFilter(item, queryText, itemText) {
       const country = item.country.toLowerCase()
       const name = item.name.toLowerCase()
       const codeiata = item.iata_code.toLowerCase()
@@ -808,12 +907,16 @@ export default {
         })
         .finally(() => (this.loadingDeparts = false))
     },
-    searchDestinations(val) {
-      this.loadingDestinations = true
+
+    fetchAirports(val) {
+      if(val == null)
+        return
       // Lazily load input items
       fetch(`${config.app_local ? config.app_api_debug_url : config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
         .then(res => res.clone().json())
         .then(res => {
+          alert("will replace destinations")
+          alert(res.airports.length)
           this.destinations = res.airports
         })
         .catch(err => {
@@ -821,6 +924,33 @@ export default {
         })
         .finally(() => (this.loadingDestinations = false))
     },
+    searchDestinations(val) {
+      if(val == null)
+        return
+      this.loadingDestinations = true
+      // Lazily load input items
+      fetch(`${config.app_local ? config.app_api_debug_url : config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
+        .then(res => res.clone().json())
+        .then(res => {
+          alert("will replace destinations")
+          alert(res.airports.length)
+          this.destinations = res.airports
+        })
+        .catch(err => {
+          console.log(err)
+        })
+        .finally(() => (this.loadingDestinations = false))
+    },
+    'reservationForm.typevoyage': function () {
+
+      if (this.reservationForm.typevoyage === 'destinationmultiple') {
+        this.reservationForm.escales.push({airport_depart: '', airport_destination: '', depart_date: '',})
+        return
+      }
+
+      this.reservationForm.escales = []
+    }
   },
+
 }
 </script>
