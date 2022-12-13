@@ -225,7 +225,7 @@ export default {
       Swal.fire({
         icon: 'question',
         title: "Attention!",
-        text: "Voulez-vous vraiment supprimer cette station ?",
+        text: "Voulez-vous vraiment supprimer cet Utilisateur ?",
         reverseButtons: true,
         showCancelButton: true,
         confirmButtonText: "Ok",
@@ -234,7 +234,7 @@ export default {
           Swal.showLoading()
           await axios.delete('/users/'+ item._id)
             .then(response => {
-              this.showToast('success', 'Station supprimée avec succès')
+              this.showToast('success', 'Utilisateur supprimé avec succès')
               this.initialize()
             })
             .catch(error => {
