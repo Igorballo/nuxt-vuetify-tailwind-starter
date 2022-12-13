@@ -133,14 +133,14 @@
       </v-col>
 
       <v-col lg="4" class="tw-flex tw-flex-col tw-gap-4">
-        <v-card v-if="reservation" class="tw-bg-red-600">
+        <v-card v-if="reservation" class="">
           <v-card-title class="mb-4">
             <span>Liste des offres</span>
             <v-spacer/>
             <v-btn small @click="dialogAddOffre = true" color="primary">Ajouter des offres</v-btn>
           </v-card-title>
-          <v-card-text class="tw-px-4 tw-flex tw-flex-col tw-gap-4 tw-bg-blue-600 tw-overflow-y-auto">
-            <v-container v-if="offres.length == 0" color="grey" class="tw-bg-gray-50 tw-text-lg">Aucune offre n'est
+          <v-card-text class="tw-px-4 tw-flex tw-flex-col tw-gap-4">
+            <v-container v-if="offres.length === 0" color="grey" class="tw-bg-gray-50 tw-text-lg">Aucune offre n'est
               proposée pour le moment
             </v-container>
             <v-container>
