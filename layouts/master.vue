@@ -15,25 +15,23 @@
           </svg>
         </button>
         <!--Show sidebar button-->
-        <button class="tw-hidden">
-          <img class="tw-h-7 tw-w-7" src="../assets/svg/menu.svg" alt="Menu-icon">
+        <button @click="showMenu =! showMenu" class="md:tw-hidden">
+          <img class="tw-h-6 tw-w-6" src="../assets/svg/menu.svg" alt="Menu-icon">
         </button>
       </div>
     </div>
 
-    <div style="position: sticky; top: 0; z-index: 999" class="tw-bg-blue-800 tw-py-4 tw-px-12 tw-flex tw-justify-between">
-      <ul class="tw-flex tw-items-center tw-gap-6 tw-px-0">
+    <div style="z-index: 999" :class="showMenu ? 'tw-flex tw-flex-col': 'tw-hidden md:tw-flex md:tw-flex-row'" class="tw-inset-x-0 tw-absolute tw-top-12 md:tw-sticky md:tw-top-0 tw-bg-blue-800 tw-text-sm tw-py-4 tw-px-4 md:tw-px-12 md:tw-flex-row md:tw-items-center tw-justify-between">
+      <ul class="tw-flex tw-flex-col md:tw-flex-row md:tw-items-center tw-pb-4 md:tw-pb-0 tw-gap-4 md:tw-gap-6 tw-px-0">
         <li class="tw-text-white tw-font-semifont-bold tw-cursor-pointer">
           <div @click="$router.push('/')"
-               class="tw-flex tw-items-center tw-gap-2 tw-cursor-pointer">
+               class="tw-flex tw-items-center tw-gap-2">
             <img class="tw-h-4 tw-w-4 tw-text-white" src="../assets/svg/airplane.svg">
             <span class="tw-whitespace-nowrap">Reservation de tickets</span>
           </div>
         </li>
-
         <li class="tw-text-white tw-font-semifont-bold tw-cursor-pointer">
           <div @click="$router.push('/hotel')" class="tw-flex tw-items-center tw-gap-2">
-
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                  stroke="currentColor" class="tw-w-4 tw-h-4">
               <path stroke-linecap="round" stroke-linejoin="round"
@@ -48,7 +46,6 @@
             <span class="tw-whitespace-nowrap">Location de voitures</span>
           </div>
         </li>
-
         <li class="tw-text-white tw-font-semifont-bold tw-cursor-pointer">
           <div @click="$router.push('/tourisme')" class="tw-flex tw-items-center tw-gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -60,9 +57,7 @@
           </div>
         </li>
         <li class="tw-text-white tw-font-semifont-bold">
-
-          <div @click="$router.push('/visa-assurance')" class="tw-flex tw-items-center tw-gap-2 tw-cursor-pointer">
-
+          <div @click="$router.push('/visa-assurance')" class="tw-flex tw-items-center tw-gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                  stroke="currentColor" class="tw-w-4 tw-h-4">
               <path stroke-linecap="round" stroke-linejoin="round"
@@ -73,8 +68,8 @@
         </li>
       </ul>
 
-      <ul class="tw-flex tw-text-white tw-font-semibold tw-gap-6">
-      
+      <ul class="tw-flex tw-flex-col md:tw-flex-row tw-whitespace-nowrap tw-text-white tw-border-t-2 md:tw-border-0 tw-px-0 tw-gap-4 tw-pt-4 md:tw-pt-0 tw-text-sm md:tw-gap-6">
+
 
         <li class="tw-text-white tw-font-semifont-bold">
           <div @click="$router.push('/about')" class="tw-flex tw-items-center tw-gap-2 tw-cursor-pointer">
@@ -108,7 +103,12 @@ import Header from "../components/Header";
 
 export default {
   name: 'master',
-  components: {Header}
+  components: {Header},
+  data(){
+    return {
+      showMenu: false,
+    }
+  }
 }
 </script>
 

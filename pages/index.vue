@@ -2,11 +2,10 @@
   <div>
     <div class="tw-relative">
       <div style="z-index: 500" class="tw-flex tw-justify-center tw-items-center tw-absolute tw-inset-0">
-        <form
-          class="tw-flex tw-flex-col tw-rounded-lg tw-bg-white tw-shadow-md tw-p-4 md:tw-p-6 tw-w-[90%] md:tw-w-[75%]">
-          <div class="tw-flex-row tw-items-center tw-gap-2 md:tw-gap-6">
+        <form class="tw-flex tw-flex-col tw-rounded-lg tw-bg-white tw-shadow-md tw-p-4 md:tw-p-6 tw-w-[90%] md:tw-w-[75%]">
+          <div class="tw-flex-row tw-items-center tw-gap-6">
 
-            <div class="tw-flex tw-items-center tw-justify-between">
+            <div class="tw-flex tw-flex-col md:tw-flex-row tw-items-center tw-justify-between">
               <v-radio-group row v-model="reservationForm.typevoyage">
                 <v-radio
                   label="Aller-retour"
@@ -24,12 +23,18 @@
                   value="destinationmultiple"
                 ></v-radio>
               </v-radio-group>
-              <select v-model="reservationForm.typeclasse" class="tw-rounded-md">
-                <option value="economic">Classe économique</option>
-                <option value="economic_premium">Classe économique premium</option>
-                <option value="business">Classe affaire</option>
-                <option value="premiere">Première classe</option>
-              </select>
+              <v-col
+                class="d-flex"
+                cols="12"
+                xs="12"
+                sm="3"
+              >
+                <v-select
+                  v-model="reservationForm.typeclasse"
+                  :items="type_classe"
+                  class="tw-w-">
+                </v-select>
+              </v-col>
             </div>
 
             <div class="tw-flex tw-items-center">
@@ -43,6 +48,7 @@
                                     :loading="loadingDeparts"
                                     :search-input.sync="searchDeparts"
                                     clearable
+                                    :filter="customFilter"
                                     hide-details
                                     hide-selected
                                     item-text="name"
@@ -51,8 +57,7 @@
                       <template v-slot:no-data>
                         <v-list-item>
                           <v-list-item-title>
-                            Tapez le nom de la ville
-                            <strong>Ville</strong>
+                            Tapez le nom d'une ville ou pays ou Code Iata
                           </v-list-item-title>
                         </v-list-item>
                       </template>
@@ -65,7 +70,12 @@
                         </v-list-item-avatar>
                         <v-list-item-content>
                           <v-list-item-title v-text="item.name"></v-list-item-title>
-                          <v-list-item-subtitle v-text="item.cn"></v-list-item-subtitle>
+                          <v-list-item-subtitle>
+                            <v-row justify="between">
+                              <v-col><span>{{item.country}}, {{item.city}}</span></v-col>
+                              <v-col cols="3"><v-chip small>{{item.iata_code}}</v-chip></v-col>
+                            </v-row>
+                          </v-list-item-subtitle>
                         </v-list-item-content>
                       </template>
                     </v-autocomplete>
@@ -90,34 +100,7 @@
                       item-text="name"
                       item-value="_id"
                       label="Choisissez l'adresse d'arrivée..." outlined>
-                      <!--                  <template v-slot:selection="data">-->
-                      <!--                    <v-chip-->
-                      <!--                      v-bind="data.attrs"-->
-                      <!--                      :input-value="data.selected"-->
-                      <!--                      close-->
-                      <!--                      @click="data.select"-->
-                      <!--                      @click:close="remove(data.item)"-->
-                      <!--                    >-->
-                      <!--                      <v-avatar left>-->
-                      <!--                        <v-icon>mdi-home</v-icon>-->
-                      <!--                      </v-avatar>-->
-                      <!--                      {{ data.item.adresse }}-->
-                      <!--                    </v-chip>-->
-                      <!--                  </template>-->
-                      <!--                  <template v-slot:item="data">-->
-                      <!--                    <template v-if="typeof data.item !== 'object'">-->
-                      <!--                      <v-list-item-content v-text="data.item"></v-list-item-content>-->
-                      <!--                    </template>-->
-                      <!--                    <template v-else>-->
-                      <!--                      <v-list-item-avatar>-->
-                      <!--                        <v-icon>mdi-home</v-icon>-->
-                      <!--                      </v-list-item-avatar>-->
-                      <!--                      <v-list-item-content>-->
-                      <!--                        <v-list-item-title v-html="data.item.adresse"></v-list-item-title>-->
-                      <!--                        <v-list-item-subtitle v-html="data.item.ville?.nom"></v-list-item-subtitle>-->
-                      <!--                      </v-list-item-content>-->
-                      <!--                    </template>-->
-                      <!--                  </template>-->
+
                     </v-autocomplete>
                   </v-row>
                 </v-col>
@@ -301,7 +284,7 @@
                                     class="tw-w-1/3 tw-duration-300 focus:tw-outline-none tw-rounded-l-md tw-rounded-r-none placeholder:tw-text-gray-800"
                                     v-model="escale.airport_depart"
                                     :items="departs"
-                                    :loading="loadingDeparts"
+                                    :loading="e_loadingDeparts"
                                     clearable
                                     hide-details
                                     hide-selected
@@ -441,9 +424,11 @@
                   </v-row>
                 </v-col>
                 <v-col>
-                  <div v-if="escale_index > 0" @click="deleteEscaleById(escale_index)" class="tw-flex tw-items-center tw-gap-2 tw-text-red-600 hover:tw-cursor-pointer">
+                  <div v-if="escale_index > 0" @click="deleteEscaleById(escale_index)"
+                       class="tw-flex tw-items-center tw-gap-2 tw-text-red-600 hover:tw-cursor-pointer">
                     <svg style="width:20px;height:20px" viewBox="0 0 24 24">
-                      <path fill="currentColor" d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" />
+                      <path fill="currentColor"
+                            d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z"/>
                     </svg>
                     <span>Supprimer</span>
                   </div>
@@ -602,10 +587,12 @@
 
 
           <div class="tw-flex tw-justify-between">
-            <div v-if="reservationForm.typevoyage === 'destinationmultiple'" @click="reservationForm.escales.push({airport_depart: '', airport_destination: '', depart_date: '',})"
+            <div v-if="reservationForm.typevoyage === 'destinationmultiple'"
+                 @click="reservationForm.escales.push({airport_depart: '', airport_destination: '', depart_date: '',})"
                  class="tw-flex tw-items-center tw-mb-4 tw-text-sm tw-gap-2 tw-text-red-600 hover:tw-cursor-pointer">
               <svg style="width:20px;height:20px" viewBox="0 0 24 24">
-                <path fill="currentColor" d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" />
+                <path fill="currentColor"
+                      d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z"/>
               </svg>
               <span class="tw-whitespace-nowrap">Ajouter un autre vol</span>
             </div>
@@ -622,7 +609,8 @@
       </div>
       <v-carousel
         cycle
-        height="500"
+        height="700px"
+        :height="reservationForm.typevoyage === 'destinationmultiple' ? '800px': '500px'"
         hide-delimiter-background
         show-arrows-on-hover
       >
@@ -639,6 +627,7 @@
     <!-- Our partners section   -->
      <Partners />
 
+
     <Cards/>
   </div>
 </template>
@@ -651,6 +640,7 @@ export default {
   layout: 'master',
   data() {
     return {
+      type_classe: ['Classe économique', 'Classe économique premium', 'Classe affaire', 'Première classe'],
       date_depart: null,
       modalDay: false,
       countries: json,
@@ -697,12 +687,9 @@ export default {
       retour_menu: false,
       menu: false,
       isEditing: false,
-      message: "messsss",
     }
   },
-  
-  mounted() {
-  },
+
 
   computed: {
     totalPassagers() {
@@ -723,15 +710,23 @@ export default {
     //   }
     // },
 
-    deleteEscales(){
-      if (this.reservationForm.typevoyage !== "destinationmultiple"){
+    deleteEscales() {
+      if (this.reservationForm.typevoyage !== "destinationmultiple") {
         this.reservationForm.escales = []
       }
     },
   },
   methods: {
-    deleteEscaleById(item){
-      this.reservationForm.escales.splice(item,1)
+    deleteEscaleById(item) {
+      this.reservationForm.escales.splice(item, 1)
+    },
+    customFilter (item, queryText, itemText) {
+      const country = item.country.toLowerCase()
+      const name = item.name.toLowerCase()
+      const codeiata = item.iata_code.toLowerCase()
+      const searchText = queryText.toLowerCase()
+
+      return country.indexOf(searchText) > -1 || name.indexOf(searchText) > -1 || codeiata.indexOf(searchText) > -1
     },
     async reservation() {
       await axios.post('/reservation-vol/request-flight-reservation', this.reservationForm).then((response) => {
@@ -783,8 +778,6 @@ export default {
       else this.tab = null
     },
     searchDeparts(val) {
-      // Items have already been loaded
-      if (this.departs.length > 0) return
       this.loadingDeparts = true
       // Lazily load input items
       fetch(`${config.app_local ? config.app_api_debug_url : config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
@@ -798,8 +791,6 @@ export default {
         .finally(() => (this.loadingDeparts = false))
     },
     searchDestinations(val) {
-      // Items have already been loaded
-      if (this.destinations.length > 0) return
       this.loadingDestinations = true
       // Lazily load input items
       fetch(`${config.app_local ? config.app_api_debug_url : config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
@@ -812,24 +803,6 @@ export default {
         })
         .finally(() => (this.loadingDestinations = false))
     },
-
-    // reservationForm: {
-    //   handler(newValue, oldValue) {
-    //     // console.log(newValue, oldValue);
-    //     if (this.reservationForm.typevoyage === "destinationmultiple"){
-    //       this.reservationForm.escales.push({
-    //         airport_arrive: "",
-    //         airport_departure: "",
-    //         date_departure: "",
-    //       })
-    //
-    //       console.log(this.reservationForm.escales)
-    //
-    //     }
-    //
-    //   },
-    //   deep: true,
-    // },
   },
 }
 </script>
