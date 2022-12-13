@@ -46,7 +46,6 @@
                                     :filter="customFilter"
                                     hide-details
                                     hide-selected
-                                    :cache-items="false"
                                     item-text="name"
                                     item-value="_id"
                                     label="Choisissez l'adresse de départ..." outlined>
@@ -808,9 +807,6 @@ export default {
     },
 
     searchDestinations(val) {
-      // Items have already been loaded
-      if (this.destinations.length > 0) return
-
       this.loadingDestinations = true
 
       // Lazily load input items
