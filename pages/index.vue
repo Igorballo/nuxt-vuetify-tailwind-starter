@@ -805,7 +805,6 @@ export default {
         })
         .finally(() => (this.loadingDeparts = false))
     },
-
     searchDestinations(val) {
       this.loadingDestinations = true
 
