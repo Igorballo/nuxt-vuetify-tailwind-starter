@@ -96,6 +96,8 @@ export default {
         return
       }
 
+      console.log("Super")
+
       await this.$store.dispatch('auth/saveToken', {
         token: response.token,
         user: response.user
