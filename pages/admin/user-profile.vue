@@ -96,7 +96,7 @@
     methods: {
       submit () {
         this.$v.$touch()
-        axios.patch('/profile/change-password', {oldPassword: this.oldPassword, newPassword: this.newPassword, confirmPassword: this.confirmPassword})
+        axios.patch('/change-password', {oldPassword: this.oldPassword, newPassword: this.newPassword, confirmPassword: this.confirmPassword})
         .then(response => {
           console.log(response);
           this.oldPassword= '',
