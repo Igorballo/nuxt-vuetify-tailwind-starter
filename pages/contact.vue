@@ -36,7 +36,7 @@
     class="tw-px-8 tw-py-8 tw-w-full tw-h-full tw-gap-4 tw-bg-white"
   >
     <v-text-field
-      v-model="name"
+      v-model="form.name"
       :counter="10"
       :rules="nameRules"
       label="Nom Complet"
@@ -45,15 +45,15 @@
     ></v-text-field>
 
     <v-text-field
-      v-model="email"
+      v-model="form.email"
       :rules="emailRules"
       label="E-mail"
       required
       outlined
     ></v-text-field>
     <v-text-field
-      v-model="number"
-      :rules="emailRules"
+      v-model="form.number"
+      :rules="numberRules"
       label="Numero de Telephone"
       outlined
       required
@@ -65,7 +65,9 @@
       >
         <v-textarea
         outlined
-          label="Message"
+        label="Message"
+        required
+        v-model="form.message"
         ></v-textarea>
       </v-col>
       </v-row>
@@ -74,7 +76,8 @@
     <v-btn
       color="primary"
       class="mr-4"
-      @click="validate"
+      @click="sendMessage"
+      :loading="btnloading"
     >
       Send Message
     </v-btn>
@@ -110,6 +113,51 @@
 <script>
 export default {
   layout: 'master',
+
+  data(){
+    return {
+      nameRules: [
+        v => !!v || 'Le nom complet est requis',
+      ],
+      btnloading: false,
+      emailRules: [
+        v => !!v || 'Email est requis',
+      ],
+      numberRules: [
+        v => !!v || 'Le Numero de Telephone est requis',
+      ],
+      form: {
+        name: '',
+        email: '',
+        number: '',
+        message: ''
+      },
+    }
+  },
+
+    methods: {
+      async sendMessage() {
+        this.btnloading = true;
+      await axios.post('/contacts', this.form).then((response) => {
+        this.showToast('success', 'Message envoyé avec succès')
+
+        this.form = {
+          name: '',
+          email: '',
+          number: '',
+          message: ''
+        },
+        this.btnloading = false;
+
+      }).catch(error => {
+        console.log(error)
+        this.showToast('error', 'Une erreur s\'est produite')
+        this.btnloading = false;
+      })
+
+    }
+
+    }
 }
 </script>
 
