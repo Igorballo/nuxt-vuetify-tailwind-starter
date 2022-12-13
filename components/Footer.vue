@@ -2,10 +2,10 @@
   <div>
     <section class="tw-py-8 tw-px-32 tw-bg-white tw-flex-col tw-gap-4 tw-shadow-lg">
       <div class="tw-flex tw-flex-col lg:tw-flex-row tw-w-full tw-justify-between tw-items-center tw-pb-4">
-        <img src="~/assets/img/logo.png" class="tw-w-56 tw-h-44" alt="image">
+        <!-- <img src="~/assets/img/logo.png" class="tw-w-56 tw-h-44" alt="image"> -->
 
         <div class="tw-flex tw-gap-8 tw-mt-4">
-          <a href="#">
+          <a href="https://twitter.com/ManglamTours228" target="blank">
             <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="twitter"
                  class="tw-h-5 tw-w-5 tw-fill-current tw-text-black hover:tw-text-black hover:tw-rounded-full"
                  role="img"
@@ -15,7 +15,7 @@
               </path>
             </svg>
           </a>
-          <a href="#">
+          <a href="https://www.facebook.com/manglamtoursandtravels228" target="blank">
             <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="facebook-f"
                  class="tw-h-5 tw-w-5 tw-fill-current tw-text-black hover:tw-text-black hover:tw-rounded-full"
                  role="img"
@@ -25,7 +25,7 @@
               </path>
             </svg>
           </a>
-          <a href="#">
+          <a href="https://www.instagram.com/manglam_tours_and_travels_228/" target="blank">
             <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="instagram"
                  class="tw-h-5 tw-w-5 tw-fill-current tw-text-black hover:tw-text-black hover:tw-rounded-full"
                  role="img"
@@ -35,7 +35,7 @@
               </path>
             </svg>
           </a>
-          <a href="#">
+          <a href="https://www.youtube.com/channel/UCsH4LhZDn60FY913FbITFqg" target="blank">
             <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="youtube"
                  class="tw-h-5 tw-w-5 tw-fill-current tw-text-black hover:tw-text-black hover:tw-rounded-full"
                  role="img"
@@ -46,7 +46,7 @@
             </svg>
           </a>
 
-          <a href="#">
+          <a href="#" target="blank">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                  class="tw-h-5 tw-w-5 tw-fill-current tw-text-black">
               <path

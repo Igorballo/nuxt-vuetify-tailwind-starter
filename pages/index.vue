@@ -2,9 +2,8 @@
   <div>
     <div class="tw-relative">
       <div style="z-index: 500" class="tw-flex tw-justify-center tw-items-center tw-absolute tw-inset-0">
-        <form
-          class="tw-flex tw-flex-col tw-rounded-lg tw-bg-white tw-shadow-md tw-p-2 md:tw-p-6 tw-w-[90%] md:tw-w-[75%]">
-          <div class="tw-flex-row tw-items-center md:tw-gap-6">
+        <form class="tw-flex tw-flex-col tw-rounded-lg tw-bg-white tw-shadow-md tw-p-4 md:tw-p-6 tw-w-[90%] md:tw-w-[75%]">
+          <div class="tw-flex-row tw-items-center tw-gap-6">
 
             <div class="tw-flex tw-flex-col md:tw-flex-row tw-items-center tw-justify-between">
               <v-radio-group row v-model="reservationForm.typevoyage">
@@ -649,11 +648,9 @@
 <script>
 import json from '../data/CountryCodes.json'
 import config from "../config";
-
 export default {
   name: 'index',
   layout: 'master',
-
   data() {
     return {
       type_classe: ['Classe économique', 'Classe économique premium', 'Classe affaire', 'Première classe'],
@@ -703,7 +700,6 @@ export default {
       retour_menu: false,
       menu: false,
       isEditing: false,
-      message: "messsss",
     }
   },
 
@@ -712,7 +708,6 @@ export default {
       // cette methode retourne le nombre total de passagers
       return this.reservationForm.passengers.adultes + this.reservationForm.passengers.enfants + this.reservationForm.passengers.bebes
     },
-
     totalChildrens() {
       return this.reservationForm.passengers.adultes * 2
     },
@@ -733,7 +728,6 @@ export default {
       }
     },
   },
-
   methods: {
     deleteEscaleById(item) {
       this.reservationForm.escales.splice(item, 1)
@@ -778,12 +772,10 @@ export default {
         this.btnLoading = false
         this.userInfoDialog = false
         this.disclaimerDialog = false
-
         this.showToast('error', "Une erreur s'est produite")
       });
     }
   },
-
   watch: {
     model(val) {
       if (val != null) this.tab = 0
@@ -792,9 +784,7 @@ export default {
     searchDeparts(val) {
       // Items have already been loaded
       if (this.departs.length > 0) return
-
       this.loadingDeparts = true
-
       // Lazily load input items
       fetch(`${config.app_local ? config.app_api_debug_url : config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
         .then(res => res.clone().json())
@@ -806,13 +796,10 @@ export default {
         })
         .finally(() => (this.loadingDeparts = false))
     },
-
     searchDestinations(val) {
       // Items have already been loaded
       if (this.destinations.length > 0) return
-
       this.loadingDestinations = true
-
       // Lazily load input items
       fetch(`${config.app_local ? config.app_api_debug_url : config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
         .then(res => res.clone().json())
@@ -824,24 +811,6 @@ export default {
         })
         .finally(() => (this.loadingDestinations = false))
     },
-
-    // reservationForm: {
-    //   handler(newValue, oldValue) {
-    //     // console.log(newValue, oldValue);
-    //     if (this.reservationForm.typevoyage === "destinationmultiple"){
-    //       this.reservationForm.escales.push({
-    //         airport_arrive: "",
-    //         airport_departure: "",
-    //         date_departure: "",
-    //       })
-    //
-    //       console.log(this.reservationForm.escales)
-    //
-    //     }
-    //
-    //   },
-    //   deep: true,
-    // },
   },
 }
 </script>

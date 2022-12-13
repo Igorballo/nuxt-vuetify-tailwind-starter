@@ -69,11 +69,18 @@
       </ul>
 
       <ul class="tw-flex tw-flex-col md:tw-flex-row tw-whitespace-nowrap tw-text-white tw-border-t-2 md:tw-border-0 tw-px-0 tw-gap-4 tw-pt-4 md:tw-pt-0 tw-text-sm md:tw-gap-6">
-        <li>
-          A propos
+
+
+        <li class="tw-text-white tw-font-semifont-bold">
+          <div @click="$router.push('/about')" class="tw-flex tw-items-center tw-gap-2 tw-cursor-pointer">
+            <span class="tw-whitespace-nowrap">A propos</span>
+          </div>
         </li>
-        <li>
-          Nous contacter
+
+        <li class="tw-text-white tw-font-semifont-bold">
+          <div @click="$router.push('/contact')" class="tw-flex tw-items-center tw-gap-2 tw-cursor-pointer">
+            <span class="tw-whitespace-nowrap">Nous contacter</span>
+          </div>
         </li>
       </ul>
     </div>
@@ -106,10 +113,5 @@ export default {
 </script>
 
 <style>
-.v-input__control {
 
-}
-
-.v-text-field__details{
-}
 </style>
