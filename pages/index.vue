@@ -4,7 +4,7 @@
       <div style="z-index: 500" class="tw-flex tw-justify-center tw-items-center tw-absolute tw-inset-0">
         <form
           class="tw-flex tw-flex-col tw-rounded-lg tw-bg-white tw-shadow-md tw-p-4 md:tw-p-6 tw-w-[90%] md:tw-w-[75%]">
-          <div class="tw-flex-row tw-items-center tw-gap-6">
+          <div class="tw-flex-row tw-items-center tw-gap-2 md:tw-gap-6">
 
             <div class="tw-flex tw-items-center tw-justify-between">
               <v-radio-group row v-model="reservationForm.typevoyage">
@@ -602,7 +602,7 @@
 
 
           <div class="tw-flex tw-justify-between">
-            <div @click="reservationForm.escales.push({airport_depart: '', airport_destination: '', depart_date: '',})"
+            <div v-if="reservationForm.typevoyage === 'destinationmultiple'" @click="reservationForm.escales.push({airport_depart: '', airport_destination: '', depart_date: '',})"
                  class="tw-flex tw-items-center tw-mb-4 tw-text-sm tw-gap-2 tw-text-red-600 hover:tw-cursor-pointer">
               <svg style="width:20px;height:20px" viewBox="0 0 24 24">
                 <path fill="currentColor" d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" />
