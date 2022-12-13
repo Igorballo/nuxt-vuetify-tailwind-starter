@@ -22,7 +22,7 @@
     </div>
 
     <div style="position: sticky; top: 0; z-index: 999" class="tw-bg-blue-800 tw-py-4 tw-px-12 tw-flex tw-justify-between">
-      <ul class="tw-flex tw-items-center tw-gap-6 tw-px-0">
+      <ul class="tw-hidden md:tw-flex tw-items-center tw-gap-6 tw-px-0">
         <li class="tw-text-white tw-font-semifont-bold tw-cursor-pointer">
           <div @click="$router.push('/')"
                class="tw-flex tw-items-center tw-gap-2">
@@ -68,7 +68,7 @@
         </li>
       </ul>
 
-      <ul class="lg:tw-flex tw-hidden tw-text-white tw-font-semibold tw-text-sm tw-gap-6">
+      <ul class="tw-hidden md:tw-flex tw-hidden tw-text-white tw-font-semibold tw-text-sm tw-gap-6">
         <li>
           A propos
         </li>
