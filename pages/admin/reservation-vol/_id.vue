@@ -164,9 +164,11 @@
                                  class="tw-py-0.5 tw-px-4 tw-rounded-full tw-border tw-border-white">
                               {{ offre.amountsell }} XOF
                             </div>
-                            <v-icon class="tw-absolute tw-right-0 tw-top-0" @click="deleteSupplyById(offre._id)"
-                                    color="red" height="5">mdi-delete
-                            </v-icon>
+                            <v-btn class="tw-absolute tw-bg-white tw-rounded-lg tw-right-0 tw-top-2">
+                              <v-icon class="" @click="deleteSupplyById(offre._id)"
+                                      color="red" height="5">mdi-delete
+                              </v-icon>
+                            </v-btn>
                           </div>
                         </div>
                       </v-img>
@@ -192,7 +194,7 @@
                               <div>
                                 <div class="font-weight-normal tw-flex tw-items-center tw-gap-2">
                                   <v-icon>mdi-airplane</v-icon>
-                                  <strong class="tw-font-bold">{{ offre.airportDepart }}</strong>
+                                  <strong class="tw-font-bold">{{ offre.airportDepart?.name }}</strong>
                                 </div>
                                 <strong>{{ offre.confirmedDepartDate|moment('MMMM Do YYYY, h:mm:ss a') }}</strong>
                               </div>
@@ -222,7 +224,7 @@
                           >
                             <div class="font-weight-normal tw-flex tw-items-center tw-gap-2">
                               <v-icon>mdi-airplane-landing</v-icon>
-                              <strong class="tw-font-bold">{{ offre.airportDestination }}</strong>
+                              <strong class="tw-font-bold">{{ offre.airportDestination?.name }}</strong>
                             </div>
                             <strong>{{ offre.confirmedComebackDate|moment('MMMM Do YYYY, h:mm:ss a') }}</strong>
 
@@ -312,6 +314,7 @@
                   :search-input.sync="searchDeparts"
                   clearable
                   hide-details
+                  :filter="customFilter"
                   hide-selected
                   item-text="name"
                   item-value="_id"
@@ -321,7 +324,7 @@
                   <template v-slot:no-data>
                     <v-list-item>
                       <v-list-item-title>
-                        Tapez le nom de l'aéroport
+                        Tapez le nom d'une ville ou pays ou Code Iata
                       </v-list-item-title>
                     </v-list-item>
                   </template>
@@ -334,7 +337,14 @@
                     </v-list-item-avatar>
                     <v-list-item-content>
                       <v-list-item-title v-text="item.name"></v-list-item-title>
-                      <v-list-item-subtitle v-text="item.cn"></v-list-item-subtitle>
+                      <v-list-item-subtitle>
+                        <v-row justify="between">
+                          <v-col><span>{{ item.country }}, {{ item.city }}</span></v-col>
+                          <v-col cols="3">
+                            <v-chip small>{{ item.iata_code }}</v-chip>
+                          </v-col>
+                        </v-row>
+                      </v-list-item-subtitle>
                     </v-list-item-content>
                   </template>
                 </v-autocomplete>
@@ -347,6 +357,7 @@
                   :search-input.sync="searchDestinations"
                   clearable
                   hide-details
+                  :filter="customFilter"
                   hide-selected
                   item-text="name"
                   item-value="_id"
@@ -356,7 +367,7 @@
                   <template v-slot:no-data>
                     <v-list-item>
                       <v-list-item-title>
-                        Tapez le nom de la ville
+                        Tapez le nom d'une ville ou pays ou Code Iata
                       </v-list-item-title>
                     </v-list-item>
                   </template>
@@ -369,7 +380,14 @@
                     </v-list-item-avatar>
                     <v-list-item-content>
                       <v-list-item-title v-text="item.name"></v-list-item-title>
-                      <v-list-item-subtitle v-text="item.cn"></v-list-item-subtitle>
+                      <v-list-item-subtitle>
+                        <v-row justify="between">
+                          <v-col><span>{{ item.country }}, {{ item.city }}</span></v-col>
+                          <v-col cols="3">
+                            <v-chip small>{{ item.iata_code }}</v-chip>
+                          </v-col>
+                        </v-row>
+                      </v-list-item-subtitle>
                     </v-list-item-content>
                   </template>
                 </v-autocomplete>
@@ -587,7 +605,7 @@ export default {
       })
     },
 
-    async deleteSupplyById(offre){
+    async deleteSupplyById(offre) {
       await axios.delete(`/reservation-vol/delete-offre-by-id/${offre}`).then(res => {
         if (res.data.error) {
           Swal.fire({
