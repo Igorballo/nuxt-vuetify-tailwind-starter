@@ -90,34 +90,7 @@
                       item-text="name"
                       item-value="_id"
                       label="Choisissez l'adresse d'arrivée..." outlined>
-                      <!--                  <template v-slot:selection="data">-->
-                      <!--                    <v-chip-->
-                      <!--                      v-bind="data.attrs"-->
-                      <!--                      :input-value="data.selected"-->
-                      <!--                      close-->
-                      <!--                      @click="data.select"-->
-                      <!--                      @click:close="remove(data.item)"-->
-                      <!--                    >-->
-                      <!--                      <v-avatar left>-->
-                      <!--                        <v-icon>mdi-home</v-icon>-->
-                      <!--                      </v-avatar>-->
-                      <!--                      {{ data.item.adresse }}-->
-                      <!--                    </v-chip>-->
-                      <!--                  </template>-->
-                      <!--                  <template v-slot:item="data">-->
-                      <!--                    <template v-if="typeof data.item !== 'object'">-->
-                      <!--                      <v-list-item-content v-text="data.item"></v-list-item-content>-->
-                      <!--                    </template>-->
-                      <!--                    <template v-else>-->
-                      <!--                      <v-list-item-avatar>-->
-                      <!--                        <v-icon>mdi-home</v-icon>-->
-                      <!--                      </v-list-item-avatar>-->
-                      <!--                      <v-list-item-content>-->
-                      <!--                        <v-list-item-title v-html="data.item.adresse"></v-list-item-title>-->
-                      <!--                        <v-list-item-subtitle v-html="data.item.ville?.nom"></v-list-item-subtitle>-->
-                      <!--                      </v-list-item-content>-->
-                      <!--                    </template>-->
-                      <!--                  </template>-->
+
                     </v-autocomplete>
                   </v-row>
                 </v-col>
@@ -301,7 +274,7 @@
                                     class="tw-w-1/3 tw-duration-300 focus:tw-outline-none tw-rounded-l-md tw-rounded-r-none placeholder:tw-text-gray-800"
                                     v-model="escale.airport_depart"
                                     :items="departs"
-                                    :loading="loadingDeparts"
+                                    :loading="e_loadingDeparts"
                                     clearable
                                     hide-details
                                     hide-selected
