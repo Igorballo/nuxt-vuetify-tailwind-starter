@@ -4,8 +4,8 @@
       <div class="tw-hidden lg:tw-block tw-w-1/3 tw-h-screen">
         <div class="tw-bg-white tw-text-sm">
           <div class="tw-font-semibold tw-text-lg tw-py-4 tw-pl-6 tw-bg-gray-100 tw-border-b">Résumé du trajet</div>
-          <div class="tw-p-6 tw-bg-white tw-flex tw-flex-col tw-gap-6">
-            <div class="tw-flex tw-gap-6">
+          <div class="tw-p-6 tw-bg-white tw-flex tw-flex-col tw-gap-2">
+            <div class="tw-flex tw-gap-4">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                    stroke="currentColor" class="tw-w-5 tw-h-5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
