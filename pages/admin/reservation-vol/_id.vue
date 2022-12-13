@@ -133,18 +133,17 @@
       </v-col>
 
       <v-col lg="4" class="tw-flex tw-flex-col tw-gap-4">
-        <v-card v-if="reservation">
+        <v-card v-if="reservation" class="tw-bg-red-600">
           <v-card-title class="mb-4">
             <span>Liste des offres</span>
             <v-spacer/>
             <v-btn small @click="dialogAddOffre = true" color="primary">Ajouter des offres</v-btn>
           </v-card-title>
-          <v-card-text class="tw-px-4 tw-flex tw-flex-col tw-gap-4">
+          <v-card-text class="tw-px-4 tw-flex tw-flex-col tw-gap-4 tw-bg-blue-600 tw-overflow-y-auto">
             <v-container v-if="offres.length == 0" color="grey" class="tw-bg-gray-50 tw-text-lg">Aucune offre n'est
               proposée pour le moment
             </v-container>
             <v-container>
-              <div class="">
                 <div v-for="(offre, offre_index) in offres" :key="offre_index">
                   <v-row justify="space-around" class="tw-mb-6">
                     <v-card width="400">
@@ -234,13 +233,11 @@
                     </v-card>
                   </v-row>
                 </div>
-              </div>
             </v-container>
-
-            <v-card-actions class="tw-mb-6" v-if="offres.length > 0">
-              <v-btn color="primary" @click="dialogAddOffre = true" block>Envoyer cette offre au client</v-btn>
-            </v-card-actions>
           </v-card-text>
+          <v-card-actions class="tw-mb-6" v-if="offres.length > 0">
+            <v-btn color="primary" @click="dialogAddOffre = true" block>Envoyer cette offre au client</v-btn>
+          </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
@@ -405,7 +402,9 @@
                   </template>
                 </v-datetime-picker>
 
-                <v-datetime-picker outlined ships label="Jour et heure de retour"
+                <v-datetime-picker
+                  :allowed-dates="disablePastDates"
+                  outlined ships label="Jour et heure de retour"
                                    v-model="offre.confirmed_comeback_date">
                   <template slot="dateIcon">
                     <v-icon>mdi-calendar</v-icon>
@@ -435,6 +434,7 @@
                     :loading="loadingEscales"
                     :search-input.sync="searchEscales"
                     clearable
+                    :filter="customFilter"
                     hide-details
                     hide-selected
                     item-text="name"
@@ -445,7 +445,7 @@
                     <template v-slot:no-data>
                       <v-list-item>
                         <v-list-item-title>
-                          Tapez le nom de compagnie
+                          Tapez le nom d'une ville ou pays ou Code Iata
                         </v-list-item-title>
                       </v-list-item>
                     </template>
@@ -458,7 +458,14 @@
                       </v-list-item-avatar>
                       <v-list-item-content>
                         <v-list-item-title v-text="item.name"></v-list-item-title>
-                        <v-list-item-subtitle v-text="item.cn"></v-list-item-subtitle>
+                        <v-list-item-subtitle>
+                          <v-row justify="between">
+                            <v-col><span>{{ item.country }}, {{ item.city }}</span></v-col>
+                            <v-col cols="3">
+                              <v-chip small>{{ item.iata_code }}</v-chip>
+                            </v-col>
+                          </v-row>
+                        </v-list-item-subtitle>
                       </v-list-item-content>
                     </template>
                   </v-autocomplete>
@@ -545,6 +552,9 @@ export default {
   },
 
   methods: {
+    disablePastDates(val) {
+      return val >= new Date().toISOString().substr(0, 10)
+    },
     async getReservationInfos() {
       console.log("route param")
       console.log(this.$route.params.id)
