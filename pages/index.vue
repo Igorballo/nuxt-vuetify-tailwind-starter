@@ -454,6 +454,7 @@
                     color="primary"
                     text
                     @click="reservation()"
+                    :loading="btnloading"
                   >
                     J'accepte
                   </v-btn>
@@ -518,6 +519,7 @@ export default {
   layout: 'master',
   data() {
     return {
+      btnloading: false,
       type_classe: ['Classe économique', 'Classe économique premium', 'Classe affaire', 'Première classe'],
        departRules: [
         v => !!v || 'Adresse de Depart est requis',
@@ -641,6 +643,7 @@ export default {
       return country.indexOf(searchText) > -1 || name.indexOf(searchText) > -1 || codeiata.indexOf(searchText) > -1
     },
     async reservation() {
+      this.btnloading = true;
       await axios.post('/reservation-vol/request-flight-reservation', this.reservationForm).then((response) => {
         if (response.data.error) {
           Swal.fire({
