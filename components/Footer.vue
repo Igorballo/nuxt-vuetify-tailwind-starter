@@ -46,7 +46,7 @@
             </svg>
           </a>
 
-          <a href="#" target="blank">
+          <a href="https://www.linkedin.com" target="blank">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                  class="tw-h-5 tw-w-5 tw-fill-current tw-text-black">
               <path

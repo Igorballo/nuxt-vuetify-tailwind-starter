@@ -59,7 +59,7 @@
             <div class="tw-flex tw-flex-col">
               <div class="tw-flex tw-justify-between">
                 <span class="tw-font-semibold tw-text-lg">Aéroport de départ</span>
-                <v-chip>{{ reservation.airport_dep_populated.cm }}, {{ reservation.airport_dep_populated.cn }}</v-chip>
+                <v-chip>{{ reservation.airport_dep_populated.name }}, {{ reservation.airport_dep_populated.country }}</v-chip>
               </div>
             </div>
             <v-divider/>
@@ -67,7 +67,7 @@
             <div class="tw-flex tw-flex-col">
               <div class="tw-flex tw-justify-between">
                 <span class="tw-font-semibold tw-text-lg">Aéroport d'arrivée</span>
-                <v-chip>{{ reservation.airport_dest_populated.cm }}, {{ reservation.airport_dest_populated.cn }}
+                <v-chip>{{ reservation.airport_dest_populated.name }}, {{ reservation.airport_dest_populated.country }}
                 </v-chip>
               </div>
             </div>
@@ -137,7 +137,7 @@
             <v-btn small @click="dialogAddOffre = true" color="primary">Ajouter des offres</v-btn>
           </v-card-title>
           <v-card-text class="tw-px-4 tw-flex tw-flex-col tw-gap-4">
-            <v-container v-if="offres.length < 0" color="grey" class="tw-bg-gray-50 tw-text-lg">Aucune offre n'est
+            <v-container v-if="offres.length == 0" color="grey" class="tw-bg-gray-50 tw-text-lg">Aucune offre n'est
               proposée pour le moment
             </v-container>
             <v-container>
@@ -151,7 +151,7 @@
                       <div class="tw-h-full"
                       >
                         <div
-                          class="tw-text-xl tw-mx-2 tw-py-4 tw-text-white tw-font-semibold tw-justify-between tw-items-center tw-h-full tw-flex tw-flex-col">
+                          class="tw-relative tw-text-xl tw-mx-2 tw-py-4 tw-text-white tw-font-semibold tw-justify-between tw-items-center tw-h-full tw-flex tw-flex-col">
                           <div class="tw-py-0.5">
                             {{ offre.airline }}
                           </div>
@@ -160,6 +160,7 @@
                                class="tw-py-0.5 tw-px-4 tw-rounded-full tw-border tw-border-white">
                             {{ offre.amountsell }} XOF
                           </div>
+                          <v-icon class="tw-absolute tw-right-0 tw-top-0" @click="offres.splice(offre_index,1)" color="red" height="5">mdi-delete</v-icon>
                         </div>
                       </div>
                     </v-img>
@@ -227,7 +228,7 @@
               </div>
             </v-container>
 
-            <v-card-actions class="" v-if="offres.length > 0">
+            <v-card-actions class="tw-mb-6" v-if="offres.length > 0">
               <v-btn color="primary" @click="dialogAddOffre = true" block>Envoyer cette offre au client</v-btn>
             </v-card-actions>
           </v-card-text>
@@ -242,15 +243,15 @@
             <div class="tw-text-md">
               <span>Départ: </span>
               <span class="tw-font-semibold">{{
-                  reservation?.airport_dep_populated.cm
-                }}, {{ reservation?.airport_dep_populated.cn }}</span>
+                  reservation?.airport_dep_populated.name
+                }}, {{ reservation?.airport_dep_populated.country }}</span>
             </div>
             <v-icon>mdi-airplane</v-icon>
             <div class="tw-text-md">
               <span>Destination: </span>
               <span class="tw-font-semibold">{{
-                  reservation?.airport_dest_populated.cm
-                }}, {{ reservation?.airport_dest_populated.cm }}</span>
+                  reservation?.airport_dest_populated.name
+                }}, {{ reservation?.airport_dest_populated.country }}</span>
             </div>
           </div>
         </div>
@@ -271,7 +272,7 @@
                               clearable
                               hide-details
                               hide-selected
-                              item-text="label"
+                              item-text="name"
                               item-value="_id"
                               label="Compagnie de voyage"
                               outlined
@@ -291,7 +292,7 @@
                     <v-icon>mdi-airplane</v-icon>
                   </v-list-item-avatar>
                   <v-list-item-content>
-                    <v-list-item-title v-text="item.label"></v-list-item-title>
+                    <v-list-item-title v-text="item.name"></v-list-item-title>
                   </v-list-item-content>
                 </template>
               </v-autocomplete>
@@ -558,8 +559,6 @@ export default {
 
     async sendSupply() {
       this.sendSupplyBtn = true
-      if (this.offre.escales.length > 0)
-        this.offre.escale = true
       const response = await axios.post(`/reservation-vol/admin-update-offre/${this.$route.params.id}`, this.offre).then(res => {
 
         if (res.data.error) {
