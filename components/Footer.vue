@@ -71,8 +71,10 @@
         <ul
           class="tw-flex lg:tw-flex-row tw-flex-col tw-mt-4 tw-text-base tw-text-gray-300 tw-gap-8 tw-justify-center"
           style="list-style-type: none">
-          <li to="/" class="hover:tw-opacity-75 tw-text-white tw-cursor-pointer"> Reservation de Ticket</li>
-          <li to="/hotel" class="hover:tw-opacity-75 tw-text-white tw-cursor-pointer"> Hébergements</li>
+          <li class="hover:tw-opacity-75 tw-text-white tw-cursor-pointer" @click="$router.push('/')">
+            Reservation de Ticket
+          </li>
+          <li class="hover:tw-opacity-75 tw-text-white tw-cursor-pointer" @click="$router.push('/hotel')"> Hébergements</li>
           <li to="/car-location" class="hover:tw-opacity-75 tw-text-white tw-cursor-pointer"> Location de voitures
           </li>
           <li to="/tourisme" class="hover:tw-opacity-75 tw-text-white tw-cursor-pointer"> Tourisme</li>
