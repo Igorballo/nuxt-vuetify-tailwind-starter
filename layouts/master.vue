@@ -56,7 +56,7 @@
             <span class="tw-whitespace-nowrap">Tourisme</span>
           </div>
         </li>
-        <li class="tw-text-white tw-font-semifont-bold">
+        <li class="tw-text-white tw-font-semifont-bold tw-cursor-pointer">
           <div @click="$router.push('/visa-assurance')" class="tw-flex tw-items-center tw-gap-2">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                  stroke="currentColor" class="tw-w-4 tw-h-4">
