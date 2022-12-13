@@ -86,7 +86,7 @@
         <p class="tw-px-4 tw-py-4 lg:tw-text-center tw-font-bold tw-text-white tw-text-sm tw-text-center lg:tw-text-lg tw-mb-0">
           Copyright © Manglam 2022.
           Designed by
-          <a href="https://mekengroup.com/" class="text-md" target="_blank" rel="noopener noreferrer">MEG</a>
+          <a href="https://mekengroup.com/" class="tw-text-md tw-text-blue-600 " target="_blank" rel="noopener noreferrer">MEG</a>
         </p>
 
       </div>

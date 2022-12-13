@@ -4,10 +4,10 @@
       <div style="z-index: 500" class="tw-flex tw-justify-center tw-items-center tw-absolute tw-inset-0">
         <form
           class="tw-flex tw-flex-col tw-rounded-lg tw-bg-white tw-shadow-md tw-p-4 md:tw-p-6 tw-w-[90%] md:tw-w-[75%]">
-          <div class="tw-flex-row tw-items-center tw-gap-6">
+          <div class="tw-flex-row tw-items-center tw-gap-2 md:tw-gap-6">
 
             <div class="tw-flex tw-items-center tw-justify-between">
-              <v-radio-group row v-model="reservationForm[0].typevoyage">
+              <v-radio-group row v-model="reservationForm.typevoyage">
                 <v-radio
                   label="Aller-retour"
                   value="allerretour"
@@ -19,11 +19,12 @@
                 ></v-radio>
 
                 <v-radio
+                  @click="reservationForm.escales.push({airport_depart: '', airport_destination: '', depart_date: '',})"
                   label="Destination multiple"
                   value="destinationmultiple"
                 ></v-radio>
               </v-radio-group>
-              <select v-model="reservationForm[0].typeclasse" class="tw-rounded-md">
+              <select v-model="reservationForm.typeclasse" class="tw-rounded-md">
                 <option value="economic">Classe économique</option>
                 <option value="economic_premium">Classe économique premium</option>
                 <option value="business">Classe affaire</option>
@@ -31,45 +32,45 @@
               </select>
             </div>
 
-            <div v-for="(deplacement, deplacement_index) in reservationForm" class="tw-flex tw-flex-col tw-gap-2">
-              <div class="tw-flex tw-items-center">
-                <div class="tw-flex tw-flex-col tw-w-full md:tw-gap-4 md:tw-items-center md:tw-flex-row">
-                  <v-col>
-                    <v-row class="tw-relative">
-                      <v-autocomplete append-icon="" background-color="white"
-                                      class="tw-w-1/3 tw-duration-300 focus:tw-outline-none tw-rounded-l-md tw-rounded-r-none placeholder:tw-text-gray-800"
-                                      v-model="deplacement.airport_depart"
-                                      :items="departs"
-                                      :loading="loadingDeparts"
-                                      :search-input.sync="searchDeparts"
-                                      clearable
-                                      hide-details
-                                      hide-selected
-                                      item-text="name"
-                                      item-value="_id"
-                                      label="Choisissez l'adresse de départ..." outlined>
-                        <template v-slot:no-data>
-                          <v-list-item>
-                            <v-list-item-title>
-                              Tapez le nom de l'aéroport
-                            </v-list-item-title>
-                          </v-list-item>
-                        </template>
+            <div class="tw-flex tw-items-center">
+              <div class="tw-flex tw-flex-col tw-w-full md:tw-gap-4 md:tw-items-center md:tw-flex-row">
+                <v-col>
+                  <v-row class="tw-relative">
+                    <v-autocomplete append-icon="" background-color="white"
+                                    class="tw-w-1/3 tw-duration-300 focus:tw-outline-none tw-rounded-l-md tw-rounded-r-none placeholder:tw-text-gray-800"
+                                    v-model="reservationForm.airport_depart"
+                                    :items="departs"
+                                    :loading="loadingDeparts"
+                                    :search-input.sync="searchDeparts"
+                                    clearable
+                                    hide-details
+                                    hide-selected
+                                    item-text="name"
+                                    item-value="_id"
+                                    label="Choisissez l'adresse de départ..." outlined>
+                      <template v-slot:no-data>
+                        <v-list-item>
+                          <v-list-item-title>
+                            Tapez le nom de la ville
+                            <strong>Ville</strong>
+                          </v-list-item-title>
+                        </v-list-item>
+                      </template>
 
-                        <template v-slot:item="{ item }">
-                          <v-list-item-avatar
-                            class="text-h5 font-weight-light white--text"
-                          >
-                            <v-icon>mdi-airplane</v-icon>
-                          </v-list-item-avatar>
-                          <v-list-item-content>
-                            <v-list-item-title v-text="item.name"></v-list-item-title>
-                            <v-list-item-subtitle v-text="item.cn"></v-list-item-subtitle>
-                          </v-list-item-content>
-                        </template>
-                      </v-autocomplete>
-                      <span class="tw-inline-flex tw-items-center tw-justify-center tw-absolute tw-right-[47%] tw-top-3"
-                            style="z-index: 200">
+                      <template v-slot:item="{ item }">
+                        <v-list-item-avatar
+                          class="text-h5 font-weight-light white--text"
+                        >
+                          <v-icon>mdi-airplane</v-icon>
+                        </v-list-item-avatar>
+                        <v-list-item-content>
+                          <v-list-item-title v-text="item.name"></v-list-item-title>
+                          <v-list-item-subtitle v-text="item.cn"></v-list-item-subtitle>
+                        </v-list-item-content>
+                      </template>
+                    </v-autocomplete>
+                    <span class="tw-inline-flex tw-items-center tw-justify-center tw-absolute tw-right-[47%] tw-top-3"
+                          style="z-index: 200">
                     <svg
                       class="tw-w-6 tw-h-6 tw-bg-white tw-col-span-1 tw-rounded-full tw-border-2 tw-border-red-800 tw-p-1"
                       fill="none" stroke="red" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -77,212 +78,379 @@
                             d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
                     </svg>
                     </span>
-                      <v-autocomplete
-                        append-icon=""
-                        background-color="white"
-                        class="tw-w-1/3 focus:tw-outline-none tw-duration-300 placeholder:tw-text-gray-800 tw-rounded-l-none tw-rounded-r-md"
-                        v-model="deplacement.airport_destination"
-                        :items="destinations"
-                        :loading="loadingDestinations"
-                        :search-input.sync="searchDestinations"
-                        clearable
-                        item-text="name"
-                        item-value="_id"
-                        label="Choisissez l'adresse d'arrivée..." outlined>
-                        <template v-slot:no-data>
-                          <v-list-item>
-                            <v-list-item-title>
-                              Tapez le nom de l'aéroport
-                            </v-list-item-title>
-                          </v-list-item>
+                    <v-autocomplete
+                      append-icon=""
+                      background-color="white"
+                      class="tw-w-1/3 focus:tw-outline-none tw-duration-300 placeholder:tw-text-gray-800 tw-rounded-l-none tw-rounded-r-md"
+                      v-model="reservationForm.airport_destination"
+                      :items="destinations"
+                      :loading="loadingDestinations"
+                      :search-input.sync="searchDestinations"
+                      clearable
+                      item-text="name"
+                      item-value="_id"
+                      label="Choisissez l'adresse d'arrivée..." outlined>
+                      <!--                  <template v-slot:selection="data">-->
+                      <!--                    <v-chip-->
+                      <!--                      v-bind="data.attrs"-->
+                      <!--                      :input-value="data.selected"-->
+                      <!--                      close-->
+                      <!--                      @click="data.select"-->
+                      <!--                      @click:close="remove(data.item)"-->
+                      <!--                    >-->
+                      <!--                      <v-avatar left>-->
+                      <!--                        <v-icon>mdi-home</v-icon>-->
+                      <!--                      </v-avatar>-->
+                      <!--                      {{ data.item.adresse }}-->
+                      <!--                    </v-chip>-->
+                      <!--                  </template>-->
+                      <!--                  <template v-slot:item="data">-->
+                      <!--                    <template v-if="typeof data.item !== 'object'">-->
+                      <!--                      <v-list-item-content v-text="data.item"></v-list-item-content>-->
+                      <!--                    </template>-->
+                      <!--                    <template v-else>-->
+                      <!--                      <v-list-item-avatar>-->
+                      <!--                        <v-icon>mdi-home</v-icon>-->
+                      <!--                      </v-list-item-avatar>-->
+                      <!--                      <v-list-item-content>-->
+                      <!--                        <v-list-item-title v-html="data.item.adresse"></v-list-item-title>-->
+                      <!--                        <v-list-item-subtitle v-html="data.item.ville?.nom"></v-list-item-subtitle>-->
+                      <!--                      </v-list-item-content>-->
+                      <!--                    </template>-->
+                      <!--                  </template>-->
+                    </v-autocomplete>
+                  </v-row>
+                </v-col>
+                <v-col>
+                  <v-row>
+                    <v-col class="tw-px-0">
+                      <v-menu
+                        ref="depart_menu"
+                        v-model="depart_menu"
+                        :return-value.sync="date"
+                        transition="scale-transition"
+                        offset-y
+                        min-width="auto"
+                      >
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-text-field
+                            v-model="reservationForm.depart_date"
+                            label="Date de départ"
+                            readonly
+                            outlined
+                            v-bind="attrs"
+                            v-on="on"
+                            :class="{'tw-rounded-r-none':reservationForm.typevoyage === 'allerretour'}"
+                          ></v-text-field>
                         </template>
-
-                        <template v-slot:item="{ item }">
-                          <v-list-item-avatar
-                            class="text-h5 font-weight-light white--text"
-                          >
-                            <v-icon>mdi-airplane</v-icon>
-                          </v-list-item-avatar>
-                          <v-list-item-content>
-                            <v-list-item-title v-text="item.name"></v-list-item-title>
-                            <v-list-item-subtitle v-text="item.cn"></v-list-item-subtitle>
-                          </v-list-item-content>
+                        <v-date-picker
+                          v-model="reservationForm.depart_date"
+                          no-title
+                          scrollable
+                        >
+                        </v-date-picker>
+                      </v-menu>
+                    </v-col>
+                    <v-col v-if="reservationForm.typevoyage === 'allerretour'" class="tw-px-0">
+                      <v-menu
+                        ref="retour_menu"
+                        v-model="retour_menu"
+                        :return-value.sync="date"
+                        transition="scale-transition"
+                        offset-y
+                        min-width="auto"
+                      >
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-text-field
+                            v-model="reservationForm.comeback_date"
+                            label="Date de retour"
+                            readonly
+                            outlined
+                            class="tw-rounded-l-none"
+                            v-bind="attrs"
+                            v-on="on"
+                          ></v-text-field>
                         </template>
-                      </v-autocomplete>
-                    </v-row>
-                  </v-col>
-                  <v-col>
-                    <v-row>
-                      <v-col class="tw-px-0">
-                        <v-menu
-                          ref="depart_menu"
-                          v-model="depart_menu"
-                          :return-value.sync="date"
-                          transition="scale-transition"
-                          offset-y
-                          min-width="auto"
+                        <v-date-picker
+                          v-model="reservationForm.comeback_date"
+                          no-title
+                          scrollable
                         >
-                          <template v-slot:activator="{ on, attrs }">
-                            <v-text-field
-                              v-model="deplacement.depart_date"
-                              label="Date de départ"
-                              readonly
-                              outlined
-                              v-bind="attrs"
-                              v-on="on"
-                              :class="{'tw-rounded-r-none':deplacement.typevoyage === 'allerretour'}"
-                            ></v-text-field>
-                          </template>
-                          <v-date-picker
-                            v-model="deplacement.depart_date"
-                            no-title
-                            scrollable
-                          >
-                          </v-date-picker>
-                        </v-menu>
-                      </v-col>
-                      <v-col v-if="deplacement.typevoyage === 'allerretour'" class="tw-px-0">
-                        <v-menu
-                          ref="retour_menu"
-                          v-model="retour_menu"
-                          :return-value.sync="date"
-                          transition="scale-transition"
-                          offset-y
-                          min-width="auto"
-                        >
-                          <template v-slot:activator="{ on, attrs }">
-                            <v-text-field
-                              v-model="deplacement.comeback_date"
-                              label="Date de retour"
-                              readonly
-                              outlined
-                              class="tw-rounded-l-none"
-                              v-bind="attrs"
-                              v-on="on"
-                            ></v-text-field>
-                          </template>
-                          <v-date-picker
-                            v-model="deplacement.comeback_date"
-                            no-title
-                            scrollable
-                          >
-                          </v-date-picker>
-                        </v-menu>
-                      </v-col>
-                    </v-row>
-                  </v-col>
-                  <v-col>
-                    <v-menu
-                      :key="text"
-                      solo
-                      left
-                      :close-on-content-click="false"
-                    >
-                      <template v-slot:activator="{ attrs, on }">
-                        <v-text-field class="tw-text-xl tw-font-bold mb-1"
-                                      readonly
-                                      v-bind="attrs"
-                                      v-on="on"
-                                      label="Nombre de passagers"
-                                      outlined
-                                      height="55"
-                                      v-model="totalPassagers"
-                                      dense
-                        ></v-text-field>
-                      </template>
+                        </v-date-picker>
+                      </v-menu>
+                    </v-col>
+                  </v-row>
+                </v-col>
+                <v-col>
+                  <v-menu
+                    :key="text"
+                    solo
+                    left
+                    :close-on-content-click="false"
+                  >
+                    <template v-slot:activator="{ attrs, on }">
+                      <v-text-field class="tw-text-xl tw-font-bold mb-1"
+                                    readonly
+                                    v-bind="attrs"
+                                    v-on="on"
+                                    label="Nombre de passagers"
+                                    outlined
+                                    height="55"
+                                    v-model="totalPassagers"
+                                    dense
+                      ></v-text-field>
+                    </template>
 
-                      <v-list>
-                        <v-list-item
-                        >
-                          <v-list-item-title>
-                            <div class="tw-flex tw-flex-col tw-gap-4 tw-w-full tw-p-4 tw-bg-white">
-                              <div class="tw-py-4 tw-flex tw-justify-between tw-gap-12">
-                                <span class="tw-text-xl tw-font-bold tw-gray-800">Adultes (> 12 ans)</span>
-                                <div class="tw-text-xl tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
-                                  <div
-                                    v-if="deplacement.passengers.adultes > 1 && deplacement.passengers.enfants + deplacement.passengers.bebes <= (deplacement.passengers.adultes - 1) *2">
-                                <span @click="deplacement.passengers.adultes--" class="hover:tw-cursor-pointer"><v-icon
-                                  color="red">mdi-minus-circle-outline</v-icon></span>
-                                  </div>
-                                  <div v-else>
-                                    <div class="hover:tw-cursor-not-drop">
-                                      <v-icon color="grey">mdi-minus-circle-outline</v-icon>
-                                    </div>
-                                  </div>
-                                  <span>{{ deplacement.passengers.adultes }}</span>
-
-                                  <div v-if="deplacement.passengers.adultes < 9">
-                                <span @click="deplacement.passengers.adultes++" class="hover:tw-cursor-pointer"><v-icon
-                                  color="red">mdi-plus-circle-outline</v-icon></span>
-                                  </div>
-                                  <div v-else>
-                                    <span class=""><v-icon color="grey">mdi-plus-circle-outline</v-icon></span>
-                                  </div>
-                                </div>
-                              </div>
-                              <v-divider></v-divider>
-                              <div class="tw-py-4 tw-flex tw-justify-between tw-gap-12">
-                                <span class="tw-text-xl tw-font-bold tw-gray-800">Enfants (2-11 ans)</span>
-                                <div class="tw-text-xl tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
-                                  <div v-if="deplacement.passengers.enfants > 0">
-                                <span @click="deplacement.passengers.enfants--" class="hover:tw-cursor-pointer"><v-icon
-                                  color="red">mdi-minus-circle-outline</v-icon></span>
-                                  </div>
-                                  <div v-else>
-                                <span class="hover:tw-cursor-no-drop"><v-icon
-                                  color="grey">mdi-minus-circle-outline</v-icon></span>
-                                  </div>
-                                  <span>{{ deplacement.passengers.enfants }}</span>
-                                  <div
-                                    v-if="deplacement.passengers.enfants + deplacement.passengers.bebes < totalChildrens">
-                                <span @click="deplacement.passengers.enfants++" class="hover:tw-cursor-pointer"><v-icon
-                                  color="red">mdi-plus-circle-outline</v-icon></span>
-                                  </div>
-                                  <div v-else>
-                                    <span class=""><v-icon color="grey">mdi-plus-circle-outline</v-icon></span>
-                                  </div>
-                                </div>
-                              </div>
-                              <v-divider></v-divider>
-                              <div class="tw-py-4 tw-flex tw-justify-between tw-gap-12">
-                                <span class="tw-text-xl tw-font-bold tw-gray-800">Bébés (< 2 ans)</span>
-                                <div class="tw-text-xl tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
-                                  <div v-if="deplacement.passengers.bebes > 0">
-                                <span @click="deplacement.passengers.bebes--" class="hover:tw-cursor-pointer"><v-icon
-                                  color="red">mdi-minus-circle-outline</v-icon></span>
-                                  </div>
-                                  <div v-else>
-                                    <span class=""><v-icon color="grey">mdi-minus-circle-outline</v-icon></span>
-                                  </div>
-                                  <span>{{ deplacement.passengers.bebes }}</span>
-                                  <div
-                                    v-if="deplacement.passengers.enfants + deplacement.passengers.bebes < totalChildrens">
-                                <span @click="deplacement.passengers.bebes++" class="hover:tw-cursor-pointer"><v-icon
-                                  color="red">mdi-plus-circle-outline</v-icon></span>
-                                  </div>
-                                  <div v-else>
-                                <span class="hover:tw-cursor-pointer"><v-icon
-                                  color="grey">mdi-plus-circle-outline</v-icon></span>
-                                  </div>
-                                </div>
-                              </div>
-                              <v-divider></v-divider>
-                              <div class="tw-py-4 tw-flex tw-justify-between tw-gap-12">
+                    <v-list>
+                      <v-list-item
+                      >
+                        <v-list-item-title>
+                          <div class="tw-flex tw-flex-col tw-gap-4 tw-w-full tw-p-4 tw-bg-white">
+                            <div class="tw-py-4 tw-flex tw-justify-between tw-gap-12">
+                              <span class="tw-text-xl tw-font-bold tw-gray-800">Adultes (> 12 ans)</span>
+                              <div class="tw-text-xl tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
                                 <div
-                                  class="tw-p-3 tw-gap-2 tw-rounded-lg tw-items-center tw-flex tw-w-full tw-bg-red-200 tw-text-red-600 tw-text-xl tw-font-light">
-                                  <v-icon color="red">mdi-alert-octagon-outline</v-icon>
-                                  <span>2 enfants maximum par adulte</span>
+                                  v-if="reservationForm.passengers.adultes > 1 && reservationForm.passengers.enfants + reservationForm.passengers.bebes <= (reservationForm.passengers.adultes - 1) *2">
+                                <span @click="reservationForm.passengers.adultes--" class="hover:tw-cursor-pointer"><v-icon
+                                  color="red">mdi-minus-circle-outline</v-icon></span>
+                                </div>
+                                <div v-else>
+                                  <div class="hover:tw-cursor-not-drop">
+                                    <v-icon color="grey">mdi-minus-circle-outline</v-icon>
+                                  </div>
+                                </div>
+                                <span>{{ reservationForm.passengers.adultes }}</span>
+
+                                <div v-if="reservationForm.passengers.adultes < 9">
+                                <span @click="reservationForm.passengers.adultes++" class="hover:tw-cursor-pointer"><v-icon
+                                  color="red">mdi-plus-circle-outline</v-icon></span>
+                                </div>
+                                <div v-else>
+                                  <span class=""><v-icon color="grey">mdi-plus-circle-outline</v-icon></span>
                                 </div>
                               </div>
                             </div>
-                          </v-list-item-title>
-                        </v-list-item>
-                      </v-list>
-                    </v-menu>
-                  </v-col>
-                </div>
+                            <v-divider></v-divider>
+                            <div class="tw-py-4 tw-flex tw-justify-between tw-gap-12">
+                              <span class="tw-text-xl tw-font-bold tw-gray-800">Enfants (2-11 ans)</span>
+                              <div class="tw-text-xl tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
+                                <div v-if="reservationForm.passengers.enfants > 0">
+                                <span @click="reservationForm.passengers.enfants--" class="hover:tw-cursor-pointer"><v-icon
+                                  color="red">mdi-minus-circle-outline</v-icon></span>
+                                </div>
+                                <div v-else>
+                                <span class="hover:tw-cursor-no-drop"><v-icon
+                                  color="grey">mdi-minus-circle-outline</v-icon></span>
+                                </div>
+                                <span>{{ reservationForm.passengers.enfants }}</span>
+                                <div
+                                  v-if="reservationForm.passengers.enfants + reservationForm.passengers.bebes < totalChildrens">
+                                <span @click="reservationForm.passengers.enfants++" class="hover:tw-cursor-pointer"><v-icon
+                                  color="red">mdi-plus-circle-outline</v-icon></span>
+                                </div>
+                                <div v-else>
+                                  <span class=""><v-icon color="grey">mdi-plus-circle-outline</v-icon></span>
+                                </div>
+                              </div>
+                            </div>
+                            <v-divider></v-divider>
+                            <div class="tw-py-4 tw-flex tw-justify-between tw-gap-12">
+                              <span class="tw-text-xl tw-font-bold tw-gray-800">Bébés (< 2 ans)</span>
+                              <div class="tw-text-xl tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
+                                <div v-if="reservationForm.passengers.bebes > 0">
+                                <span @click="reservationForm.passengers.bebes--" class="hover:tw-cursor-pointer"><v-icon
+                                  color="red">mdi-minus-circle-outline</v-icon></span>
+                                </div>
+                                <div v-else>
+                                  <span class=""><v-icon color="grey">mdi-minus-circle-outline</v-icon></span>
+                                </div>
+                                <span>{{ reservationForm.passengers.bebes }}</span>
+                                <div
+                                  v-if="reservationForm.passengers.enfants + reservationForm.passengers.bebes < totalChildrens">
+                                <span @click="reservationForm.passengers.bebes++" class="hover:tw-cursor-pointer"><v-icon
+                                  color="red">mdi-plus-circle-outline</v-icon></span>
+                                </div>
+                                <div v-else>
+                                <span class="hover:tw-cursor-pointer"><v-icon
+                                  color="grey">mdi-plus-circle-outline</v-icon></span>
+                                </div>
+                              </div>
+                            </div>
+                            <v-divider></v-divider>
+                            <div class="tw-py-4 tw-flex tw-justify-between tw-gap-12">
+                              <div
+                                class="tw-p-3 tw-gap-2 tw-rounded-lg tw-items-center tw-flex tw-w-full tw-bg-red-200 tw-text-red-600 tw-text-xl tw-font-light">
+                                <v-icon color="red">mdi-alert-octagon-outline</v-icon>
+                                <span>2 enfants maximum par adulte</span>
+                              </div>
+                            </div>
+                          </div>
+                        </v-list-item-title>
+                      </v-list-item>
+                    </v-list>
+                  </v-menu>
+                </v-col>
               </div>
             </div>
+
+            <div v-for="(escale, escale_index) in reservationForm.escales" class="tw-flex tw-items-center">
+              <div class="tw-flex tw-flex-col tw-w-full md:tw-gap-4 md:tw-items-center md:tw-flex-row">
+                <v-col>
+                  <v-row class="tw-relative">
+                    <v-autocomplete append-icon="" background-color="white"
+                                    class="tw-w-1/3 tw-duration-300 focus:tw-outline-none tw-rounded-l-md tw-rounded-r-none placeholder:tw-text-gray-800"
+                                    v-model="escale.airport_depart"
+                                    :items="departs"
+                                    :loading="loadingDeparts"
+                                    clearable
+                                    hide-details
+                                    hide-selected
+                                    item-text="name"
+                                    item-value="_id"
+                                    label="Choisissez l'adresse de départ..." outlined>
+                      <template v-slot:no-data>
+                        <v-list-item>
+                          <v-list-item-title>
+                            Tapez le nom de la ville
+                            <strong>Ville</strong>
+                          </v-list-item-title>
+                        </v-list-item>
+                      </template>
+
+                      <template v-slot:item="{ item }">
+                        <v-list-item-avatar
+                          class="text-h5 font-weight-light white--text"
+                        >
+                          <v-icon>mdi-airplane</v-icon>
+                        </v-list-item-avatar>
+                        <v-list-item-content>
+                          <v-list-item-title v-text="item.name"></v-list-item-title>
+                          <v-list-item-subtitle v-text="item.cn"></v-list-item-subtitle>
+                        </v-list-item-content>
+                      </template>
+                    </v-autocomplete>
+                    <span class="tw-inline-flex tw-items-center tw-justify-center tw-absolute tw-right-[47%] tw-top-3"
+                          style="z-index: 200">
+                    <svg
+                      class="tw-w-6 tw-h-6 tw-bg-white tw-col-span-1 tw-rounded-full tw-border-2 tw-border-red-800 tw-p-1"
+                      fill="none" stroke="red" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                    </svg>
+                    </span>
+                    <v-autocomplete
+                      append-icon=""
+                      background-color="white"
+                      class="tw-w-1/3 focus:tw-outline-none tw-duration-300 placeholder:tw-text-gray-800 tw-rounded-l-none tw-rounded-r-md"
+                      v-model="escale.airport_destination"
+                      :items="destinations"
+                      :loading="loadingDestinations"
+                      clearable
+                      item-text="name"
+                      item-value="_id"
+                      label="Choisissez l'adresse d'arrivée..." outlined>
+                      <!--                  <template v-slot:selection="data">-->
+                      <!--                    <v-chip-->
+                      <!--                      v-bind="data.attrs"-->
+                      <!--                      :input-value="data.selected"-->
+                      <!--                      close-->
+                      <!--                      @click="data.select"-->
+                      <!--                      @click:close="remove(data.item)"-->
+                      <!--                    >-->
+                      <!--                      <v-avatar left>-->
+                      <!--                        <v-icon>mdi-home</v-icon>-->
+                      <!--                      </v-avatar>-->
+                      <!--                      {{ data.item.adresse }}-->
+                      <!--                    </v-chip>-->
+                      <!--                  </template>-->
+                      <!--                  <template v-slot:item="data">-->
+                      <!--                    <template v-if="typeof data.item !== 'object'">-->
+                      <!--                      <v-list-item-content v-text="data.item"></v-list-item-content>-->
+                      <!--                    </template>-->
+                      <!--                    <template v-else>-->
+                      <!--                      <v-list-item-avatar>-->
+                      <!--                        <v-icon>mdi-home</v-icon>-->
+                      <!--                      </v-list-item-avatar>-->
+                      <!--                      <v-list-item-content>-->
+                      <!--                        <v-list-item-title v-html="data.item.adresse"></v-list-item-title>-->
+                      <!--                        <v-list-item-subtitle v-html="data.item.ville?.nom"></v-list-item-subtitle>-->
+                      <!--                      </v-list-item-content>-->
+                      <!--                    </template>-->
+                      <!--                  </template>-->
+                    </v-autocomplete>
+                  </v-row>
+                </v-col>
+                <v-col>
+                  <v-row>
+                    <v-col class="tw-px-0">
+                      <v-menu
+                        ref="escale_depart_menu"
+                        v-model="escale_depart_menu"
+                        :return-value.sync="date"
+                        transition="scale-transition"
+                        offset-y
+                        min-width="auto"
+                      >
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-text-field
+                            v-model="escale.depart_date"
+                            label="Date de départ"
+                            readonly
+                            outlined
+                            v-bind="attrs"
+                            v-on="on"
+                            :class="{'tw-rounded-r-none':reservationForm.typevoyage === 'allerretour'}"
+                          ></v-text-field>
+                        </template>
+                        <v-date-picker
+                          v-model="escale.depart_date"
+                          no-title
+                          scrollable
+                        >
+                        </v-date-picker>
+                      </v-menu>
+                    </v-col>
+                    <v-col v-if="reservationForm.typevoyage === 'allerretour'" class="tw-px-0">
+                      <v-menu
+                        ref="retour_menu"
+                        v-model="retour_menu"
+                        :return-value.sync="date"
+                        transition="scale-transition"
+                        offset-y
+                        min-width="auto"
+                      >
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-text-field
+                            v-model="reservationForm.comeback_date"
+                            label="Date de retour"
+                            readonly
+                            outlined
+                            class="tw-rounded-l-none"
+                            v-bind="attrs"
+                            v-on="on"
+                          ></v-text-field>
+                        </template>
+                        <v-date-picker
+                          v-model="reservationForm.comeback_date"
+                          no-title
+                          scrollable
+                        >
+                        </v-date-picker>
+                      </v-menu>
+                    </v-col>
+                  </v-row>
+                </v-col>
+                <v-col>
+                  <div v-if="escale_index > 0" @click="deleteEscaleById(escale_index)" class="tw-flex tw-items-center tw-gap-2 tw-text-red-600 hover:tw-cursor-pointer">
+                    <svg style="width:20px;height:20px" viewBox="0 0 24 24">
+                      <path fill="currentColor" d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" />
+                    </svg>
+                    <span>Supprimer</span>
+                  </div>
+                </v-col>
+              </div>
+            </div>
+
             <v-dialog
               v-model="userInfoDialog"
               max-width="600px"
@@ -302,7 +470,7 @@
                           label="Nom*"
                           required
                           outlined
-                          v-model="reservationForm[0].lastname"
+                          v-model="reservationForm.lastname"
                         ></v-text-field>
                       </v-col>
                       <v-col
@@ -312,21 +480,21 @@
                         <v-text-field
                           label="Prénoms*"
                           required outlined
-                          v-model="reservationForm[0].firstname"
+                          v-model="reservationForm.firstname"
                         ></v-text-field>
                       </v-col>
 
                       <v-col
                         cols="12"
                       >
-                        <v-text-field placeholder="XXXXXXXX" v-model="reservationForm[0].passport_id" required
+                        <v-text-field placeholder="XXXXXXXX" v-model="reservationForm.passport_id" required
                                       label="Numéro passport*" outlined></v-text-field>
                       </v-col>
 
                       <v-col
                         cols="12"
                       >
-                        <v-text-field type="email" placeholder="ex: hfx@gmail.com" v-model="reservationForm[0].email"
+                        <v-text-field type="email" placeholder="ex: hfx@gmail.com" v-model="reservationForm.email"
                                       required
                                       label="Adresse email*" outlined></v-text-field>
                       </v-col>
@@ -336,7 +504,7 @@
                       >
                         <v-col sm="6">
                           <v-autocomplete
-                            v-model="reservationForm[0].phone_number.code"
+                            v-model="reservationForm.phone_number.code"
                             :items="countries"
                             :loading="isLoading"
                             :search-input.sync="search"
@@ -360,8 +528,8 @@
                           </v-autocomplete>
                         </v-col>
                         <v-col>
-                          <v-text-field v-model="reservationForm[0].phone_number.number" required type="number"
-                                        label="Numéro de télephone" outlined></v-text-field>
+                          <v-text-field v-model="reservationForm.phone_number.number" required type="number"
+                                        label="Numéro de télephone*" outlined></v-text-field>
                         </v-col>
                       </v-row>
                     </v-row>
@@ -432,17 +600,24 @@
             </v-dialog>
           </div>
 
-          <button @click="addOtherDestination()" v-if="reservationForm[0].typevoyage === 'destinationmultiple'" class="tw-flex tw-gap-4 tw-text-red-600 tw-my-2 tw-mb-4">
-            <v-icon color="red">mdi-plus-circle-outline</v-icon>
-            <span>Ajouter un autre vol</span>
-          </button>
 
-          <v-btn
-            :loading="btnLoading"
-            @click="userInfoDialog = true"
-            class="tw-w-[fit-content] tw-rounded-full tw-py-6 tw-px-4 tw-text-white tw-ease-in tw-font-semibold tw-bg-red-600 tw-border-2 tw-border-red-700 tw-duration-300">
-            Demander reservation
-          </v-btn>
+          <div class="tw-flex tw-justify-between">
+            <div v-if="reservationForm.typevoyage === 'destinationmultiple'" @click="reservationForm.escales.push({airport_depart: '', airport_destination: '', depart_date: '',})"
+                 class="tw-flex tw-items-center tw-mb-4 tw-text-sm tw-gap-2 tw-text-red-600 hover:tw-cursor-pointer">
+              <svg style="width:20px;height:20px" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" />
+              </svg>
+              <span class="tw-whitespace-nowrap">Ajouter un autre vol</span>
+            </div>
+            <div class="tw-flex tw-w-full tw-justify-end">
+              <v-btn
+                :loading="btnLoading"
+                @click="userInfoDialog = true"
+                class="tw-w-[fit-content] tw-rounded-full tw-py-6 tw-px-4 tw-text-white tw-ease-in tw-font-semibold tw-bg-red-600 tw-border-2 tw-border-red-700 tw-duration-300">
+                Demander reservation
+              </v-btn>
+            </div>
+          </div>
         </form>
       </div>
       <v-carousel
@@ -462,27 +637,7 @@
 
 
     <!-- Our partners section   -->
-    <div class="tw-mx-auto tw-px-4 tw-my-20">
-      <div class="tw-flex tw-flex-wrap tw-items-center tw-justify-evenly tw-gap-8">
-        <img class="tw-mt-2 tw-h-12 lg:tw-h-16 tw-fill-current" src="../assets/img/IATA.png" alt="IATA">
-
-        <img class="tw-mt-2 tw-h-12 lg:tw-h-16 tw-fill-current"
-             src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Ethiopian_Airlines_Logo.svg/2560px-Ethiopian_Airlines_Logo.svg.png"
-             alt="air-france">
-
-        <img class="tw-mt-2 tw-h-12 lg:tw-h-16 tw-fill-current"
-             src="https://i.pinimg.com/originals/2f/48/a7/2f48a7c799b4995d9578ed9580b40fbe.jpg"
-             alt="air-france">
-
-        <img class="tw-mt-2 tw-h-16 lg:tw-h-20 tw-fill-current"
-             src="https://wallpapercave.com/wp/wp11304533.png"
-             alt="air-france">
-
-        <img class="tw-mt-2 tw-h-24 lg:tw-h-16 tw-fill-current"
-             src="https://www.internationalboost.com/wp-content/uploads/2018/12/logo-air-france.png"
-             alt="air-france">
-      </div>
-    </div>
+     <Partners />
 
     <Cards/>
   </div>
@@ -512,83 +667,72 @@ export default {
       searchDeparts: null,
       searchDestinations: null,
       tab: null,
-      reservationForm: [
-        {
-          typevoyage: 'allerretour',
-          typeclasse: "economic",
-          airport_depart: "",
-          airport_destination: "",
-          depart_date: "",
-          comeback_date: "",
-          lastname: "",
-          firstname: "",
-          email: "",
-          passport_id: "",
-          phone_number: {
-            code: "",
-            number: '',
-          },
-          passengers: {
-            adultes: 1,
-            enfants: 0,
-            bebes: 0,
-          }
-        }
-      ],
+      reservationForm: {
+        aller_simple: true,
+        typevoyage: 'allerretour',
+        typeclasse: "economic",
+        airport_depart: "",
+        airport_destination: "",
+        depart_date: "",
+        comeback_date: "",
+        lastname: "",
+        firstname: "",
+        email: "",
+        passport_id: "",
+        escales: [],
+        phone_number: {
+          code: "",
+          number: '',
+        },
+        passengers: {
+          adultes: 1,
+          enfants: 0,
+          bebes: 0,
+        },
+      },
       value: null,
       date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
       depart_menu: false,
+      escale_depart_menu: false,
       retour_menu: false,
       menu: false,
       isEditing: false,
+      message: "messsss",
     }
   },
+  
   mounted() {
   },
+
   computed: {
     totalPassagers() {
       // cette methode retourne le nombre total de passagers
-      return this.reservationForm[0].passengers.adultes + this.reservationForm[0].passengers.enfants + this.reservationForm[0].passengers.bebes
+      return this.reservationForm.passengers.adultes + this.reservationForm.passengers.enfants + this.reservationForm.passengers.bebes
     },
     totalChildrens() {
-      return this.reservationForm[0].passengers.adultes * 2
+      return this.reservationForm.passengers.adultes * 2
     },
 
-    addMultiDestination() {
-      if (this.reservationForm[0].typevoyage == "destinationmultiple") {
-        this.reservationForm.push({
-          typevoyage: 'destinationmultiple',
-          typeclasse: "economic",
-          airport_depart: "",
-          airport_destination: "",
-          depart_date: "",
-          comeback_date: "",
-          lastname: "",
-          firstname: "",
-          email: "",
-          passport_id: "",
-          phone_number: {
-            code: "",
-            number: '',
-          },
-          passengers: {
-            adultes: 1,
-            enfants: 0,
-            bebes: 0,
-          }
-        })
+    // addEscales(){
+    //   if (this.reservationForm.typevoyage === "destinationmultiple"){
+    //     this.reservationForm.escales.push({
+    //       airport_depart: "",
+    //       airport_destination: "",
+    //       depart_date: "",
+    //     })
+    //   }
+    // },
+
+    deleteEscales(){
+      if (this.reservationForm.typevoyage !== "destinationmultiple"){
+        this.reservationForm.escales = []
       }
     },
-    deleteMultiDestination() {
-      if (this.reservationForm[0].typevoyage !== "destinationmultiple"){
-        const  newarray = []
-        newarray.push(this.reservationForm[0])
-        this.reservationForm = newarray
-      }
-
-    }
   },
   methods: {
+    deleteEscaleById(item){
+      this.reservationForm.escales.splice(item,1)
+    },
     async reservation() {
       await axios.post('/reservation-vol/request-flight-reservation', this.reservationForm).then((response) => {
         if (response.data.error) {
@@ -603,6 +747,7 @@ export default {
         this.userInfoDialog = false
         this.disclaimerDialog = false
         this.reservationForm = {
+          aller_simple: true,
           typevoyage: 'allerretour',
           typeclasse: "economic",
           airport_depart: "",
@@ -630,31 +775,7 @@ export default {
         this.disclaimerDialog = false
         this.showToast('error', "Une erreur s'est produite")
       });
-    },
-
-    addOtherDestination(){
-      this.reservationForm.push({
-        typevoyage: 'destinationmultiple',
-        typeclasse: "economic",
-        airport_depart: "",
-        airport_destination: "",
-        depart_date: "",
-        comeback_date: "",
-        lastname: "",
-        firstname: "",
-        email: "",
-        passport_id: "",
-        phone_number: {
-          code: "",
-          number: '',
-        },
-        passengers: {
-          adultes: 1,
-          enfants: 0,
-          bebes: 0,
-        }
-      })
-    },
+    }
   },
   watch: {
     model(val) {
@@ -691,6 +812,24 @@ export default {
         })
         .finally(() => (this.loadingDestinations = false))
     },
+
+    // reservationForm: {
+    //   handler(newValue, oldValue) {
+    //     // console.log(newValue, oldValue);
+    //     if (this.reservationForm.typevoyage === "destinationmultiple"){
+    //       this.reservationForm.escales.push({
+    //         airport_arrive: "",
+    //         airport_departure: "",
+    //         date_departure: "",
+    //       })
+    //
+    //       console.log(this.reservationForm.escales)
+    //
+    //     }
+    //
+    //   },
+    //   deep: true,
+    // },
   },
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="banner tw-bg-green-500 tw-bg-black tw-bg-cover tw-bg-center tw-opacity-50 tw-p-12">
+    <div class="banner tw-bg-green-500 tw-bg-black tw-bg-cover tw-bg-center tw-p-12">
       <div class="tw-flex tw-items-center tw-justify-center tw-h-full">
         <h1
           class="tw-justify-center tw-py-12 tw-text-center tw-text-white tw-font-fond tw-text-2xl md:tw-text-4xl lg:tw-text-5xl tw-uppercase tw-font-extrabold tw-text-red-700 tw-mb-4 tw-uppercase">
@@ -26,7 +26,7 @@
 <v-card class="tw-px-4 tw-shadow-lg tw-relative tw-pb-8">
  <v-container fluid>
  <div class="tw-grid md:tw-grid-cols-2">
-  <img class="tw-h-full tw-w-1/2 tw-bg-cover tw-bg-center tw-rounded-lg"
+  <img class="tw-h-full tw-w-full tw-bg-cover tw-bg-center tw-rounded-lg"
                    src="https://images.unsplash.com/photo-1573132223210-d65883b944aa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1494&q=80"
                    alt="">
   <v-form
@@ -119,7 +119,7 @@ export default {
   background-image: url(https://images.unsplash.com/photo-1573132223210-d65883b944aa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1494&q=80);
   background-color: #000;
   background-size: center;
-  opacity: 0.9;
+  opacity: 1;
   height: 30vh;
 }
 
