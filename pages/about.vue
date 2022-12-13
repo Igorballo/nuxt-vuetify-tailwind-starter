@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="banner tw-bg-green-500 tw-bg-black tw-bg-cover tw-bg-center tw-opacity-50 tw-p-12">
+    <div class="banner tw-bg-green-500 tw-bg-black tw-bg-cover tw-bg-center tw-p-12">
       <div class="tw-flex tw-items-center tw-justify-center tw-h-full">
         <h1
-          class="tw-justify-center tw-py-12 tw-text-center tw-text-white tw-font-fond tw-text-2xl md:tw-text-4xl lg:tw-text-5xl tw-uppercase tw-font-extrabold tw-text-red-700 tw-italic tw-mb-4 tw-uppercase">
+          class="tw-justify-center tw-py-12 tw-text-center tw-text-white tw-font-fond tw-text-2xl md:tw-text-4xl lg:tw-text-5xl tw-uppercase tw-font-extrabold tw-text-red-700 tw-mb-4 tw-uppercase">
           A propos</h1>
 
       </div>
@@ -101,26 +101,26 @@
       </div>
     </div>
 
-    <div class="tw-px-8  tw-py-8 tw-text-white tw-h-[50vh] tw-bg-blue-800 tw-shadow-lg tw-text-center tw-pt-12 tw-mx-auto tw-my-20">
+    <div class="tw-px-8  tw-py-8 tw-text-white tw-h-[30vh] tw-bg-blue-800 tw-shadow-lg tw-text-center tw-pt-12 tw-mx-auto tw-my-20">
       
    <div
-          class="tw-flex lg:tw-flex-row tw-flex-col tw-mt-2 tw-text-gray-900 tw-gap-12 tw-justify-center">
-          <p to="/" class="tw-text-3xl tw-flex tw-flex-col tw-text-white tw-cursor-pointer">
+          class="tw-flex lg:tw-flex-row tw-flex-col tw-mt-2 tw-text-gray-900 tw-gap-4 tw-justify-center">
+          <p to="/" class="tw-text-2xl tw-flex tw-flex-col tw-text-white tw-cursor-pointer">
             <i>250</i> 
             <strong> Agences </strong>
           </p>
-          <p to="/hotel" class="tw-text-3xl tw-flex tw-flex-col tw-text-white tw-cursor-pointer"> 
+          <p to="/hotel" class="tw-text-2xl tw-flex tw-flex-col tw-text-white tw-cursor-pointer"> 
            
 
             <i>50</i> 
             <strong>  Pays </strong>
           
           </p>
-          <p to="/car-location" class="tw-text-3xl tw-flex tw-flex-col tw-text-white tw-cursor-pointer">
+          <p to="/car-location" class="tw-text-2xl tw-flex tw-flex-col tw-text-white tw-cursor-pointer">
             <i>25</i> 
             <strong>  Année d'experience </strong> 
           </p>
-          <p to="/tourisme" class="tw-text-3xl tw-flex tw-flex-col tw-text-white tw-cursor-pointer"> 
+          <p to="/tourisme" class="tw-text-2xl tw-flex tw-flex-col tw-text-white tw-cursor-pointer"> 
             
             <i>4500</i> 
             <strong>  Clients </strong> 
@@ -149,7 +149,7 @@ export default {
   background-color: #000;
   background-size: center;
   height: 30vh;
-  opacity: 0.9;
+  opacity: 1;
 }
 
 </style>

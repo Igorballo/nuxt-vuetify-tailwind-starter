@@ -90,8 +90,13 @@ export default {
       },
       {
         to: '/admin/utilisateur',
-        icon: 'mdi-view-dashboard',
+        icon: 'mdi-account',
         text: 'Utilisateur',
+      },
+       {
+        to: '/admin/contact',
+        icon: 'mdi-message',
+        text: 'Message',
       },
 
     ],

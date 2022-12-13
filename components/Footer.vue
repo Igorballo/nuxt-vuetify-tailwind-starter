@@ -71,12 +71,14 @@
         <ul
           class="tw-flex lg:tw-flex-row tw-flex-col tw-mt-4 tw-text-base tw-text-gray-300 tw-gap-8 tw-justify-center"
           style="list-style-type: none">
-          <li to="/" class="hover:tw-opacity-75 tw-text-white tw-cursor-pointer"> Reservation de Ticket</li>
-          <li to="/hotel" class="hover:tw-opacity-75 tw-text-white tw-cursor-pointer"> Hébergements</li>
-          <li to="/car-location" class="hover:tw-opacity-75 tw-text-white tw-cursor-pointer"> Location de voitures
+          <li class="hover:tw-opacity-75 tw-text-white tw-cursor-pointer" @click="$router.push('/')">
+            Reservation de Ticket
           </li>
-          <li to="/tourisme" class="hover:tw-opacity-75 tw-text-white tw-cursor-pointer"> Tourisme</li>
-          <li to="/" class="hover:tw-opacity-75 tw-text-white tw-cursor-pointer"> Visa & Assurance</li>
+          <li class="hover:tw-opacity-75 tw-text-white tw-cursor-pointer" @click="$router.push('/hotel')"> Hébergements</li>
+          <li class="hover:tw-opacity-75 tw-text-white tw-cursor-pointer"  @click="$router.push('/car-location')"> Location de voitures
+          </li>
+          <li  class="hover:tw-opacity-75 tw-text-white tw-cursor-pointer"  @click="$router.push('/tourisme')"> Tourisme</li>
+          <li class="hover:tw-opacity-75 tw-text-white tw-cursor-pointer"  @click="$router.push('/visa-assurance')"> Visa & Assurance</li>
         </ul>
 
 
@@ -86,7 +88,7 @@
         <p class="tw-px-4 tw-py-4 lg:tw-text-center tw-font-bold tw-text-white tw-text-sm tw-text-center lg:tw-text-lg tw-mb-0">
           Copyright © Manglam 2022.
           Designed by
-          <a href="https://mekengroup.com/" class="text-md" target="_blank" rel="noopener noreferrer">MEG</a>
+          <a href="https://mekengroup.com/" class="tw-text-md tw-text-blue-600 " target="_blank" rel="noopener noreferrer">MEG</a>
         </p>
 
       </div>

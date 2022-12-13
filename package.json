@@ -48,6 +48,7 @@
     "vue-apexcharts": "^1.6.0",
     "vue-awesome-swiper": "^5.0.1",
     "vue-c3": "^1.2.11",
+    "vue-carousel": "^0.18.0",
     "vue-chartist": "^2.3.1",
     "vue-chartjs": "^3.5.1",
     "vue-count-to": "^1.0.13",
