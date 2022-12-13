@@ -137,7 +137,7 @@
             <v-btn small @click="dialogAddOffre = true" color="primary">Ajouter des offres</v-btn>
           </v-card-title>
           <v-card-text class="tw-px-4 tw-flex tw-flex-col tw-gap-4">
-            <v-container v-if="offres.length === 0" color="grey" class="tw-bg-gray-50 tw-text-lg">Aucune offre n'est
+            <v-container v-if="offres.length == 0" color="grey" class="tw-bg-gray-50 tw-text-lg">Aucune offre n'est
               proposée pour le moment
             </v-container>
             <v-container>
