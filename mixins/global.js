@@ -14,6 +14,9 @@ export default {
     // })
   },
   methods: {
+    disablePastDates(val) {
+      return val > new Date().toISOString().substr(0, 10)
+    },
     showToast(type, message){
       const Toast = Swal.mixin({
         toast: true,
