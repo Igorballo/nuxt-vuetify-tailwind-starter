@@ -32,7 +32,7 @@
                 <v-select
                   v-model="reservationForm.typeclasse"
                   :items="type_classe"
-                  class="tw-w-">
+                  class="">
                 </v-select>
               </v-col>
             </div>
@@ -779,7 +779,7 @@ export default {
       reservationForm: {
         aller_simple: true,
         typevoyage: 'allerretour',
-        typeclasse: "economic",
+        typeclasse: "Classe économique",
         airport_depart: "",
         airport_destination: "",
         depart_date: "",
@@ -862,7 +862,7 @@ export default {
         this.reservationForm = {
           aller_simple: true,
           typevoyage: 'allerretour',
-          typeclasse: "economic",
+          typeclasse: "Classe économique",
           airport_depart: "",
           airport_destination: "",
           depart_date: "",
