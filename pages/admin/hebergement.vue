@@ -28,8 +28,50 @@
                   <v-form ref="formBus" v-model="formHotel">
                     <div class="">
 
-                         <v-text-field :rules="nomRules" outlined required label="Nom de l'Hôtel" placeholder="Nom de l'Hôtel" v-model="form.name"></v-text-field>
-                          <v-file-input  outlined required label="Photos" placeholder="Les Photos de l'Hôtel" multiple></v-file-input>
+                         <v-text-field :rules="nomRules" outlined required label="Nom de l'Hôtel" placeholder="Nom de l'Hôtel" v-model="form.nom"></v-text-field>
+                         <v-text-field :rules="adresseRules" outlined required label="Adresse" placeholder="Adresse de l'Hôtel" v-model="form.adresse"></v-text-field>
+                         <v-text-field :rules="villeRules" outlined required label="Ville" placeholder="Ville de l'Hôtel" v-model="form.ville"></v-text-field>
+                         <v-text-field :rules="prixRules" outlined required label="Prix" placeholder="Le prix de l'Hôtel " v-model="form.prix"></v-text-field>
+                         <v-textarea :rules="descriptionRules" outlined required label="Description" placeholder="Description" v-model="form.description"></v-textarea>
+                         <v-text-field :rules="nombreEtoileRules" outlined required label="Le Nombre d'Etoile" placeholder="Le nombre d'Etoile" v-model="form.nombre_etoile"></v-text-field>
+                         <input outlined label="Photos" placeholder="Les Photos de l'Hôtel" multiple  @change="handleUploadChange" id="images-upload" type="file" accept="image/*" style="display:none" multiple hidden />
+                         <div class="tw-my-4 tw-flex tw-justify-center tw-h-[fit-content] tw-border tw-rounded tw-bg-white">
+            <div @click="triggerUpload" class="tw-w-full tw-bg-slate-100 tw-mx-1 tw-my-1 tw-rounded-md">
+              <div v-if="media.length === 0" class="tw-grid tw-justify-items-center tw-py-2 tw-my-2 hover:tw-cursor-pointer">
+                <div class="tw-bg-slate-200 tw-py-2 tw-rounded-full tw-px-2">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                    />
+                  </svg>
+                </div>
+                <p class="tw-text-md tw-font-weight">
+                  Ajouter des photos ou vidéos
+                </p>
+                <p class="tw-text-sm">
+                  ou faites glisser-deposer
+                </p>
+              </div>
+
+              <div class="tw-flex tw-gap-2 tw-flex-wrap tw-p-4" v-else>
+                <div class="tw-relative tw-p-2 tw-rounded-md tw-border tw-bg-white" v-for="(image, index) in media">
+                  <span @click.stop="removeImageUploaded(index)" class="tw-absolute tw-cursor-pointer tw-shadow-md tw-right-4 hover:tw-bg-red-700 tw-top-4 tw-rounded-full tw-bg-red-500 tw-text-white tw-text-sm tw-h-6 tw-w-6 tw-text-center">
+                    x
+                  </span>
+                  <img class="tw-w-32 tw-h-32 tw-rounded-lg" :src="image.url">
+                </div>
+              </div>
+            </div>
+          </div>
                         </div>
 
                         
@@ -108,25 +150,70 @@ export default {
         v => !!v || 'Nom de l\'Hôtel est requis',
         /* v => (v && v.length <= 10) || 'Name must be less than 10 characters', */
       ],
+      villeRules: [
+        v => !!v || 'Ville est requis',
+        /* v => (v && v.length <= 10) || 'Name must be less than 10 characters', */
+      ],
+      adresseRules: [
+        v => !!v || 'Adresse est requis',
+        /* v => (v && v.length <= 10) || 'Name must be less than 10 characters', */
+      ],
+      prixRules: [
+        v => !!v || 'Le prix est requis',
+        /* v => (v && v.length <= 10) || 'Name must be less than 10 characters', */
+      ],
+      descriptionRules: [
+        v => !!v || 'Description est requis',
+        /* v => (v && v.length <= 10) || 'Name must be less than 10 characters', */
+      ],
+      nombreEtoileRules: [
+        v => !!v || 'Nombre d\'Etoile est requis',
+        /* v => (v && v.length <= 10) || 'Name must be less than 10 characters', */
+      ],
      
      dialog: false,
     form: {
-     name: "",
-     photo: ""
+     nom: "",
+     ville: "",
+     prix: "",
+     description: "",
+     nombre_etoile: "",
+     media: ""
     },
     formHotel: false,
     dialogDelete: false,
     hotels: [],
+    media: [],
     headers: [
        {
         text: 'Photo',
-        value: 'photo'
+        value: 'media'
       },
       {
         text: 'Nom de l\'Hôtel',
         align: 'start',
         sortable: false,
         value: 'name',
+      },
+      {
+        text: 'Ville',
+        value: 'ville'
+      },
+       {
+        text: 'Adresse',
+        value: 'adresse'
+      },
+      {
+        text: 'Prix',
+        value: 'prix'
+      },
+      {
+        text: 'Nombre d\'Etoile ',
+        value: 'etoile'
+      },
+      {
+        text: 'Description',
+        value: 'description'
       },
      
      
@@ -164,8 +251,12 @@ export default {
 
       this.dialog = true
       this.form = {
-         name: "",
-         photo: ""
+          nom: "",
+          ville: "",
+          prix: "",
+          description: "",
+          nombre_etoile: "",
+          media: ""
       }
     },
      getHotel() {
@@ -221,9 +312,11 @@ export default {
       this.list[index] = !this.list[index];
     },
       save() {
-      this.btnloading = true
+    
       if (this.$refs.formBus.validate()) {
-        axios.post(`/hotel`, this.form)
+        this.btnloading = true
+        this.form.medias = this.media
+        axios.post(`/hotels/save-hotel`, this.form)
           .then(response => {
             console.log(response);
             if (response.data.error) {
@@ -239,11 +332,12 @@ export default {
             this.dialog = false
             this.initialize()
             this.form = {
-              name: "",
-              email: "",
-              phone: "",
-              password: "",
-              role: ""
+              nom: "",
+              ville: "",
+              prix: "",
+              description: "",
+              nombre_etoile: "",
+              photo: ""
             }
           }).catch(error => {
             this.btnloading = false
@@ -254,8 +348,31 @@ export default {
 
 
     },
+ triggerUpload(){
+      let inputImage = document.getElementById("images-upload")
+      inputImage.click()
+    },
+    removeImageUploaded(index){
+      this.media.splice(index, 1)
+    },
+  async handleUploadChange($event){
+      let files = $event.target.files
+      for(var i=0; i < files.length; i++){
+        let formData = new FormData
+        let url = URL.createObjectURL(files[i])
+        formData.set('image', files[i])
+
+        let mediadata = {url:url, size:files[i].size, type:files[i].type, file: files[i]};
+        console.log(mediadata)
+
+        this.media.push(mediadata);
+       
+      }
+    },
 
   },
+
+
 };
 </script>
 
