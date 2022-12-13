@@ -1,6 +1,6 @@
 <template>
-  <div class="tw-bg-gray-200 tw-p-12">
-    <div class="tw-container tw-mx-auto md:tw-flex tw-gap-12 tw-w-full">
+  <div class="tw-bg-gray-200 tw-p-4 md:tw-p-12">
+    <div class="tw-container tw-mx-auto md:tw-flex md:tw-gap-12 tw-w-full">
       <div class="tw-hidden lg:tw-block tw-w-1/3 tw-h-screen">
         <div class="tw-bg-white tw-text-sm">
           <div class="tw-font-semibold tw-text-lg tw-py-4 tw-pl-6 tw-bg-gray-100 tw-border-b">Résumé du trajet</div>
@@ -38,14 +38,14 @@
           </div>
         </div>
       </div>
-      <div class="tw-w-full tw-h-full tw-flex tw-flex-col tw-gap-8 tw-px-4">
+      <div class="tw-w-full tw-h-full tw-flex tw-flex-col tw-gap-8">
 
-        <div v-for="i in 2" class="tw-bg-blue-600 tw-pt-8 tw-p-2 tw-rounded-lg">
+        <div v-for="i in 2" class="tw-bg-blue-800 tw-pt-8 tw-p-2 tw-rounded-lg tw-w-full">
           <div class="tw-bg-white tw-px-4">
             <div class="tw-text-xl tw-font-semibold tw-py-3 tw-border-b">Minivan 7 places | <span class="tw-font-light">ou son équivalent</span></div>
-            <div class="tw-py-4 tw-flex tw-gap-12 tw-text-sm">
-              <div class="tw-flex tw-flex-col tw-gap-6">
-                <img class="tw-h-44 tw-w-64"
+            <div class="tw-py-4 tw-flex tw-flex-wrap md:tw-flex-nowrap tw-gap-4 md:tw-gap-12 tw-text-sm">
+              <div class="tw-flex tw-flex-col tw-gap-2 md:tw-gap-6 tw-w-full">
+                <img class="tw-h-44 tw-w-full md:tw-w-64"
                      src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
                      alt="voiture">
                 <div class="tw-flex tw-justify-between tw-font-semibold">
@@ -85,7 +85,7 @@
                   </div>
                 </div>
               </div>
-              <div class="tw-flex tw-flex-col tw-text-sm">
+              <div class="tw-flex tw-flex-col tw-w-full tw-text-sm">
                 <div class="tw-inline-flex tw-gap-4 tw-items-start">
                   <v-icon>mdi-airplane</v-icon>
                   <span>Lieu De Prise En Charge : <br> <p class="tw-font-semibold">Au Terminal</p> </span>
@@ -99,9 +99,9 @@
                   <span>Killométrage : <br> <p class="tw-font-semibold">Illimité</p> </span>
                 </div>
               </div>
-              <div class="tw-gap-8 tw-flex tw-flex-col">
+              <div class="tw-gap-4 md:tw-gap-8 tw-flex tw-flex-col">
                 <div class="tw-flex tw-flex-col tw-gap-4">
-                  <div class="tw-inline-flex tw-gap-4">
+                  <div class="tw-inline-flex tw-gap-2">
                     <img class="tw-h-4 tw-w-4" src="../assets/svg/right.svg">
                     <span class="">Assurance dommage en cas de collision</span>
                   </div>
@@ -120,8 +120,8 @@
                 </div>
 
                 <div class="tw-flex tw-flex-col tw-gap-4">
-                  <div class="tw-text-lg"><span class="tw-text-3xl tw-font-bold">6500 XOF/JOUR</span> <br> Pour 8 jours</div>
-                  <button class="tw-py-3 tw-px-12 tw-text-white tw-text-xl tw-font-semibold tw-rounded-lg tw-bg-blue-800">Reservez</button>
+                  <div class="tw-text-lg"><span class="tw-text-2xl tw-font-extrabold">6500 XOF/JOUR</span> <br> Pour 8 jours</div>
+                  <button class="tw-py-3 tw-px-12 tw-text-white tw-text-xl tw-font-semibold tw-rounded-lg tw-bg-red-600">Reservez</button>
                 </div>
               </div>
             </div>

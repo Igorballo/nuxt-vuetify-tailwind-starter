@@ -95,38 +95,12 @@
                       v-model="reservationForm.airport_destination"
                       :items="destinations"
                       :loading="loadingDestinations"
-                      :filter="customFilter"
                       :search-input.sync="searchDestinations"
                       clearable
                       item-text="name"
                       item-value="_id"
-                      hide-details
-                      hide-selected
                       label="Choisissez l'adresse d'arrivée..." outlined>
-                      <template v-slot:no-data>
-                        <v-list-item>
-                          <v-list-item-title>
-                            Tapez le nom d'une ville ou pays ou Code Iata
-                          </v-list-item-title>
-                        </v-list-item>
-                      </template>
 
-                      <template v-slot:item="{ item }">
-                        <v-list-item-avatar
-                          class="text-h5 font-weight-light white--text"
-                        >
-                          <v-icon>mdi-airplane</v-icon>
-                        </v-list-item-avatar>
-                        <v-list-item-content>
-                          <v-list-item-title v-text="item.name"></v-list-item-title>
-                          <v-list-item-subtitle>
-                            <v-row justify="between">
-                              <v-col><span>{{item.country}}, {{item.city}}</span></v-col>
-                              <v-col cols="3"><v-chip small>{{item.iata_code}}</v-chip></v-col>
-                            </v-row>
-                          </v-list-item-subtitle>
-                        </v-list-item-content>
-                      </template>
                     </v-autocomplete>
                   </v-row>
                 </v-col>
@@ -306,17 +280,58 @@
               <div class="tw-flex tw-flex-col tw-w-full md:tw-gap-4 md:tw-items-center md:tw-flex-row">
                 <v-col>
                   <v-row class="tw-relative">
+                    <v-autocomplete append-icon="" background-color="white"
+                                    class="tw-w-1/3 tw-duration-300 focus:tw-outline-none tw-rounded-l-md tw-rounded-r-none placeholder:tw-text-gray-800"
+                                    v-model="escale.airport_depart"
+                                    :items="departs"
+                                    :loading="e_loadingDeparts"
+                                    clearable
+                                    hide-details
+                                    hide-selected
+                                    item-text="name"
+                                    item-value="_id"
+                                    label="Choisissez l'adresse de départ..." outlined>
+                      <template v-slot:no-data>
+                        <v-list-item>
+                          <v-list-item-title>
+                            Tapez le nom de la ville
+                            <strong>Ville</strong>
+                          </v-list-item-title>
+                        </v-list-item>
+                      </template>
+
+                      <template v-slot:item="{ item }">
+                        <v-list-item-avatar
+                          class="text-h5 font-weight-light white--text"
+                        >
+                          <v-icon>mdi-airplane</v-icon>
+                        </v-list-item-avatar>
+                        <v-list-item-content>
+                          <v-list-item-title v-text="item.name"></v-list-item-title>
+                          <v-list-item-subtitle v-text="item.cn"></v-list-item-subtitle>
+                        </v-list-item-content>
+                      </template>
+                    </v-autocomplete>
+                    <span class="tw-inline-flex tw-items-center tw-justify-center tw-absolute tw-right-[47%] tw-top-3"
+                          style="z-index: 200">
+                    <svg
+                      class="tw-w-6 tw-h-6 tw-bg-white tw-col-span-1 tw-rounded-full tw-border-2 tw-border-red-800 tw-p-1"
+                      fill="none" stroke="red" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                    </svg>
+                    </span>
                     <v-autocomplete
                       append-icon=""
                       background-color="white"
-                      class="tw-w-1/3 focus:tw-outline-none tw-duration-300 placeholder:tw-text-gray-800 tw-rounded-md"
+                      class="tw-w-1/3 focus:tw-outline-none tw-duration-300 placeholder:tw-text-gray-800 tw-rounded-l-none tw-rounded-r-md"
                       v-model="escale.airport_destination"
-                      :items="e_destinations"
+                      :items="destinations"
                       :loading="loadingDestinations"
                       clearable
                       item-text="name"
                       item-value="_id"
-                      label="Prochaine destination..." outlined>
+                      label="Choisissez l'adresse d'arrivée..." outlined>
                       <!--                  <template v-slot:selection="data">-->
                       <!--                    <v-chip-->
                       <!--                      v-bind="data.attrs"-->
@@ -574,7 +589,7 @@
           <div class="tw-flex tw-justify-between">
             <div v-if="reservationForm.typevoyage === 'destinationmultiple'"
                  @click="reservationForm.escales.push({airport_depart: '', airport_destination: '', depart_date: '',})"
-                 class="tw-hidden md:tw-flex tw-items-center tw-mb-4 tw-text-sm tw-gap-2 tw-text-red-600 hover:tw-cursor-pointer">
+                 class="tw-flex tw-items-center tw-mb-4 tw-text-sm tw-gap-2 tw-text-red-600 hover:tw-cursor-pointer">
               <svg style="width:20px;height:20px" viewBox="0 0 24 24">
                 <path fill="currentColor"
                       d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z"/>
@@ -594,7 +609,8 @@
       </div>
       <v-carousel
         cycle
-        :height="reservationForm.typevoyage === 'destinationmultiple' ? '800px': '600px'"
+        height="700px"
+        :height="reservationForm.typevoyage === 'destinationmultiple' ? '800px': '500px'"
         hide-delimiter-background
         show-arrows-on-hover
       >
