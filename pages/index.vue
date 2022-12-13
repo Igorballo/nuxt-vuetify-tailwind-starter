@@ -140,6 +140,7 @@
                         <v-date-picker
                           v-model="reservationForm.depart_date"
                           no-title
+                          :allowed-dates="disablePastDates"
                           scrollable
                         >
                         </v-date-picker>
@@ -170,6 +171,7 @@
                         <v-date-picker
                           v-model="reservationForm.comeback_date"
                           no-title
+                          :allowed-dates="disablePastDates"
                           scrollable
                         >
                         </v-date-picker>
