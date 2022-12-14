@@ -1,13 +1,19 @@
 <template>
-  <div class="tw-bg-gray-200 tw-p-4 md:px-0 md:tw-py-12">
+  <div class="tw-bg-gray-200 tw-p-4 md:tw-px-0 md:tw-py-12">
     <div class="tw-relative tw-container tw-mx-auto md:tw-px-4 md:tw-flex md:tw-gap-8 tw-w-full">
       <div class="tw-hidden md:tw-sticky md:tw-top-24 lg:tw-block tw-w-1/3 tw-h-screen">
-        <div class="tw-bg-white tw-text-sm">
+        <v-form class="tw-bg-white tw-text-sm"
+          ref="form"
+          v-model="valid"
+          lazy-validation>
           <div class="tw-font-semibold tw-text-lg tw-py-4 tw-pl-6 tw-bg-gray-100 tw-border-b">Résumé du trajet</div>
-          <hotelReservationForm class="tw-p-4 xl:tw-p-6 tw-bg-white tw-flex tw-flex-col tw-gap-2">
+          <hotelReservationForm class="tw-p-6 tw-bg-white tw-flex tw-flex-col tw-gap-2"
+          >
+
             <v-text-field
               label="Ex: pays, ville, quartier ou site d'intérêt"
               outlined
+              :rules="villeRules"
               v-model="hotelReservationForm.adresse"
             ></v-text-field>
             <v-menu
@@ -22,6 +28,7 @@
                 <v-text-field
                   v-model="hotelReservationForm.date_arrive"
                   label="Date d'arrivée"
+                  :rules="dateArriveRules"
                   readonly
                   v-bind="attrs"
                   v-on="on"
@@ -45,6 +52,7 @@
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
                   v-model="hotelReservationForm.date_depart"
+                  :rules="dateDepartRules"
                   label="Date départ"
                   readonly
                   v-bind="attrs"
@@ -70,6 +78,7 @@
                               v-bind="attrs"
                               v-on="on"
                               label="Nombre de passagers"
+                              :rules="passengerRules"
                               outlined
                               height="55"
                               v-model="totalPassagers"
@@ -154,6 +163,7 @@
                 v-model="hotelReservationForm.prix.lowPrice"
                 :items="lowPrice"
                 outlined
+                :rules="lowPrixRules"
                 label="Plus bas prix"
               >
                 <template v-slot:selection="{ item, index }">
@@ -166,6 +176,7 @@
               <v-select
                 v-model="hotelReservationForm.prix.highPrice"
                 :items="highPrice"
+                :rules="highPrixRules"
                 outlined
                 label="Plus haut prix"
               >
@@ -176,10 +187,10 @@
                 </template>
               </v-select>
             </div>
-            <button class="tw-text-white tw-bg-red-600 tw-font-semibold tw-rounded-lg tw-py-2 tw-px-6">Rechercher
-            </button>
+            <v-btn class="tw-text-white tw-bg-red-600 tw-font-semibold tw-rounded-lg tw-py-2 tw-px-6"  @click="validate">Rechercher
+            </v-btn>
           </hotelReservationForm>
-        </div>
+        </v-form>
       </div>
 
       <div class="tw-flex tw-flex-col tw-w-full tw-gap-4">
@@ -275,6 +286,21 @@ export default {
 
   data() {
     return {
+      villeRules: [
+        v => !!v || 'ce champs est obligatoire',
+      ],
+      dateArriveRules: [
+        v => !!v || 'ce champs est obligatoire',
+      ],
+      dateDepartRules: [
+        v => !!v || 'ce champs est obligatoire',
+      ],
+      lowPrixRules: [
+        v => !!v || 'ce champs est obligatoire',
+      ],
+      highPrixRules: [
+        v => !!v || 'ce champs est obligatoire',
+      ],
       date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
       menu: false,
       modal: false,
@@ -306,6 +332,13 @@ export default {
     totalPassagers() {
       // cette methode retourne le nombre total de passagers
       return this.hotelReservationForm.passengers.adultes + this.hotelReservationForm.passengers.enfants + this.hotelReservationForm.passengers.bebes
+    },
+
+  },
+
+  methods: {
+    validate() {
+      this.$refs.form.validate()
     },
 
   },
