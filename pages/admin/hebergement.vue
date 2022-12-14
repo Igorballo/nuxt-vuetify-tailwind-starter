@@ -178,12 +178,12 @@ export default {
      prix: "",
      description: "",
      nombre_etoile: "",
-     media: ""
+     medias: ""
     },
     formHotel: false,
     dialogDelete: false,
     hotels: [],
-    media: [],
+    medias: [],
     headers: [
        {
         text: 'Photo',
@@ -256,7 +256,7 @@ export default {
           prix: "",
           description: "",
           nombre_etoile: "",
-          media: ""
+          medias: ""
       }
     },
      getHotel() {

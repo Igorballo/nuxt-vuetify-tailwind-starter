@@ -3,7 +3,11 @@
     <div class="tw-relative">
       <div style="z-index: 500"
            class="tw-flex tw-justify-center tw-items-center tw-absolute tw-inset-0">
-        <form class="tw-flex tw-flex-col tw-rounded-lg tw-bg-white tw-shadow-md tw-p-4 md:tw-p-6 tw-w-[90%] md:tw-w-[75%]">
+        <v-form 
+          ref="form"
+          v-model="valid"
+          lazy-validation
+          class="tw-flex tw-flex-col tw-rounded-lg tw-bg-white tw-shadow-md tw-p-4 md:tw-p-6 tw-w-[90%] md:tw-w-[75%]">
           <v-checkbox
             v-model="carReservationForm.autre_lieu_restitution"
             label="Lieu de restitution différent"
@@ -14,12 +18,14 @@
               label="Lieu de prise en charge"
               outlined
               v-model="carReservationForm.lieu_prise_en_charge"
+              :rules="lieuPriseEnChargeRules"
             ></v-text-field>
             <v-text-field
               label="Lieu de restitution"
               outlined
               v-if="carReservationForm.autre_lieu_restitution"
               v-model="carReservationForm.lieu_de_restitution"
+              :rules="lieuRestitutionRules"
             ></v-text-field>
           </div>
           <div class="tw-flex tw-items-center tw-gap-6">
@@ -42,6 +48,7 @@
                       v-bind="attrs"
                       v-on="on"
                       class="tw-rounded-r-none"
+                      :rules="dateDepartRules"
                     ></v-text-field>
                   </template>
                   <v-date-picker
@@ -73,6 +80,7 @@
                       v-on="on"
                       outlined
                       class="tw-rounded-l-none"
+                      :rules="heureDepartRules"
                     ></v-text-field>
                   </template>
                   <v-time-picker
@@ -103,6 +111,7 @@
                       v-bind="attrs"
                       v-on="on"
                       class="tw-rounded-r-none"
+                      :rules="dateFinRules"
                     ></v-text-field>
                   </template>
                   <v-date-picker
@@ -130,6 +139,7 @@
                       v-model="carReservationForm.heure_fin"
                       label="Heure de restitution"
                       class="tw-rounded-l-none"
+                      :rules="heureFinRules"
                       readonly
                       v-bind="attrs"
                       v-on="on"
@@ -147,11 +157,11 @@
             </div>
           </div>
 
-          <v-btn @click="$router.push('/filter-car')"
+          <v-btn @click="validate"
             class="tw-w-[fit-content] tw-rounded-full tw-py-6 tw-px-4 tw-text-white tw-ease-in tw-font-semibold tw-bg-red-600 tw-border-2 tw-border-red-700 tw-duration-300">
             Rechercher des voitures
           </v-btn>
-        </form>
+        </v-form>
       </div>
       <v-carousel
         cycle
@@ -183,6 +193,24 @@ export default {
 
   data() {
     return {
+      lieuPriseEnChargeRules: [
+        v => !!v || 'ce champs est obligatoire',
+      ],
+      lieuRestitutionRules: [
+        v => !!v || 'ce champs est obligatoire',
+      ],
+      heureDepartRules: [
+        v => !!v || 'ce champs est obligatoire',
+      ],
+      dateDepartRules: [
+        v => !!v || 'ce champs est obligatoire',
+      ],
+      dateFinRules: [
+        v => !!v || 'ce champs est obligatoire',
+      ],
+      heureFinRules: [
+        v => !!v || 'ce champs est obligatoire',
+      ],
       items: [
         'https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
       'https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
@@ -221,6 +249,11 @@ export default {
   },
 
   methods: {
+     validate () {
+        if(this.$refs.form.validate()) {
+          this.$router.push('/filter')
+        }  
+      },
     async reservation() {
       this.btnLoading = true
       this.$refs.form.validate()
