@@ -2,7 +2,7 @@
   <v-app>
     <div class="tw-flex tw-items-center tw-px-4 lg:tw-px-12 tw-py-2 tw-justify-between tw-w-full tw-bg-white">
       <!--      Manglam Logo-->
-      <img class="tw-h-full tw-h-12 tw-w-12" src="../assets/img/logo.png" alt="Manglam-logo">
+      <img class="tw-h-full tw-h-12 tw-w-44" src="../assets/img/manglam-iata-logo.png" alt="Manglam-logo">
       <div class="tw-inline-flex tw-items-center tw-gap-4">
         <!--  Choose language button      -->
         <button

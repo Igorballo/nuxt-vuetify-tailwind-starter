@@ -113,7 +113,7 @@
         </v-avatar>
       </template>
       <template slot="items" slot-scope="props">
-     
+
         <td class="text-xs-right">{{ props.item.nom }}</td>
         <td class="text-xs-right">{{ props.item.ville }}</td>
         <td class="text-xs-right">{{ props.item.adresse }}</td>
@@ -121,10 +121,10 @@
         <td class="text-xs-right">{{ props.item.nombre_etoile }}</td>
         <td class="text-xs-right">{{ props.item.description }}</td>
       </template>
-       
-      
 
-      
+
+
+
 
 
       <template v-slot:[`item.actions`]="{ item }">
@@ -149,7 +149,7 @@
 </template>
 
 <script>
-import config from "~/../config";
+// import config from ".../config";
 // import Editor from '../components/helper/Editor.vue';
 
 export default {
