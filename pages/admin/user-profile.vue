@@ -41,7 +41,7 @@
       class="p-4 primary"
       @click="submit"
     >
-      Enregistrer
+      Modifier
     </v-btn>
     
   </form>
@@ -96,7 +96,7 @@
     methods: {
       submit () {
         this.$v.$touch()
-        axios.patch('/profile/change-password/' + this._id, {oldPassword: this.oldPassword, newPassword: this.newPassword, confirmPassword: this.confirmPassword})
+        axios.patch('/change-password', {oldPassword: this.oldPassword, newPassword: this.newPassword, confirmPassword: this.confirmPassword})
         .then(response => {
           console.log(response);
           this.oldPassword= '',

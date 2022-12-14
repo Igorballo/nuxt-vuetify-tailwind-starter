@@ -165,7 +165,7 @@
           </div>
 
 
-          <v-btn
+          <v-btn @click="$router.push('/filter-hotel')"
             class="tw-w-[fit-content] tw-rounded-full tw-py-6 tw-px-4 tw-text-white tw-ease-in tw-font-semibold tw-bg-red-600 tw-border-2 tw-border-red-700 tw-duration-300">
             Rechercher des hotêls
           </v-btn>
@@ -313,7 +313,6 @@ export default {
           enfants: 0,
           bebes: 0,
         }
-
       },
       items: [
         'https://images.unsplash.com/photo-1615460549969-36fa19521a4f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80',
@@ -327,7 +326,6 @@ export default {
       // cette methode retourne le nombre total de passagers
       return this.hotelReservationForm.passengers.adultes + this.hotelReservationForm.passengers.enfants + this.hotelReservationForm.passengers.bebes
     },
-
   },
 
 }
