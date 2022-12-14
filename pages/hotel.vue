@@ -8,7 +8,7 @@
           v-model="valid"
           lazy-validation
           class="tw-flex tw-flex-col tw-rounded-lg tw-bg-white tw-shadow-md tw-p-4 md:tw-p-6 tw-w-[90%] md:tw-w-[75%]">
-          <div class="tw-flex tw-items-center tw-gap-6">
+          <div class="tw-flex tw-flex-col tw-pt-2 md:tw-flex-row md:tw-items-center md:tw-justify-between ">
             <v-text-field
               label="Ex: pays, ville, quartier ou site d'intérêt"
               outlined
@@ -202,18 +202,14 @@
 
     <section class="tw-pt-4 tw-pb-20 lg:tw-px-4 tw-px-6 tw-flex-col tw-gap-4">
       <h1
-        class="tw-mt-12 tw-mb-6 tw-text-4xl tw-inline-flex tw-items-center tw-gap-3 tw-font-bold tw-uppercase tw-ml-20 tw-font-extrabold tw-text-red-700 tw-italic">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-             class="tw-w-25 tw-h-10">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/>
-        </svg>
+        class="tw-mt-12 tw-mb-6 tw-text-xl md:tw-text-2xl tw-inline-flex tw-items-center tw-gap-3 tw-font-bold tw-uppercase tw-font-extrabold tw-text-red-700">
         Les hébergements que les clients adorent
       </h1>
 
       <div class="tw-px-6 lg:tw-px-10 tw-pb-24">
         <div class="tw-flex tw-flex-col tw-space-y-4 tw-mb-6">
 
-          <div class="tw-grid md:tw-grid-cols-4 tw-gap-4">
+          <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-4 tw-gap-4">
 
 
             <div
@@ -295,10 +291,6 @@
       </div>
 
     </section>
-
-    <div class="tw-bg-no-repeat tw-bg-cover tw-bg-center tw-w-full tw-h-[75vh] tw-pt-10"
-         style="background-image: url(https://images.unsplash.com/photo-1615460549969-36fa19521a4f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80)">
-    </div>
   </div>
 </template>
 

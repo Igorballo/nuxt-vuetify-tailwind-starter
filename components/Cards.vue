@@ -3,11 +3,7 @@
 
     <section class="tw-pt-4 tw-pb-4 tw-px-4 lg:tw-px-8 tw-bg-white tw-flex-col tw-gap-4 tw-shadow-lg">
       <div
-        class="tw-mt-12 tw-mb-6 tw-text-xl tw-inline-flex tw-items-center tw-gap-3 tw-font-bold tw-uppercase lg:tw-ml-20 tw-font-bold tw-font-extrabold tw-text-red-700 tw-italic">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-             class="tw-w-44 tw-h-10">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/>
-        </svg>
+        class="tw-mt-12 tw-mb-6 tw-text-xl lg:tw-px-20 md:text-2xl tw-inline-flex tw-items-center tw-gap-3 tw-font-bold tw-uppercase tw-font-bold tw-font-extrabold tw-text-red-700">
         Meilleures offres en ce moment
       </div>
 

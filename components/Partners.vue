@@ -1,32 +1,32 @@
 <template>
   <div>
     <!-- Our partners section   -->
-    <div class="tw-mx-8 tw-px-3 tw-my-8">
+    <div class="tw-mx-4 tw-px-2 tw-my-8">
 
       <div class="tw-flex tw-flex-row tw-justify-evenly tw-items-center tw-gap-8">
 
         <carousel :per-page="3" :mouse-drag="false" :autoplay="true" :spacePadding="25" :speed="2000" :autoplayDirection="backward">
           <slide>
-          <img class="tw-mt-2 tw-h-20 tw-fill-current" src="../assets/img/IATA.png" alt="IATA">
+          <img class="tw-mt-2 tw-h-10 md:tw-h-20 tw-fill-current" src="../assets/img/IATA.png" alt="IATA">
           </slide>
 
          <slide>
-         <img class="tw-mt-2 tw-h-20 tw-fill-current"
+         <img class="tw-mt-2 tw-h-10 md:tw-h-20 tw-fill-current"
              src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Ethiopian_Airlines_Logo.svg/2560px-Ethiopian_Airlines_Logo.svg.png"
              alt="air-france">
          </slide>
         <slide>
-        <img class="tw-mt-2 tw-h-24 tw-fill-current"
+        <img class="tw-mt-2 tw-h-10 md:tw-h-24 tw-fill-current"
              src="https://i.pinimg.com/originals/2f/48/a7/2f48a7c799b4995d9578ed9580b40fbe.jpg"
              alt="air-france">
         </slide>
         <slide>
-        <img class="tw-mt-2 tw-h-28 tw-fill-current"
+        <img class="tw-mt-2 tw-h-10 md:tw-h-28 tw-fill-current"
              src="https://wallpapercave.com/wp/wp11304533.png"
              alt="air-france">
         </slide>
         <slide>
-        <img class="tw-mt-12 tw-h-8 tw-fill-current"
+        <img class="tw-mt-2 tw-h-10 md:tw-h-8 tw-fill-current"
              src="https://logodownload.org/wp-content/uploads/2019/05/air-france-logo.png"
              alt="air-france">
         </slide>

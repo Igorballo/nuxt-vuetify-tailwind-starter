@@ -110,10 +110,24 @@
         </v-toolbar>
       </template>
 
-      <template slot="items" slot-scope="props">
-        <td class="text-xs-right">{{ props.item.name }}</td>
-        <td class="text-xs-right">{{ props.item.photo }}</td>
+     <template v-slot:item.images="{ item }">
+        <v-avatar  height="60" width="60">
+          <v-img :src="showImages" :lazy-src="showImages"></v-img>
+        </v-avatar>
       </template>
+      <template slot="items" slot-scope="props">
+     
+        <td class="text-xs-right">{{ props.item.nom }}</td>
+        <td class="text-xs-right">{{ props.item.ville }}</td>
+        <td class="text-xs-right">{{ props.item.adresse }}</td>
+        <td class="text-xs-right">{{ props.item.prix }}</td>
+        <td class="text-xs-right">{{ props.item.nombre_etoile }}</td>
+        <td class="text-xs-right">{{ props.item.description }}</td>
+      </template>
+       
+      
+
+      
 
 
       <template v-slot:[`item.actions`]="{ item }">
@@ -138,6 +152,7 @@
 </template>
 
 <script>
+import config from "~/../config";
 // import Editor from '../components/helper/Editor.vue';
 
 export default {
@@ -187,13 +202,13 @@ export default {
     headers: [
        {
         text: 'Photo',
-        value: 'media'
+        value: 'images'
       },
       {
         text: 'Nom de l\'Hôtel',
         align: 'start',
         sortable: false,
-        value: 'name',
+        value: 'nom',
       },
       {
         text: 'Ville',
@@ -209,7 +224,7 @@ export default {
       },
       {
         text: 'Nombre d\'Etoile ',
-        value: 'etoile'
+        value: 'nombre_etoile'
       },
       {
         text: 'Description',
@@ -246,6 +261,8 @@ export default {
     this.initialize()
   },
   methods: {
+    showImages() {
+      console.log(config.app_local ?`config.app_back_debug_url/${item.images[0]}`:`config.app_back_url/${item.images[0]}`)    },
      handleCreate() {
       this.isEditing = false
 
@@ -260,10 +277,10 @@ export default {
       }
     },
      getHotel() {
-      axios.get('/hotel')
+      axios.get('/hotels/get-hotels')
         .then(response => {
           console.log(response);
-          this.hotels = response.data.docs;
+          this.hotels = response.data.hotels;
         })
     },
     initialize() {

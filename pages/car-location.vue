@@ -13,7 +13,7 @@
             label="Lieu de restitution différent"
           ></v-checkbox>
 
-          <div class="tw-flex tw-items-center tw-gap-6">
+          <div class="tw-flex tw-flex-col tw-pt-2 md:tw-flex-row md:tw-items-center md:tw-justify-between ">
             <v-text-field
               label="Lieu de prise en charge"
               outlined
@@ -28,7 +28,7 @@
               :rules="lieuRestitutionRules"
             ></v-text-field>
           </div>
-          <div class="tw-flex tw-items-center tw-gap-6">
+          <div class="tw-flex tw-flex-col tw-pt-2 md:tw-flex-row md:tw-items-center md:tw-justify-between ">
             <div class="tw-flex  tw-w-full">
               <v-col class="tw-px-0">
                 <v-menu
@@ -166,6 +166,7 @@
       <v-carousel
         cycle
         height="500"
+        :height="carReservationForm.autre_lieu_restitution ? '600': '500'"
         hide-delimiter-background
         show-arrows-on-hover
       >
@@ -251,7 +252,7 @@ export default {
   methods: {
      validate () {
         if(this.$refs.form.validate()) {
-          this.$router.push('/filter')
+          this.$router.push('/filter-car')
         }  
       },
     async reservation() {
