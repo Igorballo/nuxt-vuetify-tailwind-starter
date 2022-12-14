@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Our partners section   -->
-    <div class="tw-mx-8 tw-px-3 tw-my-8">
+    <div class="tw-mx-4 md:tw-mx-8 md:tw-px-3 tw-my-8">
 
       <div class="tw-flex tw-flex-row tw-justify-evenly tw-items-center tw-gap-8">
 

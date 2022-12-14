@@ -1,7 +1,7 @@
 <template>
-  <v-container fluid>
+  <v-container fluid class="tw-relative">
     <v-overlay v-if="loadingReservation"/>
-    <v-row>
+    <v-row >
       <v-col cols="12">
         <material-card class="card-tabs" color="primary">
           <h2 class="text-center tw-text-2xl">Demande de Réservation no</h2>
@@ -132,7 +132,7 @@
         </v-card>
       </v-col>
 
-      <v-col lg="4" class="tw-flex tw-flex-col tw-gap-4">
+      <v-col lg="4" class="tw-flex tw-flex-col tw-gap-4 tw-text-sm md:tw-sticky md:tw-top-20">
         <v-card v-if="reservation" class="">
           <v-card-title class="mb-4">
             <span>Liste des offres</span>
@@ -140,10 +140,10 @@
             <v-btn small @click="dialogAddOffre = true" color="primary">Ajouter des offres</v-btn>
           </v-card-title>
           <v-card-text class="tw-px-4 tw-flex tw-flex-col tw-gap-4">
-            <v-container v-if="offres.length === 0" color="grey" class="tw-bg-gray-50 tw-text-lg">Aucune offre n'est
+            <v-container v-if="offres.length === 0" color="grey" class="tw-bg-gray-50 tw-text-sm tw-h-[80vh]">Aucune offre n'est
               proposée pour le moment
             </v-container>
-            <v-container>
+            <v-container class="">
                 <div v-for="(offre, offre_index) in offres" :key="offre_index">
                   <v-row justify="space-around" class="tw-mb-6">
                     <v-card width="400">
@@ -209,7 +209,7 @@
                             <div>
                               <div class="font-weight-normal tw-flex tw-items-center tw-gap-2">
                                 <v-icon>mdi-airplane-landing</v-icon>
-                                <div class="tw-font-bold">{{ escale.airport }}</div>
+                                <div class="tw-font-bold">{{ escale.airport.name }}</div>
                               </div>
                               <strong>Arrivée: {{ escale.arrive|moment('MMMM Do YYYY, h:mm:ss a') }}</strong> <br>
                               <strong>Départ: {{ escale.departure|moment('MMMM Do YYYY, h:mm:ss a') }}</strong>
@@ -249,7 +249,7 @@
     lazy-validation
   >
       <v-card>
-        <div class="tw-flex tw-px-12 tw-mt-6 tw-gap-4 tw-justify-between tw-items-center">
+        <div class="tw-flex tw-px-12 tw-mt-6 tw-gap-2 tw-justify-between tw-items-center">
           <div class="tw-flex tw-justify-between tw-gap-6 tw-mb-4 tw-items-center">
             <div class="tw-text-md">
               <span>Départ: </span>
@@ -267,8 +267,8 @@
           </div>
         </div>
         <v-card-text>
-          <v-card class="tw-mb-6">
-            <v-card-title class="tw-mt-4">
+          <v-card class="tw-mb-4">
+            <v-card-title class="tw-mt-2">
               <v-btn @click="offre.escales.push({index: 0, airport: '', arrive: '', departure: ''})" small
                      color="blue" dark>
                 <v-icon>mdi-airplane-edit</v-icon>
@@ -587,10 +587,10 @@ export default {
     }
   },
 
-  mounted() {
+  async mounted() {
     this.getAirlines()
     this.getReservationInfos()
-    this.getAllSupply()
+    await this.getAllSupply()
   },
 
   methods: {
@@ -636,26 +636,28 @@ export default {
 
     async sendSupply() {
       this.sendSupplyBtn = true
-      this.$refs.form.validate()
-      const response = await axios.post(`/reservation-vol/admin-update-offre/${this.$route.params.id}`, this.offre).then(res => {
+      if(this.$refs.form.validate()){
+        const response = await axios.post(`/reservation-vol/admin-update-offre/${this.$route.params.id}`, this.offre).then(res => {
 
-        if (res.data.error) {
+          if (res.data.error) {
+            this.sendSupplyBtn = false
+            Swal.fire({
+              title: 'Echec',
+              text: 'Une Erreur s\'est produite',
+              icon: 'error'
+            })
+            return
+          }
+          this.getAllSupply()
           this.sendSupplyBtn = false
+          this.dialogAddOffre = false
 
-          Swal.fire({
-            title: 'Echec',
-            text: 'Une Erreur s\'est produite',
-            icon: 'error'
-          })
-          return
-        }
+          this.showToast('success', 'Offre enrégistrée avec succès')
+        }).catch(error => {
+          return;
+        })
+      }
 
-        this.offres = res.offres
-        this.sendSupplyBtn = false
-        this.showToast('success', 'Offre enrégistrée avec succès')
-      }).catch(error => {
-        return;
-      })
     },
 
     async deleteSupplyById(offre) {
