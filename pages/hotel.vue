@@ -187,9 +187,18 @@
         show-arrows-on-hover
       >
         <v-carousel-item
-          v-for="i in 3"
+          src="https://images.unsplash.com/photo-1598605272254-16f0c0ecdfa5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80"
+          
+        >
+        </v-carousel-item>
+        <v-carousel-item
           src="https://images.unsplash.com/photo-1615460549969-36fa19521a4f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80"
-          :key="i"
+          
+        >
+        </v-carousel-item>
+        <v-carousel-item
+          src="https://images.unsplash.com/photo-1596436889106-be35e843f974?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+          
         >
         </v-carousel-item>
       </v-carousel>
@@ -208,7 +217,7 @@
             Les hébergements que les clients adorent
           </h1>
           <div class="tw-flex tw-flex-wrap tw-justify-center md:tw-items-center tw-gap-6">
-            <div v-for="i in 4" href="#" class="tw-block tw-w-full md:tw-w-[fit-content] tw-rounded-lg tw-p-2 md:tw-p-4 tw-shadow-sm tw-shadow-indigo-100">
+            <div href="#" class="tw-block tw-w-full md:tw-w-[fit-content] tw-rounded-lg tw-p-2 md:tw-p-4 tw-shadow-sm tw-shadow-indigo-100">
               <img
                 alt="Home"
                 src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
@@ -241,6 +250,111 @@
                   </div>
               </div>
             </div>
+
+            <div href="#" class="tw-block tw-w-full md:tw-w-[fit-content] tw-rounded-lg tw-p-2 md:tw-p-4 tw-shadow-sm tw-shadow-indigo-100">
+              <img
+                alt="Home"
+                src="https://plus.unsplash.com/premium_photo-1661677878527-052034451487?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80"
+                class="tw-h-56 tw-w-full tw-rounded-md tw-object-cover"
+              />
+
+              <div class="tw-mt-2">
+                <div>
+                  <div>
+                    <dt class="tw-sr-only">Price</dt>
+
+                    <dd class="tw-text-md tw-text-gray-500">$240 / Jour</dd>
+                  </div>
+
+                  <div>
+                    <dt class="tw-sr-only">Address</dt>
+
+                    <dd class="tw-font-bold tw-text-xl">123 Wallaby Avenue, Park Road</dd>
+                  </div>
+                </div>
+
+                <h1 class="tw-hidden tw-text-lg tw-font-bold tw-gray-800 tw-mt-4 tw-text-red-600">À partir de € 47,02 par jour</h1>
+
+
+                  <div class="tw-mt-6  tw-flex tw-items-center tw-text-xs">
+                    <svg aria-hidden="true" class="tw-w-5 tw-h-5 tw-mr-2 tw-text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Rating star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                      <p class="tw-text-sm tw-font-bold tw-text-gray-900 tw-mt-4">4.95</p>
+                      <span class="tw-w-1 tw-h-1 tw-mx-1.5 tw-bg-gray-500 tw-rounded-full"></span>
+                      <a href="#" class="tw-text-sm tw-font-medium tw-text-gray-900 tw-underline hover:tw-no-underline">73 reviews</a>
+                  </div>
+              </div>
+            </div>
+
+
+            <div href="#" class="tw-block tw-w-full md:tw-w-[fit-content] tw-rounded-lg tw-p-2 md:tw-p-4 tw-shadow-sm tw-shadow-indigo-100">
+              <img
+                alt="Home"
+                src="https://images.unsplash.com/photo-1445019980597-93fa8acb246c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1174&q=80"
+                class="tw-h-56 tw-w-full tw-rounded-md tw-object-cover"
+              />
+
+              <div class="tw-mt-2">
+                <div>
+                  <div>
+                    <dt class="tw-sr-only">Price</dt>
+
+                    <dd class="tw-text-md tw-text-gray-500">$240 / Jour</dd>
+                  </div>
+
+                  <div>
+                    <dt class="tw-sr-only">Address</dt>
+
+                    <dd class="tw-font-bold tw-text-xl">123 Wallaby Avenue, Park Road</dd>
+                  </div>
+                </div>
+
+                <h1 class="tw-hidden tw-text-lg tw-font-bold tw-gray-800 tw-mt-4 tw-text-red-600">À partir de € 47,02 par jour</h1>
+
+
+                  <div class="tw-mt-6  tw-flex tw-items-center tw-text-xs">
+                    <svg aria-hidden="true" class="tw-w-5 tw-h-5 tw-mr-2 tw-text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Rating star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                      <p class="tw-text-sm tw-font-bold tw-text-gray-900 tw-mt-4">4.95</p>
+                      <span class="tw-w-1 tw-h-1 tw-mx-1.5 tw-bg-gray-500 tw-rounded-full"></span>
+                      <a href="#" class="tw-text-sm tw-font-medium tw-text-gray-900 tw-underline hover:tw-no-underline">73 reviews</a>
+                  </div>
+              </div>
+            </div>
+
+            <div href="#" class="tw-block tw-w-full md:tw-w-[fit-content] tw-rounded-lg tw-p-2 md:tw-p-4 tw-shadow-sm tw-shadow-indigo-100">
+              <img
+                alt="Home"
+                src="https://images.unsplash.com/photo-1586611292717-f828b167408c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
+                class="tw-h-56 tw-w-full tw-rounded-md tw-object-cover"
+              />
+
+              <div class="tw-mt-2">
+                <div>
+                  <div>
+                    <dt class="tw-sr-only">Price</dt>
+
+                    <dd class="tw-text-md tw-text-gray-500">$240 / Jour</dd>
+                  </div>
+
+                  <div>
+                    <dt class="tw-sr-only">Address</dt>
+
+                    <dd class="tw-font-bold tw-text-xl">123 Wallaby Avenue, Park Road</dd>
+                  </div>
+                </div>
+
+                <h1 class="tw-hidden tw-text-lg tw-font-bold tw-gray-800 tw-mt-4 tw-text-red-600">À partir de € 47,02 par jour</h1>
+
+
+                  <div class="tw-mt-6  tw-flex tw-items-center tw-text-xs">
+                    <svg aria-hidden="true" class="tw-w-5 tw-h-5 tw-mr-2 tw-text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Rating star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                      <p class="tw-text-sm tw-font-bold tw-text-gray-900 tw-mt-4">4.95</p>
+                      <span class="tw-w-1 tw-h-1 tw-mx-1.5 tw-bg-gray-500 tw-rounded-full"></span>
+                      <a href="#" class="tw-text-sm tw-font-medium tw-text-gray-900 tw-underline hover:tw-no-underline">73 reviews</a>
+                  </div>
+              </div>
+            </div>
+
+            
 
           </div>
         </div>
