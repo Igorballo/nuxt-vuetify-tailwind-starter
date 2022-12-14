@@ -35,17 +35,14 @@ export default {
         title: message
       })
     },
-    rechercherTickets(){
-      this.$store.dispatch('user/setRechercheTicketAdresseDepart', this.selected_depart)
-      this.$store.dispatch('user/setRechercheTicketAdresseDestination', this.selected_destinantion)
-      this.$store.dispatch('user/setRechercheTicketDateDepart', this.date_depart)
-
-      this.$router.push('/filter-reservation')
-    },
     async logoutUser(){
       await this.$store.dispatch('auth/logout')
       window.location = '/login'
-    }
+    },
+    async getReservationDetail(reservation_id){
+      const response = await axios.post(`reservation-vol/begin-process/${reservation_id}`)
+      this.$router.push(`reservation-vol/${reservation_id}`)
+    },
   },
   computed: {
     ...mapGetters('auth', [
