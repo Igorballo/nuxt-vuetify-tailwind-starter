@@ -8,9 +8,6 @@
           <v-toolbar-title>La Liste de Tous Les Hébergement</v-toolbar-title>
           <v-divider class="mx-4" inset vertical></v-divider>
           <v-spacer></v-spacer>
-          <v-btn class="mx-2" @click="initialize">
-            <v-icon>mdi-refresh</v-icon>
-          </v-btn>
           <v-btn @click="handleCreate" color="primary" dark class="mx-2">
             Ajouter Un Hôtel
           </v-btn>
