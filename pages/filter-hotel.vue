@@ -163,7 +163,6 @@
                 v-model="hotelReservationForm.prix.lowPrice"
                 :items="lowPrice"
                 outlined
-                :rules="lowPrixRules"
                 label="Plus bas prix"
               >
                 <template v-slot:selection="{ item, index }">
@@ -176,7 +175,6 @@
               <v-select
                 v-model="hotelReservationForm.prix.highPrice"
                 :items="highPrice"
-                :rules="highPrixRules"
                 outlined
                 label="Plus haut prix"
               >
