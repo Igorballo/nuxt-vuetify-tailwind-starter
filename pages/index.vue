@@ -27,10 +27,10 @@
                 ></v-radio>
               </v-radio-group>
               <v-col
-                class="d-flex"
+                class=""
                 cols="12"
-                xs="12"
-                sm="3"
+                sm="6"
+                md="3"
               >
                 <v-select
                   v-model="reservationForm.typeclasse"
