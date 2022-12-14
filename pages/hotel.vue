@@ -3,13 +3,18 @@
     <div class="tw-relative">
       <div style="z-index: 500"
            class="tw-flex tw-justify-center tw-items-center tw-absolute tw-inset-0">
-        <form
+        <v-form
+          ref="form"
+          v-model="valid"
+          lazy-validation
           class="tw-flex tw-flex-col tw-rounded-lg tw-bg-white tw-shadow-md tw-p-4 md:tw-p-6 tw-w-[90%] md:tw-w-[75%]">
           <div class="tw-flex tw-items-center tw-gap-6">
             <v-text-field
               label="Ex: pays, ville, quartier ou site d'intérêt"
               outlined
               v-model="hotelReservationForm.destination"
+              :rules="villeRules"
+              required
             ></v-text-field>
             <div class="tw-flex tw-items-center">
               <v-col class="tw-px-0">
@@ -30,6 +35,8 @@
                       v-bind="attrs"
                       v-on="on"
                       class="tw-rounded-r-none"
+                      required
+                      :rules="dateArriveRules"
                     ></v-text-field>
                   </template>
                   <v-date-picker
@@ -58,6 +65,7 @@
                       v-bind="attrs"
                       v-on="on"
                       class="tw-rounded-l-none"
+                      :rules="dateDepartRules"
                     ></v-text-field>
                   </template>
                   <v-date-picker
@@ -165,11 +173,11 @@
           </div>
 
 
-          <v-btn @click="$router.push('/filter-hotel')"
+          <v-btn @click="validate"
             class="tw-w-[fit-content] tw-rounded-full tw-py-6 tw-px-4 tw-text-white tw-ease-in tw-font-semibold tw-bg-red-600 tw-border-2 tw-border-red-700 tw-duration-300">
             Rechercher des hotêls
           </v-btn>
-        </form>
+        </v-form>
       </div>
 
       <v-carousel
@@ -304,6 +312,15 @@ export default {
   layout: 'master',
   data() {
     return {
+         villeRules: [
+        v => !!v || 'ce champs est obligatoire',
+      ],
+      dateArriveRules: [
+        v => !!v || 'ce champs est obligatoire',
+      ],
+      dateDepartRules: [
+        v => !!v || 'ce champs est obligatoire',
+      ],
       hotelReservationForm: {
         destination: "",
         date_arrive: "",
@@ -327,6 +344,14 @@ export default {
       return this.hotelReservationForm.passengers.adultes + this.hotelReservationForm.passengers.enfants + this.hotelReservationForm.passengers.bebes
     },
   },
+
+  methods: {
+     validate () {
+        if(this.$refs.form.validate()) {
+          this.$router.push('/filter-hotel')
+        }  
+      },
+  }
 
 }
 
