@@ -42,7 +42,7 @@
               </v-list-item-title>
 
               <v-list-item-subtitle>
-                Hello world
+                {{reservation.typeClasse}}
               </v-list-item-subtitle>
             </v-list-item-content>
 
@@ -94,7 +94,7 @@
               </v-list-item-title>
 
               <v-list-item-subtitle>
-                Hello world
+                {{reservation.typeClasse}}
               </v-list-item-subtitle>
             </v-list-item-content>
 
@@ -117,7 +117,7 @@
       <v-tab-item>
         <v-list class="py-0">
           <v-list-item
-            v-for="reservation in reservationsvolsData"
+            v-for="reservation in processed_reservationsvols"
             :key="reservation._id"
           >
             <v-list-item-avatar>
@@ -135,7 +135,7 @@
               </v-list-item-title>
 
               <v-list-item-subtitle>
-                Hello world
+                {{reservation.typeClasse}}
               </v-list-item-subtitle>
             </v-list-item-content>
 
@@ -179,6 +179,7 @@ export default {
       reservationsvols: [],
       procesessings_reservationsvols: [],
       flightReservationSound: null,
+      processed_reservationsvols: []
     }
   },
   computed: {
@@ -230,6 +231,18 @@ export default {
 
       this.procesessings_reservationsvols = response.latestreservations
     },
+    async getLatestProcessedFlightReservation(){
+      const response = await axios.get("/reservation-vol/admin-get-latest-processed-flight-reservation")
+        .then(res => res.data)
+        .catch(error => error.response)
+
+      if (response.data?.errors) {
+        this.errorMsg = response.data.errors.msg
+        return
+      }
+
+      this.processed_reservationsvols = response.latestreservations
+    },
     suscribeToReceiveNewRequests(){
       let self = this
       let channel = this.pusher.subscribe('reservationvol');
@@ -241,10 +254,6 @@ export default {
         console.log(data)
         self.getLatestFlightReservation()
       });
-    },
-    async getReservationDetail(reservation_id){
-      const response = await axios.post(`reservation-vol/begin-process/${reservation_id}`)
-      this.$router.push(`reservation-vol/${reservation_id}`)
     },
   }
 }
