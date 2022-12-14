@@ -325,8 +325,8 @@
             <v-dialog
               v-model="userInfoDialog"
               max-width="600px"
-              
-              
+
+
             >
             <v-form
                     ref="modal"
@@ -339,7 +339,7 @@
                 </v-card-title>
                 <v-card-text>
                   <v-container>
-                    
+
                     <v-row>
                       <v-col
                         cols="12"
@@ -419,7 +419,7 @@
                         </v-col>
                       </v-row>
                     </v-row>
-                     
+
                   </v-container>
                   <small>*Indique un champ obligatoire</small>
                 </v-card-text>
@@ -440,7 +440,7 @@
                   >
                     Envoyer la demande
                   </v-btn>
-                  
+
                 </v-card-actions>
               </v-card>
               </v-form>
@@ -505,7 +505,7 @@
               <v-btn
                 :loading="btnLoading"
                 @click="userInfoDialog = true && $refs.form.validate()"
-                
+
                 class="tw-w-[fit-content] tw-rounded-full tw-py-6 tw-px-4 tw-text-white tw-ease-in tw-font-semibold tw-bg-red-600 tw-border-2 tw-border-red-700 tw-duration-300">
                 Demander reservation
               </v-btn>
@@ -640,16 +640,6 @@ export default {
     totalChildrens() {
       return this.reservationForm.passengers.adultes * 2
     },
-
-    // addEscales(){
-    //   if (this.reservationForm.typevoyage === "destinationmultiple"){
-    //     this.reservationForm.escales.push({
-    //       airport_depart: "",
-    //       airport_destination: "",
-    //       depart_date: "",
-    //     })
-    //   }
-    // },
 
     deleteEscales() {
       if (this.reservationForm.typevoyage !== "destinationmultiple") {

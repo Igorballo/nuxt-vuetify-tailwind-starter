@@ -97,7 +97,7 @@
                         <div class="tw-py-4 tw-flex tw-justify-between tw-gap-12">
                           <span class="tw-text-xl tw-font-bold tw-gray-800">Adultes (> 12 ans)</span>
                           <div class="tw-text-xl tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
-                            <div v-if="hotelReservationForm.passengers.adultes > 0">
+                            <div v-if="hotelReservationForm.passengers.adultes > 1">
                                 <span @click="hotelReservationForm.passengers.adultes--"
                                       class="hover:tw-cursor-pointer"><v-icon
                                   color="red">mdi-minus-circle-outline</v-icon></span>
@@ -325,6 +325,9 @@ export default {
     totalPassagers() {
       // cette methode retourne le nombre total de passagers
       return this.hotelReservationForm.passengers.adultes + this.hotelReservationForm.passengers.enfants + this.hotelReservationForm.passengers.bebes
+    },
+    totalChildrens() {
+      return this.hotelReservationForm.passengers.adultes * 2
     },
   },
 
