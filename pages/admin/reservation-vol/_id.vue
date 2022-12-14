@@ -401,7 +401,7 @@
 
               <div class="tw-flex tw-items-center tw-justify-between tw-px-2 tw-mt-6 tw-gap-4">
                 <v-datetime-picker outlined ships label="Jour et heure de départ"
-                                   :rules="dateDepartRules"
+                                   :rules="dateHeureDepartRules"
                                    v-model="offre.confirmed_depart_date">
                   <template slot="dateIcon">
                     <v-icon>mdi-calendar</v-icon>
@@ -414,7 +414,7 @@
                 <v-datetime-picker
                   :allowed-dates="disablePastDates"
                   outlined ships label="Jour et heure de retour"
-                                  :rules="dateArriveRules"
+                                  :rules="dateHeureArriveRules"
                                    v-model="offre.confirmed_comeback_date">
                   <template slot="dateIcon">
                     <v-icon>mdi-calendar</v-icon>
@@ -530,6 +530,12 @@ export default {
         v => !!v || 'ce champs est obligatoire',
       ],
       dateDepartRules: [
+        v => !!v || 'ce champs est obligatoire',
+      ],
+       dateHeureArriveRules: [
+        v => !!v || 'ce champs est obligatoire',
+      ],
+      dateHeureDepartRules: [
         v => !!v || 'ce champs est obligatoire',
       ],
        adresseArriveRules: [
