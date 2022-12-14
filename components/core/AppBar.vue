@@ -142,8 +142,9 @@ export default {
     },
   },
 
-  mounted() {
+  async mounted() {
     let self = this
+    await this.getNotifications()
     let channel = this.pusher.subscribe('reservationvol');
     channel.bind('new', (data) => {
       console.log(data)
@@ -165,6 +166,20 @@ export default {
   },
 
   methods: {
+    async getNotifications(){
+      const url = "/reservation-vol/admin-notifications"
+      const response = await axios.get(url)
+        .then(res => res.data)
+        .catch(error => error.response)
+
+      if (response.data?.errors) {
+        this.errorMsg = response.data.errors.msg
+        return
+      }
+
+      this.notifications = response.notification.data
+      this.notificationsLength = response.notification.length
+    },
     ...mapMutations('app', ['setDrawer', 'toggleDrawer']),
     onClick() {
       this.setDrawer(!this.$store.state.app.drawer);
