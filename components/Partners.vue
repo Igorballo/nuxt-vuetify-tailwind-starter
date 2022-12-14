@@ -26,8 +26,8 @@
              alt="air-france">
         </slide>
         <slide>
-        <img class="tw-mt-10 tw-h-12 tw-fill-current"
-             src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Airfrance_Logo.svg/2560px-Airfrance_Logo.svg.png"
+        <img class="tw-mt-12 tw-h-8 tw-fill-current"
+             src="https://logodownload.org/wp-content/uploads/2019/05/air-france-logo.png"
              alt="air-france">
         </slide>
   </carousel>
