@@ -1,16 +1,12 @@
 <template>
   <div>
-    <section class="tw-pb-8 tw-px-12 tw-bg-white tw-flex-col tw-gap-4 tw-shadow-lg">
+    <section class="tw-pb-8 tw-px-4 tw-bg-white tw-flex-col tw-gap-4 tw-shadow-lg">
       <h1
-        class="tw-mt-12 tw-mb-6 tw-text-4xl tw-inline-flex tw-items-center tw-gap-3 tw-font-bold tw-uppercase tw-ml-20 tw-font-extrabold tw-text-red-700 tw-italic">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-             class="tw-w-25 tw-h-10">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/>
-        </svg>
+        class="tw-mt-12 tw-mb-6 tw-text-xl lg:tw-px-20  md:tw-text-2xl  tw-inline-flex tw-items-center tw-gap-3 tw-font-bold tw-uppercase tw-font-extrabold tw-text-red-700">
         Meilleures Offres en ce moment
       </h1>
 
-      <div class="tw-px-6 lg:tw-px-20 tw-gap-8 tw-flex tw-flex-col">
+      <div class="tw-px-2 lg:tw-px-20 tw-gap-8 tw-flex tw-flex-col">
         <div class="tw-flex tw-flex-col lg:tw-flex-row tw-gap-4">
 
           <div

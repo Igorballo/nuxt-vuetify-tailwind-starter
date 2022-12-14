@@ -8,7 +8,7 @@
           v-model="valid"
           lazy-validation
           class="tw-flex tw-flex-col tw-rounded-lg tw-bg-white tw-shadow-md tw-p-4 md:tw-p-6 tw-w-[90%] md:tw-w-[75%]">
-          <div class="tw-flex tw-items-center tw-gap-6">
+          <div class="tw-flex tw-flex-col tw-pt-2 md:tw-flex-row md:tw-items-center md:tw-justify-between ">
             <v-text-field
               label="Ex: pays, ville, quartier ou site d'intérêt"
               outlined
@@ -247,10 +247,6 @@
       </div>
 
     </section>
-
-    <div class="tw-bg-no-repeat tw-bg-cover tw-bg-center tw-w-full tw-h-[75vh] tw-pt-10"
-         style="background-image: url(https://images.unsplash.com/photo-1615460549969-36fa19521a4f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80)">
-    </div>
   </div>
 </template>
 

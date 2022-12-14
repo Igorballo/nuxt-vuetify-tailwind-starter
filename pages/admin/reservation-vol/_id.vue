@@ -1,7 +1,7 @@
 <template>
-  <v-container fluid class="tw-relative">
+  <v-container fluid>
     <v-overlay v-if="loadingReservation"/>
-    <v-row >
+    <v-row>
       <v-col cols="12">
         <material-card class="card-tabs" color="primary">
           <h2 class="text-center tw-text-2xl">Demande de Réservation no</h2>
@@ -140,65 +140,65 @@
             <v-btn small @click="dialogAddOffre = true" color="primary">Ajouter des offres</v-btn>
           </v-card-title>
           <v-card-text class="tw-px-4 tw-flex tw-flex-col tw-gap-4">
-            <v-container v-if="offres.length === 0" color="grey" class="tw-bg-gray-50 tw-text-sm tw-h-[80vh]">Aucune offre n'est
+            <v-container v-if="offres.length === 0" color="grey" class="tw-bg-gray-50 tw-text-sm">Aucune offre n'est
               proposée pour le moment
             </v-container>
-            <v-container class="">
-                <div v-for="(offre, offre_index) in offres" :key="offre_index">
-                  <v-row justify="space-around" class="tw-mb-6">
-                    <v-card width="400">
-                      <v-img
-                        height="170px"
-                        src="https://images.unsplash.com/photo-1540582258098-bb52b08799bd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+            <v-container>
+              <div v-for="(offre, offre_index) in offres" :key="offre_index">
+                <v-row justify="space-around" class="tw-mb-6">
+                  <v-card width="400">
+                    <v-img
+                      height="170px"
+                      src="https://images.unsplash.com/photo-1540582258098-bb52b08799bd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+                    >
+                      <div class="tw-h-full"
                       >
-                        <div class="tw-h-full"
-                        >
-                          <div
-                            class="tw-relative tw-text-xl tw-mx-2 tw-py-4 tw-text-white tw-font-semibold tw-justify-between tw-items-center tw-h-full tw-flex tw-flex-col">
-                            <div class="tw-py-0.5">
-                              {{ offre.airline?.name }}
-                            </div>
-
-                            <div style="width: fit-content"
-                                 class="tw-py-0.5 tw-px-4 tw-rounded-full tw-border tw-border-white">
-                              {{ offre.amountsell }} XOF
-                            </div>
-                            <v-btn class="tw-absolute tw-bg-white tw-rounded-lg tw-right-0 tw-top-2">
-                              <v-icon class="" @click="deleteSupplyById(offre._id)"
-                                      color="red" height="5">mdi-delete
-                              </v-icon>
-                            </v-btn>
+                        <div
+                          class="tw-relative tw-text-xl tw-mx-2 tw-py-4 tw-text-white tw-font-semibold tw-justify-between tw-items-center tw-h-full tw-flex tw-flex-col">
+                          <div class="tw-py-0.5">
+                            {{ offre.airline?.name }}
                           </div>
-                        </div>
-                      </v-img>
 
-                      <v-card-text>
-                        <div class="tw-font-bold tw-uppercase ml-8 mb-2">
-                          Plan du vol
+                          <div style="width: fit-content"
+                               class="tw-py-0.5 tw-px-4 tw-rounded-full tw-border tw-border-white">
+                            {{ offre.amountsell }} XOF
+                          </div>
+                          <v-btn class="tw-absolute tw-bg-white tw-rounded-lg tw-right-0 tw-top-2">
+                            <v-icon class="" @click="deleteSupplyById(offre._id)"
+                                    color="red" height="5">mdi-delete
+                            </v-icon>
+                          </v-btn>
                         </div>
+                      </div>
+                    </v-img>
 
-                        <!-- Retour Detail-->
+                    <v-card-text>
+                      <div class="tw-font-bold tw-uppercase ml-8 mb-2">
+                        Plan du vol
+                      </div>
+
+                      <!-- Retour Detail-->
+                      <v-timeline
+                        align-top
+                        dense
+                      >
                         <v-timeline
                           align-top
                           dense
                         >
-                          <v-timeline
-                            align-top
-                            dense
+                          <v-timeline-item
+                            color="primary"
+                            small
                           >
-                            <v-timeline-item
-                              color="primary"
-                              small
-                            >
-                              <div>
-                                <div class="font-weight-normal tw-flex tw-items-center tw-gap-2">
-                                  <v-icon>mdi-airplane</v-icon>
-                                  <strong class="tw-font-bold">{{ offre.airportDepart?.name }}</strong>
-                                </div>
-                                <strong>{{ offre.confirmedDepartDate|moment('MMMM Do YYYY, h:mm:ss a') }}</strong>
+                            <div>
+                              <div class="font-weight-normal tw-flex tw-items-center tw-gap-2">
+                                <v-icon>mdi-airplane</v-icon>
+                                <strong class="tw-font-bold">{{ offre.airportDepart?.name }}</strong>
                               </div>
-                            </v-timeline-item>
-                          </v-timeline>
+                              <strong>{{ offre.confirmedDepartDate|moment('MMMM Do YYYY, h:mm:ss a') }}</strong>
+                            </div>
+                          </v-timeline-item>
+                        </v-timeline>
 
                           <v-timeline-item
                             v-for="(escale, escale_index) in offre.escales"
@@ -216,23 +216,23 @@
                             </div>
                           </v-timeline-item>
 
-                          <!-- Retour Detail-->
-                          <v-timeline-item
-                            color="primary"
-                            small
-                          >
-                            <div class="font-weight-normal tw-flex tw-items-center tw-gap-2">
-                              <v-icon>mdi-airplane-landing</v-icon>
-                              <strong class="tw-font-bold">{{ offre.airportDestination?.name }}</strong>
-                            </div>
-                            <strong>{{ offre.confirmedComebackDate|moment('MMMM Do YYYY, h:mm:ss a') }}</strong>
+                        <!-- Retour Detail-->
+                        <v-timeline-item
+                          color="primary"
+                          small
+                        >
+                          <div class="font-weight-normal tw-flex tw-items-center tw-gap-2">
+                            <v-icon>mdi-airplane-landing</v-icon>
+                            <strong class="tw-font-bold">{{ offre.airportDestination?.name }}</strong>
+                          </div>
+                          <strong>{{ offre.confirmedComebackDate|moment('MMMM Do YYYY, h:mm:ss a') }}</strong>
 
-                          </v-timeline-item>
-                        </v-timeline>
-                      </v-card-text>
-                    </v-card>
-                  </v-row>
-                </div>
+                        </v-timeline-item>
+                      </v-timeline>
+                    </v-card-text>
+                  </v-card>
+                </v-row>
+              </div>
             </v-container>
           </v-card-text>
           <v-card-actions class="tw-mb-6" v-if="offres.length > 0">
@@ -277,17 +277,17 @@
               <v-spacer/>
             </v-card-title>
             <v-card-text>
-              <v-autocomplete class="tw-mb-6"
-                              v-model="offre.airline"
-                              :items="airlines"
-                              clearable
-                              hide-details
-                              hide-selected
-                              item-text="name"
-                              item-value="_id"
-                              label="Compagnie de voyage"
-                              :rules="airlineRules"
-                              outlined
+              <v-autocomplete
+                class="tw-mb-6"
+                v-model="offre.airline"
+                :items="airlines"
+                clearable
+                hide-details
+                hide-selected
+                item-value="_id"
+                :rules="airlineRules"
+                label="Compagnie de voyage"
+                outlined
               >
                 <template v-slot:no-data>
                   <v-list-item>
@@ -319,7 +319,6 @@
                   hide-details
                   :filter="customFilter"
                   hide-selected
-                  item-text="name"
                   item-value="_id"
                   label="Choisissez l'aéroport de départ..."
                   :rules="adresseDepartRules"
@@ -587,10 +586,10 @@ export default {
     }
   },
 
-  async mounted() {
+  mounted() {
     this.getAirlines()
     this.getReservationInfos()
-    await this.getAllSupply()
+    this.getAllSupply()
   },
 
   methods: {

@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <div>
-   
+
     <v-data-table no-data-text="aucune donneé" :headers="headers" :items="hotels" class="elevation-1">
       <template v-slot:top>
         <v-toolbar flat>
@@ -74,7 +74,7 @@
           </div>
                         </div>
 
-                        
+
 
 
                   </v-form>
@@ -110,10 +110,24 @@
         </v-toolbar>
       </template>
 
-      <template slot="items" slot-scope="props">
-        <td class="text-xs-right">{{ props.item.name }}</td>
-        <td class="text-xs-right">{{ props.item.photo }}</td>
+     <template v-slot:item.images="{ item }">
+        <v-avatar  height="60" width="60">
+          <v-img :src="showImages" :lazy-src="showImages"></v-img>
+        </v-avatar>
       </template>
+      <template slot="items" slot-scope="props">
+     
+        <td class="text-xs-right">{{ props.item.nom }}</td>
+        <td class="text-xs-right">{{ props.item.ville }}</td>
+        <td class="text-xs-right">{{ props.item.adresse }}</td>
+        <td class="text-xs-right">{{ props.item.prix }}</td>
+        <td class="text-xs-right">{{ props.item.nombre_etoile }}</td>
+        <td class="text-xs-right">{{ props.item.description }}</td>
+      </template>
+       
+      
+
+      
 
 
       <template v-slot:[`item.actions`]="{ item }">
@@ -134,10 +148,11 @@
   </div>
   </v-container>
 
-  
+
 </template>
 
 <script>
+import config from "~/../config";
 // import Editor from '../components/helper/Editor.vue';
 
 export default {
@@ -170,7 +185,7 @@ export default {
         v => !!v || 'Nombre d\'Etoile est requis',
         /* v => (v && v.length <= 10) || 'Name must be less than 10 characters', */
       ],
-     
+
      dialog: false,
     form: {
      nom: "",
@@ -178,7 +193,7 @@ export default {
      prix: "",
      description: "",
      nombre_etoile: "",
-     media: ""
+      adresse: ""
     },
     formHotel: false,
     dialogDelete: false,
@@ -187,13 +202,13 @@ export default {
     headers: [
        {
         text: 'Photo',
-        value: 'media'
+        value: 'images'
       },
       {
         text: 'Nom de l\'Hôtel',
         align: 'start',
         sortable: false,
-        value: 'name',
+        value: 'nom',
       },
       {
         text: 'Ville',
@@ -209,23 +224,23 @@ export default {
       },
       {
         text: 'Nombre d\'Etoile ',
-        value: 'etoile'
+        value: 'nombre_etoile'
       },
       {
         text: 'Description',
         value: 'description'
       },
-     
-     
+
+
 
       { text: 'Actions', value: 'actions', sortable: false },
     ],
-    
+
     editedIndex: -1,
     isEditing: false,
-    
+
     btnloading: false,
-      
+
     };
   },
   computed: {
@@ -246,6 +261,8 @@ export default {
     this.initialize()
   },
   methods: {
+    showImages() {
+      console.log(config.app_local ?`config.app_back_debug_url/${item.images[0]}`:`config.app_back_url/${item.images[0]}`)    },
      handleCreate() {
       this.isEditing = false
 
@@ -260,15 +277,15 @@ export default {
       }
     },
      getHotel() {
-      axios.get('/hotel')
+      axios.get('/hotels/get-hotels')
         .then(response => {
           console.log(response);
-          this.hotels = response.data.docs;
+          this.hotels = response.data.hotels;
         })
     },
     initialize() {
       this.getHotel();
-    
+
     },
     close () {
       this.dialog = false
@@ -277,7 +294,7 @@ export default {
         this.editedIndex = -1
       })
     },
-    
+
     deleteItem(item) {
       Swal.fire({
         icon: 'question',
@@ -312,11 +329,20 @@ export default {
       this.list[index] = !this.list[index];
     },
       save() {
-    
+
       if (this.$refs.formBus.validate()) {
         this.btnloading = true
-        this.form.medias = this.media
-        axios.post(`/hotels/save-hotel`, this.form)
+        let formData = new FormData()
+        formData.append('nom', this.form.nom)
+        formData.append('ville', this.form.ville)
+        formData.append('prix', this.form.prix)
+        formData.append('description', this.form.description)
+        formData.append('adresse', this.form.adresse)
+        formData.append('nombre_etoile', this.form.nombre_etoile)
+        this.media.forEach(media => {
+          formData.append("medias", media.file)
+        })
+        axios.post(`/hotels/save-hotel`, formData)
           .then(response => {
             console.log(response);
             if (response.data.error) {
@@ -366,7 +392,7 @@ export default {
         console.log(mediadata)
 
         this.media.push(mediadata);
-       
+
       }
     },
 
