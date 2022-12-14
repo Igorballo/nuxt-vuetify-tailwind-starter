@@ -197,27 +197,7 @@
 
 
     <!-- Our partners section   -->
-    <div class="tw-mx-auto tw-px-4 tw-my-20">
-      <div class="tw-flex tw-flex-wrap tw-items-center tw-justify-evenly tw-gap-8">
-        <img class="tw-mt-2 tw-h-12 lg:tw-h-16 tw-fill-current" src="../assets/img/IATA.png" alt="IATA">
-
-        <img class="tw-mt-2 tw-h-12 lg:tw-h-16 tw-fill-current"
-             src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Ethiopian_Airlines_Logo.svg/2560px-Ethiopian_Airlines_Logo.svg.png"
-             alt="air-france">
-
-        <img class="tw-mt-2 tw-h-12 lg:tw-h-16 tw-fill-current"
-             src="https://i.pinimg.com/originals/2f/48/a7/2f48a7c799b4995d9578ed9580b40fbe.jpg"
-             alt="air-france">
-
-        <img class="tw-mt-2 tw-h-16 lg:tw-h-20 tw-fill-current"
-             src="https://wallpapercave.com/wp/wp11304533.png"
-             alt="air-france">
-
-        <img class="tw-mt-2 tw-h-24 lg:tw-h-16 tw-fill-current"
-             src="https://www.internationalboost.com/wp-content/uploads/2018/12/logo-air-france.png"
-             alt="air-france">
-      </div>
-    </div>
+    <Partners />
 
 
     <section class="tw-pt-4 tw-pb-20 lg:tw-px-4 tw-px-6 tw-flex-col tw-gap-4">
@@ -230,7 +210,7 @@
         Les hébergements que les clients adorent
       </h1>
 
-      <div class="tw-px-6 lg:tw-px-10 lg:tw-pb-20">
+      <div class="tw-px-6 lg:tw-px-10 tw-pb-24">
         <div class="tw-flex tw-flex-col tw-space-y-4 tw-mb-6">
 
           <div class="tw-grid md:tw-grid-cols-4 tw-gap-4">
@@ -247,6 +227,10 @@
               <p class="tw-text-xl tw-py-1 tw-font-bold">
                 À partir de € 47,02 par jour
               </p>
+               <v-btn
+               class="tw-w-[fit-content] tw-rounded-lg tw-py-6 tw-px-4 tw-text-white tw-ease-in tw-font-semibold tw-bg-red-600 tw-border-2 tw-border-red-700 tw-duration-300">
+               Reserver maintenant
+               </v-btn>
             </div>
 
             <div
@@ -260,6 +244,10 @@
               <p class="tw-text-xl tw-py-1 tw-font-bold">
                 À partir de € 47,02 par jour
               </p>
+               <v-btn
+               class="tw-w-[fit-content] tw-rounded-lg tw-py-6 tw-px-4 tw-text-white tw-ease-in tw-font-semibold tw-bg-red-600 tw-border-2 tw-border-red-700 tw-duration-300">
+               Reserver maintenant
+               </v-btn>
             </div>
 
             <div
@@ -273,6 +261,10 @@
               <p class="tw-text-xl tw-py-1 tw-font-bold">
                 À partir de € 47,02 par jour
               </p>
+               <v-btn
+               class="tw-w-[fit-content] tw-rounded-lg tw-py-6 tw-px-4 tw-text-white tw-ease-in tw-font-semibold tw-bg-red-600 tw-border-2 tw-border-red-700 tw-duration-300">
+               Reserver maintenant
+               </v-btn>
 
             </div>
 
@@ -287,6 +279,10 @@
               <p class="tw-text-xl tw-py-1 tw-font-bold">
                 À partir de € 47,02 par jour
               </p>
+               <v-btn
+               class="tw-w-[fit-content] tw-rounded-lg tw-py-6 tw-px-4 tw-text-white tw-ease-in tw-font-semibold tw-bg-red-600 tw-border-2 tw-border-red-700 tw-duration-300">
+               Reserver maintenant
+               </v-btn>
             </div>
 
 
@@ -300,7 +296,7 @@
 
     </section>
 
-    <div class="tw-bg-no-repeat tw-bg-cover tw-bg-center tw-w-full tw-h-[75vh]"
+    <div class="tw-bg-no-repeat tw-bg-cover tw-bg-center tw-w-full tw-h-[75vh] tw-pt-10"
          style="background-image: url(https://images.unsplash.com/photo-1615460549969-36fa19521a4f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80)">
     </div>
   </div>

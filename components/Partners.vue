@@ -5,7 +5,7 @@
 
       <div class="tw-flex tw-flex-row tw-justify-evenly tw-items-center tw-gap-8">
 
-        <carousel :per-page="3" :navigate-to="someLocalProperty" :mouse-drag="true" :autoplay="true" :spacePadding="25" :speed="2000" :autoplayDirection="backward">
+        <carousel :per-page="3" :mouse-drag="false" :autoplay="true" :spacePadding="25" :speed="2000" :autoplayDirection="backward">
           <slide>
           <img class="tw-mt-2 tw-h-20 tw-fill-current" src="../assets/img/IATA.png" alt="IATA">
           </slide>

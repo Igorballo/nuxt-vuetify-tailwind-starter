@@ -243,6 +243,11 @@
     </v-row>
 
     <v-dialog width="900px" v-model="dialogAddOffre">
+    <v-form
+    ref="form"
+    v-model="valid"
+    lazy-validation
+  >
       <v-card>
         <div class="tw-flex tw-px-12 tw-mt-6 tw-gap-4 tw-justify-between tw-items-center">
           <div class="tw-flex tw-justify-between tw-gap-6 tw-mb-4 tw-items-center">
@@ -281,6 +286,7 @@
                               item-text="name"
                               item-value="_id"
                               label="Compagnie de voyage"
+                              :rules="airlineRules"
                               outlined
               >
                 <template v-slot:no-data>
@@ -316,6 +322,7 @@
                   item-text="name"
                   item-value="_id"
                   label="Choisissez l'aéroport de départ..."
+                  :rules="adresseDepartRules"
                   outlined
                 >
                   <template v-slot:no-data>
@@ -359,6 +366,7 @@
                   item-text="name"
                   item-value="_id"
                   label="Choisissez l'adresse d'arrivée..."
+                  :rules="adresseArriveRules"
                   outlined
                 >
                   <template v-slot:no-data>
@@ -393,6 +401,7 @@
 
               <div class="tw-flex tw-items-center tw-justify-between tw-px-2 tw-mt-6 tw-gap-4">
                 <v-datetime-picker outlined ships label="Jour et heure de départ"
+                                   :rules="dateHeureDepartRules"
                                    v-model="offre.confirmed_depart_date">
                   <template slot="dateIcon">
                     <v-icon>mdi-calendar</v-icon>
@@ -405,6 +414,7 @@
                 <v-datetime-picker
                   :allowed-dates="disablePastDates"
                   outlined ships label="Jour et heure de retour"
+                                  :rules="dateHeureArriveRules"
                                    v-model="offre.confirmed_comeback_date">
                   <template slot="dateIcon">
                     <v-icon>mdi-calendar</v-icon>
@@ -416,8 +426,8 @@
               </div>
 
 
-              <v-text-field outlined v-model="offre.amountbuy" label="Prix d'achat du billet" type="number"/>
-              <v-text-field outlined v-model="offre.amountsell" label="Prix de revente du billet" type="number"/>
+              <v-text-field outlined v-model="offre.amountbuy" label="Prix d'achat du billet" :rules="prixAchatRules" type="number"/>
+              <v-text-field outlined v-model="offre.amountsell" label="Prix de revente du billet" :rules="prixReventeRules" type="number"/>
 
               <div v-for="(escale, escale_index) in offre.escales" :key="escale_index"
                    class="tw-rounded tw-mb-6 tw-mt-8">
@@ -440,6 +450,7 @@
                     item-text="name"
                     item-value="_id"
                     label="Choisissez l'aéroport d'escale..."
+                    :rules="escaleRules"
                     outlined
                   >
                     <template v-slot:no-data>
@@ -472,7 +483,7 @@
                 </div>
 
                 <div class="tw-flex tw-items-center tw-justify-between tw-px-2 tw-mt-6 tw-gap-4">
-                  <v-datetime-picker outlined ships label="Jour et heure d'arrivée"
+                  <v-datetime-picker outlined ships label="Jour et heure d'arrivée" :rules="dateArriveRules"
                                      v-model="escale.arrive">
                     <template slot="dateIcon">
                       <v-icon>mdi-calendar</v-icon>
@@ -481,7 +492,7 @@
                       <v-icon>mdi-clock-outline</v-icon>
                     </template>
                   </v-datetime-picker>
-                  <v-datetime-picker outlined ships label="Jour et heure de départ"
+                  <v-datetime-picker outlined ships label="Jour et heure de départ" :rules="dateDepartRules"
                                      v-model="escale.departure">
                     <template slot="dateIcon">
                       <v-icon>mdi-calendar</v-icon>
@@ -500,6 +511,7 @@
           </v-btn>
         </v-card-text>
       </v-card>
+      </v-form>
     </v-dialog>
   </v-container>
 </template>
@@ -511,6 +523,36 @@ export default {
   layout: "admin",
   data() {
     return {
+       airlineRules: [
+        v => !!v || 'ce champs est obligatoire',
+      ],
+      dateArriveRules: [
+        v => !!v || 'ce champs est obligatoire',
+      ],
+      dateDepartRules: [
+        v => !!v || 'ce champs est obligatoire',
+      ],
+       dateHeureArriveRules: [
+        v => !!v || 'ce champs est obligatoire',
+      ],
+      dateHeureDepartRules: [
+        v => !!v || 'ce champs est obligatoire',
+      ],
+       adresseArriveRules: [
+        v => !!v || 'ce champs est obligatoire',
+      ],
+      adresseDepartRules: [
+        v => !!v || 'ce champs est obligatoire',
+      ],
+      escaleRules: [
+        v => !!v || 'ce champs est obligatoire',
+      ],
+       prixAchatRules: [
+        v => !!v || 'ce champs est obligatoire',
+      ],
+       prixReventeRules: [
+        v => !!v || 'ce champs est obligatoire',
+      ],
       confirmedDate: null,
       departDatePicker: false,
       showEscaleForm: false,
@@ -594,6 +636,7 @@ export default {
 
     async sendSupply() {
       this.sendSupplyBtn = true
+      this.$refs.form.validate()
       const response = await axios.post(`/reservation-vol/admin-update-offre/${this.$route.params.id}`, this.offre).then(res => {
 
         if (res.data.error) {
