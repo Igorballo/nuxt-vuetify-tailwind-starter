@@ -136,6 +136,7 @@ export default {
 
     methods: {
       async sendMessage() {
+        this.$refs.form.validate()
         this.btnloading = true;
       await axios.post('/contacts', this.form).then((response) => {
         this.showToast('success', 'Message envoyé avec succès')
