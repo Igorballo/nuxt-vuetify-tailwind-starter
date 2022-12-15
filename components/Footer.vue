@@ -71,7 +71,7 @@
         <ul
           class="tw-flex tw-items-center lg:items-start lg:tw-flex-row tw-flex-col tw-mt-4 tw-text-base tw-text-gray-300 tw-gap-8 tw-justify-center"
           style="list-style-type: none">
-          <li class="hover:tw-opacity-75 tw-text-white tw-cursor-pointer" @click="$router.push('/')">
+          <li class="hover:tw-opacity-75 tw-text-white tw-cursor-pointer" @click="$router.push('/reservation-vols')">
             Reservation de Ticket
           </li>
           <li class="hover:tw-opacity-75 tw-text-white tw-cursor-pointer" @click="$router.push('/hotel')"> Hébergements</li>
