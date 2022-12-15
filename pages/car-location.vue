@@ -3,11 +3,11 @@
     <div class="tw-relative">
       <div style="z-index: 500"
            class="tw-flex tw-justify-center tw-items-center tw-absolute tw-inset-0">
-        <v-form 
+        <v-form
           ref="form"
           v-model="valid"
           lazy-validation
-          class="tw-flex tw-flex-col tw-rounded-lg tw-bg-white tw-shadow-md tw-p-4 md:tw-p-6 tw-w-[90%] md:tw-w-[75%]">
+          class="tw-flex tw-flex-col tw-rounded-lg tw-bg-white tw-shadow-md tw-px-2 tw-py-4 md:tw-p-6 tw-w-[90%] md:tw-w-[75%]">
           <v-checkbox
             v-model="carReservationForm.autre_lieu_restitution"
             label="Lieu de restitution différent"
@@ -253,7 +253,7 @@ export default {
      validate () {
         if(this.$refs.form.validate()) {
           this.$router.push('/filter-car')
-        }  
+        }
       },
     async reservation() {
       this.btnLoading = true

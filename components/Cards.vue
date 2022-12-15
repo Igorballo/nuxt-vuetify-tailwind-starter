@@ -1,9 +1,9 @@
 <template>
   <div>
 
-    <section class="tw-pt-4 tw-pb-4 tw-px-4 lg:tw-px-8 tw-bg-white tw-flex-col tw-gap-4 tw-shadow-lg">
+    <section class="tw-pb-4 tw-px-4 lg:tw-px-8 tw-bg-white tw-flex-col tw-gap-4 tw-shadow-lg">
       <div
-        class="tw-mt-12 tw-mb-6 tw-text-xl lg:tw-px-20 md:text-2xl tw-inline-flex tw-items-center tw-gap-3 tw-font-bold tw-uppercase tw-font-bold tw-font-extrabold tw-text-red-700">
+        class="tw-mb-6 tw-text-xl lg:tw-px-20 md:text-2xl tw-inline-flex tw-items-center tw-gap-3 tw-font-bold tw-uppercase tw-font-bold tw-font-extrabold tw-text-red-700">
         Meilleures offres en ce moment
       </div>
 

@@ -9,31 +9,31 @@
         <v-carousel-item
           class="tw-h-full tw-w-full tw-bg-center tw-bg-cover tw-contain tw-bg-auto"
           src="https://images.unsplash.com/photo-1587019158091-1a103c5dd17f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-          
+
         >
         </v-carousel-item>
         <v-carousel-item
           class="tw-h-full tw-w-full tw-bg-cover"
           src="https://images.unsplash.com/photo-1615460549969-36fa19521a4f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80"
-          
+
         >
         </v-carousel-item>
         <v-carousel-item
           class="tw-h-full tw-w-full tw-bg-cover"
           src="https://images.unsplash.com/photo-1596436889106-be35e843f974?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-          
+
         >
         </v-carousel-item>
         <v-carousel-item
           class="tw-h-full tw-w-full tw-bg-cover"
           src="https://cdn.pixabay.com/photo/2019/09/05/15/25/airbus-4454338_960_720.jpg"
-          
+
         >
         </v-carousel-item>
         <v-carousel-item
           class="tw-h-full tw-w-full tw-bg-cover"
           src="https://images.unsplash.com/photo-1527007622069-3a0241e1cd8c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
-          
+
         >
         </v-carousel-item>
       </v-carousel>
@@ -63,8 +63,8 @@
                   </div>
                   <div>
                     <dd class="tw-font-light tw-text-sm tw-mt-3 tw-text-justify">
-                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                         sed do eiusmod tempor incididunt ut labore et dolore magna 
+                         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                         sed do eiusmod tempor incididunt ut labore et dolore magna
                          aliqua.</dd>
                   </div>
                 </div>
@@ -88,8 +88,8 @@
                   </div>
                     <div>
                     <dd class="tw-font-light tw-text-sm tw-mt-3 tw-text-justify">
-                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                         sed do eiusmod tempor incididunt ut labore et dolore magna 
+                         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                         sed do eiusmod tempor incididunt ut labore et dolore magna
                          aliqua.</dd>
                   </div>
                 </div>
@@ -114,8 +114,8 @@
                   </div>
                     <div>
                     <dd class="tw-font-light tw-text-sm tw-mt-3 tw-text-justify">
-                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                         sed do eiusmod tempor incididunt ut labore et dolore magna 
+                         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                         sed do eiusmod tempor incididunt ut labore et dolore magna
                          aliqua.</dd>
                   </div>
                 </div>
@@ -139,8 +139,8 @@
                   </div>
                     <div>
                     <dd class="tw-font-light tw-text-sm tw-mt-3 tw-text-justify">
-                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                         sed do eiusmod tempor incididunt ut labore et dolore magna 
+                         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                         sed do eiusmod tempor incididunt ut labore et dolore magna
                          aliqua.</dd>
                   </div>
                 </div>
@@ -165,8 +165,8 @@
                   </div>
                     <div>
                     <dd class="tw-font-light tw-text-sm tw-mt-3 tw-text-justify">
-                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                         sed do eiusmod tempor incididunt ut labore et dolore magna 
+                         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                         sed do eiusmod tempor incididunt ut labore et dolore magna
                          aliqua.</dd>
                   </div>
                 </div>
@@ -174,7 +174,7 @@
               </div>
             </div>
 
-            
+
 
           </div>
         </div>
