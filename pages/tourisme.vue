@@ -534,13 +534,13 @@
     <!-- Our partners section   -->
     <Partners />
 
-    <section class="tw-pt-10 tw-pb-4 lg:tw-px-8 tw-px-4 tw-bg-white tw-flex-col tw-gap-4 tw-shadow-lg">
+    <section class="tw-pb-4 lg:tw-px-8 tw-px-4 tw-bg-white tw-flex-col tw-gap-4 tw-shadow-lg">
       <h1
         class="tw-mt-12 tw-mb-6 tw-text-xl tw-px-3 lg:tw-px-20 md:text-2xl tw-inline-flex tw-items-center tw-gap-3 tw-font-bold tw-uppercase tw-font-bold tw-font-extrabold tw-text-red-700">
         Meilleures Sites Touristiques
       </h1>
 
-      <div class="tw-px-3 lg:tw-px-20">
+      <div class="lg:tw-px-20">
         <div class="tw-flex tw-flex-col tw-space-y-4 tw-mb-6">
 
           <div class="tw-grid md:tw-grid-cols-2 tw-gap-4">
@@ -585,7 +585,7 @@
                 class="tw-absolute tw-left-6 tw-bottom-4 tw-text-lg lg:tw-text-2xl tw-font-bold tw-text-white tw-rounded tw-bg-blue-600 tw-px-6 tw-py-3">Sydney</span>
             </div>
           </div>
-          
+
         </div>
 
 

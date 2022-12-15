@@ -1,12 +1,12 @@
 <template>
-  <v-app>
-    <div class="tw-flex tw-items-center tw-px-4 lg:tw-px-12 tw-py-2 tw-justify-between tw-w-full tw-bg-white">
+  <v-app class="tw-relative">
+    <div style="z-index: 999" class="tw-sticky tw-top-0 lg:tw-static tw-flex tw-items-center tw-px-4 lg:tw-px-12 tw-py-2 tw-justify-between tw-w-full tw-bg-white">
       <!--      Manglam Logo-->
-      <img class="tw-h-full tw-h-12 tw-w-44" src="../assets/img/manglam-iata-logo.png" alt="Manglam-logo">
+      <img class="tw-h-full tw-h-14 tw-w-72 lg:tw-w-96" src="../assets/img/MANGLAM-IATA-LOGO-TEXTE.png" alt="Manglam-logo">
       <div class="tw-inline-flex tw-items-center tw-gap-4">
         <!--  Choose language button      -->
         <button
-          class="tw-text-black tw-text-sm tw-uppercase tw-bg-white hover:tw-bg-gray-200 focus:tw-ring-4 focus:tw-outline-none focus:tw-ring-gray-300 tw-font-bold tw-rounded-lg tw-text-md tw-px-2 tw-py-2 tw-text-center tw-inline-flex tw-items-center"
+          class="tw-text-black tw-hidden tw-text-sm tw-uppercase tw-bg-white hover:tw-bg-gray-200 focus:tw-ring-4 focus:tw-outline-none focus:tw-ring-gray-300 tw-font-bold tw-rounded-lg tw-text-md tw-px-2 tw-py-2 tw-text-center lg:tw-inline-flex tw-items-center"
           type="button">
           français
           <svg class="tw-ml-2 tw-w-4 tw-h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -15,23 +15,28 @@
           </svg>
         </button>
         <!--Show sidebar button-->
-        <button @click="showMenu =! showMenu" class="md:tw-hidden">
+        <button v-show="!showMenu" @click="showMenu = true" class="md:tw-hidden">
           <img class="tw-h-6 tw-w-6" src="../assets/svg/menu.svg" alt="Menu-icon">
+        </button>
+        <button v-show="showMenu" @click="showMenu = false" class="md:tw-hidden tw-bg-black tw-text-white tw-rounded-full">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="tw-w-6 tw-h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
         </button>
       </div>
     </div>
 
-    <div @click.away="showMenu = false" style="z-index: 999" :class="showMenu ? 'tw-flex tw-flex-col': 'tw-hidden md:tw-flex md:tw-flex-row'" class="tw-inset-x-0 tw-absolute tw-top-16 md:tw-sticky md:tw-top-0 tw-bg-blue-800 tw-text-sm tw-py-4 tw-px-4 md:tw-px-12 md:tw-flex-row md:tw-items-center tw-justify-between">
-      <ul class="tw-flex tw-flex-col md:tw-flex-row md:tw-items-center tw-text-md tw-pb-4 md:tw-pb-0 tw-gap-6 tw-px-0">
+    <div @click.away="showMenu = false" style="z-index: 999" :class="showMenu ? 'tw-flex tw-flex-col': 'tw-hidden md:tw-flex md:tw-flex-row'" class="tw-inset-x-0 tw-absolute tw-top-16 md:tw-sticky md:tw-top-0 tw-bg-red-600 tw-text-sm tw-py-4 tw-px-4 md:tw-px-12 md:tw-flex-row md:tw-items-center tw-justify-between">
+      <ul class="tw-flex tw-flex-col md:tw-flex-row md:tw-items-center tw-text-md tw-pb-2 md:tw-pb-0 tw-px-0">
         <li class="tw-text-white tw-font-semifont-bold tw-cursor-pointer">
-          <div @click="$router.push('/')"
-               class="tw-flex tw-items-center tw-gap-2">
+          <div :class="$route.path === '/' ? 'tw-bg-red-600 md:tw-bg-transparent': 'tw-bg-transparent hover:tw-bg-red-700'" @click="$router.push('/')"
+               class="tw-flex tw-items-center tw-gap-2  tw-p-2 tw-rounded-lg">
             <img class="tw-h-4 tw-w-4 tw-text-white" src="../assets/svg/airplane.svg">
             <span class="tw-whitespace-nowrap">Reservation de tickets</span>
           </div>
         </li>
         <li class="tw-text-white tw-font-semifont-bold tw-cursor-pointer">
-          <div @click="$router.push('/hotel')" class="tw-flex tw-items-center tw-gap-2">
+          <div :class="$route.path === '/hotel' ? 'tw-bg-red-600 md:tw-bg-transparent': 'tw-bg-transparent hover:tw-bg-red-700'" @click="$router.push('/hotel')" class="tw-flex tw-items-center tw-gap-2 tw-p-2 tw-rounded-lg">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                  stroke="currentColor" class="tw-w-4 tw-h-4">
               <path stroke-linecap="round" stroke-linejoin="round"
@@ -41,13 +46,13 @@
           </div>
         </li>
         <li class="tw-text-white tw-font-semifont-bold tw-cursor-pointer">
-          <div @click="$router.push('/car-location')" class="tw-flex tw-items-center tw-gap-2">
+          <div :class="$route.path === '/car-location' ? 'tw-bg-red-600 md:tw-bg-transparent': 'tw-bg-transparent hover:tw-bg-red-700'" @click="$router.push('/car-location')" class="tw-flex tw-items-center tw-gap-2 tw-p-2 tw-rounded-lg">
             <img class="tw-h-4 tw-w-4 tw-text-white" src="../assets/svg/car.svg">
             <span class="tw-whitespace-nowrap">Location de voitures</span>
           </div>
         </li>
         <li class="tw-text-white tw-font-semifont-bold tw-cursor-pointer">
-          <div @click="$router.push('/tourisme')" class="tw-flex tw-items-center tw-gap-2">
+          <div :class="$route.path === '/tourisme' ? 'tw-bg-red-600 md:tw-bg-transparent': 'tw-bg-transparent hover:tw-bg-red-700'" @click="$router.push('/tourisme')" class="tw-flex tw-items-center tw-gap-2 tw-p-2 tw-rounded-lg">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                  stroke="currentColor" class="tw-w-4 tw-h-4">
               <path stroke-linecap="round" stroke-linejoin="round"
@@ -57,7 +62,7 @@
           </div>
         </li>
         <li class="tw-text-white tw-font-semifont-bold tw-cursor-pointer">
-          <div @click="$router.push('/visa-assurance')" class="tw-flex tw-items-center tw-gap-2">
+          <div :class="$route.path === '/visa-assurance' ? 'tw-bg-red-600 md:tw-bg-transparent': 'tw-bg-transparent hover:tw-bg-red-700'" @click="$router.push('/visa-assurance')" class="tw-flex tw-items-center tw-gap-2 tw-p-2 tw-rounded-lg">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                  stroke="currentColor" class="tw-w-4 tw-h-4">
               <path stroke-linecap="round" stroke-linejoin="round"
@@ -68,19 +73,28 @@
         </li>
       </ul>
 
-      <ul class="tw-flex tw-flex-col md:tw-flex-row tw-whitespace-nowrap tw-text-white tw-border-t-2 md:tw-border-0 tw-px-0 tw-gap-4 tw-pt-4 md:tw-pt-0 tw-text-sm md:tw-gap-6">
-
-
+      <ul class="tw-flex tw-flex-col md:tw-flex-row tw-whitespace-nowrap tw-text-white tw-border-t-2 md:tw-border-0 tw-px-0 tw-pt-2 md:tw-pt-0 tw-text-sm">
         <li class="tw-text-white tw-font-semifont-bold">
-          <div @click="$router.push('/about')" class="tw-flex tw-items-center tw-gap-2 tw-cursor-pointer">
+          <div :class="$route.path === '/about' ? 'tw-bg-red-600 md:tw-bg-transparent': 'tw-bg-transparent hover:tw-bg-red-700'" @click="$router.push('/about')" class="tw-flex tw-items-center tw-gap-2 tw-p-2 tw-rounded-lg tw-cursor-pointer">
             <span class="tw-whitespace-nowrap">A propos</span>
           </div>
         </li>
 
         <li class="tw-text-white tw-font-semifont-bold">
-          <div @click="$router.push('/contact')" class="tw-flex tw-items-center tw-gap-2 tw-cursor-pointer">
+          <div :class="$route.path === '/contact' ? 'tw-bg-red-600 md:tw-bg-transparent': 'tw-bg-transparent hover:tw-bg-red-700'" @click="$router.push('/contact')" class="tw-flex tw-items-center tw-gap-2 tw-p-2 tw-rounded-lg tw-cursor-pointer">
             <span class="tw-whitespace-nowrap">Nous contacter</span>
           </div>
+        </li>
+        <li class="tw-text-white tw-font-semifont-bold tw-cursor-pointer">
+          <button
+            class="tw-text-black lg:tw-hidden tw-text-sm tw-uppercase tw-bg-red-200 hover:tw-bg-red-300 focus:tw-ring-4 focus:tw-outline-none focus:tw-ring-gray-300 tw-font-bold tw-rounded-lg tw-text-md tw-px-2 tw-py-2 tw-text-center tw-inline-flex tw-items-center"
+            type="button">
+            français
+            <svg class="tw-ml-2 tw-w-4 tw-h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                 xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
         </li>
       </ul>
     </div>
