@@ -24,10 +24,16 @@
     <div @click.away="showMenu = false" style="z-index: 999" :class="showMenu ? 'tw-flex tw-flex-col': 'tw-hidden md:tw-flex md:tw-flex-row'" class="tw-inset-x-0 tw-absolute tw-top-16 md:tw-sticky md:tw-top-0 tw-bg-blue-800 tw-text-sm tw-py-4 tw-px-4 md:tw-px-12 md:tw-flex-row md:tw-items-center tw-justify-between">
       <ul class="tw-flex tw-flex-col md:tw-flex-row md:tw-items-center tw-text-md tw-pb-4 md:tw-pb-0 tw-gap-6 tw-px-0">
         <li class="tw-text-white tw-font-semifont-bold tw-cursor-pointer">
-          <div @click="$router.push('/')"
+          <div @click="$router.push('/')" class="tw-flex tw-items-center tw-gap-2">
+            
+            <span class="tw-whitespace-nowrap">Home</span>
+          </div>
+        </li>
+        <li class="tw-text-white tw-font-semifont-bold tw-cursor-pointer">
+          <div @click="$router.push('/reservation-vols')"
                class="tw-flex tw-items-center tw-gap-2">
             <img class="tw-h-4 tw-w-4 tw-text-white" src="../assets/svg/airplane.svg">
-            <span class="tw-whitespace-nowrap">Reservation de tickets</span>
+            <span class="tw-whitespace-nowrap">Reservation de vols</span>
           </div>
         </li>
         <li class="tw-text-white tw-font-semifont-bold tw-cursor-pointer">
