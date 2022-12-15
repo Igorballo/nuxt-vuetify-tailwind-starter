@@ -7,7 +7,7 @@
         v-model="model"
       >
         <v-carousel-item
-          class="tw-h-full tw-w-full tw-bg-cover"
+          class="tw-h-full tw-w-full tw-bg-center tw-bg-cover tw-contain tw-bg-auto"
           src="https://images.unsplash.com/photo-1587019158091-1a103c5dd17f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
           
         >
@@ -47,7 +47,7 @@
             class="tw-mt-12 tw-mb-6 tw-text-xl tw-text-center lg:tw-text-3xl tw-font-bold tw-uppercase md:tw-ml-8 md:tw-ml-20 tw-font-extrabold tw-text-red-700">
             Decouvrez nos Services
           </h1>
-          <div class="tw-flex tw-flex-wrap tw-justify-center md:tw-items-center tw-gap-2">
+          <div class="tw-flex tw-justify-center tw-flex-col md:tw-flex-row md:tw-items-center tw-gap-2">
             <div @click="$router.push('/reservation-vols')" class="tw-block tw-cursor-pointer tw-w-full md:tw-w-[fit-content] tw-rounded-lg tw-p-2 md:tw-p-4 tw-shadow-sm tw-shadow-indigo-100">
               <img
                 alt="ticket"
@@ -59,8 +59,13 @@
                 <div>
 
                   <div>
-
                     <dd class="tw-font-bold tw-text-2xl tw-text-red-600">Réservation de Vols</dd>
+                  </div>
+                  <div>
+                    <dd class="tw-font-light tw-text-sm tw-mt-3 tw-text-justify">
+                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                         sed do eiusmod tempor incididunt ut labore et dolore magna 
+                         aliqua.</dd>
                   </div>
                 </div>
 
@@ -80,6 +85,12 @@
                   <div>
 
                     <dd class="tw-font-bold tw-text-2xl tw-text-red-600">Hébergements</dd>
+                  </div>
+                    <div>
+                    <dd class="tw-font-light tw-text-sm tw-mt-3 tw-text-justify">
+                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                         sed do eiusmod tempor incididunt ut labore et dolore magna 
+                         aliqua.</dd>
                   </div>
                 </div>
 
@@ -101,6 +112,12 @@
 
                     <dd class="tw-font-bold tw-text-2xl tw-text-red-600">Location de voitures</dd>
                   </div>
+                    <div>
+                    <dd class="tw-font-light tw-text-sm tw-mt-3 tw-text-justify">
+                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                         sed do eiusmod tempor incididunt ut labore et dolore magna 
+                         aliqua.</dd>
+                  </div>
                 </div>
 
               </div>
@@ -119,6 +136,12 @@
                   <div>
 
                     <dd class="tw-font-bold tw-text-2xl tw-text-red-600">Tourisme</dd>
+                  </div>
+                    <div>
+                    <dd class="tw-font-light tw-text-sm tw-mt-3 tw-text-justify">
+                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                         sed do eiusmod tempor incididunt ut labore et dolore magna 
+                         aliqua.</dd>
                   </div>
                 </div>
 
@@ -140,6 +163,12 @@
 
                     <dd class="tw-font-bold tw-text-2xl tw-text-red-600">Visa & Assurance Voyages</dd>
                   </div>
+                    <div>
+                    <dd class="tw-font-light tw-text-sm tw-mt-3 tw-text-justify">
+                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                         sed do eiusmod tempor incididunt ut labore et dolore magna 
+                         aliqua.</dd>
+                  </div>
                 </div>
 
               </div>
@@ -151,7 +180,17 @@
         </div>
       </div>
     </section>
-      <Cards/>
+
+    <section class="tw-pt-4 tw-pb-8 lg:tw-pb-10 lg:tw-px-3 tw-flex-col tw-gap-4">
+      <div class="">
+        <div class="tw-flex tw-flex-col tw-mb-6 tw-px-2 md:tw-px-6 lg:tw-px-10">
+          <h1
+            class="tw-mt-12 tw-mb-6 tw-text-xl tw-text-center lg:tw-text-3xl tw-font-bold tw-uppercase md:tw-ml-8 md:tw-ml-20 tw-font-extrabold tw-text-red-700">
+             Nos Actualités
+          </h1>
+     </div>
+     </div>
+     </section>
   </div>
 </template>
 
