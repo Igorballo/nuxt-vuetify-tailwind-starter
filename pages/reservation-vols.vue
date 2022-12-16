@@ -325,8 +325,6 @@
             <v-dialog
               v-model="userInfoDialog"
               max-width="600px"
-
-
             >
             <v-form
                     ref="modal"

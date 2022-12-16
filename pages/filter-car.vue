@@ -8,15 +8,136 @@
             <h1><span class="tw-font-semibold tw-text-sm lg:tw-text-md">Départ: </span>Lomé Airport 16 déc 2022 (09:30)
               - 17 déc 2022 (10:30)</h1>
           </div>
-
           <FilterCarForm/>
-
         </div>
       </div>
 
+      <!--   User form   -->
+      <v-dialog
+        v-model="userInfoDialog"
+        max-width="600px"
+      >
+        <v-form
+          ref="modal"
+          v-model="valid"
+          lazy-validation
+        >
+          <v-card>
+            <v-card-title>
+              <span class="text-h5">Information du client</span>
+            </v-card-title>
+            <v-card-text>
+              <v-container>
+
+                <v-row>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                  >
+                    <v-text-field
+                      label="Nom*"
+                      :rules="lastNameRules"
+                      required
+                      outlined
+                      v-model="carReservationForm.lastname"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    sm="6"
+                  >
+                    <v-text-field
+                      label="Prénoms*"
+                      required outlined
+                      :rules="firstNameRules"
+                      v-model="carReservationForm.firstname"
+                    ></v-text-field>
+                  </v-col>
+
+                  <v-col
+                    cols="12"
+                  >
+                    <v-text-field placeholder="XXXXXXXX" v-model="carReservationForm.passport_id" required
+                                  :rules="passportIdRules"
+                                  label="Numéro passport ou Numéro carte d'identité*" outlined></v-text-field>
+                  </v-col>
+
+                  <v-col
+                    cols="12"
+                  >
+                    <v-text-field type="email" placeholder="ex: hfx@gmail.com" v-model="carReservationForm.email"
+                                  required
+                                  :rules="emailRules"
+                                  label="Adresse email*" outlined></v-text-field>
+                  </v-col>
+
+                  <v-row
+                    cols="12" class="tw-mx-1"
+                  >
+                    <v-col sm="6">
+                      <v-autocomplete
+                        v-model="carReservationForm.phone_number.code"
+                        :items="countries"
+                        :loading="isLoading"
+                        :search-input.sync="search"
+                        clearable
+                        item-text="dial_code"
+                        item-value="id"
+                        outlined
+                        :rules="codeNumberRules"
+                        required
+                        label="Indicatif de votre numéro*"
+                      >
+                        <template v-slot:item="{ item }">
+                          <v-list-item-avatar
+                            color="indigo"
+                            class="text-h10 tw-p-4 font-weight-light white--text"
+                          >
+                            {{ item.dial_code }}
+                          </v-list-item-avatar>
+                          <v-list-item-content>
+                            <v-list-item-title>{{ item.name }}</v-list-item-title>
+                          </v-list-item-content>
+                        </template>
+                      </v-autocomplete>
+                    </v-col>
+                    <v-col>
+                      <v-text-field v-model="carReservationForm.phone_number.number" required
+                                    :rules="numberRules" type="number"
+                                    label="Numéro de télephone*" outlined></v-text-field>
+                    </v-col>
+                  </v-row>
+                </v-row>
+
+              </v-container>
+              <small>*Indique un champ obligatoire</small>
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn
+                color="error darken-1"
+                @click="userInfoDialog = false"
+                text
+              >
+                Fermer
+              </v-btn>
+              <v-btn
+                class=""
+                color="error darken-1"
+                :loading="btnLoading"
+                @click="userInfoDialog = false, disclaimerDialog = true && $refs.modal.validate()"
+              >
+                Envoyer la demande
+              </v-btn>
+
+            </v-card-actions>
+          </v-card>
+        </v-form>
+      </v-dialog>
+
       <div justify="center" class="lg:tw-hidden">
         <v-dialog
-          v-model="dialog"
+          v-model="filterFialog"
           persistent
           max-width="600px"
         >
@@ -149,7 +270,7 @@
                     <div class="tw-text-lg"><span class="tw-text-2xl tw-font-extrabold">6500 XOF/JOUR</span> <br> Pour 8
                       jours
                     </div>
-                    <button
+                    <button @click="userInfoDialog = true"
                       class="tw-py-3 tw-px-12 tw-text-white tw-text-xl tw-font-semibold tw-rounded-lg tw-bg-red-600">
                       Reservez
                     </button>
@@ -172,13 +293,10 @@ export default {
   layout: 'master',
   data() {
     return {
-      dialog: false,
-      heure_depart_menu: false,
-      heure_restitution_menu: false,
-      date_depart_menu: false,
-      heure_depart: false,
-      heure_fin: false,
+      filterFialog: false,
+
       btnLoading: false,
+      userInfoDialog: false,
       carReservationForm: {
         autre_lieu_restitution: false,
         lieu_prise_en_charge: "",
@@ -187,6 +305,14 @@ export default {
         heure_fin: "",
         date_debut: "",
         date_fin: "",
+        lastname: "",
+        firstname: "",
+        email: "",
+        passport_id: "",
+        phone_number: {
+          code: "",
+          number: '',
+        },
       },
       date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
       lowPrice: ['0', '2000', '5000', '10000', '25000', '50000'],
