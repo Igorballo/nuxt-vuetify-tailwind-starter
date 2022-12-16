@@ -136,11 +136,24 @@
         </v-menu>
       </div>
 
-      <v-btn @click="$router.push('/filter')"
-             class="tw-w-[fit-content] tw-rounded-full tw-py-6 tw-px-4 tw-text-white tw-ease-in tw-font-semibold tw-bg-red-600 tw-border-2 tw-border-red-700 tw-duration-300">
-        Rechercher des voitures
-      </v-btn>
-    </form>
+              <v-select
+                :items="highPrice"
+                outlined
+                label="Plus haut prix"
+              >
+                <template v-slot:selection="{ item, index }">
+                  <v-chip >
+                    <span>{{ item }} XOF</span>
+                  </v-chip>
+                </template>
+              </v-select>
+
+
+                    <v-btn @click="searchCar"
+                           class="tw-w-[fit-content] tw-rounded-full tw-py-6 tw-px-4 tw-text-white tw-ease-in tw-font-semibold tw-bg-red-600 tw-border-2 tw-border-red-700 tw-duration-300">
+                      Rechercher des voitures
+                    </v-btn>
+                  </form>
   </div>
 </template>
 
@@ -194,6 +207,16 @@ export default {
       'selected_recherche_car_lieu_restitution',
     ]),
   },
+
+  methods: {
+     searchCar() {
+      axios.get('/hotels/get-hotels?pricemin=200&pricemax=10000&limit=4')
+        .then(response => {
+          console.log(response);
+          this.hotels = response.data.hotels;
+        })
+    },
+  }
 }
 </script>
 

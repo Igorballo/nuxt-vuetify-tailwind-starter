@@ -44,6 +44,9 @@
               <v-list-item-subtitle>
                 {{reservation.typeClasse}}
               </v-list-item-subtitle>
+               <v-list-item-subtitle>
+                {{reservation.createdAt |  moment("DD-MM-YYYY")}}
+              </v-list-item-subtitle>
             </v-list-item-content>
 
             <v-list-item-action>
@@ -96,6 +99,9 @@
               <v-list-item-subtitle>
                 {{reservation.typeClasse}}
               </v-list-item-subtitle>
+              <v-list-item-subtitle>
+                {{reservation.createdAt |  moment("DD-MM-YYYY")}}
+              </v-list-item-subtitle>
             </v-list-item-content>
 
             <v-list-item-action>
@@ -136,6 +142,9 @@
 
               <v-list-item-subtitle>
                 {{reservation.typeClasse}}
+              </v-list-item-subtitle>
+              <v-list-item-subtitle>
+                {{reservation.createdAt |  moment("DD-MM-YYYY")}}
               </v-list-item-subtitle>
             </v-list-item-content>
 

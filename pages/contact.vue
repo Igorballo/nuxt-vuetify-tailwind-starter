@@ -35,7 +35,7 @@
             class="tw-px-8 tw-py-8 tw-w-full tw-h-full tw-gap-4 tw-bg-white"
           >
             <v-text-field
-              v-model="form.name"
+              v-model="form.nom"
               :rules="nameRules"
               label="Nom Complet"
               required
@@ -50,7 +50,7 @@
               outlined
             ></v-text-field>
             <v-text-field
-              v-model="form.number"
+              v-model="form.phone"
               :rules="numberRules"
               label="Numero de Telephone"
               outlined
@@ -136,9 +136,9 @@ export default {
         v => !!v || 'Le Numero de Telephone est requis',
       ],
       form: {
-        name: '',
+        nom: '',
         email: '',
-        number: '',
+        phone: '',
         message: ''
       },
     }
@@ -148,13 +148,13 @@ export default {
     async sendMessage() {
       this.$refs.form.validate()
       this.btnloading = true;
-      await axios.post('/contacts', this.form).then((response) => {
+      await axios.post('/contacts/save-contact-message', this.form).then((response) => {
         this.showToast('success', 'Message envoyé avec succès')
 
         this.form = {
-          name: '',
+          nom: '',
           email: '',
-          number: '',
+          phone: '',
           message: ''
         },
           this.btnloading = false;

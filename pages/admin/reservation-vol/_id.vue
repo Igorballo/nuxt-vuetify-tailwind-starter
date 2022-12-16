@@ -41,9 +41,20 @@
               <div class="tw-flex tw-justify-between">
                 <span class="tw-font-semibold tw-text-lg">Téléphone</span>
                 <span
-                  class="tw-text-lg">{{
+                  class="tw-text-lg">
+                  <a :href="`tel:${reservation.customer.lastPhoneNumber.number }`">{{
                     reservation.customer.lastPhoneNumber.code
-                  }} {{ reservation.customer.lastPhoneNumber.number }}</span>
+                  }} {{ reservation.customer.lastPhoneNumber.number }}</a>
+                  </span>
+              </div>
+            </div>
+            <div class="tw-flex tw-flex-col">
+              <div class="tw-flex tw-justify-between">
+                <span class="tw-font-semibold tw-text-lg">Email</span>
+                <span
+                  class="tw-text-lg">
+                   <a :href="`mailto:${reservation.customer.email }`">{{ reservation.customer.email }}</a>
+                    </span>
               </div>
             </div>
 

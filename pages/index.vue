@@ -5,6 +5,7 @@
       <v-carousel
         show-arrows-on-hover
         v-model="model"
+        autoplay
       >
         <v-carousel-item
           class="tw-h-full tw-w-full tw-bg-center tw-bg-cover tw-contain tw-bg-auto"
@@ -188,6 +189,8 @@
             class="tw-mt-12 tw-mb-6 tw-text-xl tw-text-center lg:tw-text-3xl tw-font-bold tw-uppercase md:tw-ml-8 md:tw-ml-20 tw-font-extrabold tw-text-red-700">
              Nos Actualités
           </h1>
+
+
      </div>
      </div>
      </section>
