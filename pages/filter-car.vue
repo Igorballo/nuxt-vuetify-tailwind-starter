@@ -181,15 +181,14 @@
           </div>
         </div>
         <div class="tw-w-full tw-h-full tw-flex tw-flex-col tw-gap-8">
-          <div v-for="i in 4" class="tw-bg-blue-800 tw-pt-8 tw-p-2 tw-rounded-lg tw-w-full">
+          <div v-for="car in cars" class="tw-bg-blue-800 tw-pt-8 tw-p-2 tw-rounded-lg tw-w-full">
             <div class="tw-bg-white tw-px-4">
-              <div class="tw-text-xl tw-font-semibold tw-py-3 tw-border-b">Minivan 7 places | <span
-                class="tw-font-light">ou son équivalent</span>
+              <div class="tw-text-xl tw-font-semibold tw-py-3 tw-border-b"> {{ car.nom }} {{ car.marque}}
               </div>
               <div class="tw-py-4 tw-flex tw-flex-wrap md:tw-flex-nowrap tw-gap-4 md:tw-gap-12 tw-text-sm">
                 <div class="tw-flex tw-flex-col tw-gap-2 md:tw-gap-6 tw-w-full">
-                  <img class="tw-h-44 tw-w-full md:tw-w-64"
-                       src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+                  <img class="tw-h-full tw-w-full md:tw-w-64"
+                       :src="showImages(car)"
                        alt="voiture">
                   <div class="tw-flex tw-items-center tw-gap-8 lg:tw-gap-12 tw-font-semibold">
                     <div title="Peut prendre 7 personnes au total"
@@ -245,6 +244,17 @@
                     <v-icon>mdi-speedometer</v-icon>
                     <span>Killométrage : <br> <p class="tw-font-semibold">Illimité</p> </span>
                   </div>
+
+                  <div class="tw-flex tw-flex-col tw-gap-4">
+                    <div class="tw-text-md">
+                      <span class="tw-text-md tw-font-light tw-text-justify">
+                        {{car.description}}
+                      </span> 
+                    </div>
+                   
+                  </div>
+
+
                 </div>
                 <div class="tw-gap-4 md:tw-gap-8 tw-flex tw-flex-col">
                   <div class="tw-flex tw-flex-col tw-gap-4">
@@ -267,8 +277,7 @@
                   </div>
 
                   <div class="tw-flex tw-flex-col tw-gap-4">
-                    <div class="tw-text-lg"><span class="tw-text-2xl tw-font-extrabold">6500 XOF/JOUR</span> <br> Pour 8
-                      jours
+                    <div class="tw-text-lg"><span class="tw-text-2xl tw-font-extrabold">{{car.prix}} XOF/JOUR</span> 
                     </div>
                     <button @click="userInfoDialog = true"
                       class="tw-py-3 tw-px-12 tw-text-white tw-text-xl tw-font-semibold tw-rounded-lg tw-bg-red-600">
@@ -286,6 +295,7 @@
 </template>
 
 <script>
+import config from "../config";
 import FilterCarForm from "../components/FilterCarForm";
 
 export default {
@@ -318,8 +328,31 @@ export default {
       lowPrice: ['0', '2000', '5000', '10000', '25000', '50000'],
       highPrice: ['2000', '5000', '10000', '25000', '+ 50000'],
       value: ['foo', 'bar', 'fizz'],
+      cars: []
     }
   },
+  created() {
+      this.initialize()
+  },
+  methods: {
+    showImages(item) {
+      console.log(item)    
+      console.log('hello')    
+     const url = config.app_local ?`${config.app_back_debug_url}/${item.images[0]}`:`${config.app_back_url}/${item.images[0]}` 
+     return url
+    },
+     getCar() {
+        axios.get('/cars/get-cars?limit=25')
+          .then(response => {
+            console.log(response);
+            this.cars = response.data.cars;
+          })
+      },
+      initialize() {
+        this.getCar();
+
+      },
+  }
 }
 </script>
 

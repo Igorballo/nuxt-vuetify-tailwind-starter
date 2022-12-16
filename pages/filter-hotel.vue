@@ -2,13 +2,12 @@
   <div class="tw-bg-gray-200 tw-p-4 md:tw-px-0 md:tw-py-12">
     <div class="tw-relative tw-container tw-mx-auto md:tw-px-4 md:tw-flex md:tw-gap-8 tw-w-full">
       <div class="tw-hidden md:tw-sticky md:tw-top-24 lg:tw-block tw-w-1/3 tw-h-screen">
-        <v-form class="tw-bg-white tw-text-sm"
+        <v-form class="tw-bg-white tw-text-sm tw-p-6 tw-bg-white tw-flex tw-flex-col tw-gap-2"
           ref="form"
           v-model="valid"
           lazy-validation>
           <div class="tw-font-semibold tw-text-lg tw-py-4 tw-pl-6 tw-bg-gray-100 tw-border-b">Résumé du trajet</div>
-          <hotelReservationForm class="tw-p-6 tw-bg-white tw-flex tw-flex-col tw-gap-2"
-          >
+          
 
             <v-text-field
               label="Ex: pays, ville, quartier ou site d'intérêt"
@@ -67,7 +66,6 @@
             </v-menu>
 
             <v-menu
-              :key="text"
               solo
               left
               :close-on-content-click="false"
@@ -78,7 +76,6 @@
                               v-bind="attrs"
                               v-on="on"
                               label="Nombre de passagers"
-                              :rules="passengerRules"
                               outlined
                               height="55"
                               v-model="totalPassagers"
@@ -185,18 +182,18 @@
                 </template>
               </v-select>
             </div>
-            <v-btn class="tw-text-white tw-bg-red-600 tw-font-semibold tw-rounded-lg tw-py-2 tw-px-6"  @click="validate">Rechercher
+            <v-btn class="tw-text-white tw-bg-red-600 tw-font-semibold tw-rounded-lg tw-py-2 tw-px-6"  @click="searchHotel">Rechercher
             </v-btn>
-          </hotelReservationForm>
+          
         </v-form>
       </div>
 
       <div class="tw-flex tw-flex-col tw-w-full tw-gap-4">
           <div class="tw-flex tw-flex-col tw-gap-4 tw-mb-6">
-                <div v-for="i in 4" class="tw-w-full tw-shadow-lg tw-max-w-4xl tw-bg-white sm:tw-flex">
+                <div v-for="hotel in hotels" class="tw-w-full tw-shadow-lg tw-max-w-4xl tw-bg-white sm:tw-flex">
 
                   <div class="tw-w-full sm:tw-w-1/4 hotel-cover tw-bg-center tw-bg-cover tw-border tw-relative tw-h-48 sm:tw-h-auto tw-shadow-inner"
-                  style="background-image: url(https://images.unsplash.com/photo-1618773928121-c32242e63f39?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80)">
+                  :style="{backgroundImage: `url(${showImages(hotel)})`}">
                     <div class="tw-w-full tw-absolute tw-bottom-0 tw-flex tw-justify-center bg-gradient-black-transparent">
                       <ul class="tw-text-xs sm:tw-font-semibold tw-my-2 tw-flex sm:tw-block tw-justify-around tw-w-full sm:tw-w-auto tw-text-white">
                         <li class="tw-my-1 tw-flex tw-items-center tw-py-0.5 tw-px-2 tw-bg-gray-700 tw-bg-opacity-80">
@@ -219,8 +216,8 @@
                     <div class="tw-flex tw-justify-between tw-items-center tw-border-b tw-pb-3">
                       <div>
                         <div class="sm:tw-flex tw-items-center tw-mb-1">
-                          <h2 class="tw-text-lg tw-font-semibold tw-text-gray-600">Kensington Suite Hotel</h2>
-                          <div class="tw-flex sm:tw-ml-3">
+                          <h2 class="tw-text-lg tw-font-semibold tw-text-gray-600">{{ hotel.nom }}</h2>
+                        <!--   <div class="tw-flex sm:tw-ml-3">
 
                             <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="tw-h-4 tw-w-4 tw-text-yellow-400 tw-fill-current tw-mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path></svg>
                             <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="tw-h-4 tw-w-4 tw-text-yellow-400 tw-fill-current tw-mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path></svg>
@@ -228,16 +225,16 @@
                             <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="tw-h-4 tw-w-4 tw-text-yellow-400 tw-fill-current tw-mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path></svg>
                             <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="tw-h-4 tw-w-4 tw-text-yellow-400 tw-fill-current" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path></svg>
 
-                          </div>
+                          </div> -->
                         </div>
                         <div class="tw-flex tw-items-center">
                           <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="map-marker-alt" class="tw-h-3 tw-w-3 tw-text-blue-500 tw-fill-current tw-mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"></path></svg>
-                          <span class="tw-text-xs tw-text-gray-600">30-35 Nevern Place <a class="tw-font-semibold tw-text-gray-700" href="">Show on Map</a></span>
+                          <span class="tw-text-xs tw-text-gray-600">{{ hotel.adresse }} <a class="tw-font-semibold tw-text-gray-700" href="">Show on Map</a></span>
                         </div>
                       </div>
                       <div>
                         <div class="tw-text-right tw-text-xl tw-leading-tight tw-text-gray-600 tw-font-semibold">
-                          $ 869 <br> 2 jours
+                          {{ hotel.prix }} <br> 1 jours
                         </div>
                       </div>
                     </div>
@@ -247,7 +244,7 @@
                         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="info-circle" class="tw-w-3 tw-h-3 tw-text-blue-500 tw-mt-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z"></path></svg>
                       </div>
                       <p class="tw-text-xs tw-ml-1 tw-text-gray-600">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora modi natus enim ipsa incidunt eum optio perspiciatis laboriosam reiciendis voluptatem totam, dolorem aliquid provident amet odio adipisci ullam praesentium quos.
+                        {{ hotel.description}}
                       </p>
                     </div>
 
@@ -279,6 +276,7 @@
 </template>
 
 <script>
+import config from "../config";
 export default {
   layout: 'master',
 
@@ -302,6 +300,8 @@ export default {
       date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
       menu: false,
       modal: false,
+      valid: false,
+      hotels: [],
       date_arrive_menu: false,
       date_depart_menu: false,
       hotelReservationForm: {
@@ -334,9 +334,35 @@ export default {
 
   },
 
+   created () {
+    this.initialize()
+  },
+
   methods: {
-    validate() {
-      this.$refs.form.validate()
+    showImages(item) {
+      console.log(item)    
+      console.log('hello')    
+     const url = config.app_local ?`${config.app_back_debug_url}/${item.images[0]}`:`${config.app_back_url}/${item.images[0]}` 
+     return url
+    },
+
+     getHotel() {
+      axios.get('/hotels/get-hotels?limit=25')
+        .then(response => {
+          console.log(response);
+          this.hotels = response.data.hotels;
+        })
+    },
+    searchHotel() {
+      axios.get('/cars/get-cars?pricemin=200&pricemax=50000&limit=4')
+        .then(response => {
+          console.log(response);
+          this.hotels = response.data.hotels;
+        })
+    },
+    initialize() {
+      this.getHotel();
+
     },
 
   },

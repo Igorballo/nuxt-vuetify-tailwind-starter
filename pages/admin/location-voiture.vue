@@ -283,9 +283,9 @@ import config from "../../config";
           cancelButtonText: "annuler",
           preConfirm: async () => {
             Swal.showLoading()
-            await axios.delete('/cars/' + item._id)
+            await axios.delete('/cars/delete-car/' + item._id)
               .then(response => {
-                this.showToast('success', 'Station supprimée avec succès')
+                this.showToast('success', 'Voiture supprimée avec succès')
                 this.initialize()
               })
               .catch(error => {

@@ -305,9 +305,9 @@ export default {
         cancelButtonText: "annuler",
         preConfirm: async () => {
           Swal.showLoading()
-          await axios.delete('/hotel/'+ item.id)
+          await axios.delete('/hotels/delete-hotel/'+ item._id)
             .then(response => {
-              this.showToast('success', 'Station supprimée avec succès')
+              this.showToast('success', 'Hotel supprimé avec succès')
               this.initialize()
             })
             .catch(error => {
