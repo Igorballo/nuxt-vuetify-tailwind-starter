@@ -254,6 +254,13 @@ export default {
   methods: {
     carSearch() {
       if (this.$refs.form.validate()) {
+        this.$store.dispatch('recherche-cars/setRechercheCarDateDebut', this.carFilterForm.date_debut)
+        this.$store.dispatch('recherche-cars/setRechercheCarDateFin', this.carFilterForm.date_fin)
+        this.$store.dispatch('recherche-cars/setRechercheCarHeureDebut', this.carFilterForm.heure_debut)
+        this.$store.dispatch('recherche-cars/setRechercheCarHeureFin', this.carFilterForm.heure_fin)
+        this.$store.dispatch('recherche-cars/setRechercheCarLieuPriseEnCharge', this.carFilterForm.lieu_prise_en_charge)
+        this.$store.dispatch('recherche-cars/setRechercheCarLieuRestitution', this.carFilterForm.lieu_de_restitution)
+        this.$store.dispatch('recherche-cars/setRechercheCarAutreLieuRestitution', this.carFilterForm.autre_lieu_restitution)
 
         this.$router.push('/filter-car')
       }

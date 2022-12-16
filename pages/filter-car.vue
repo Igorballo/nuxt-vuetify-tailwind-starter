@@ -5,10 +5,11 @@
         <div>
           <div
             class="tw-flex tw-mb-4 tw-h-full tw-w-full tw-items-center tw-gap-2 tw-px-2 lg:tw-px-4 tw-py-4 tw-bg-white tw-rounded tw-text-red-600 tw-text-sm">
-            <h1><span class="tw-font-semibold tw-text-sm lg:tw-text-md">Départ: </span>Lomé Airport 16 déc 2022 (09:30)
-              - 17 déc 2022 (10:30)</h1>
+            <h1><span class="tw-font-semibold tw-text-sm lg:tw-text-md">Départ: </span>{{ carReservationForm.lieu_prise_en_charge }} {{ carReservationForm.date_debut}} à {{ carReservationForm.heure_debut}}
+              - <span class="tw-font-semibold tw-text-sm lg:tw-text-md">Restitution: </span> <span v-if="carReservationForm.autre_lieu_restitution">{{ carReservationForm.lieu_prise_en_charge }}</span> <span v-if="!carReservationForm.autre_lieu_restitution">{{ carReservationForm.lieu_de_restitution }}</span> {{ carReservationForm.date_fin}} à {{ carReservationForm.heure_fin}}</h1>
           </div>
           <FilterCarForm/>
+
         </div>
       </div>
 
@@ -242,7 +243,7 @@
                   </div>
                   <div class="tw-inline-flex tw-gap-4 tw-items-start">
                     <v-icon>mdi-speedometer</v-icon>
-                    <span>Killométrage : <br> <p class="tw-font-semibold">Illimité</p> </span>
+                    <span>Kilométrage : <br> <p class="tw-font-semibold">Illimité</p> </span>
                   </div>
 
                   <div class="tw-flex tw-flex-col tw-gap-4">
@@ -297,6 +298,7 @@
 <script>
 import config from "../config";
 import FilterCarForm from "../components/FilterCarForm";
+import {mapGetters} from "vuex";
 
 export default {
   components: {FilterCarForm},
@@ -304,14 +306,13 @@ export default {
   data() {
     return {
       filterFialog: false,
-
       btnLoading: false,
       userInfoDialog: false,
       carReservationForm: {
         autre_lieu_restitution: false,
         lieu_prise_en_charge: "",
         lieu_de_restitution: "",
-        heure_depart: "",
+        heure_debut: "",
         heure_fin: "",
         date_debut: "",
         date_fin: "",
@@ -352,7 +353,29 @@ export default {
         this.getCar();
 
       },
-  }
+  },
+
+  mounted() {
+  this.carReservationForm.date_debut = this.selected_recherche_car_date_debut
+  this.carReservationForm.date_fin = this.selected_recherche_car_date_fin
+  this.carReservationForm.heure_debut = this.selected_recherche_car_heure_debut
+  this.carReservationForm.heure_fin = this.selected_recherche_car_heure_fin
+  this.carReservationForm.lieu_prise_en_charge = this.selected_recherche_car_lieu_prise_en_charge
+  this.carReservationForm.lieu_de_restitution = this.selected_recherche_car_lieu_restitution
+  this.carReservationForm.autre_lieu_restitution = this.selected_recherche_car_autre_lieu_restitution
+    },
+  computed: {
+    ...mapGetters('recherche-cars', [
+      'selected_recherche_car_date_debut',
+      'selected_recherche_car_date_fin',
+      'selected_recherche_car_heure_debut',
+      'selected_recherche_car_heure_fin',
+      'selected_recherche_car_autre_lieu_restitution',
+      'selected_recherche_car_lieu_prise_en_charge',
+      'selected_recherche_car_lieu_restitution',
+
+    ]),
+  },
 }
 </script>
 
