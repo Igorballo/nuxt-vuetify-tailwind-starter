@@ -9,26 +9,26 @@
           lazy-validation
           class="tw-flex tw-flex-col tw-rounded-lg tw-bg-white tw-shadow-md tw-px-2 tw-py-4 md:tw-p-6 tw-w-[90%] md:tw-w-[75%]">
           <v-checkbox
-            v-model="carReservationForm.autre_lieu_restitution"
+            v-model="carFilterForm.autre_lieu_restitution"
             label="Lieu de restitution différent"
           ></v-checkbox>
 
-          <div class="tw-flex tw-flex-col tw-pt-2 md:tw-flex-row md:tw-items-center md:tw-justify-between ">
+          <div class="tw-flex tw-flex-col md:tw-gap-6 tw-pt-2 md:tw-flex-row md:tw-items-center md:tw-justify-between ">
             <v-text-field
               label="Lieu de prise en charge"
               outlined
-              v-model="carReservationForm.lieu_prise_en_charge"
+              v-model="carFilterForm.lieu_prise_en_charge"
               :rules="lieuPriseEnChargeRules"
             ></v-text-field>
             <v-text-field
               label="Lieu de restitution"
               outlined
-              v-if="carReservationForm.autre_lieu_restitution"
-              v-model="carReservationForm.lieu_de_restitution"
+              v-if="carFilterForm.autre_lieu_restitution"
+              v-model="carFilterForm.lieu_de_restitution"
               :rules="lieuRestitutionRules"
             ></v-text-field>
           </div>
-          <div class="tw-flex tw-flex-col tw-pt-2 md:tw-flex-row md:tw-items-center md:tw-justify-between ">
+          <div class="tw-flex tw-flex-col tw-pt-2 md:tw-flex-row md:tw-gap-6 md:tw-items-center md:tw-justify-between ">
             <div class="tw-flex  tw-w-full">
               <v-col class="tw-px-0">
                 <v-menu
@@ -41,7 +41,7 @@
                 >
                   <template v-slot:activator="{ on, attrs }">
                     <v-text-field
-                      v-model="carReservationForm.date_debut"
+                      v-model="carFilterForm.date_debut"
                       label="Date de prise en charge"
                       readonly
                       outlined
@@ -52,7 +52,7 @@
                     ></v-text-field>
                   </template>
                   <v-date-picker
-                    v-model="carReservationForm.date_debut"
+                    v-model="carFilterForm.date_debut"
                     no-title
                     scrollable
                   >
@@ -61,11 +61,11 @@
               </v-col>
               <v-col class="tw-px-0">
                 <v-menu
-                  ref="heure_depart_ref"
-                  v-model="heure_depart_menu"
+                  ref="heure_debut_ref"
+                  v-model="heure_debut_menu"
                   :close-on-content-click="false"
                   :nudge-right="40"
-                  :return-value.sync="carReservationForm.heure_depart"
+                  :return-value.sync="carFilterForm.heure_debut"
                   transition="scale-transition"
                   offset-y
                   max-width="290px"
@@ -73,7 +73,7 @@
                 >
                   <template v-slot:activator="{ on, attrs }">
                     <v-text-field
-                      v-model="carReservationForm.heure_depart"
+                      v-model="carFilterForm.heure_debut"
                       label="Heure de prise en charge"
                       readonly
                       v-bind="attrs"
@@ -84,10 +84,10 @@
                     ></v-text-field>
                   </template>
                   <v-time-picker
-                    v-if="heure_depart_menu"
-                    v-model="carReservationForm.heure_depart"
+                    v-if="heure_debut_menu"
+                    v-model="carFilterForm.heure_debut"
                     full-width
-                    @click:minute="$refs.heure_depart_ref.save(carReservationForm.heure_depart)"
+                    @click:minute="$refs.heure_debut_ref.save(carFilterForm.heure_debut)"
                   ></v-time-picker>
                 </v-menu>
               </v-col>
@@ -104,7 +104,7 @@
                 >
                   <template v-slot:activator="{ on, attrs }">
                     <v-text-field
-                      v-model="carReservationForm.date_fin"
+                      v-model="carFilterForm.date_fin"
                       label="Date de prise en charge"
                       readonly
                       outlined
@@ -115,7 +115,7 @@
                     ></v-text-field>
                   </template>
                   <v-date-picker
-                    v-model="carReservationForm.date_fin"
+                    v-model="carFilterForm.date_fin"
                     no-title
                     scrollable
                   >
@@ -128,7 +128,7 @@
                   v-model="heure_restitution_menu"
                   :close-on-content-click="false"
                   :nudge-right="40"
-                  :return-value.sync=carReservationForm.heure_fin
+                  :return-value.sync=carFilterForm.heure_fin
                   transition="scale-transition"
                   offset-y
                   max-width="290px"
@@ -136,7 +136,7 @@
                 >
                   <template v-slot:activator="{ on, attrs }">
                     <v-text-field
-                      v-model="carReservationForm.heure_fin"
+                      v-model="carFilterForm.heure_fin"
                       label="Heure de restitution"
                       class="tw-rounded-l-none"
                       :rules="heureFinRules"
@@ -148,17 +148,17 @@
                   </template>
                   <v-time-picker
                     v-if="heure_restitution_menu"
-                    v-model="carReservationForm.heure_fin"
+                    v-model="carFilterForm.heure_fin"
                     full-width
-                    @click:minute="$refs.restitution_heure_ref.save(carReservationForm.heure_fin)"
+                    @click:minute="$refs.restitution_heure_ref.save(carFilterForm.heure_fin)"
                   ></v-time-picker>
                 </v-menu>
               </v-col>
             </div>
           </div>
 
-          <v-btn @click="validate"
-            class="tw-w-[fit-content] tw-rounded-full tw-py-6 tw-px-4 tw-text-white tw-ease-in tw-font-semibold tw-bg-red-600 tw-border-2 tw-border-red-700 tw-duration-300">
+          <v-btn @click="carSearch()"
+                 class="tw-w-[fit-content] tw-rounded-full tw-py-6 tw-px-4 tw-text-white tw-ease-in tw-font-semibold tw-bg-red-600 tw-border-2 tw-border-red-700 tw-duration-300">
             Rechercher des voitures
           </v-btn>
         </v-form>
@@ -166,7 +166,7 @@
       <v-carousel
         cycle
         height="500"
-        :height="carReservationForm.autre_lieu_restitution ? '600': '500'"
+        :height="carFilterForm.autre_lieu_restitution ? '600': '500'"
         hide-delimiter-background
         show-arrows-on-hover
       >
@@ -181,13 +181,15 @@
 
 
     <!-- Our partners section   -->
-    <Partners />
+    <Partners/>
 
     <Car/>
   </div>
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+
 export default {
   name: 'car-location',
   layout: 'master',
@@ -214,15 +216,15 @@ export default {
       ],
       items: [
         'https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
-      'https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
-      'https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+        'https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+        'https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
       ],
       time: null,
 
-      heure_depart_menu: false,
+      heure_debut_menu: false,
       heure_restitution_menu: false,
       date_depart_menu: false,
-      heure_depart: false,
+      heure_debut: false,
       heure_fin: false,
       modal: "",
       lieuPriseEnChargeRules: [
@@ -235,11 +237,11 @@ export default {
       ],
       valid: true,
       btnLoading: false,
-      carReservationForm: {
+      carFilterForm: {
         autre_lieu_restitution: false,
         lieu_prise_en_charge: "",
         lieu_de_restitution: "",
-        heure_depart: "",
+        heure_debut: "",
         heure_fin: "",
         date_debut: "",
         date_fin: "",
@@ -250,11 +252,13 @@ export default {
   },
 
   methods: {
-     validate () {
-        if(this.$refs.form.validate()) {
-          this.$router.push('/filter-car')
-        }
-      },
+    carSearch() {
+      if (this.$refs.form.validate()) {
+
+        this.$router.push('/filter-car')
+      }
+    },
+
     async reservation() {
       this.btnLoading = true
       this.$refs.form.validate()

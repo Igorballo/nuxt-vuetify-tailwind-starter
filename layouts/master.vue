@@ -2,7 +2,7 @@
   <v-app class="tw-relative">
     <div style="z-index: 999" class="tw-sticky tw-top-0 lg:tw-static tw-flex tw-items-center tw-px-4 lg:tw-px-12 tw-py-2 tw-justify-between tw-w-full tw-bg-white">
       <!--      Manglam Logo-->
-      <img class="tw-h-full tw-h-14 tw-w-72 lg:tw-w-96" src="../assets/img/MANGLAM-IATA-LOGO-TEXTE.png" alt="Manglam-logo">
+      <img class="tw-h-18 tw-w-72 lg:tw-w-96" src="../assets/img/MANGLAM-IATA-LOGO-TEXTE.png" alt="Manglam-logo">
       <div class="tw-inline-flex tw-items-center tw-gap-4">
         <!--  Choose language button      -->
         <button
@@ -72,11 +72,7 @@
         </li>
         <li class="tw-text-white tw-font-semifont-bold tw-cursor-pointer">
           <div :class="$route.path === '/visa-assurance' ? 'tw-bg-red-600 md:tw-bg-transparent': 'tw-bg-transparent hover:tw-bg-red-700'" @click="$router.push('/visa-assurance')" class="tw-flex tw-items-center tw-gap-2 tw-p-2 tw-rounded-lg">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                 stroke="currentColor" class="tw-w-4 tw-h-4">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M21 7.5l-2.25-1.313M21 7.5v2.25m0-2.25l-2.25 1.313M3 7.5l2.25-1.313M3 7.5l2.25 1.313M3 7.5v2.25m9 3l2.25-1.313M12 12.75l-2.25-1.313M12 12.75V15m0 6.75l2.25-1.313M12 21.75V19.5m0 2.25l-2.25-1.313m0-16.875L12 2.25l2.25 1.313M21 14.25v2.25l-2.25 1.313m-13.5 0L3 16.5v-2.25"/>
-            </svg>
+            <v-icon color="white">mdi-seat-recline-extra</v-icon>
             <span class="tw-whitespace-nowrap">Visa & Assurance</span>
           </div>
         </li>
