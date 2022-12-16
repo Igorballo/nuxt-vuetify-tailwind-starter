@@ -8,7 +8,7 @@
           <span>Connectez-vous avec nous sur les réseaux sociaux :</span>
         </div>
         <div class="tw-flex tw-justify-center">
-          <a href="#!" class="tw-text-white tw-mr-6 ">
+          <a href="https://www.facebook.com/manglamtoursandtravels228" class="tw-text-white tw-mr-6 ">
             <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="facebook-f"
                  class="tw-w-2.5" role="img" xmlns="http://www.w3.org/2000/svg"
                  viewBox="0 0 320 512">
@@ -17,7 +17,7 @@
               </path>
             </svg>
           </a>
-          <a href="#!" class="tw-text-white tw-mr-6 ">
+          <a href="https://twitter.com/ManglamTours228" class="tw-text-white tw-mr-6 ">
             <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="twitter"
                  class="tw-w-4" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
               <path fill="currentColor"
@@ -33,7 +33,7 @@
               </path>
             </svg>
           </a>
-          <a href="#!" class="tw-text-white tw-mr-6 ">
+          <a href="https://www.instagram.com/manglam_tours_and_travels_228/" class="tw-text-white tw-mr-6 ">
             <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="instagram"
                  class="tw-w-3.5" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
               <path fill="currentColor"
