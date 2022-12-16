@@ -250,9 +250,9 @@
                     <div class="tw-text-md">
                       <span class="tw-text-md tw-font-light tw-text-justify">
                         {{car.description}}
-                      </span>
+                      </span> 
                     </div>
-
+                   
                   </div>
 
 
@@ -278,7 +278,7 @@
                   </div>
 
                   <div class="tw-flex tw-flex-col tw-gap-4">
-                    <div class="tw-text-lg"><span class="tw-text-2xl tw-font-extrabold">{{car.prix}} XOF/JOUR</span>
+                    <div class="tw-text-lg"><span class="tw-text-2xl tw-font-extrabold">{{car.prix}} XOF/JOUR</span> 
                     </div>
                     <button @click="userInfoDialog = true"
                       class="tw-py-3 tw-px-12 tw-text-white tw-text-xl tw-font-semibold tw-rounded-lg tw-bg-red-600">
@@ -306,7 +306,6 @@ export default {
   data() {
     return {
       filterFialog: false,
-
       btnLoading: false,
       userInfoDialog: false,
       carReservationForm: {
@@ -338,9 +337,9 @@ export default {
   },
   methods: {
     showImages(item) {
-      console.log(item)
-      console.log('hello')
-     const url = config.app_local ?`${config.app_back_debug_url}/${item.images[0]}`:`${config.app_back_url}/${item.images[0]}`
+      console.log(item)    
+      console.log('hello')    
+     const url = config.app_local ?`${config.app_back_debug_url}/${item.images[0]}`:`${config.app_back_url}/${item.images[0]}` 
      return url
     },
      getCar() {
