@@ -69,7 +69,7 @@
               </div>
             </div>
           </div>
-                        </div>
+        </div>
 
 
 
@@ -109,7 +109,7 @@
 
      <template v-slot:item.images="{ item }">
         <v-avatar  height="60" width="60">
-          <v-img :src="showImages" :lazy-src="showImages"></v-img>
+          <v-img :src="showImages(item)" :lazy-src="showImages(item)"></v-img>
         </v-avatar>
       </template>
       <template slot="items" slot-scope="props">
@@ -149,7 +149,7 @@
 </template>
 
 <script>
-// import config from ".../config";
+ import config from "../../config";
 // import Editor from '../components/helper/Editor.vue';
 
 export default {
@@ -235,7 +235,7 @@ export default {
 
     editedIndex: -1,
     isEditing: false,
-
+    closeDelete: '',
     btnloading: false,
 
     };
@@ -258,8 +258,10 @@ export default {
     this.initialize()
   },
   methods: {
-    showImages() {
-      console.log(config.app_local ?`config.app_back_debug_url/${item.images[0]}`:`config.app_back_url/${item.images[0]}`)    },
+    showImages(item) {
+     const url = config.app_local ?`${config.app_back_debug_url}/${item.images[0]}`:`${config.app_back_url}/${item.images[0]}` 
+      return url
+    },
      handleCreate() {
       this.isEditing = false
 
@@ -327,7 +329,7 @@ export default {
     },
       save() {
 
-      if (this.$refs.formBus.validate()) {
+      
         this.btnloading = true
         let formData = new FormData()
         formData.append('nom', this.form.nom)
@@ -367,7 +369,7 @@ export default {
           return false
           console.log(error)
         })
-      }
+      
 
 
     },

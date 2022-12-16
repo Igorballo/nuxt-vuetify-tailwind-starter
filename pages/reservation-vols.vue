@@ -533,7 +533,6 @@
     <!-- Our partners section   -->
      <Partners />
 
-
     <Cards/>
   </div>
 </template>

@@ -5,6 +5,7 @@
       <v-carousel
         show-arrows-on-hover
         v-model="model"
+        autoplay
       >
         <v-carousel-item
           class="tw-h-full tw-w-full tw-bg-center tw-bg-cover tw-contain tw-bg-auto"
@@ -189,7 +190,7 @@
              Nos Actualités
           </h1>
 
-          
+
      </div>
      </div>
      </section>
