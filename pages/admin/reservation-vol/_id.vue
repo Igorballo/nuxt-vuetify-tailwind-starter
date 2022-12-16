@@ -70,8 +70,8 @@
             <div class="tw-flex tw-flex-col">
               <div class="tw-flex tw-justify-between">
                 <span class="tw-font-semibold tw-text-lg">Aéroport de départ</span>
-                <v-chip>{{ reservation.airportDestination?.name }}, {{
-                    reservation.airportDestination?.country
+                <v-chip>{{ reservation.airportDepart?.name }}, {{
+                    reservation.airportDepart?.country
                   }}
                 </v-chip>
               </div>
@@ -81,7 +81,7 @@
             <div class="tw-flex tw-flex-col">
               <div class="tw-flex tw-justify-between">
                 <span class="tw-font-semibold tw-text-lg">Aéroport d'arrivée</span>
-                <v-chip>{{ reservation.airportDepart?.name }}, {{ reservation.airportDepart?.country }}
+                <v-chip>{{ reservation.airportDestination?.name }}, {{ reservation.airportDestination?.country }}
                 </v-chip>
               </div>
             </div>

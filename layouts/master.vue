@@ -2,11 +2,11 @@
   <v-app class="tw-relative">
     <div style="z-index: 999" class="tw-sticky tw-top-0 lg:tw-static tw-flex tw-items-center tw-px-4 lg:tw-px-12 tw-py-2 tw-justify-between tw-w-full tw-bg-white">
       <!--      Manglam Logo-->
-      <img class="tw-h-18 tw-w-72 lg:tw-w-96" src="../assets/img/MANGLAM-IATA-LOGO-TEXTE.png" alt="Manglam-logo">
+      <img class="tw-h-18 tw-h-20 tw-w-f lg:tw-w-1/3" src="../assets/img/MANGLAM-IATA-LOGO-TEXTE.png" alt="Manglam-logo">
       <div class="tw-inline-flex tw-items-center tw-gap-4">
         <!--  Choose language button      -->
         <button
-          class="tw-text-black tw-hidden tw-text-sm tw-uppercase tw-bg-white hover:tw-bg-gray-200 focus:tw-ring-4 focus:tw-outline-none focus:tw-ring-gray-300 tw-font-bold tw-rounded-lg tw-text-md tw-px-2 tw-py-2 tw-text-center lg:tw-inline-flex tw-items-center"
+          class="tw-text-black tw-hidden tw-text-sm tw-uppercase tw-bg-white tw-bg-gray-200 focus:tw-ring-4 focus:tw-outline-none focus:tw-ring-gray-300 tw-font-bold tw-rounded-lg tw-text-md tw-px-2 tw-py-2 tw-text-center lg:tw-inline-flex tw-items-center"
           type="button">
           français
           <svg class="tw-ml-2 tw-w-4 tw-h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"

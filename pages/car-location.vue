@@ -105,7 +105,7 @@
                   <template v-slot:activator="{ on, attrs }">
                     <v-text-field
                       v-model="carFilterForm.date_fin"
-                      label="Date de prise en charge"
+                      label="Date de restitution"
                       readonly
                       outlined
                       v-bind="attrs"
