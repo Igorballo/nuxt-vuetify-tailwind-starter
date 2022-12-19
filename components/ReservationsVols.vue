@@ -216,7 +216,10 @@ export default {
       await this.getLatestFlightReservation(`page=${this.reservationsvols.prevPage}`)
     },
     async getLatestFlightReservation(query = null){
-      const url = this.getall?`/reservation-vol/admin-get-latest-flight-reservation?getall=${true}`:"/reservation-vol/admin-get-latest-flight-reservation?getall=false"
+      let url = this.getall?`/reservation-vol/admin-get-latest-flight-reservation?getall=${true}`:"/reservation-vol/admin-get-latest-flight-reservation?getall=false"
+      if(query){
+        url+=query
+      }
       const response = await axios.get(url)
         .then(res => res.data)
         .catch(error => error.response)

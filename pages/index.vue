@@ -230,9 +230,9 @@
 
     <div class="tw-relative tw-w-full tw-py-12 tw-px-12">
       <div class="tw-relative tw-z-10 tw-text-center tw-py-12 md:tw-py-24">
-        <h1
+        <div
           class="tw-text-white tw-text-center tw-text-3xl md:tw-text-4xl lg:tw-text-5xl xl:tw-text-6xl font-display tw-font-bold tw-mb-6">
-          Lorem Ipsum</h1>
+          Lorem Ipsum</div>
         <p class="tw-text-white tw-mb-10 tw-text-base md:tw-text-lg tw-font-bold">Lorem ipsum dolor sit amet consectetur
           adipisicing elit. Maxime mollitia,
           molestiae quas vel sint commodi</p>

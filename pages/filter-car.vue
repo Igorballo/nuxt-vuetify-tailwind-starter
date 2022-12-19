@@ -182,7 +182,9 @@
         </div>
 
         <div class="tw-w-full tw-h-full tw-flex tw-flex-col tw-gap-8">
-          <div v-for="car in cars" class="tw-bg-blue-800 tw-pt-8 tw-p-2 tw-rounded-lg tw-w-full">
+          <div v-for="car in cars" class="tw-bg-blue-800 tw-px-2 tw-pb-2 tw-rounded-lg tw-w-full">
+            <div class="tw-text-white tw-py-2">Disponible Immédiatement</div>
+            <div v-if="false" class="tw-text-white tw-py-2">Disponible à partir de 02/01/2023</div>
             <div class="tw-bg-white tw-px-4">
               <div class="tw-text-xl tw-font-semibold tw-py-3 tw-border-b"> {{ car.nom }} {{ car.marque }}
               </div>
@@ -233,13 +235,18 @@
                 </div>
                 <div class="tw-flex tw-flex-col tw-w-full tw-text-sm">
                   <div class="tw-inline-flex tw-gap-4 tw-items-start">
-                    <v-icon>mdi-airplane</v-icon>
+                    <v-icon>mdi-map-marker-radius</v-icon>
                     <span>Lieu De Prise En Charge : <br> <p class="tw-font-semibold">Au Terminal</p> </span>
                   </div>
                   <div class="tw-inline-flex tw-gap-4 tw-items-start">
                     <v-icon>mdi-gas-station-outline</v-icon>
                     <span>Politique En Matière De Carburant : <br> <p
                       class="tw-font-semibold">Quart au quart</p> </span>
+                  </div>
+                  <div class="tw-inline-flex tw-gap-4 tw-items-start">
+                    <v-icon>mdi-gas-station-outline</v-icon>
+                    <span>Type De Carburant : <br> <p
+                      class="tw-font-semibold">Essence</p> </span>
                   </div>
                   <div class="tw-inline-flex tw-gap-4 tw-items-start">
                     <v-icon>mdi-speedometer</v-icon>
