@@ -244,6 +244,10 @@
                       class="tw-font-semibold">Quart au quart</p> </span>
                   </div>
                   <div class="tw-inline-flex tw-gap-4 tw-items-start">
+                    <v-icon>mdi-train-car</v-icon>
+                    <span>Voiture à destination : <br> <p class="tw-font-semibold">Lomé uniquement</p> </span>
+                  </div>
+                  <div class="tw-inline-flex tw-gap-4 tw-items-start">
                     <v-icon>mdi-gas-station-outline</v-icon>
                     <span>Type De Carburant : <br> <p
                       class="tw-font-semibold">Essence</p> </span>
