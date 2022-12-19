@@ -25,14 +25,12 @@
 
             <div class="tw-flex tw-items-center">
               <div class="tw-flex tw-flex-col tw-w-full md:tw-gap-4 md:tw-items-center md:tw-flex-row">
-                <v-col>
-                  <v-text-field
-                    label="Site touristique"
-                    placeholder="Ex: Pays, ville, site touristique"
-                    outlined
-                    :rules="lieuPriseEnChargeRules"
-                  ></v-text-field>
-                </v-col>
+                <v-text-field
+                  label="Site touristique"
+                  placeholder="Ex: Pays, ville, site touristique"
+                  outlined
+                  :rules="lieuPriseEnChargeRules"
+                ></v-text-field>
                 <v-col>
                   <v-row>
                     <v-col class="tw-px-0">
@@ -100,119 +98,121 @@
                   </v-row>
                 </v-col>
                 <v-col>
-                  <v-menu
-                    solo
-                    left
-                    :close-on-content-click="false"
-                  >
-                    <template v-slot:activator="{ attrs, on }">
-                      <v-text-field
-                        class="tw-text-xl tw-font-bold mb-1"
-                        readonly
-                        v-bind="attrs"
-                        v-on="on"
-                        label="Nombre de passagers"
-                        outlined
-                        height="55"
-                        :rules="passengerRules"
-                        required
-                        v-model="totalPassagers"
-                        dense
-                      ></v-text-field>
-                    </template>
+                  <v-row>
+                    <v-menu
+                      solo
+                      left
+                      :close-on-content-click="false"
+                    >
+                      <template v-slot:activator="{ attrs, on }">
+                        <v-text-field
+                          class="tw-text-xl tw-font-bold mb-1"
+                          readonly
+                          v-bind="attrs"
+                          v-on="on"
+                          label="Nombre de passagers"
+                          outlined
+                          height="55"
+                          :rules="passengerRules"
+                          required
+                          v-model="totalPassagers"
+                          dense
+                        ></v-text-field>
+                      </template>
 
-                    <v-list>
-                      <v-list-item
-                      >
-                        <v-list-item-title>
-                          <div class="tw-flex tw-flex-col tw-gap-4 tw-text-sm md:tw-text-xl tw-w-full tw-p-2 md:tw-p-4 tw-bg-white">
-                            <div class="tw-py-2 md:tw-py-4 tw-flex tw-justify-between tw-gap-12">
-                              <span class="tw-font-bold tw-gray-800">Adultes (> 12 ans)</span>
-                              <div class="tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
-                                <div
-                                  v-if="reservationForm.passengers.adultes > 1 && reservationForm.passengers.enfants + reservationForm.passengers.bebes <= (reservationForm.passengers.adultes - 1) *2">
+                      <v-list>
+                        <v-list-item
+                        >
+                          <v-list-item-title>
+                            <div
+                              class="tw-flex tw-flex-col tw-gap-4 tw-text-sm md:tw-text-xl tw-w-full tw-p-2 md:tw-p-4 tw-bg-white">
+                              <div class="tw-py-2 md:tw-py-4 tw-flex tw-justify-between tw-gap-12">
+                                <span class="tw-font-bold tw-gray-800">Adultes (> 12 ans)</span>
+                                <div class="tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
+                                  <div
+                                    v-if="reservationForm.passengers.adultes > 1 && reservationForm.passengers.enfants + reservationForm.passengers.bebes <= (reservationForm.passengers.adultes - 1) *2">
                                 <span @click="reservationForm.passengers.adultes--" class="hover:tw-cursor-pointer"><v-icon
                                   color="red">mdi-minus-circle-outline</v-icon></span>
-                                </div>
-                                <div v-else>
-                                  <div class="hover:tw-cursor-not-drop">
-                                    <v-icon color="grey">mdi-minus-circle-outline</v-icon>
                                   </div>
-                                </div>
-                                <span>{{ reservationForm.passengers.adultes }}</span>
+                                  <div v-else>
+                                    <div class="hover:tw-cursor-not-drop">
+                                      <v-icon color="grey">mdi-minus-circle-outline</v-icon>
+                                    </div>
+                                  </div>
+                                  <span>{{ reservationForm.passengers.adultes }}</span>
 
-                                <div v-if="reservationForm.passengers.adultes < 9">
+                                  <div v-if="reservationForm.passengers.adultes < 9">
                                 <span @click="reservationForm.passengers.adultes++" class="hover:tw-cursor-pointer"><v-icon
                                   color="red">mdi-plus-circle-outline</v-icon></span>
-                                </div>
-                                <div v-else>
-                                  <span class=""><v-icon color="grey">mdi-plus-circle-outline</v-icon></span>
+                                  </div>
+                                  <div v-else>
+                                    <span class=""><v-icon color="grey">mdi-plus-circle-outline</v-icon></span>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                            <v-divider></v-divider>
-                            <div class="tw-py-2 md:tw-py-4 tw-flex tw-justify-between tw-gap-12">
-                              <span class=" tw-font-bold tw-gray-800">Enfants (2-11 ans)</span>
-                              <div class=" tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
-                                <div v-if="reservationForm.passengers.enfants > 0">
+                              <v-divider></v-divider>
+                              <div class="tw-py-2 md:tw-py-4 tw-flex tw-justify-between tw-gap-12">
+                                <span class=" tw-font-bold tw-gray-800">Enfants (2-11 ans)</span>
+                                <div class=" tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
+                                  <div v-if="reservationForm.passengers.enfants > 0">
                                 <span @click="reservationForm.passengers.enfants--" class="hover:tw-cursor-pointer"><v-icon
                                   color="red">mdi-minus-circle-outline</v-icon></span>
-                                </div>
-                                <div v-else>
+                                  </div>
+                                  <div v-else>
                                 <span class="hover:tw-cursor-no-drop"><v-icon
                                   color="grey">mdi-minus-circle-outline</v-icon></span>
-                                </div>
-                                <span>{{ reservationForm.passengers.enfants }}</span>
-                                <div
-                                  v-if="reservationForm.passengers.enfants + reservationForm.passengers.bebes < totalChildrens">
+                                  </div>
+                                  <span>{{ reservationForm.passengers.enfants }}</span>
+                                  <div
+                                    v-if="reservationForm.passengers.enfants + reservationForm.passengers.bebes < totalChildrens">
                                 <span @click="reservationForm.passengers.enfants++" class="hover:tw-cursor-pointer"><v-icon
                                   color="red">mdi-plus-circle-outline</v-icon></span>
-                                </div>
-                                <div v-else>
-                                  <span class=""><v-icon color="grey">mdi-plus-circle-outline</v-icon></span>
+                                  </div>
+                                  <div v-else>
+                                    <span class=""><v-icon color="grey">mdi-plus-circle-outline</v-icon></span>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                            <v-divider></v-divider>
-                            <div class="tw-py-2 md:tw-py-4 tw-flex tw-justify-between tw-gap-12">
-                              <span class=" tw-font-bold tw-gray-800">Bébés (< 2 ans)</span>
-                              <div class=" tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
-                                <div v-if="reservationForm.passengers.bebes > 0">
+                              <v-divider></v-divider>
+                              <div class="tw-py-2 md:tw-py-4 tw-flex tw-justify-between tw-gap-12">
+                                <span class=" tw-font-bold tw-gray-800">Bébés (< 2 ans)</span>
+                                <div class=" tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
+                                  <div v-if="reservationForm.passengers.bebes > 0">
                                 <span @click="reservationForm.passengers.bebes--" class="hover:tw-cursor-pointer"><v-icon
                                   color="red">mdi-minus-circle-outline</v-icon></span>
-                                </div>
-                                <div v-else>
-                                  <span class=""><v-icon color="grey">mdi-minus-circle-outline</v-icon></span>
-                                </div>
-                                <span>{{ reservationForm.passengers.bebes }}</span>
-                                <div
-                                  v-if="reservationForm.passengers.enfants + reservationForm.passengers.bebes < totalChildrens">
+                                  </div>
+                                  <div v-else>
+                                    <span class=""><v-icon color="grey">mdi-minus-circle-outline</v-icon></span>
+                                  </div>
+                                  <span>{{ reservationForm.passengers.bebes }}</span>
+                                  <div
+                                    v-if="reservationForm.passengers.enfants + reservationForm.passengers.bebes < totalChildrens">
                                 <span @click="reservationForm.passengers.bebes++" class="hover:tw-cursor-pointer"><v-icon
                                   color="red">mdi-plus-circle-outline</v-icon></span>
-                                </div>
-                                <div v-else>
+                                  </div>
+                                  <div v-else>
                                 <span class="hover:tw-cursor-pointer"><v-icon
                                   color="grey">mdi-plus-circle-outline</v-icon></span>
+                                  </div>
+                                </div>
+                              </div>
+                              <v-divider></v-divider>
+                              <div class="tw-py-2 md:tw-py-4 tw-flex tw-justify-between tw-gap-12">
+                                <div
+                                  class="tw-p-3 tw-gap-2 tw-rounded-lg tw-items-center tw-flex tw-w-full tw-bg-red-200 tw-text-red-600 tw-text-sm md:tw-text-xl tw-font-light">
+                                  <v-icon color="red">mdi-alert-octagon-outline</v-icon>
+                                  <span>2 enfants maximum par adulte</span>
                                 </div>
                               </div>
                             </div>
-                            <v-divider></v-divider>
-                            <div class="tw-py-2 md:tw-py-4 tw-flex tw-justify-between tw-gap-12">
-                              <div
-                                class="tw-p-3 tw-gap-2 tw-rounded-lg tw-items-center tw-flex tw-w-full tw-bg-red-200 tw-text-red-600 tw-text-sm md:tw-text-xl tw-font-light">
-                                <v-icon color="red">mdi-alert-octagon-outline</v-icon>
-                                <span>2 enfants maximum par adulte</span>
-                              </div>
-                            </div>
-                          </div>
-                        </v-list-item-title>
-                      </v-list-item>
-                    </v-list>
-                  </v-menu>
+                          </v-list-item-title>
+                        </v-list-item>
+                      </v-list>
+                    </v-menu>
+                  </v-row>
                 </v-col>
               </div>
             </div>
-
 
 
             <v-dialog
@@ -221,121 +221,121 @@
 
 
             >
-            <v-form
-                    ref="modal"
-                    v-model="valid"
-                    lazy-validation
-                    >
-              <v-card>
-                <v-card-title>
-                  <span class="text-h5">Une dernière étape</span>
-                </v-card-title>
-                <v-card-text>
-                  <v-container>
+              <v-form
+                ref="modal"
+                v-model="valid"
+                lazy-validation
+              >
+                <v-card>
+                  <v-card-title>
+                    <span class="text-h5">Une dernière étape</span>
+                  </v-card-title>
+                  <v-card-text>
+                    <v-container>
 
-                    <v-row>
-                      <v-col
-                        cols="12"
-                        sm="6"
-                      >
-                        <v-text-field
-                          label="Nom*"
-                          :rules="lastNameRules"
-                          required
-                          outlined
-                          v-model="reservationForm.lastname"
-                        ></v-text-field>
-                      </v-col>
-                      <v-col
-                        cols="12"
-                        sm="6"
-                      >
-                        <v-text-field
-                          label="Prénoms*"
-                          required outlined
-                          :rules="firstNameRules"
-                          v-model="reservationForm.firstname"
-                        ></v-text-field>
-                      </v-col>
-
-                      <v-col
-                        cols="12"
-                      >
-                        <v-text-field placeholder="XXXXXXXX" v-model="reservationForm.passport_id" required
-                                      :rules="passportIdRules"
-                                      label="Numéro passport*" outlined></v-text-field>
-                      </v-col>
-
-                      <v-col
-                        cols="12"
-                      >
-                        <v-text-field type="email" placeholder="ex: hfx@gmail.com" v-model="reservationForm.email"
-                                      required
-                                      :rules="emailRules"
-                                      label="Adresse email*" outlined></v-text-field>
-                      </v-col>
-
-                      <v-row
-                        cols="12" class="tw-mx-1"
-                      >
-                        <v-col sm="6">
-                          <v-autocomplete
-                            v-model="reservationForm.phone_number.code"
-                            :items="countries"
-                            :loading="isLoading"
-                            :search-input.sync="search"
-                            clearable
-                            item-text="dial_code"
-                            item-value="id"
-                            outlined
-                            :rules="codeNumberRules"
+                      <v-row>
+                        <v-col
+                          cols="12"
+                          sm="6"
+                        >
+                          <v-text-field
+                            label="Nom*"
+                            :rules="lastNameRules"
                             required
-                            label="Indicatif de votre numéro*"
-                          >
-                            <template v-slot:item="{ item }">
-                              <v-list-item-avatar
-                                color="indigo"
-                                class="text-h10 tw-p-4 font-weight-light white--text"
-                              >
-                                {{ item.dial_code }}
-                              </v-list-item-avatar>
-                              <v-list-item-content>
-                                <v-list-item-title>{{ item.name }}</v-list-item-title>
-                              </v-list-item-content>
-                            </template>
-                          </v-autocomplete>
+                            outlined
+                            v-model="reservationForm.lastname"
+                          ></v-text-field>
                         </v-col>
-                        <v-col>
-                          <v-text-field v-model="reservationForm.phone_number.number" required
-                            :rules="numberRules" type="number"
-                                        label="Numéro de télephone*" outlined></v-text-field>
+                        <v-col
+                          cols="12"
+                          sm="6"
+                        >
+                          <v-text-field
+                            label="Prénoms*"
+                            required outlined
+                            :rules="firstNameRules"
+                            v-model="reservationForm.firstname"
+                          ></v-text-field>
                         </v-col>
+
+                        <v-col
+                          cols="12"
+                        >
+                          <v-text-field placeholder="XXXXXXXX" v-model="reservationForm.passport_id" required
+                                        :rules="passportIdRules"
+                                        label="Numéro passport*" outlined></v-text-field>
+                        </v-col>
+
+                        <v-col
+                          cols="12"
+                        >
+                          <v-text-field type="email" placeholder="ex: hfx@gmail.com" v-model="reservationForm.email"
+                                        required
+                                        :rules="emailRules"
+                                        label="Adresse email*" outlined></v-text-field>
+                        </v-col>
+
+                        <v-row
+                          cols="12" class="tw-mx-1"
+                        >
+                          <v-col sm="6">
+                            <v-autocomplete
+                              v-model="reservationForm.phone_number.code"
+                              :items="countries"
+                              :loading="isLoading"
+                              :search-input.sync="search"
+                              clearable
+                              item-text="dial_code"
+                              item-value="id"
+                              outlined
+                              :rules="codeNumberRules"
+                              required
+                              label="Indicatif de votre numéro*"
+                            >
+                              <template v-slot:item="{ item }">
+                                <v-list-item-avatar
+                                  color="indigo"
+                                  class="text-h10 tw-p-4 font-weight-light white--text"
+                                >
+                                  {{ item.dial_code }}
+                                </v-list-item-avatar>
+                                <v-list-item-content>
+                                  <v-list-item-title>{{ item.name }}</v-list-item-title>
+                                </v-list-item-content>
+                              </template>
+                            </v-autocomplete>
+                          </v-col>
+                          <v-col>
+                            <v-text-field v-model="reservationForm.phone_number.number" required
+                                          :rules="numberRules" type="number"
+                                          label="Numéro de télephone*" outlined></v-text-field>
+                          </v-col>
+                        </v-row>
                       </v-row>
-                    </v-row>
 
-                  </v-container>
-                  <small>*Indique un champ obligatoire</small>
-                </v-card-text>
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-btn
-                    color="error darken-1"
-                    @click="userInfoDialog = false"
-                    text
-                  >
-                    Fermer
-                  </v-btn>
-                  <v-btn
-                    class=""
-                    color="error darken-1"
-                    :loading="btnLoading"
-                    @click="userInfoDialog = false, disclaimerDialog = true && $refs.modal.validate()"
-                  >
-                    Envoyer la demande
-                  </v-btn>
+                    </v-container>
+                    <small>*Indique un champ obligatoire</small>
+                  </v-card-text>
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn
+                      color="error darken-1"
+                      @click="userInfoDialog = false"
+                      text
+                    >
+                      Fermer
+                    </v-btn>
+                    <v-btn
+                      class=""
+                      color="error darken-1"
+                      :loading="btnLoading"
+                      @click="userInfoDialog = false, disclaimerDialog = true && $refs.modal.validate()"
+                    >
+                      Envoyer la demande
+                    </v-btn>
 
-                </v-card-actions>
-              </v-card>
+                  </v-card-actions>
+                </v-card>
               </v-form>
             </v-dialog>
 
@@ -422,10 +422,8 @@
     </div>
 
 
-
-
     <!-- Our partners section   -->
-    <Partners />
+    <Partners/>
 
     <section class="tw-pb-4 lg:tw-px-8 tw-px-4 tw-bg-white tw-flex-col tw-gap-4 tw-shadow-lg">
       <h1
@@ -496,6 +494,7 @@
 <script>
 import json from '../data/CountryCodes.json'
 import config from "../config";
+
 export default {
   name: 'Tourisme',
   layout: 'master',
@@ -503,7 +502,7 @@ export default {
   data() {
     return {
       btnloading: false,
-       departRules: [
+      departRules: [
         v => !!v || 'Adresse de Depart est requis',
       ],
       arriveRules: [
@@ -585,25 +584,25 @@ export default {
       isEditing: false,
 
       visaReservationForm: {
-          aller_simple: true,
-          typevoyage: 'allerretour',
-          airport_depart: "",
-          airport_destination: "",
-          depart_date: "",
-          comeback_date: "",
-          lastname: "",
-          firstname: "",
-          passport_id: "",
-          phone_number: {
-            code: "",
-            number: '',
-          },
-          passengers: {
-            adultes: 1,
-            enfants: 0,
-            bebes: 0,
-          }
+        aller_simple: true,
+        typevoyage: 'allerretour',
+        airport_depart: "",
+        airport_destination: "",
+        depart_date: "",
+        comeback_date: "",
+        lastname: "",
+        firstname: "",
+        passport_id: "",
+        phone_number: {
+          code: "",
+          number: '',
         },
+        passengers: {
+          adultes: 1,
+          enfants: 0,
+          bebes: 0,
+        }
+      },
       items: [{
         src: 'https://images.unsplash.com/photo-1520175480921-4edfa2983e0f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1467&q=80',
       },
