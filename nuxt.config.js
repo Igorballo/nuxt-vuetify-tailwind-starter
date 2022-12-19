@@ -1,3 +1,7 @@
+import fr from 'vuetify/src/locale/fr'
+import en from 'vuetify/src/locale/fr'
+
+
 export default {
   //loading: "~/components/loading.vue",
   /*
@@ -70,6 +74,10 @@ export default {
     '@vueuse/nuxt',
     ['@nuxtjs/vuetify', {
       iconfont: "mdi", // 'md' || 'mdi' || 'fa' || 'fa4'
+      lang: {
+        locales: { fr, en},
+        current: 'fr',
+      },
       theme: {
         themes:{
           light: {

@@ -193,9 +193,7 @@
                             class="tw-rounded-l-none"
                             v-bind="attrs"
                             v-on="on"
-                          >
-                          
-                        </v-text-field>
+                          ></v-text-field>
                         </template>
                         <v-date-picker
                           v-model="reservationForm.comeback_date"

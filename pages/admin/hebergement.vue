@@ -118,7 +118,8 @@
         <td class="text-xs-right">{{ props.item.nom }}</td>
         <td class="text-xs-right">{{ props.item.ville }}</td>
         <td class="text-xs-right">{{ props.item.adresse }}</td>
-        <td class="text-xs-right">{{ props.item.prix }}</td>
+        <td class="text-xs-right">{{ props.item.prixMin }}</td>
+        <td class="text-xs-right">{{ props.item.prixMax }}</td>
         <td class="text-xs-right">{{ props.item.nombre_etoile }}</td>
         <td class="text-xs-right">{{ props.item.description }}</td>
       </template>
@@ -188,7 +189,7 @@ export default {
         /* v => (v && v.length <= 10) || 'Name must be less than 10 characters', */
       ],
 
-     dialog: false,
+    dialog: false,
     form: {
      nom: "",
      ville: "",
@@ -223,15 +224,15 @@ export default {
       },
       {
         text: 'Prix Minimum',
-        value: 'prix_min'
+        value: 'prixMin'
       },
        {
         text: 'Prix Maximum',
-        value: 'prix_max'
+        value: 'prixMax'
       },
       {
         text: 'Nombre d\'Etoile ',
-        value: 'nombre_etoile'
+        value: 'nombreEtoile'
       },
       {
         text: 'Description',
@@ -345,7 +346,8 @@ export default {
         let formData = new FormData()
         formData.append('nom', this.form.nom)
         formData.append('ville', this.form.ville)
-        formData.append('prix', this.form.prix)
+        formData.append('prix_min', this.form.prix_min)
+        formData.append('prix_max', this.form.prix_max)
         formData.append('description', this.form.description)
         formData.append('adresse', this.form.adresse)
         formData.append('nombre_etoile', this.form.nombre_etoile)

@@ -232,7 +232,7 @@
                       </div>
                       <div>
                         <div class="tw-text-right tw-text-xl tw-leading-tight tw-text-gray-600 tw-font-semibold">
-                          {{ hotel.prix }} <br> 1 jours
+                          {{ hotel.prixMin }} - {{ hotel.prixMax }} <br> 1 jours
                         </div>
                       </div>
                     </div>
