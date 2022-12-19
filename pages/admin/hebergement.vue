@@ -28,7 +28,8 @@
                          <v-text-field :rules="nomRules" outlined required label="Nom de l'Hôtel" placeholder="Nom de l'Hôtel" v-model="form.nom"></v-text-field>
                          <v-text-field :rules="adresseRules" outlined required label="Adresse" placeholder="Adresse de l'Hôtel" v-model="form.adresse"></v-text-field>
                          <v-text-field :rules="villeRules" outlined required label="Ville" placeholder="Ville de l'Hôtel" v-model="form.ville"></v-text-field>
-                         <v-text-field :rules="prixRules" outlined required label="Prix" placeholder="Le prix de l'Hôtel " v-model="form.prix"></v-text-field>
+                         <v-text-field :rules="prixMinRules" outlined required label="Prix Minimum" placeholder="Le prix minimum de l'Hôtel " v-model="form.prix_min"></v-text-field>
+                         <v-text-field :rules="prixMaxRules" outlined required label="Prix Maximum" placeholder="Le prix Maximum de l'Hôtel " v-model="form.prix_max"></v-text-field>
                          <v-textarea :rules="descriptionRules" outlined required label="Description" placeholder="Description" v-model="form.description"></v-textarea>
                          <v-text-field :rules="nombreEtoileRules" outlined required label="Le Nombre d'Etoile" placeholder="Le nombre d'Etoile" v-model="form.nombre_etoile"></v-text-field>
                          <input outlined label="Photos" placeholder="Les Photos de l'Hôtel" multiple  @change="handleUploadChange" id="images-upload" type="file" accept="image/*" style="display:none" multiple hidden />
@@ -170,8 +171,12 @@ export default {
         v => !!v || 'Adresse est requis',
         /* v => (v && v.length <= 10) || 'Name must be less than 10 characters', */
       ],
-      prixRules: [
-        v => !!v || 'Le prix est requis',
+      prixMinRules: [
+        v => !!v || 'Le prix Minimum est requis',
+        /* v => (v && v.length <= 10) || 'Name must be less than 10 characters', */
+      ],
+       prixMaxRules: [
+        v => !!v || 'Le prix Maximum est requis',
         /* v => (v && v.length <= 10) || 'Name must be less than 10 characters', */
       ],
       descriptionRules: [
@@ -187,10 +192,11 @@ export default {
     form: {
      nom: "",
      ville: "",
-     prix: "",
+     prix_min: "",
+     prix_max: "",
      description: "",
      nombre_etoile: "",
-      adresse: ""
+     adresse: ""
     },
     formHotel: false,
     dialogDelete: false,
@@ -216,8 +222,12 @@ export default {
         value: 'adresse'
       },
       {
-        text: 'Prix',
-        value: 'prix'
+        text: 'Prix Minimum',
+        value: 'prix_min'
+      },
+       {
+        text: 'Prix Maximum',
+        value: 'prix_max'
       },
       {
         text: 'Nombre d\'Etoile ',
@@ -269,10 +279,11 @@ export default {
       this.form = {
           nom: "",
           ville: "",
-          prix: "",
+          prix_min: "",
+          prix_max: "",
           description: "",
           nombre_etoile: "",
-          media: ""
+          adresse: ""
       }
     },
      getHotel() {
@@ -359,10 +370,11 @@ export default {
             this.form = {
               nom: "",
               ville: "",
-              prix: "",
+              prix_min: "",
+              prix_max: "",
               description: "",
               nombre_etoile: "",
-              photo: ""
+              adresse: ""
             }
           }).catch(error => {
             this.btnloading = false

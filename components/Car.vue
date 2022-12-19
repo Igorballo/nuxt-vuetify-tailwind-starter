@@ -29,9 +29,9 @@
             class="tw-justify-center tw-bg-white tw-pb-4 tw-cursor-pointer tw-shadow-lg tw-rounded-lg hover:tw-bg-gray-200">
             <img
               class="tw-h-25 tw-w-full tw-relative tw-bg-cover tw-bg-center tw-rounded-lg"
-              src="https://images.unsplash.com/photo-1549035092-33b2937b075a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80"
+              src="https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80"
               alt="">
-            <h1 class="tw-text-2xl tw-font-bold tw-px-4 tw-py-2 tw-text-black tw-uppercase">Zanzibar</h1>
+            <h1 class="tw-text-2xl tw-font-bold tw-px-4 tw-py-2 tw-text-black tw-uppercase">Audi</h1>
             <p class="tw-text-xl tw-px-4 tw-py-2 tw-italic ">
               Location des Voitures de Luxe à diffèrentes modèles
             </p>
@@ -44,9 +44,9 @@
           <div class="tw-justify-end tw-bg-white tw-pb-4 tw-cursor-pointer tw-shadow-lg tw-rounded-lg hover:tw-bg-gray-200">
 
             <img class="tw-h-25 tw-w-full tw-relative tw-bg-cover tw-bg-center tw-rounded-lg"
-                 src="https://images.unsplash.com/photo-1546412414-8035e1776c9a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                 src="https://images.unsplash.com/flagged/photo-1553505192-acca7d4509be?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1190&q=80"
                  alt="">
-            <h1 class="tw-text-2xl tw-font-bold tw-px-4 tw-py-2 tw-text-black tw-uppercase">Lomé</h1>
+            <h1 class="tw-text-2xl tw-font-bold tw-px-4 tw-py-2 tw-text-black tw-uppercase">BMW</h1>
             <p class="tw-text-xl tw-px-4 tw-py-2 tw-italic ">
               Location des Voitures de Luxe à diffèrentes modèles
             </p>
@@ -65,9 +65,9 @@
             class="tw-justify-start tw-bg-white tw-pb-4 tw-cursor-pointer tw-shadow-lg tw-rounded-lg hover:tw-bg-gray-200 tw-h-full">
 
             <img class="tw-h-25 tw-w-full tw-relative tw-bg-cover tw-bg-center tw-rounded-lg"
-                 src="https://images.unsplash.com/photo-1604348489791-f95132c5d8c0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                 src="https://images.unsplash.com/photo-1549632891-a0bea6d0355b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1163&q=80"
                  alt="">
-            <h1 class="tw-text-2xl tw-font-bold tw-px-4 tw-py-2 tw-text-black tw-uppercase">Kara</h1>
+            <h1 class="tw-text-2xl tw-font-bold tw-px-4 tw-py-2 tw-text-black tw-uppercase">Range Rover</h1>
             <p class="tw-text-xl tw-px-4 tw-py-2 tw-italic ">
               Location des Voitures de Luxe à diffèrentes modèles
             </p>
@@ -81,9 +81,9 @@
             class="tw-justify-center tw-bg-white tw-pb-4 tw-cursor-pointer tw-shadow-lg tw-rounded-lg hover:tw-bg-gray-200">
             <img
               class="tw-h-25 tw-w-full tw-relative tw-bg-cover tw-bg-center tw-rounded-lg"
-              src="https://images.unsplash.com/photo-1483653364400-eedcfb9f1f88?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+              src="https://images.unsplash.com/photo-1617469767053-d3b523a0b982?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1231&q=80"
               alt="">
-            <h1 class="tw-text-2xl tw-font-bold tw-px-4 tw-py-2 tw-text-black tw-uppercase">Aneho</h1>
+            <h1 class="tw-text-2xl tw-font-bold tw-px-4 tw-py-2 tw-text-black tw-uppercase">Toyota</h1>
             <p class="tw-text-xl tw-px-4 tw-py-2 tw-italic ">
               Location des Voitures de Luxe à diffèrentes modèles
             </p>
@@ -95,9 +95,9 @@
           <div class="tw-justify-end tw-bg-white tw-pb-4 tw-cursor-pointer tw-shadow-lg tw-rounded-lg hover:tw-bg-gray-200">
 
             <img class="tw-h-25 tw-w-full tw-relative tw-bg-cover tw-bg-center tw-rounded-lg"
-                 src="https://images.unsplash.com/photo-1533929736458-ca588d08c8be?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                 src="https://images.unsplash.com/photo-1523939706065-fa4ac466210d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
                  alt="">
-            <h1 class="tw-text-2xl tw-font-bold tw-px-4 tw-py-2 tw-text-black tw-uppercase">Tsévié</h1>
+            <h1 class="tw-text-2xl tw-font-bold tw-px-4 tw-py-2 tw-text-black tw-uppercase">Sonata</h1>
             <p class="tw-text-xl tw-px-4 tw-py-2 tw-italic ">
               Location des Voitures de Luxe à diffèrentes modèles
             </p>
