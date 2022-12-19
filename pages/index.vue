@@ -13,6 +13,7 @@
         cycle
         show-arrows-on-hover
         hide-delimiter-background
+        height="600"
         v-model="model"
       >
         <v-carousel-item

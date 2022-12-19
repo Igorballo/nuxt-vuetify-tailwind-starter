@@ -25,14 +25,6 @@
               </path>
             </svg>
           </a>
-          <a href="#!" class="tw-text-white tw-mr-6 ">
-            <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="google"
-                 class="tw-w-3.5" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512">
-              <path fill="currentColor"
-                    d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z">
-              </path>
-            </svg>
-          </a>
           <a href="https://www.instagram.com/manglam_tours_and_travels_228/" class="tw-text-white tw-mr-6 ">
             <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="instagram"
                  class="tw-w-3.5" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -41,7 +33,7 @@
               </path>
             </svg>
           </a>
-          <a href="#!" class="tw-text-white tw-mr-6 ">
+          <a href="https://www.linkedin.com/company/manglamtours228/" class="tw-text-white tw-mr-6 ">
             <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="linkedin-in"
                  class="tw-w-3.5" role="img" xmlns="http://www.w3.org/2000/svg"
                  viewBox="0 0 448 512">
@@ -52,14 +44,15 @@
           </a>
         </div>
       </div>
-      <div class="tw-mx-6 tw-py-10 tw-text-center md:tw-text-left">
-        <div class="tw-grid grid-1 md:tw-grid-cols-2 lg:tw-grid-cols-4 tw-gap-8">
+      <div class="tw-mx-8 tw-py-10 tw-text-center md:tw-text-left">
+        <div class="tw-grid grid-1 md:tw-grid-cols-2 lg:tw-grid-cols-4 tw-gap-4">
           <div class="tw-flex tw-flex-col tw-items-center lg:tw-items-start">
             <img class="tw-h-18 tw-rounded-full tw-w-72 lg:tw-w-96 tw-mb-6" src="../assets/img/footer1.jpg"
                  alt="Manglam-logo">
-            <p class="tw-text-white">
-              Here you can use rows and columns to organize your footer content. Lorem ipsum dolor
-              sit amet, consectetur adipisicing elit.
+            <p class="tw-text-white tw-text-justify">
+              Depuis votre réservation jusqu'à votre arrivée au lieu de destination, 
+              MANGLAM Tours vous accompagne tout le long de votre voyage
+               pour vous assurer un séjour de qualité.
             </p>
           </div>
           <div class="tw-text-white">
@@ -147,9 +140,9 @@
           </div>
         </div>
       </div>
-      <div class="tw-py-3 tw-px-6 tw-bg-blue-800 tw-flex tw-justify-between tw-w-full">
+      <div class="tw-py-3 tw-px-6 tw-bg-blue-800 tw-flex tw-gap-2 tw-justify-evenly tw-inline-block tw-w-full">
         <span>© 2022 Copyright: Manglam</span>
-        <div class="tw-items-center tw-flex tw-gap-2">
+        <div class="">
           <span>Develop By</span>
           <a href="https://mekengroup.com/" class="tw-text-white tw-font-semibold " target="_blank"
              rel="noopener noreferrer"> Meg

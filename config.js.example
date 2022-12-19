@@ -1,9 +1,11 @@
 export default {
-  app_local: false,
+  app_local: true,
   app_local_url: 'http://localhost:3000',
   app_live_url: 'https://devkara.karaevents.tg',
-  app_api_base_url: 'https://newbackend.karaevents.tg/api',
-  app_api_debug_url: 'http://192.168.1.65:8000/api',
+  app_api_base_url: 'https://manglam-backend.onrender.com',
+  app_api_debug_url: 'http://192.168.1.80:3000',
+  app_back_debug_url: 'http://192.168.1.80:3000',
+  app_back_url: 'http://192.168.1.77:3000',
   globalFirebaseConfig: {
     apiKey: process.env.FIREBASE_APIKEY,
     authDomain: '...',
