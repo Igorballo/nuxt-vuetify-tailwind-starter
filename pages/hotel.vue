@@ -10,7 +10,7 @@
           class="tw-flex tw-flex-col tw-rounded-lg tw-bg-white tw-shadow-md tw-p-4 md:tw-p-6 tw-w-[90%] md:tw-w-[75%]">
           <div class="tw-flex tw-flex-col tw-pt-2 tw-gap-4 md:tw-flex-row md:tw-items-center md:tw-justify-between ">
             <v-text-field
-              label="Ex: pays, ville, quartier ou site d'intérêt"
+              label="Ex: pays, ville, quartier ou nom de l'hôtel"
               outlined
               v-model="hotelFilterForm.adresse"
               :rules="villeRules"

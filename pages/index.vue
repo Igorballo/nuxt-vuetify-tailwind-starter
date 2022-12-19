@@ -248,44 +248,33 @@
     </div>
 
       <v-row justify="center">
-        <v-btn
-          color="primary"
-          dark
-          @click.stop="dialog = true"
-        >
-          Open Dialog
-        </v-btn>
-
         <v-dialog
-          v-model="dialog"
-          max-width="290"
+          v-model="showConfidentialPolicyForm"
+          width="600px"
         >
           <v-card>
-            <v-card-title class="text-h5">
-              Use Google's location service?
+            <v-card-title>
+              <span class="text-h5">Politique de confidentialité de Manglan!</span>
             </v-card-title>
-
             <v-card-text>
-              Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.
-            </v-card-text>
-
+              Lorem ipsum dolor sit amet, semper quis, sapien id natoque elit. Nostra urna at, magna at neque sed sed ante imperdiet, dolor mauris cursus velit, velit non, sem nec. Volutpat sem ridiculus placerat leo, augue in, duis erat proin condimentum in a eget, sed fermentum sed vestibulum varius ac, vestibulum volutpat orci ut elit eget tortor. Ultrices nascetur nulla gravida ante arcu. Pharetra rhoncus morbi ipsum, nunc tempor debitis, ipsum pellentesque, vitae id quam ut mauris dui tempor, aptent non. Quisque turpis. Phasellus quis lectus luctus orci eget rhoncus. Amet donec vestibulum mattis commodo, nulla aliquet, nibh praesent, elementum nulla. Sit lacus pharetra tempus magna neque pellentesque, nulla vel erat.
+              Justo ex quisque nulla accusamus venenatis, sed quis. Nibh phasellus gravida metus in, fusce aenean ut erat commodo eros. Ut turpis, dui integer, nonummy pede placeat nec in sit leo. Faucibus porttitor illo taciti odio, amet viverra scelerisque quis quis et tortor, curabitur morbi a. Enim tempor at, rutrum elit condimentum, amet rutrum vitae tempor torquent nunc. Praesent vestibulum integer maxime felis. Neque aenean quia vitae nostra, tempus elit enim id dui, at egestas pulvinar. Integer libero vestibulum, quis blandit scelerisque mattis fermentum nulla, tortor donec vestibulum dolor amet eget, elit nullam. Aliquam leo phasellus aliquam curabitur metus.
+              </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-
               <v-btn
                 color="green darken-1"
                 text
-                @click="dialog = false"
+                @click="showConfidentialPolicyForm = false"
               >
-                Disagree
+                Plus tard
               </v-btn>
-
               <v-btn
                 color="green darken-1"
                 text
-                @click="dialog = false"
+                @click="showConfidentialPolicyForm = false"
               >
-                Agree
+                J'accepte
               </v-btn>
             </v-card-actions>
           </v-card>
@@ -306,7 +295,7 @@ export default {
   },
   data() {
     return {
-      dialog: false,
+      showConfidentialPolicyForm: true,
       villeRules: [
         v => !!v || 'ce champs est obligatoire',
       ],

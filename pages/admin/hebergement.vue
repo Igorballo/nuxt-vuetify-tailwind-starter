@@ -28,7 +28,8 @@
                          <v-text-field :rules="nomRules" outlined required label="Nom de l'Hôtel" placeholder="Nom de l'Hôtel" v-model="form.nom"></v-text-field>
                          <v-text-field :rules="adresseRules" outlined required label="Adresse" placeholder="Adresse de l'Hôtel" v-model="form.adresse"></v-text-field>
                          <v-text-field :rules="villeRules" outlined required label="Ville" placeholder="Ville de l'Hôtel" v-model="form.ville"></v-text-field>
-                         <v-text-field :rules="prixRules" outlined required label="Prix" placeholder="Le prix de l'Hôtel " v-model="form.prix"></v-text-field>
+                         <v-text-field :rules="prixMinRules" outlined required label="Prix Minimum" placeholder="Le prix minimum de l'Hôtel " v-model="form.prix_min"></v-text-field>
+                         <v-text-field :rules="prixMaxRules" outlined required label="Prix Maximum" placeholder="Le prix Maximum de l'Hôtel " v-model="form.prix_max"></v-text-field>
                          <v-textarea :rules="descriptionRules" outlined required label="Description" placeholder="Description" v-model="form.description"></v-textarea>
                          <v-text-field :rules="nombreEtoileRules" outlined required label="Le Nombre d'Etoile" placeholder="Le nombre d'Etoile" v-model="form.nombre_etoile"></v-text-field>
                          <input outlined label="Photos" placeholder="Les Photos de l'Hôtel" multiple  @change="handleUploadChange" id="images-upload" type="file" accept="image/*" style="display:none" multiple hidden />
@@ -117,7 +118,8 @@
         <td class="text-xs-right">{{ props.item.nom }}</td>
         <td class="text-xs-right">{{ props.item.ville }}</td>
         <td class="text-xs-right">{{ props.item.adresse }}</td>
-        <td class="text-xs-right">{{ props.item.prix }}</td>
+        <td class="text-xs-right">{{ props.item.prixMin }}</td>
+        <td class="text-xs-right">{{ props.item.prixMax }}</td>
         <td class="text-xs-right">{{ props.item.nombre_etoile }}</td>
         <td class="text-xs-right">{{ props.item.description }}</td>
       </template>
@@ -170,8 +172,12 @@ export default {
         v => !!v || 'Adresse est requis',
         /* v => (v && v.length <= 10) || 'Name must be less than 10 characters', */
       ],
-      prixRules: [
-        v => !!v || 'Le prix est requis',
+      prixMinRules: [
+        v => !!v || 'Le prix Minimum est requis',
+        /* v => (v && v.length <= 10) || 'Name must be less than 10 characters', */
+      ],
+       prixMaxRules: [
+        v => !!v || 'Le prix Maximum est requis',
         /* v => (v && v.length <= 10) || 'Name must be less than 10 characters', */
       ],
       descriptionRules: [
@@ -183,14 +189,15 @@ export default {
         /* v => (v && v.length <= 10) || 'Name must be less than 10 characters', */
       ],
 
-     dialog: false,
+    dialog: false,
     form: {
      nom: "",
      ville: "",
-     prix: "",
+     prix_min: "",
+     prix_max: "",
      description: "",
      nombre_etoile: "",
-      adresse: ""
+     adresse: ""
     },
     formHotel: false,
     dialogDelete: false,
@@ -216,12 +223,16 @@ export default {
         value: 'adresse'
       },
       {
-        text: 'Prix',
-        value: 'prix'
+        text: 'Prix Minimum',
+        value: 'prixMin'
+      },
+       {
+        text: 'Prix Maximum',
+        value: 'prixMax'
       },
       {
         text: 'Nombre d\'Etoile ',
-        value: 'nombre_etoile'
+        value: 'nombreEtoile'
       },
       {
         text: 'Description',
@@ -269,10 +280,11 @@ export default {
       this.form = {
           nom: "",
           ville: "",
-          prix: "",
+          prix_min: "",
+          prix_max: "",
           description: "",
           nombre_etoile: "",
-          media: ""
+          adresse: ""
       }
     },
      getHotel() {
@@ -334,7 +346,8 @@ export default {
         let formData = new FormData()
         formData.append('nom', this.form.nom)
         formData.append('ville', this.form.ville)
-        formData.append('prix', this.form.prix)
+        formData.append('prix_min', this.form.prix_min)
+        formData.append('prix_max', this.form.prix_max)
         formData.append('description', this.form.description)
         formData.append('adresse', this.form.adresse)
         formData.append('nombre_etoile', this.form.nombre_etoile)
@@ -359,10 +372,11 @@ export default {
             this.form = {
               nom: "",
               ville: "",
-              prix: "",
+              prix_min: "",
+              prix_max: "",
               description: "",
               nombre_etoile: "",
-              photo: ""
+              adresse: ""
             }
           }).catch(error => {
             this.btnloading = false

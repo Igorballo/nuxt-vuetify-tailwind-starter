@@ -1,7 +1,7 @@
 <template>
   <div class="tw-bg-gray-200 tw-px-2 tw-p-4 md:tw-py-12">
     <div class="tw-relative tw-container tw-mx-auto md:tw-px-4 tw-flex tw-flex-col md:tw-flex-row md:tw-gap-8 tw-w-full">
-      <div class="md:tw-sticky md:tw-top-24 md:tw-block tw-w-full md:tw-w-1/3">
+      <div class="tw-sticky md:tw-top-24 md:tw-block tw-w-full md:tw-w-1/3">
         <div class="">
           <div
             class="tw-flex tw-mb-2 tw-h-full tw-w-full tw-items-center tw-gap-2 tw-px-2 lg:tw-px-4 tw-py-4 tw-bg-white tw-rounded tw-text-red-600 tw-text-sm">
@@ -133,7 +133,7 @@
                 class=""
                 color="error darken-1"
                 :loading="sendCardReservation"
-                @click="reserverCar(car_id)"
+                @click="reserverCar()"
               >
                 Envoyer la demande
               </v-btn>
@@ -291,7 +291,7 @@
                   <div class="tw-flex tw-flex-col tw-gap-4">
                     <div class="tw-text-lg"><span class="tw-text-2xl tw-font-extrabold">{{ car.prix }} XOF/JOUR</span>
                     </div>
-                    <v-btn @click="userInfoDialog = true"
+                    <v-btn @click="saveCarId(car._id)"
                             class="tw-py-3 tw-px-12 tw-text-white tw-text-xl tw-font-semibold tw-rounded-lg tw-bg-red-600">
                       Reservez
                     </v-btn>
@@ -352,13 +352,49 @@ export default {
     this.initialize()
   },
   methods: {
-    async reserverCar(car_id){
+    saveCarId(car_id){
+      this.userInfoDialog = true
+      this.carReservationForm.car_id = car_id
+    },
+    async reserverCar(){
         this.sendCardReservation = true
-        this.carReservationForm.car_id = car_id
         await axios.post('/reservation-car/request-car-reservation', this.carReservationForm)
           .then(response => {
-            console.log(response);
-            this.cars = response.data.cars;
+            if (response.data.error) {
+              this.userInfoDialog = false
+              this.sendCardReservation = false
+
+              Swal.fire({
+                title: 'Echec',
+                text: 'Une Erreur s\'est produite',
+                icon: 'error'
+              })
+              return
+            }
+
+            this.sendCardReservation = false
+            this.userInfoDialog = false
+            this.carReservationForm = {
+              autre_lieu_restitution: false,
+                lieu_prise_en_charge: '',
+                lieu_de_restitution: '',
+                heure_debut: '',
+                heure_fin: '',
+                date_debut: '',
+                date_fin: '',
+                car_id: '',
+                lastname: '',
+                firstname: '',
+                email: '',
+                passport_id: '',
+                phone_number: {
+                code: '',
+                  number: '',
+              },
+            }
+            this.showToast('success', 'Demande de reservation de voiture envoyée avec succès')
+          }).catch(error => {
+            console.log(error)
           })
 
     },
@@ -389,15 +425,15 @@ export default {
     this.carReservationForm.lieu_de_restitution = this.selected_recherche_car_lieu_restitution
     this.carReservationForm.autre_lieu_restitution = this.selected_recherche_car_autre_lieu_restitution
 
-    // if (localStorage.getItem('reloaded')) {
-    //   // The page was just reloaded. Clear the value from local storage
-    //   // so that it will reload the next time this page is visited.
-    //   localStorage.removeItem('reloaded');
-    // } else {
-    //   // Set a flag so that we know not to reload the page twice.
-    //   localStorage.setItem('reloaded', '1');
-    //   location.reload();
-    // }
+    if (localStorage.getItem('reloaded')) {
+      // The page was just reloaded. Clear the value from local storage
+      // so that it will reload the next time this page is visited.
+      localStorage.removeItem('reloaded');
+    } else {
+      // Set a flag so that we know not to reload the page twice.
+      localStorage.setItem('reloaded', '1');
+      location.reload();
+    }
   },
   computed: {
     ...mapGetters('recherche-cars', [

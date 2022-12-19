@@ -89,6 +89,11 @@ export default {
         text: 'Tourisme',
       },
       {
+        to: '/admin/visa-assurance',
+        icon: 'mdi-view-dashboard',
+        text: 'Visa & Assurance',
+      },
+      {
         to: '/admin/utilisateur',
         icon: 'mdi-account',
         text: 'Utilisateur',

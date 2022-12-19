@@ -11,7 +11,7 @@
             label="Ex: pays, ville, quartier ou site d'intérêt"
             outlined
             :rules="villeRules"
-            v-model="hotelFilterForm.adresse"
+            v-model="hotelReservationForm.adresse"
           ></v-text-field>
           <v-menu
             v-model="date_arrive_menu"
@@ -23,7 +23,7 @@
           >
             <template v-slot:activator="{ on, attrs }">
               <v-text-field
-                v-model="hotelFilterForm.date_arrive"
+                v-model="hotelReservationForm.date_arrive"
                 label="Date d'arrivée"
                 :rules="dateArriveRules"
                 readonly
@@ -33,7 +33,7 @@
               ></v-text-field>
             </template>
             <v-date-picker
-              v-model="hotelFilterForm.date_arrive"
+              v-model="hotelReservationForm.date_arrive"
               @input="date_arrive_menu = false"
             ></v-date-picker>
           </v-menu>
@@ -48,7 +48,7 @@
           >
             <template v-slot:activator="{ on, attrs }">
               <v-text-field
-                v-model="hotelFilterForm.date_depart"
+                v-model="hotelReservationForm.date_depart"
                 :rules="dateDepartRules"
                 label="Date départ"
                 readonly
@@ -58,7 +58,7 @@
               ></v-text-field>
             </template>
             <v-date-picker
-              v-model="hotelFilterForm.date_depart"
+              v-model="hotelReservationForm.date_depart"
               @input="date_depart_menu = false"
             ></v-date-picker>
           </v-menu>
@@ -66,7 +66,7 @@
 
           <div class="tw-flex tw-gap-2">
             <v-select
-              v-model="hotelFilterForm.prix.lowPrice"
+              v-model="hotelReservationForm.prix.lowPrice"
               :items="lowPrice"
               outlined
               label="Plus bas prix"
@@ -79,7 +79,7 @@
             </v-select>
 
             <v-select
-              v-model="hotelFilterForm.prix.highPrice"
+              v-model="hotelReservationForm.prix.highPrice"
               :items="highPrice"
               outlined
               label="Plus haut prix"
@@ -153,25 +153,19 @@
                         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="tw-h-4 tw-w-4 tw-text-yellow-400 tw-fill-current tw-mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path></svg>
                         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="tw-h-4 tw-w-4 tw-text-yellow-400 tw-fill-current" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path></svg>
 
+                          </div>
+                        </div>
+                        <div class="tw-flex tw-items-center">
+                          <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="map-marker-alt" class="tw-h-3 tw-w-3 tw-text-blue-500 tw-fill-current tw-mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"></path></svg>
+                          <span class="tw-text-xs tw-text-gray-600">{{ hotel.adresse }} <a class="tw-font-semibold tw-text-gray-700" href="">Show on Map</a></span>
+                        </div>
                       </div>
-                  </div>
-                  <div class="tw-flex tw-items-center">
-                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="map-marker-alt"
-                         class="tw-h-3 tw-w-3 tw-text-blue-500 tw-fill-current tw-mr-1" role="img"
-                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-                      <path fill="currentColor"
-                            d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"></path>
-                    </svg>
-                    <span class="tw-text-xs tw-text-gray-600">{{ hotel.adresse }} <a
-                      class="tw-font-semibold tw-text-gray-700" href="">Show on Map</a></span>
-                  </div>
-                </div>
-                <div>
-                  <div class="tw-text-right tw-text-xl tw-leading-tight tw-text-gray-600 tw-font-semibold">
-                    {{ hotel.prix }} <br> 1 jours
-                  </div>
-                </div>
-              </div>
+                      <div>
+                        <div class="tw-text-right tw-text-xl tw-leading-tight tw-text-gray-600 tw-font-semibold">
+                          {{ hotel.prixMin }} - {{ hotel.prixMax }} <br> 1 jours
+                        </div>
+                      </div>
+                    </div>
 
               <div class="tw-flex tw-mt-3">
                 <div>
@@ -206,7 +200,7 @@
                   </p>
                 </div>
                 <div class="tw-mt-3 sm:tw-mt-3 sm:tw--mr-8">
-                  <v-btn @click="userInfoDialog = true" href="#"
+                  <v-btn @click="saveHotelId(hotel._id)"
                      class="tw-bg-red-600 tw-shadow tw-text-white tw-py-3 tw-px-6 tw-font-bold tw-inline-block">Reservez
                     maintenant</v-btn>
                 </div>
@@ -243,7 +237,7 @@
                       :rules="lastNameRules"
                       required
                       outlined
-                      v-model="hotelFilterForm.lastname"
+                      v-model="hotelReservationForm.lastname"
                     ></v-text-field>
                   </v-col>
                   <v-col
@@ -254,14 +248,14 @@
                       label="Prénoms*"
                       required outlined
                       :rules="firstNameRules"
-                      v-model="hotelFilterForm.firstname"
+                      v-model="hotelReservationForm.firstname"
                     ></v-text-field>
                   </v-col>
 
                   <v-col
                     cols="12"
                   >
-                    <v-text-field placeholder="XXXXXXXX" v-model="hotelFilterForm.passport_id" required
+                    <v-text-field placeholder="XXXXXXXX" v-model="hotelReservationForm.passport_id" required
                                   :rules="passportIdRules"
                                   label="Numéro passport ou Numéro carte d'identité*" outlined></v-text-field>
                   </v-col>
@@ -269,7 +263,7 @@
                   <v-col
                     cols="12"
                   >
-                    <v-text-field type="email" placeholder="ex: hfx@gmail.com" v-model="hotelFilterForm.email"
+                    <v-text-field type="email" placeholder="ex: hfx@gmail.com" v-model="hotelReservationForm.email"
                                   required
                                   :rules="emailRules"
                                   label="Adresse email*" outlined></v-text-field>
@@ -280,7 +274,7 @@
                   >
                     <v-col sm="6">
                       <v-autocomplete
-                        v-model="hotelFilterForm.phone_number.code"
+                        v-model="hotelReservationForm.phone_number.code"
                         :items="countries"
                         :loading="isLoading"
                         :search-input.sync="search"
@@ -306,7 +300,7 @@
                       </v-autocomplete>
                     </v-col>
                     <v-col>
-                      <v-text-field v-model="hotelFilterForm.phone_number.number" required
+                      <v-text-field v-model="hotelReservationForm.phone_number.number" required
                                     :rules="numberRules" type="number"
                                     label="Numéro de télephone*" outlined></v-text-field>
                     </v-col>
@@ -328,8 +322,8 @@
               <v-btn
                 class=""
                 color="error darken-1"
-                :loading="sendCardReservation"
-                @click="reserverCar(car_id)"
+                :loading="sendHotelReservation"
+                @click="reserverHotel()"
               >
                 Envoyer la demande
               </v-btn>
@@ -353,6 +347,7 @@ export default {
   data() {
     return {
       userInfoDialog: false,
+      sendHotelReservation: false,
       villeRules: [
         v => !!v || 'ce champs est obligatoire',
       ],
@@ -377,7 +372,7 @@ export default {
       date_arrive_menu: false,
       date_depart_menu: false,
       countries: json,
-      hotelFilterForm: {
+      hotelReservationForm: {
         hotel_id: "",
         lastname: "",
         firstname: "",
@@ -410,19 +405,19 @@ export default {
 
   mounted() {
     this.getHotel()
-    this.hotelFilterForm.date_arrive = this.selected_recherche_hotel_date_arrive
-    this.hotelFilterForm.date_depart = this.selected_recherche_hotel_date_depart
-    this.hotelFilterForm.adresse = this.selected_recherche_hotel_adresse
-    this.hotelFilterForm.passengers = this.selected_recherche_hotel_passengers
+    this.hotelReservationForm.date_arrive = this.selected_recherche_hotel_date_arrive
+    this.hotelReservationForm.date_depart = this.selected_recherche_hotel_date_depart
+    this.hotelReservationForm.adresse = this.selected_recherche_hotel_adresse
+    this.hotelReservationForm.passengers = this.selected_recherche_hotel_passengers
   },
 
   computed: {
     totalPassagers() {
       // cette methode retourne le nombre total de passagers
-      return this.hotelFilterForm.passengers.adultes + this.hotelFilterForm.passengers.enfants + this.hotelFilterForm.passengers.bebes
+      return this.hotelReservationForm.passengers.adultes + this.hotelReservationForm.passengers.enfants + this.hotelReservationForm.passengers.bebes
     },
     totalChildrens() {
-      return this.hotelFilterForm.passengers.adultes * 2
+      return this.hotelReservationForm.passengers.adultes * 2
     },
 
     ...mapGetters('recherche-hotels', [
@@ -436,9 +431,58 @@ export default {
 
 
   methods: {
+    saveHotelId(hotel_id){
+      this.userInfoDialog = true
+      this.hotelReservationForm.hotel_id = hotel_id
+    },
+    async reserverHotel(){
+      this.sendHotelReservation = true
+      await axios.post('/reservation-hotel/request-hotel-reservation', this.hotelReservationForm)
+        .then(response => {
+          if (response.data.error) {
+            this.userInfoDialog = false
+            this.sendHotelReservation = false
+
+            Swal.fire({
+              title: 'Echec',
+              text: 'Une Erreur s\'est produite',
+              icon: 'error'
+            })
+            return
+          }
+
+          this.sendHotelReservation = false
+          this.userInfoDialog = false
+          this.hotelReservationForm = {
+            hotel_id: "",
+            lastname: "",
+            firstname: "",
+            email: "",
+            adresse: "",
+            passport_id: "",
+            phone_number: {
+              code: "",
+              number: '',
+            },
+            prix: {
+              lowPrice: "",
+              highPrice: "",
+            },
+            date_arrive: "",
+            date_depart: "",
+            nombre_etoiles: "",
+            passengers: {
+              adultes: 1,
+              enfants: 0,
+              bebes: 0,
+            }
+          }
+          this.showToast('success', "Demande de reservation d'hôtel envoyée avec succès")
+        }).catch(error => {
+          console.log(error)
+        })
+    },
     showImages(item) {
-      console.log(item)
-      console.log('hello')
       const url = config.app_local ? `${config.app_back_debug_url}/${item.images[0]}` : `${config.app_back_url}/${item.images[0]}`
       return url
     },
