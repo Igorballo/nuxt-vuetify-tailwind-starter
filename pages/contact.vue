@@ -77,7 +77,7 @@
               @click="sendMessage"
               :loading="btnloading"
             >
-              Send Message
+              Envoyer un Message
             </v-btn>
 
           </v-form>
@@ -92,24 +92,7 @@
           <iframe class="gmap_iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
                   src="https://maps.google.com/maps?width=1015&amp;height=500&amp;hl=en&amp;q=Lomé&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
           <a href="https://piratebay-proxys.com/">Piratebay</a></div>
-        <style>.mapouter {
-          position: relative;
-          text-align: center;
-          width: 100%;
-          height: 500px;
-        }
 
-        .gmap_canvas {
-          overflow: hidden;
-          background: none !important;
-          width: 100%;
-          height: 500px;
-        }
-
-        .gmap_iframe {
-          width: 100% !important;
-          height: 500px !important;
-        }</style>
       </div>
 
 
@@ -172,7 +155,6 @@ export default {
 </script>
 
 <style scoped>
-
 .banner {
   background-image: url(https://images.unsplash.com/photo-1573132223210-d65883b944aa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1494&q=80);
   background-color: #000;
@@ -181,4 +163,24 @@ export default {
   height: 30vh;
 }
 
+.mapouter {
+  position: relative;
+  text-align: center;
+  width: 100%;
+  height: 500px;
+}
+
+.gmap_canvas {
+  overflow: hidden;
+  background: none !important;
+  width: 100%;
+  height: 500px;
+}
+
+.gmap_iframe {
+  width: 100% !important;
+  height: 500px !important;
+}
 </style>
+
+
