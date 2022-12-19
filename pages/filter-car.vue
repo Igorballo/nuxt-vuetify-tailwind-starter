@@ -132,8 +132,8 @@
               <v-btn
                 class=""
                 color="error darken-1"
-                :loading="btnLoading"
-                @click="userInfoDialog = false, disclaimerDialog = true && $refs.modal.validate()"
+                :loading="sendCardReservation"
+                @click="reserverCar(car_id)"
               >
                 Envoyer la demande
               </v-btn>
@@ -190,7 +190,7 @@
               </div>
               <div class="tw-py-4 tw-flex tw-flex-wrap md:tw-flex-nowrap tw-gap-4 md:tw-gap-12 tw-text-sm">
                 <div class="tw-flex tw-flex-col tw-gap-2 md:tw-gap-6 tw-w-full">
-                  <img class="tw-h-full tw-w-full md:tw-w-64"
+                  <img class="tw-h-[25vh] tw-w-full md:tw-w-64"
                        :src="showImages(car)"
                        alt="voiture">
                   <div class="tw-flex tw-items-center tw-gap-8 lg:tw-gap-12 tw-font-semibold">
@@ -244,6 +244,10 @@
                       class="tw-font-semibold">Quart au quart</p> </span>
                   </div>
                   <div class="tw-inline-flex tw-gap-4 tw-items-start">
+                    <v-icon>mdi-train-car</v-icon>
+                    <span>Voiture à destination : <br> <p class="tw-font-semibold">Lomé uniquement</p> </span>
+                  </div>
+                  <div class="tw-inline-flex tw-gap-4 tw-items-start">
                     <v-icon>mdi-gas-station-outline</v-icon>
                     <span>Type De Carburant : <br> <p
                       class="tw-font-semibold">Essence</p> </span>
@@ -287,10 +291,10 @@
                   <div class="tw-flex tw-flex-col tw-gap-4">
                     <div class="tw-text-lg"><span class="tw-text-2xl tw-font-extrabold">{{ car.prix }} XOF/JOUR</span>
                     </div>
-                    <button @click="userInfoDialog = true"
+                    <v-btn @click="userInfoDialog = true"
                             class="tw-py-3 tw-px-12 tw-text-white tw-text-xl tw-font-semibold tw-rounded-lg tw-bg-red-600">
                       Reservez
-                    </button>
+                    </v-btn>
                   </div>
                 </div>
               </div>
@@ -306,6 +310,7 @@
 import config from "../config";
 import FilterCarForm from "../components/FilterCarForm";
 import {mapGetters} from "vuex";
+import json from "../data/CountryCodes.json";
 
 export default {
   components: {FilterCarForm},
@@ -316,6 +321,7 @@ export default {
       filterDialog: false,
       btnLoading: false,
       userInfoDialog: false,
+      sendCardReservation: false,
       carReservationForm: {
         autre_lieu_restitution: false,
         lieu_prise_en_charge: "",
@@ -324,6 +330,7 @@ export default {
         heure_fin: "",
         date_debut: "",
         date_fin: "",
+        car_id: "",
         lastname: "",
         firstname: "",
         email: "",
@@ -333,6 +340,7 @@ export default {
           number: '',
         },
       },
+      countries: json,
       date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
       lowPrice: ['0', '2000', '5000', '10000', '25000', '50000'],
       highPrice: ['2000', '5000', '10000', '25000', '+ 50000'],
@@ -344,14 +352,24 @@ export default {
     this.initialize()
   },
   methods: {
+    async reserverCar(car_id){
+        this.sendCardReservation = true
+        this.carReservationForm.car_id = car_id
+        await axios.post('/reservation-car/request-car-reservation', this.carReservationForm)
+          .then(response => {
+            console.log(response);
+            this.cars = response.data.cars;
+          })
+
+    },
     showImages(item) {
       console.log(item)
       console.log('hello')
       const url = config.app_local ? `${config.app_back_debug_url}/${item.images[0]}` : `${config.app_back_url}/${item.images[0]}`
       return url
     },
-    getCar() {
-      axios.get('/cars/get-cars?limit=25')
+    async getCar() {
+      await axios.get('/cars/get-cars?limit=25')
         .then(response => {
           console.log(response);
           this.cars = response.data.cars;
@@ -371,15 +389,15 @@ export default {
     this.carReservationForm.lieu_de_restitution = this.selected_recherche_car_lieu_restitution
     this.carReservationForm.autre_lieu_restitution = this.selected_recherche_car_autre_lieu_restitution
 
-    if (localStorage.getItem('reloaded')) {
-      // The page was just reloaded. Clear the value from local storage
-      // so that it will reload the next time this page is visited.
-      localStorage.removeItem('reloaded');
-    } else {
-      // Set a flag so that we know not to reload the page twice.
-      localStorage.setItem('reloaded', '1');
-      location.reload();
-    }
+    // if (localStorage.getItem('reloaded')) {
+    //   // The page was just reloaded. Clear the value from local storage
+    //   // so that it will reload the next time this page is visited.
+    //   localStorage.removeItem('reloaded');
+    // } else {
+    //   // Set a flag so that we know not to reload the page twice.
+    //   localStorage.setItem('reloaded', '1');
+    //   location.reload();
+    // }
   },
   computed: {
     ...mapGetters('recherche-cars', [

@@ -85,7 +85,7 @@ export default {
             secondary: '#b0bec5',
             dark: '#b0bec5',
             accent: '#006958',
-            error: '#0630ab',
+            error: '#f0ad4e',
             success: '#5cb85c',
             warning:'#f0ad4e',
             background: '#f8f8f8'
