@@ -17,6 +17,24 @@ export const actions = {
     const recherche_car_lieu_restitution = Cookies.get('recherche_car_lieu_restitution')
     const recherche_car_autre_lieu_restitution = Cookies.get('recherche_car_autre_lieu_restitution')
 
+    const recherche_hotel_date_arrive = Cookies.get('recherche_hotel_date_arrive')
+    const recherche_hotel_date_depart = Cookies.get('recherche_hotel_date_depart')
+    const recherche_hotel_adresse = Cookies.get('recherche_hotel_adresse')
+    const recherche_hotel_passengers = Cookies.get('recherche_hotel_passengers')
+
+    if(recherche_hotel_date_arrive){
+      commit('recherche-hotels/SET_RECHERCHE_HOTEL_DATE_ARRIVE', JSON.parse(recherche_hotel_date_arrive))
+    }
+    if(recherche_hotel_date_depart){
+      commit('recherche-hotels/SET_RECHERCHE_HOTEL_DATE_DEPART', JSON.parse(recherche_hotel_date_depart))
+    }
+    if(recherche_hotel_adresse){
+      commit('recherche-hotels/SET_RECHERCHE_HOTEL_ADRESSE', JSON.parse(recherche_hotel_adresse))
+    }
+    if(recherche_hotel_passengers){
+      commit('recherche-hotels/SET_RECHERCHE_HOTEL_PASSENGERS', JSON.parse(recherche_hotel_passengers))
+    }
+
 
     if(recherche_car_date_debut){
       commit('recherche-cars/SET_RECHERCHE_CAR_DATE_DEBUT', JSON.parse(recherche_car_date_debut))
@@ -40,6 +58,9 @@ export const actions = {
       commit('recherche-cars/SET_RECHERCHE_CAR_AUTRE_LIEU_RESTITUTION', JSON.parse(recherche_car_autre_lieu_restitution))
       commit('recherche-cars/SET_RECHERCHE_CAR_LIEU_RESTITUTION', JSON.parse(recherche_car_lieu_restitution))
     }
+
+
+
 
 
 

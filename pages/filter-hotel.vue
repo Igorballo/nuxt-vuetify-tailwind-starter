@@ -6,14 +6,12 @@
           ref="form"
           v-model="valid"
           lazy-validation>
-          <div class="tw-font-semibold tw-text-lg tw-py-4 tw-pl-6 tw-bg-gray-100 tw-border-b">Résumé du trajet</div>
-          
 
             <v-text-field
               label="Ex: pays, ville, quartier ou site d'intérêt"
               outlined
               :rules="villeRules"
-              v-model="hotelReservationForm.adresse"
+              v-model="hotelFilterForm.adresse"
             ></v-text-field>
             <v-menu
               v-model="date_arrive_menu"
@@ -25,7 +23,7 @@
             >
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
-                  v-model="hotelReservationForm.date_arrive"
+                  v-model="hotelFilterForm.date_arrive"
                   label="Date d'arrivée"
                   :rules="dateArriveRules"
                   readonly
@@ -35,7 +33,7 @@
                 ></v-text-field>
               </template>
               <v-date-picker
-                v-model="hotelReservationForm.date_arrive"
+                v-model="hotelFilterForm.date_arrive"
                 @input="date_arrive_menu = false"
               ></v-date-picker>
             </v-menu>
@@ -50,7 +48,7 @@
             >
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
-                  v-model="hotelReservationForm.date_depart"
+                  v-model="hotelFilterForm.date_depart"
                   :rules="dateDepartRules"
                   label="Date départ"
                   readonly
@@ -60,7 +58,7 @@
                 ></v-text-field>
               </template>
               <v-date-picker
-                v-model="hotelReservationForm.date_depart"
+                v-model="hotelFilterForm.date_depart"
                 @input="date_depart_menu = false"
               ></v-date-picker>
             </v-menu>
@@ -91,8 +89,8 @@
                       <div class="tw-py-4 tw-flex tw-justify-between tw-gap-12">
                         <span class="tw-text-xl tw-font-bold tw-gray-800">Adultes (> 12 ans)</span>
                         <div class="tw-text-xl tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
-                          <div v-if="hotelReservationForm.passengers.adultes > 0">
-                                <span @click="hotelReservationForm.passengers.adultes--"
+                          <div v-if="hotelFilterForm.passengers.adultes > 0">
+                                <span @click="hotelFilterForm.passengers.adultes--"
                                       class="hover:tw-cursor-pointer"><v-icon
                                   color="red">mdi-minus-circle-outline</v-icon></span>
                           </div>
@@ -101,10 +99,10 @@
                               <v-icon color="grey">mdi-minus-circle-outline</v-icon>
                             </div>
                           </div>
-                          <span>{{ hotelReservationForm.passengers.adultes }}</span>
+                          <span>{{ hotelFilterForm.passengers.adultes }}</span>
 
                           <div>
-                                <span @click="hotelReservationForm.passengers.adultes++"
+                                <span @click="hotelFilterForm.passengers.adultes++"
                                       class="hover:tw-cursor-pointer"><v-icon
                                   color="red">mdi-plus-circle-outline</v-icon></span>
                           </div>
@@ -114,8 +112,8 @@
                       <div class="tw-py-4 tw-flex tw-justify-between tw-gap-12">
                         <span class="tw-text-xl tw-font-bold tw-gray-800">Enfants (2-11 ans)</span>
                         <div class="tw-text-xl tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
-                          <div v-if="hotelReservationForm.passengers.enfants > 0">
-                                <span @click="hotelReservationForm.passengers.enfants--"
+                          <div v-if="hotelFilterForm.passengers.enfants > 0">
+                                <span @click="hotelFilterForm.passengers.enfants--"
                                       class="hover:tw-cursor-pointer"><v-icon
                                   color="red">mdi-minus-circle-outline</v-icon></span>
                           </div>
@@ -123,9 +121,9 @@
                                 <span class="hover:tw-cursor-no-drop"><v-icon
                                   color="grey">mdi-minus-circle-outline</v-icon></span>
                           </div>
-                          <span>{{ hotelReservationForm.passengers.enfants }}</span>
+                          <span>{{ hotelFilterForm.passengers.enfants }}</span>
                           <div>
-                                <span @click="hotelReservationForm.passengers.enfants++"
+                                <span @click="hotelFilterForm.passengers.enfants++"
                                       class="hover:tw-cursor-pointer"><v-icon
                                   color="red">mdi-plus-circle-outline</v-icon></span>
                           </div>
@@ -135,17 +133,17 @@
                       <div class="tw-py-4 tw-flex tw-justify-between tw-gap-12">
                         <span class="tw-text-xl tw-font-bold tw-gray-800">Bébés (< 2 ans)</span>
                         <div class="tw-text-xl tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
-                          <div v-if="hotelReservationForm.passengers.bebes > 0">
-                                <span @click="hotelReservationForm.passengers.bebes--" class="hover:tw-cursor-pointer"><v-icon
+                          <div v-if="hotelFilterForm.passengers.bebes > 0">
+                                <span @click="hotelFilterForm.passengers.bebes--" class="hover:tw-cursor-pointer"><v-icon
                                   color="red">mdi-minus-circle-outline</v-icon></span>
                           </div>
                           <div v-else>
                               <span class="hover:tw-cursor-no-drop"><v-icon
                                 color="grey">mdi-minus-circle-outline</v-icon></span>
                           </div>
-                          <span>{{ hotelReservationForm.passengers.bebes }}</span>
+                          <span>{{ hotelFilterForm.passengers.bebes }}</span>
                           <div>
-                                <span @click="hotelReservationForm.passengers.bebes++" class="hover:tw-cursor-pointer"><v-icon
+                                <span @click="hotelFilterForm.passengers.bebes++" class="hover:tw-cursor-pointer"><v-icon
                                   color="red">mdi-plus-circle-outline</v-icon></span>
                           </div>
                         </div>
@@ -157,7 +155,7 @@
             </v-menu>
             <div class="tw-flex tw-gap-2">
               <v-select
-                v-model="hotelReservationForm.prix.lowPrice"
+                v-model="hotelFilterForm.prix.lowPrice"
                 :items="lowPrice"
                 outlined
                 label="Plus bas prix"
@@ -170,7 +168,7 @@
               </v-select>
 
               <v-select
-                v-model="hotelReservationForm.prix.highPrice"
+                v-model="hotelFilterForm.prix.highPrice"
                 :items="highPrice"
                 outlined
                 label="Plus haut prix"
@@ -182,9 +180,9 @@
                 </template>
               </v-select>
             </div>
-            <v-btn class="tw-text-white tw-bg-red-600 tw-font-semibold tw-rounded-lg tw-py-2 tw-px-6"  @click="searchHotel">Rechercher
+            <v-btn :loading="searchHotelBtn" class="tw-text-white tw-bg-red-600 tw-font-semibold tw-rounded-lg tw-py-2 tw-px-6"  @click="searchHotel">Rechercher
             </v-btn>
-          
+
         </v-form>
       </div>
 
@@ -277,6 +275,7 @@
 
 <script>
 import config from "../config";
+import {mapGetters} from "vuex";
 export default {
   layout: 'master',
 
@@ -297,6 +296,7 @@ export default {
       highPrixRules: [
         v => !!v || 'ce champs est obligatoire',
       ],
+      searchHotelBtn: false,
       date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
       menu: false,
       modal: false,
@@ -304,7 +304,7 @@ export default {
       hotels: [],
       date_arrive_menu: false,
       date_depart_menu: false,
-      hotelReservationForm: {
+      hotelFilterForm: {
         adresse: "",
         prix: {
           lowPrice: "",
@@ -326,12 +326,26 @@ export default {
     }
   },
 
+  mounted() {
+    this.hotelFilterForm.date_arrive = this.selected_recherche_hotel_date_arrive
+    this.hotelFilterForm.date_depart = this.selected_recherche_hotel_date_depart
+    this.hotelFilterForm.adresse = this.selected_recherche_hotel_adresse
+    this.hotelFilterForm.passengers = this.selected_recherche_hotel_passengers
+  },
+
   computed: {
     totalPassagers() {
       // cette methode retourne le nombre total de passagers
-      return this.hotelReservationForm.passengers.adultes + this.hotelReservationForm.passengers.enfants + this.hotelReservationForm.passengers.bebes
+      return this.hotelFilterForm.passengers.adultes + this.hotelFilterForm.passengers.enfants + this.hotelFilterForm.passengers.bebes
     },
 
+    ...mapGetters('recherche-hotels', [
+      'selected_recherche_hotel_date_arrive',
+      'selected_recherche_hotel_date_depart',
+      'selected_recherche_hotel_adresse',
+      'selected_recherche_hotel_passengers',
+
+    ]),
   },
 
    created () {
@@ -340,9 +354,9 @@ export default {
 
   methods: {
     showImages(item) {
-      console.log(item)    
-      console.log('hello')    
-     const url = config.app_local ?`${config.app_back_debug_url}/${item.images[0]}`:`${config.app_back_url}/${item.images[0]}` 
+      console.log(item)
+      console.log('hello')
+     const url = config.app_local ?`${config.app_back_debug_url}/${item.images[0]}`:`${config.app_back_url}/${item.images[0]}`
      return url
     },
 
@@ -353,19 +367,24 @@ export default {
           this.hotels = response.data.hotels;
         })
     },
-    searchHotel() {
-      axios.get('/cars/get-cars?pricemin=200&pricemax=50000&limit=4')
+    async searchHotel() {
+      this.searchHotelBtn = true
+      await axios.get(`/cars/get-cars?pricemin=${this.hotelFilterForm.prix.lowPrice}&pricemax=${this.hotelFilterForm.prix.highPrice}&limit=100`)
         .then(response => {
           console.log(response);
           this.hotels = response.data.hotels;
+          this.searchHotelBtn = false
+        }).catch(error => {
+          console.log(error)
+          this.searchHotelBtn = false
         })
+      this.getHotel()
     },
     initialize() {
       this.getHotel();
-
     },
-
   },
+
 }
 </script>
 

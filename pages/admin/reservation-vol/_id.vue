@@ -100,8 +100,8 @@
             <div class="tw-flex tw-flex-col">
               <div class="tw-flex tw-justify-between">
                 <span class="tw-font-semibold tw-text-lg">Date de retour</span>
-                <v-chip v-if="reservation.comebackDate" class="tw-text-lg">{{ reservation.comebackDate }}</v-chip>
-                <v-chip v-else>Aller Simple</v-chip>
+                <v-chip v-text="reservation.hasOwnProperty(comeback_date) ? 'Aller retour' : 'Aller simple'" class="tw-text-lg"></v-chip>
+<!--                <v-chip v-else>Aller Simple</v-chip>-->
               </div>
             </div>
             <v-divider/>
@@ -110,7 +110,7 @@
               <div class="tw-flex tw-justify-between">
                 <span class="tw-font-semibold tw-text-lg">Type de classe</span>
                 <div class="tw-flex tw-gap-2">
-                  <v-chip>??</v-chip>
+                  <v-chip>{{ reservation.typeClasse }}</v-chip>
                 </div>
               </div>
             </div>
