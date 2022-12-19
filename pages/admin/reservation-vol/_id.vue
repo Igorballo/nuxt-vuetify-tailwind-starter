@@ -100,8 +100,10 @@
             <div class="tw-flex tw-flex-col">
               <div class="tw-flex tw-justify-between">
                 <span class="tw-font-semibold tw-text-lg">Date de retour</span>
-                <v-chip v-text="reservation.hasOwnProperty(comeback_date) ? 'Aller retour' : 'Aller simple'" class="tw-text-lg"></v-chip>
-<!--                <v-chip v-else>Aller Simple</v-chip>-->
+                <div class="tw-flex tw-gap-2">
+                  <v-chip v-if="reservation.hasOwnProperty('comebackDate')">{{ reservation.comebackDate|moment('d / MM / YYYY') }}</v-chip>
+                  <v-chip v-else>Aller simple</v-chip>
+                </div>
               </div>
             </div>
             <v-divider/>

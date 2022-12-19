@@ -479,7 +479,7 @@
                     color="primary"
                     text
                     @click="reservation()"
-                    :loading="btnloading"
+                    :loading="policybtnloading"
                   >
                     J'accepte
                   </v-btn>
@@ -545,6 +545,7 @@ export default {
   data() {
     return {
       btnloading: false,
+      policybtnloading: false,
       type_classe: ['Classe économique', 'Classe économique premium', 'Classe affaire', 'Première classe'],
        departRules: [
         v => !!v || 'Adresse de Depart est requis',
@@ -658,7 +659,8 @@ export default {
       return country.indexOf(searchText) > -1 || name.indexOf(searchText) > -1 || codeiata.indexOf(searchText) > -1
     },
     async reservation() {
-      this.btnloading = true;
+      this.btnLoading = false
+      this.policybtnloading = false
       await axios.post('/reservation-vol/request-flight-reservation', this.reservationForm).then((response) => {
         if (response.data.error) {
           Swal.fire({
@@ -666,9 +668,14 @@ export default {
             text: 'Une Erreur s\'est produite',
             icon: 'error'
           })
+          this.btnLoading = false
+          this.policybtnloading = false
+          this.userInfoDialog = false
+          this.disclaimerDialog = false
           return
         }
         this.btnLoading = false
+        this.policybtnloading = false
         this.userInfoDialog = false
         this.disclaimerDialog = false
         this.reservationForm = {
@@ -696,6 +703,7 @@ export default {
           this.showToast('success', 'Demande de reservation envoyée avec succès')
       }).catch(error => {
         this.btnLoading = false
+        this.policybtnloading = true
         this.userInfoDialog = false
         this.disclaimerDialog = false
         this.showToast('error', "Une erreur s'est produite")
