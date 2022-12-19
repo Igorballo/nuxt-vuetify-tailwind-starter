@@ -2,10 +2,10 @@
   <v-container fluid>
     <div>
    
-    <v-data-table no-data-text="aucune donneé" :headers="headers" :items="contacts" class="elevation-1">
+    <v-data-table no-data-text="aucune donneé" :headers="headers" :items="tourisme" class="elevation-1">
       <template v-slot:top>
         <v-toolbar flat>
-          <v-toolbar-title>La Liste de Tous Les Messages</v-toolbar-title>
+          <v-toolbar-title>La Liste de Tous Les Demandes de Reservations de Tourisme</v-toolbar-title>
           <v-divider class="mx-4" inset vertical></v-divider>
           <v-spacer></v-spacer>
           <v-btn class="mx-2" @click="initialize">
@@ -16,18 +16,17 @@
       </template>
 
       <template slot="items" slot-scope="props">
-        <td class="text-xs-right">{{ props.item.name }}</td>
-        <td class="text-xs-right">{{ props.item.email }}</td>
-        <td class="text-xs-right">{{ props.item.number }}</td>
-        <td class="text-xs-right">{{ props.item.message }}</td>
+        <td class="text-xs-right">{{ props.item.customer.lastname }}</td>
+        <td class="text-xs-right">{{ props.item.customer.firstname }}</td>
+        <td class="text-xs-right">{{ props.item.customer.email }}</td>
+        <td class="text-xs-right">{{ props.item.customer.phone }}</td>
+        <td class="text-xs-right">{{ props.item.customer.passportId }}</td>
       </template>
 
 
       <template v-slot:[`item.actions`]="{ item }">
         <div class="tw-inline-block">
-         <v-icon small color="red"  @click="deleteItem(item)">
-          mdi-delete
-        </v-icon>
+         
     <v-dialog
       v-model="showMessage"
       width="700"
@@ -50,7 +49,7 @@
       <v-card>
       
         <v-card-title class="text-h5 grey lighten-2">
-          {{item.nom}} (<span class="tw-text-red-600 tw-text-md"><a :href="`mailto:${item.email }`">{{ item.email }}</a></span>, <a :href="`tel:${item.phone}`">{{item.phone}}</a>)
+          {{item.customer.lastname}} {{item.customer.firstname}} (<span class="tw-text-red-600 tw-text-md"><a :href="`mailto:${item.customer.email }`">{{ item.customer.email }}</a></span>, <a :href="`tel:${item.phone}`">{{item.phone}}</a>)
         </v-card-title>
 
         <v-card-text class="text-h6 white lighten-2 tw-pt-2">
@@ -90,35 +89,58 @@
 
 <script>
 // import Editor from '../components/helper/Editor.vue';
+import Pusher from "pusher-js";
 
 export default {
   // components: { Editor },
   layout: "admin",
   data() {
     return {
-    showMessage: false,
-    contacts: [],
+    pusher: new Pusher('e81f2769b500679d8e80', {
+        cluster: 'mt1'
+      }),
+    tourisme: [],
     headers: [
       {
-        text: 'Nom Complet',
-        align: 'start',
-        sortable: false,
-        value: 'nom',
+        text: 'Nom',
+        value: 'customer.lastname',
+      },
+       {
+        text: 'Prenoms',
+        value: 'customer.lastname',
       },
       {
         text: 'Email',
-        value: 'email'
+        value: 'customer.email'
       },
       {
         text: 'Numéro de Telephone',
-        value: 'phone'
+        value: 'customer.lastPhoneNumber.number'
       },
       {
-        text: 'Message',
-        value: 'message'
+        text: 'ID Passport',
+        value: 'customer.passportId'
       },
+      {
+        text: 'Adresse',
+        value: 'adresse'
+      },
+      {
+        text: 'Date d\'Arrivé',
+        value: 'dateDepart'
+      },
+      {
+        
+        text: 'Date de Depart',
+        value: 'comebackDate'
+      },
+      {
+        
+        text: 'Nombre de Passagers',
+        value: 'passengers.adultes'
+      },
+      
 
-      { text: 'Actions', value: 'actions', sortable: false },
     ],
     
     editedIndex: -1,
@@ -144,22 +166,32 @@ export default {
    created () {
     this.initialize()
   },
+   mounted() {
+    this.suscribeToReceiveNewRequests()
+  },
   methods: {
   
-     getMessage() {
-      axios.get('/contacts/get-contacts')
+     getLatestTourismeReservation() {
+      axios.get('/tourisme-request')
         .then(response => {
           console.log(response);
-          this.contacts = response.data.contacts;
+          this.tourisme = response.data.latestreservations;
         })
     },
     initialize() {
-      this.getMessage();
+      this.getLatestTourismeReservation();
     
     },
      
   
-    
+    suscribeToReceiveNewRequests(){
+      let self = this
+      let channel = this.pusher.subscribe('tourismeRequest');
+      channel.bind('new', (data) => {
+        self.getLatestTourismeReservation()
+      });
+
+    },
     deleteItem(item) {
       Swal.fire({
         icon: 'question',
