@@ -2,7 +2,8 @@
   <v-app class="tw-relative">
     <div style="z-index: 999" class="tw-sticky tw-top-0 lg:tw-static tw-flex tw-items-center tw-px-4 lg:tw-px-12 tw-py-2 tw-justify-between tw-w-full tw-bg-white">
       <!--      Manglam Logo-->
-      <img class="tw-h-20 tw-w-72 lg:tw-w-1/3" src="../assets/img/MANGLAM-IATA-LOGO-TEXTE.png" alt="Manglam-logo">
+      <a href="/" class="tw-h-25 tw-w-72 lg:tw-w-1/3"><img  src="../assets/img/MANGLAM-IATA-LOGO-TEXTE.png" alt="Manglam-logo"></a>
+
       <div class="tw-inline-flex tw-items-center tw-gap-4">
         <!--  Choose language button      -->
         <button

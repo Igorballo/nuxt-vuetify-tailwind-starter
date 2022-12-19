@@ -10,9 +10,10 @@
       </div>
 
       <v-carousel
+        cycle
         show-arrows-on-hover
+        hide-delimiter-background
         v-model="model"
-        autoplay
       >
         <v-carousel-item
           class="tw-h-full tw-w-full tw-bg-center tw-bg-cover tw-contain tw-bg-auto"
