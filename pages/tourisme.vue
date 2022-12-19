@@ -10,12 +10,7 @@
           <div class="tw-flex-row tw-items-center tw-gap-6">
 
             <div class="tw-flex tw-flex-col md:tw-flex-row tw-items-center tw-justify-between">
-              <v-radio-group row v-model="reservationForm.typevoyage">
-                <v-radio
-                  label="Aller-retour"
-                  value="allerretour"
-                ></v-radio>
-
+              <v-radio-group row v-model="tourismeReservationForm.typevoyage">
                 <v-radio
                   label="Destination multiple"
                   value="destinationmultiple"
@@ -29,6 +24,7 @@
                   label="Site touristique"
                   placeholder="Ex: Pays, ville, site touristique"
                   outlined
+                  v-model="tourismeReservationForm.adresse"
                   :rules="lieuPriseEnChargeRules"
                 ></v-text-field>
                 <v-col>
@@ -44,7 +40,7 @@
                       >
                         <template v-slot:activator="{ on, attrs }">
                           <v-text-field
-                            v-model="reservationForm.depart_date"
+                            v-model="tourismeReservationForm.depart_date"
                             label="Date de départ"
                             :rules="departDateRules"
                             required
@@ -52,11 +48,11 @@
                             outlined
                             v-bind="attrs"
                             v-on="on"
-                            :class="{'tw-rounded-r-none':reservationForm.typevoyage === 'allerretour'}"
+                            :class="{'tw-rounded-r-none':tourismeReservationForm.typevoyage === 'allerretour'}"
                           ></v-text-field>
                         </template>
                         <v-date-picker
-                          v-model="reservationForm.depart_date"
+                          v-model="tourismeReservationForm.depart_date"
                           no-title
                           :allowed-dates="disablePastDates"
                           scrollable
@@ -64,7 +60,7 @@
                         </v-date-picker>
                       </v-menu>
                     </v-col>
-                    <v-col v-if="reservationForm.typevoyage === 'allerretour'" class="tw-px-0">
+                    <v-col v-if="tourismeReservationForm.typevoyage === 'allerretour'" class="tw-px-0">
                       <v-menu
                         ref="retour_menu"
                         v-model="retour_menu"
@@ -75,7 +71,7 @@
                       >
                         <template v-slot:activator="{ on, attrs }">
                           <v-text-field
-                            v-model="reservationForm.comeback_date"
+                            v-model="tourismeReservationForm.comeback_date"
                             label="Date de retour"
                             readonly
                             outlined
@@ -87,7 +83,7 @@
                           ></v-text-field>
                         </template>
                         <v-date-picker
-                          v-model="reservationForm.comeback_date"
+                          v-model="tourismeReservationForm.comeback_date"
                           no-title
                           :allowed-dates="disablePastDates"
                           scrollable
@@ -130,8 +126,9 @@
                                 <span class="tw-font-bold tw-gray-800">Adultes (> 12 ans)</span>
                                 <div class="tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
                                   <div
-                                    v-if="reservationForm.passengers.adultes > 1 && reservationForm.passengers.enfants + reservationForm.passengers.bebes <= (reservationForm.passengers.adultes - 1) *2">
-                                <span @click="reservationForm.passengers.adultes--" class="hover:tw-cursor-pointer"><v-icon
+                                    v-if="tourismeReservationForm.passengers.adultes > 1 && tourismeReservationForm.passengers.enfants + tourismeReservationForm.passengers.bebes <= (tourismeReservationForm.passengers.adultes - 1) *2">
+                                <span @click="tourismeReservationForm.passengers.adultes--"
+                                      class="hover:tw-cursor-pointer"><v-icon
                                   color="red">mdi-minus-circle-outline</v-icon></span>
                                   </div>
                                   <div v-else>
@@ -139,14 +136,12 @@
                                       <v-icon color="grey">mdi-minus-circle-outline</v-icon>
                                     </div>
                                   </div>
-                                  <span>{{ reservationForm.passengers.adultes }}</span>
+                                  <span>{{ tourismeReservationForm.passengers.adultes }}</span>
 
-                                  <div v-if="reservationForm.passengers.adultes < 9">
-                                <span @click="reservationForm.passengers.adultes++" class="hover:tw-cursor-pointer"><v-icon
+                                  <div>
+                                <span @click="tourismeReservationForm.passengers.adultes++"
+                                      class="hover:tw-cursor-pointer"><v-icon
                                   color="red">mdi-plus-circle-outline</v-icon></span>
-                                  </div>
-                                  <div v-else>
-                                    <span class=""><v-icon color="grey">mdi-plus-circle-outline</v-icon></span>
                                   </div>
                                 </div>
                               </div>
@@ -154,45 +149,41 @@
                               <div class="tw-py-2 md:tw-py-4 tw-flex tw-justify-between tw-gap-12">
                                 <span class=" tw-font-bold tw-gray-800">Enfants (2-11 ans)</span>
                                 <div class=" tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
-                                  <div v-if="reservationForm.passengers.enfants > 0">
-                                <span @click="reservationForm.passengers.enfants--" class="hover:tw-cursor-pointer"><v-icon
+                                  <div v-if="tourismeReservationForm.passengers.enfants > 0">
+                                <span @click="tourismeReservationForm.passengers.enfants--"
+                                      class="hover:tw-cursor-pointer"><v-icon
                                   color="red">mdi-minus-circle-outline</v-icon></span>
                                   </div>
                                   <div v-else>
                                 <span class="hover:tw-cursor-no-drop"><v-icon
                                   color="grey">mdi-minus-circle-outline</v-icon></span>
                                   </div>
-                                  <span>{{ reservationForm.passengers.enfants }}</span>
-                                  <div
-                                    v-if="reservationForm.passengers.enfants + reservationForm.passengers.bebes < totalChildrens">
-                                <span @click="reservationForm.passengers.enfants++" class="hover:tw-cursor-pointer"><v-icon
+                                  <span>{{ tourismeReservationForm.passengers.enfants }}</span>
+                                  <div>
+                                <span @click="tourismeReservationForm.passengers.enfants++"
+                                      class="hover:tw-cursor-pointer"><v-icon
                                   color="red">mdi-plus-circle-outline</v-icon></span>
                                   </div>
-                                  <div v-else>
-                                    <span class=""><v-icon color="grey">mdi-plus-circle-outline</v-icon></span>
-                                  </div>
+
                                 </div>
                               </div>
                               <v-divider></v-divider>
                               <div class="tw-py-2 md:tw-py-4 tw-flex tw-justify-between tw-gap-12">
                                 <span class=" tw-font-bold tw-gray-800">Bébés (< 2 ans)</span>
                                 <div class=" tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
-                                  <div v-if="reservationForm.passengers.bebes > 0">
-                                <span @click="reservationForm.passengers.bebes--" class="hover:tw-cursor-pointer"><v-icon
+                                  <div v-if="tourismeReservationForm.passengers.bebes > 0">
+                                <span @click="tourismeReservationForm.passengers.bebes--"
+                                      class="hover:tw-cursor-pointer"><v-icon
                                   color="red">mdi-minus-circle-outline</v-icon></span>
                                   </div>
                                   <div v-else>
                                     <span class=""><v-icon color="grey">mdi-minus-circle-outline</v-icon></span>
                                   </div>
-                                  <span>{{ reservationForm.passengers.bebes }}</span>
-                                  <div
-                                    v-if="reservationForm.passengers.enfants + reservationForm.passengers.bebes < totalChildrens">
-                                <span @click="reservationForm.passengers.bebes++" class="hover:tw-cursor-pointer"><v-icon
+                                  <span>{{ tourismeReservationForm.passengers.bebes }}</span>
+                                  <div>
+                                <span @click="tourismeReservationForm.passengers.bebes++"
+                                      class="hover:tw-cursor-pointer"><v-icon
                                   color="red">mdi-plus-circle-outline</v-icon></span>
-                                  </div>
-                                  <div v-else>
-                                <span class="hover:tw-cursor-pointer"><v-icon
-                                  color="grey">mdi-plus-circle-outline</v-icon></span>
                                   </div>
                                 </div>
                               </div>
@@ -243,7 +234,7 @@
                             :rules="lastNameRules"
                             required
                             outlined
-                            v-model="reservationForm.lastname"
+                            v-model="tourismeReservationForm.lastname"
                           ></v-text-field>
                         </v-col>
                         <v-col
@@ -254,14 +245,14 @@
                             label="Prénoms*"
                             required outlined
                             :rules="firstNameRules"
-                            v-model="reservationForm.firstname"
+                            v-model="tourismeReservationForm.firstname"
                           ></v-text-field>
                         </v-col>
 
                         <v-col
                           cols="12"
                         >
-                          <v-text-field placeholder="XXXXXXXX" v-model="reservationForm.passport_id" required
+                          <v-text-field placeholder="XXXXXXXX" v-model="tourismeReservationForm.passport_id" required
                                         :rules="passportIdRules"
                                         label="Numéro passport*" outlined></v-text-field>
                         </v-col>
@@ -269,7 +260,8 @@
                         <v-col
                           cols="12"
                         >
-                          <v-text-field type="email" placeholder="ex: hfx@gmail.com" v-model="reservationForm.email"
+                          <v-text-field type="email" placeholder="ex: hfx@gmail.com"
+                                        v-model="tourismeReservationForm.email"
                                         required
                                         :rules="emailRules"
                                         label="Adresse email*" outlined></v-text-field>
@@ -280,7 +272,7 @@
                         >
                           <v-col sm="6">
                             <v-autocomplete
-                              v-model="reservationForm.phone_number.code"
+                              v-model="tourismeReservationForm.phone_number.code"
                               :items="countries"
                               :loading="isLoading"
                               :search-input.sync="search"
@@ -306,7 +298,7 @@
                             </v-autocomplete>
                           </v-col>
                           <v-col>
-                            <v-text-field v-model="reservationForm.phone_number.number" required
+                            <v-text-field v-model="tourismeReservationForm.phone_number.number" required
                                           :rules="numberRules" type="number"
                                           label="Numéro de télephone*" outlined></v-text-field>
                           </v-col>
@@ -328,8 +320,8 @@
                     <v-btn
                       class=""
                       color="error darken-1"
-                      :loading="btnLoading"
-                      @click="userInfoDialog = false, disclaimerDialog = true && $refs.modal.validate()"
+                      :loading="sendTourismeBtn"
+                      @click="demandeSiteTouristique()"
                     >
                       Envoyer la demande
                     </v-btn>
@@ -386,7 +378,7 @@
 
           <div class="tw-flex tw-justify-between">
             <div v-if="false"
-                 @click="reservationForm.escales.push({airport_depart: '', airport_destination: '', depart_date: '',})"
+                 @click="tourismeReservationForm.escales.push({airport_depart: '', airport_destination: '', depart_date: '',})"
                  class="tw-flex tw-items-center tw-mb-4 tw-text-sm tw-gap-2 tw-text-red-600 hover:tw-cursor-pointer">
               <svg style="width:20px;height:20px" viewBox="0 0 24 24">
                 <path fill="currentColor"
@@ -501,7 +493,7 @@ export default {
 
   data() {
     return {
-      btnloading: false,
+      sendTourismeBtn: false,
       departRules: [
         v => !!v || 'Adresse de Depart est requis',
       ],
@@ -552,12 +544,11 @@ export default {
       searchDeparts: null,
       searchDestinations: null,
       tab: null,
-      reservationForm: {
+      tourismeReservationForm: {
         aller_simple: true,
         typevoyage: 'allerretour',
         typeclasse: "Classe économique",
-        airport_depart: "",
-        airport_destination: "",
+        adresse: "",
         depart_date: "",
         comeback_date: "",
         lastname: "",
@@ -583,11 +574,9 @@ export default {
       menu: false,
       isEditing: false,
 
-      visaReservationForm: {
+      tourismeReservationForm: {
         aller_simple: true,
         typevoyage: 'allerretour',
-        airport_depart: "",
-        airport_destination: "",
         depart_date: "",
         comeback_date: "",
         lastname: "",
@@ -621,17 +610,63 @@ export default {
   computed: {
     totalPassagers() {
       // cette methode retourne le nombre total de passagers
-      return this.reservationForm.passengers.adultes + this.reservationForm.passengers.enfants + this.reservationForm.passengers.bebes
+      return this.tourismeReservationForm.passengers.adultes + this.tourismeReservationForm.passengers.enfants + this.tourismeReservationForm.passengers.bebes
     },
     totalChildrens() {
-      return this.reservationForm.passengers.adultes * 2
+      return this.tourismeReservationForm.passengers.adultes * 2
     },
 
     deleteEscales() {
-      if (this.reservationForm.typevoyage !== "destinationmultiple") {
-        this.reservationForm.escales = []
+      if (this.tourismeReservationForm.typevoyage !== "destinationmultiple") {
+        this.tourismeReservationForm.escales = []
       }
     },
+  },
+
+  methods: {
+    async demandeSiteTouristique() {
+      this.sendTourismeBtn = true
+      await axios.post('/tourisme-request', this.tourismeReservationForm)
+        .then(response => {
+          if (response.data.error) {
+            this.userInfoDialog = false
+            this.sendTourismeBtn = false
+
+            Swal.fire({
+              title: 'Echec',
+              text: 'Une Erreur s\'est produite',
+              icon: 'error'
+            })
+            return
+          }
+
+          this.tourismeReservationForm = {
+            aller_simple: true,
+            typevoyage: 'allerretour',
+            depart_date: "",
+            comeback_date: "",
+            lastname: "",
+            firstname: "",
+            passport_id: "",
+            phone_number: {
+              code: "",
+              number: '',
+            },
+            passengers: {
+              adultes: 1,
+              enfants: 0,
+              bebes: 0,
+            }
+          },
+
+            this.userInfoDialog = false
+          this.sendTourismeBtn = false
+          this.showToast('success', "Demande de reservation de site touristique envoyée avec succès")
+        }).catch(error => {
+          console.log(error)
+        })
+    },
+
   },
 }
 

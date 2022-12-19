@@ -153,19 +153,25 @@
                         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="tw-h-4 tw-w-4 tw-text-yellow-400 tw-fill-current tw-mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path></svg>
                         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="tw-h-4 tw-w-4 tw-text-yellow-400 tw-fill-current" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path></svg>
 
-                          </div>
-                        </div>
-                        <div class="tw-flex tw-items-center">
-                          <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="map-marker-alt" class="tw-h-3 tw-w-3 tw-text-blue-500 tw-fill-current tw-mr-1" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"></path></svg>
-                          <span class="tw-text-xs tw-text-gray-600">{{ hotel.adresse }} <a class="tw-font-semibold tw-text-gray-700" href="">Show on Map</a></span>
-                        </div>
                       </div>
-                      <div>
-                        <div class="tw-text-right tw-text-xl tw-leading-tight tw-text-gray-600 tw-font-semibold">
-                          {{ hotel.prixMin }} - {{ hotel.prixMax }} <br> 1 jours
-                        </div>
-                      </div>
-                    </div>
+                  </div>
+                  <div class="tw-flex tw-items-center">
+                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="map-marker-alt"
+                         class="tw-h-3 tw-w-3 tw-text-blue-500 tw-fill-current tw-mr-1" role="img"
+                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                      <path fill="currentColor"
+                            d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"></path>
+                    </svg>
+                    <span class="tw-text-xs tw-text-gray-600">{{ hotel.adresse }} <a
+                      class="tw-font-semibold tw-text-gray-700" href="">Show on Map</a></span>
+                  </div>
+                </div>
+                <div>
+                  <div class="tw-text-right tw-text-xl tw-leading-tight tw-text-gray-600 tw-font-semibold">
+                    {{ hotel.prixMin }} - {{ hotel.prixMax }}<br> 1 jours
+                  </div>
+                </div>
+              </div>
 
               <div class="tw-flex tw-mt-3">
                 <div>
@@ -340,10 +346,8 @@
 import config from "../config";
 import {mapGetters} from "vuex";
 import json from "../data/CountryCodes.json";
-
 export default {
   layout: 'master',
-
   data() {
     return {
       userInfoDialog: false,
@@ -399,10 +403,8 @@ export default {
       lowPrice: ['0', '2000', '5000', '10000', '25000', '50000'],
       highPrice: ['2000', '5000', '10000', '25000', '+ 50000'],
       value: ['foo', 'bar', 'fizz'],
-
     }
   },
-
   mounted() {
     this.getHotel()
     this.hotelReservationForm.date_arrive = this.selected_recherche_hotel_date_arrive
@@ -410,7 +412,6 @@ export default {
     this.hotelReservationForm.adresse = this.selected_recherche_hotel_adresse
     this.hotelReservationForm.passengers = this.selected_recherche_hotel_passengers
   },
-
   computed: {
     totalPassagers() {
       // cette methode retourne le nombre total de passagers
@@ -453,30 +454,6 @@ export default {
 
           this.sendHotelReservation = false
           this.userInfoDialog = false
-          this.hotelReservationForm = {
-            hotel_id: "",
-            lastname: "",
-            firstname: "",
-            email: "",
-            adresse: "",
-            passport_id: "",
-            phone_number: {
-              code: "",
-              number: '',
-            },
-            prix: {
-              lowPrice: "",
-              highPrice: "",
-            },
-            date_arrive: "",
-            date_depart: "",
-            nombre_etoiles: "",
-            passengers: {
-              adultes: 1,
-              enfants: 0,
-              bebes: 0,
-            }
-          }
           this.showToast('success', "Demande de reservation d'hôtel envoyée avec succès")
         }).catch(error => {
           console.log(error)
@@ -496,7 +473,7 @@ export default {
     },
     async searchHotel() {
       this.searchHotelBtn = true
-      await axios.get(`/cars/get-cars?pricemin=2000&pricemax=30000&limit=100`)
+      await axios.get(`/hotels/get-hotels?pricemin=${this.hotelReservationForm.prix.lowPrice}&pricemax=${this.hotelReservationForm.prix.highPrice}&limit=100`)
         .then(response => {
           console.log(response);
           this.hotels = response.data.hotels;
@@ -507,10 +484,8 @@ export default {
         })
     },
   },
-
 }
 </script>
 
 <style scoped>
-
 </style>

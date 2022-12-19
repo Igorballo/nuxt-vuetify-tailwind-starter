@@ -356,6 +356,18 @@ export default {
       this.userInfoDialog = true
       this.carReservationForm.car_id = car_id
     },
+    async searchCar() {
+      this.searchCarBtn = true
+      await axios.get(`/cars/get-cars?pricemin=2000&pricemax=30000&limit=100`)
+        .then(response => {
+          console.log(response);
+          this.hotels = response.data.hotels;
+          this.searchHotelBtn = false
+        }).catch(error => {
+          console.log(error)
+          this.searchHotelBtn = false
+        })
+    },
     async reserverCar(){
         this.sendCardReservation = true
         await axios.post('/reservation-car/request-car-reservation', this.carReservationForm)
