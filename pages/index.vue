@@ -216,7 +216,7 @@ export default {
   },
   data() {
     return {
-         villeRules: [
+      villeRules: [
         v => !!v || 'ce champs est obligatoire',
       ],
       dateArriveRules: [
