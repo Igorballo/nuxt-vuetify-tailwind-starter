@@ -13,9 +13,9 @@
             class="tw-justify-start tw-bg-white tw-pb-4 tw-cursor-pointer hover:tw-bg-gray-200 tw-shadow-lg tw-rounded-lg tw-h-full">
 
             <img class="tw-h-25 tw-w-full tw-relative tw-bg-cover tw-bg-center tw-rounded-lg"
-                 src="https://images.unsplash.com/photo-1565349479047-d6211d4efc90?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                 src="https://images.unsplash.com/photo-1520031441872-265e4ff70366?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1102&q=80"
                  alt="">
-            <h1 class="tw-text-2xl tw-font-bold tw-px-4 tw-py-2 tw-text-black tw-uppercase">Kpalimé</h1>
+            <h1 class="tw-text-2xl tw-font-bold tw-px-4 tw-py-2 tw-text-black tw-uppercase">Mercedes G wagon</h1>
             <p class="tw-text-xl tw-px-4 tw-py-2 tw-italic ">
               Location des Voitures de Luxe à diffèrentes modèles
             </p>

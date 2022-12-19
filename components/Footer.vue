@@ -44,14 +44,15 @@
           </a>
         </div>
       </div>
-      <div class="tw-mx-6 tw-py-10 tw-text-center md:tw-text-left">
-        <div class="tw-grid grid-1 md:tw-grid-cols-2 lg:tw-grid-cols-4 tw-gap-8">
+      <div class="tw-mx-8 tw-py-10 tw-text-center md:tw-text-left">
+        <div class="tw-grid grid-1 md:tw-grid-cols-2 lg:tw-grid-cols-4 tw-gap-4">
           <div class="tw-flex tw-flex-col tw-items-center lg:tw-items-start">
             <img class="tw-h-18 tw-rounded-full tw-w-72 lg:tw-w-96 tw-mb-6" src="../assets/img/footer1.jpg"
                  alt="Manglam-logo">
-            <p class="tw-text-white">
-              Here you can use rows and columns to organize your footer content. Lorem ipsum dolor
-              sit amet, consectetur adipisicing elit.
+            <p class="tw-text-white tw-text-justify">
+              Depuis votre réservation jusqu'à votre arrivée au lieu de destination, 
+              MANGLAM Tours vous accompagne tout le long de votre voyage
+               pour vous assurer un séjour de qualité.
             </p>
           </div>
           <div class="tw-text-white">
@@ -139,9 +140,9 @@
           </div>
         </div>
       </div>
-      <div class="tw-py-3 tw-px-6 tw-bg-blue-800 tw-flex tw-justify-between tw-w-full">
+      <div class="tw-py-3 tw-px-6 tw-bg-blue-800 tw-flex tw-gap-2 tw-justify-evenly tw-inline-block tw-w-full">
         <span>© 2022 Copyright: Manglam</span>
-        <div class="tw-items-center tw-flex tw-gap-2">
+        <div class="">
           <span>Develop By</span>
           <a href="https://mekengroup.com/" class="tw-text-white tw-font-semibold " target="_blank"
              rel="noopener noreferrer"> Meg
