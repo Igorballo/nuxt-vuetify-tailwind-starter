@@ -55,6 +55,7 @@
                     v-model="carFilterForm.date_debut"
                     no-title
                     scrollable
+                    :allowed-dates="disablePastDates"
                   >
                   </v-date-picker>
                 </v-menu>
@@ -118,6 +119,7 @@
                     v-model="carFilterForm.date_fin"
                     no-title
                     scrollable
+                    :allowed-dates="disablePastDates"
                   >
                   </v-date-picker>
                 </v-menu>
@@ -252,6 +254,9 @@ export default {
   },
 
   methods: {
+    disablePastDates(val) {
+      return val > new Date().toISOString().substr(0, 10)
+    },
     carSearch() {
       if (this.$refs.form.validate()) {
         this.$store.dispatch('recherche-cars/setRechercheCarDateDebut', this.carFilterForm.date_debut)

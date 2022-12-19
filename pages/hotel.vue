@@ -8,11 +8,11 @@
           v-model="valid"
           lazy-validation
           class="tw-flex tw-flex-col tw-rounded-lg tw-bg-white tw-shadow-md tw-p-4 md:tw-p-6 tw-w-[90%] md:tw-w-[75%]">
-          <div class="tw-flex tw-flex-col tw-pt-2 md:tw-flex-row md:tw-items-center md:tw-justify-between ">
+          <div class="tw-flex tw-flex-col tw-pt-2 tw-gap-4 md:tw-flex-row md:tw-items-center md:tw-justify-between ">
             <v-text-field
               label="Ex: pays, ville, quartier ou site d'intérêt"
               outlined
-              v-model="hotelReservationForm.destination"
+              v-model="hotelFilterForm.adresse"
               :rules="villeRules"
               required
             ></v-text-field>
@@ -28,7 +28,7 @@
                 >
                   <template v-slot:activator="{ on, attrs }">
                     <v-text-field
-                      v-model="hotelReservationForm.date_arrive"
+                      v-model="hotelFilterForm.date_arrive"
                       label="Date d'arrivée"
                       readonly
                       outlined
@@ -40,9 +40,10 @@
                     ></v-text-field>
                   </template>
                   <v-date-picker
-                    v-model="hotelReservationForm.date_arrive"
+                    v-model="hotelFilterForm.date_arrive"
                     no-title
                     scrollable
+                    :allowed-dates="disablePastDates"
                   >
                   </v-date-picker>
                 </v-menu>
@@ -58,7 +59,7 @@
                 >
                   <template v-slot:activator="{ on, attrs }">
                     <v-text-field
-                      v-model="hotelReservationForm.date_depart"
+                      v-model="hotelFilterForm.date_depart"
                       label="Date de départ"
                       readonly
                       outlined
@@ -69,9 +70,10 @@
                     ></v-text-field>
                   </template>
                   <v-date-picker
-                    v-model="hotelReservationForm.date_depart"
+                    v-model="hotelFilterForm.date_depart"
                     no-title
                     scrollable
+                    :allowed-dates="disablePastDates"
                   >
                   </v-date-picker>
                 </v-menu>
@@ -105,8 +107,8 @@
                         <div class="tw-py-4 tw-flex tw-justify-between tw-gap-12">
                           <span class="tw-text-xl tw-font-bold tw-gray-800">Adultes (> 12 ans)</span>
                           <div class="tw-text-xl tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
-                            <div v-if="hotelReservationForm.passengers.adultes > 1">
-                                <span @click="hotelReservationForm.passengers.adultes--"
+                            <div v-if="hotelFilterForm.passengers.adultes > 1">
+                                <span @click="hotelFilterForm.passengers.adultes--"
                                       class="hover:tw-cursor-pointer"><v-icon
                                   color="red">mdi-minus-circle-outline</v-icon></span>
                             </div>
@@ -115,10 +117,10 @@
                                 <v-icon color="grey">mdi-minus-circle-outline</v-icon>
                               </div>
                             </div>
-                            <span>{{ hotelReservationForm.passengers.adultes }}</span>
+                            <span>{{ hotelFilterForm.passengers.adultes }}</span>
 
                             <div>
-                                <span @click="hotelReservationForm.passengers.adultes++"
+                                <span @click="hotelFilterForm.passengers.adultes++"
                                       class="hover:tw-cursor-pointer"><v-icon
                                   color="red">mdi-plus-circle-outline</v-icon></span>
                             </div>
@@ -128,8 +130,8 @@
                         <div class="tw-py-4 tw-flex tw-justify-between tw-gap-12">
                           <span class="tw-text-xl tw-font-bold tw-gray-800">Enfants (2-11 ans)</span>
                           <div class="tw-text-xl tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
-                            <div v-if="hotelReservationForm.passengers.enfants > 0">
-                                <span @click="hotelReservationForm.passengers.enfants--"
+                            <div v-if="hotelFilterForm.passengers.enfants > 0">
+                                <span @click="hotelFilterForm.passengers.enfants--"
                                       class="hover:tw-cursor-pointer"><v-icon
                                   color="red">mdi-minus-circle-outline</v-icon></span>
                             </div>
@@ -137,9 +139,9 @@
                                 <span class="hover:tw-cursor-no-drop"><v-icon
                                   color="grey">mdi-minus-circle-outline</v-icon></span>
                             </div>
-                            <span>{{ hotelReservationForm.passengers.enfants }}</span>
+                            <span>{{ hotelFilterForm.passengers.enfants }}</span>
                             <div>
-                                <span @click="hotelReservationForm.passengers.enfants++"
+                                <span @click="hotelFilterForm.passengers.enfants++"
                                       class="hover:tw-cursor-pointer"><v-icon
                                   color="red">mdi-plus-circle-outline</v-icon></span>
                             </div>
@@ -149,17 +151,17 @@
                         <div class="tw-py-4 tw-flex tw-justify-between tw-gap-12">
                           <span class="tw-text-xl tw-font-bold tw-gray-800">Bébés (< 2 ans)</span>
                           <div class="tw-text-xl tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
-                            <div v-if="hotelReservationForm.passengers.bebes > 0">
-                                <span @click="hotelReservationForm.passengers.bebes--" class="hover:tw-cursor-pointer"><v-icon
+                            <div v-if="hotelFilterForm.passengers.bebes > 0">
+                                <span @click="hotelFilterForm.passengers.bebes--" class="hover:tw-cursor-pointer"><v-icon
                                   color="red">mdi-minus-circle-outline</v-icon></span>
                             </div>
                             <div v-else>
                               <span class="hover:tw-cursor-no-drop"><v-icon
                                 color="grey">mdi-minus-circle-outline</v-icon></span>
                             </div>
-                            <span>{{ hotelReservationForm.passengers.bebes }}</span>
+                            <span>{{ hotelFilterForm.passengers.bebes }}</span>
                             <div>
-                                <span @click="hotelReservationForm.passengers.bebes++" class="hover:tw-cursor-pointer"><v-icon
+                                <span @click="hotelFilterForm.passengers.bebes++" class="hover:tw-cursor-pointer"><v-icon
                                   color="red">mdi-plus-circle-outline</v-icon></span>
                             </div>
                           </div>
@@ -173,7 +175,7 @@
           </div>
 
 
-          <v-btn @click="validate"
+          <v-btn @click="hotelSearch"
             class="tw-w-[fit-content] tw-rounded-full tw-py-6 tw-px-4 tw-text-white tw-ease-in tw-font-semibold tw-bg-red-600 tw-border-2 tw-border-red-700 tw-duration-300">
             Rechercher des hotêls
           </v-btn>
@@ -188,17 +190,17 @@
       >
         <v-carousel-item
           src="https://images.unsplash.com/photo-1598605272254-16f0c0ecdfa5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80"
-          
+
         >
         </v-carousel-item>
         <v-carousel-item
           src="https://images.unsplash.com/photo-1615460549969-36fa19521a4f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80"
-          
+
         >
         </v-carousel-item>
         <v-carousel-item
           src="https://images.unsplash.com/photo-1596436889106-be35e843f974?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-          
+
         >
         </v-carousel-item>
       </v-carousel>
@@ -354,7 +356,7 @@
               </div>
             </div>
 
-            
+
 
           </div>
         </div>
@@ -379,8 +381,8 @@ export default {
       dateDepartRules: [
         v => !!v || 'ce champs est obligatoire',
       ],
-      hotelReservationForm: {
-        destination: "",
+      hotelFilterForm: {
+        adresse: "",
         date_arrive: "",
         date_depart: "",
         passengers: {
@@ -399,20 +401,27 @@ export default {
   computed: {
     totalPassagers() {
       // cette methode retourne le nombre total de passagers
-      return this.hotelReservationForm.passengers.adultes + this.hotelReservationForm.passengers.enfants + this.hotelReservationForm.passengers.bebes
+      return this.hotelFilterForm.passengers.adultes + this.hotelFilterForm.passengers.enfants + this.hotelFilterForm.passengers.bebes
     },
     totalChildrens() {
-      return this.hotelReservationForm.passengers.adultes * 2
+      return this.hotelFilterForm.passengers.adultes * 2
     },
   },
 
   methods: {
-     validate () {
-        if(this.$refs.form.validate()) {
-          this.$router.push('/filter-hotel')
+    disablePastDates(val) {
+      return val > new Date().toISOString().substr(0, 10)
+    },
+    hotelSearch () {
+            if (this.$refs.form.validate()) {
+              this.$store.dispatch('recherche-hotels/setRechercheHotelDateArrive', this.hotelFilterForm.date_arrive)
+              this.$store.dispatch('recherche-hotels/setRechercheHotelDateDepart', this.hotelFilterForm.date_depart)
+              this.$store.dispatch('recherche-hotels/setRechercheHotelAdresse', this.hotelFilterForm.adresse)
+              this.$store.dispatch('recherche-hotels/setRechercheHotelPassengers', this.hotelFilterForm.passengers)
+              this.$router.push('/filter-hotel')
+            }
         }
       },
-  }
 
 }
 

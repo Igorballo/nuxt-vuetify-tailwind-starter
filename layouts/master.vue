@@ -2,7 +2,7 @@
   <v-app class="tw-relative">
     <div style="z-index: 999" class="tw-sticky tw-top-0 lg:tw-static tw-flex tw-items-center tw-px-4 lg:tw-px-12 tw-py-2 tw-justify-between tw-w-full tw-bg-white">
       <!--      Manglam Logo-->
-      <img class="tw-h-18 tw-h-20 tw-w-f lg:tw-w-1/3" src="../assets/img/MANGLAM-IATA-LOGO-TEXTE.png" alt="Manglam-logo">
+      <img class="tw-h-20 tw-w-72 lg:tw-w-1/3" src="../assets/img/MANGLAM-IATA-LOGO-TEXTE.png" alt="Manglam-logo">
       <div class="tw-inline-flex tw-items-center tw-gap-4">
         <!--  Choose language button      -->
         <button
@@ -26,7 +26,7 @@
       </div>
     </div>
 
-    <div @click.away="showMenu = false" style="z-index: 999" :class="showMenu ? 'tw-flex tw-flex-col': 'tw-hidden md:tw-flex md:tw-flex-row'" class="tw-inset-x-0 tw-absolute tw-top-16 md:tw-sticky md:tw-top-0 tw-bg-red-600 tw-text-sm tw-py-4 tw-px-4 md:tw-px-12 md:tw-flex-row md:tw-items-center tw-justify-between">
+    <div @click.away="showMenu = false" style="z-index: 999" :class="showMenu ? 'tw-flex tw-flex-col': 'tw-hidden md:tw-flex md:tw-flex-row'" class="tw-inset-x-0 tw-absolute tw-top-24 md:tw-sticky md:tw-top-0 tw-bg-red-600 tw-text-sm tw-py-2 tw-px-4 md:tw-px-12 md:tw-flex-row md:tw-items-center tw-justify-between">
       <ul class="tw-flex tw-flex-col md:tw-flex-row md:tw-items-center tw-text-md tw-pb-2 md:tw-pb-0 tw-px-0">
         <li class="tw-text-white tw-font-semifont-bold tw-cursor-pointer">
           <div :class="$route.path === '/' ? 'tw-bg-red-600 md:tw-bg-transparent': 'tw-bg-transparent hover:tw-bg-red-700'" @click="$router.push('/')" class="tw-flex tw-items-center tw-gap-2 tw-p-2 tw-rounded-lg">
