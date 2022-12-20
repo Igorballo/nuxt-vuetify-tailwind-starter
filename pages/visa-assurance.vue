@@ -566,6 +566,13 @@
 
 
     </section>
+
+
+    <div class="tw-flex tw-justify-center tw-w-full tw-my-4">
+      <div class="tw-w-1/2">
+        <img class="tw-h-32 tw-w-full" src="https://assistance1.saham-it.net/image/logo_sanlam.jpg" alt="partners">
+      </div>
+    </div>
   </div>
 </template>
 
