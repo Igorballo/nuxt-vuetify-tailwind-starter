@@ -62,29 +62,33 @@
     <Partners/>
 
     <div
-      class="tw-px-8  tw-py-8 tw-text-white tw-bg-blue-800 tw-shadow-lg tw-text-center tw-mx-auto tw-my-20">
-
-      <div
-        class="tw-flex tw-flex-col lg:tw-flex-row tw-mt-10 tw-text-gray-900 tw-gap-6 tw-justify-center">
-        <div class="tw-text-lg lg:tw-text-2xl tw-flex tw-flex-col tw-text-white tw-cursor-pointer">
-          <i>250</i>
-          <strong> Agences </strong>
-        </div>
-        <div class="tw-text-lg lg:tw-text-2xl tw-flex tw-flex-col tw-text-white tw-cursor-pointer">
-
-
-          <i>50</i>
-          <strong> Pays </strong>
-
-        </div>
-        <div  class="tw-text-lg lg:tw-text-2xl tw-flex tw-flex-col tw-text-white tw-cursor-pointer">
-          <i>25</i>
-          <strong> Année d'experience </strong>
-        </div>
-        <div to="/tourisme" class="tw-text-lg lg:tw-text-2xl tw-flex tw-flex-col tw-text-white tw-cursor-pointer">
-
-          <i>4500</i>
-          <strong> Clients </strong>
+      class="tw-px-8  tw-py-8 tw-text-white tw-bg-blue-800 tw-shadow-lg tw-text-center tw-mx-auto tw-mt-20">
+      <div class="tw-px-4 tw-py-16 tw-mx-auto sm:tw-max-w-xl md:tw-max-w-full lg:tw-max-w-screen-xl md:tw-px-24 lg:tw-px-8 lg:tw-py-20">
+        <div class="tw-flex tw-flex-col md:tw-flex-row tw-justify-evenly tw-gap-6 md:tw-gap-12">
+          <div class="tw-text-center">
+            <h6 class="tw-mb-2 tw-text-3xl tw-font-bold lg:tw-text-4xl">250</h6>
+            <p class="tw-text-sm tw-font-medium tw-tracking-widest tw-text-gray-400 tw-uppercase lg:tw-text-base">
+              Agences
+            </p>
+          </div>
+          <div class="tw-text-center">
+            <h6 class="tw-mb-2 tw-text-3xl tw-font-bold lg:tw-text-4xl">50</h6>
+            <p class="tw-text-sm tw-font-medium tw-tracking-widest tw-text-gray-400 tw-uppercase lg:tw-text-base">
+              Pays
+            </p>
+          </div>
+          <div class="tw-text-center">
+            <h6 class="tw-mb-2 tw-text-3xl tw-font-bold lg:tw-text-4xl">25</h6>
+            <p class="tw-text-sm tw-font-medium tw-tracking-widest tw-text-gray-400 tw-uppercase lg:tw-text-base">
+              Année d'experience
+            </p>
+          </div>
+          <div class="tw-text-center">
+            <h6 class="tw-mb-2 tw-text-3xl tw-font-bold lg:tw-text-4xl">+1500</h6>
+            <p class="tw-text-sm tw-font-medium tw-tracking-widest tw-text-gray-400 tw-uppercase lg:tw-text-base">
+              Clients
+            </p>
+          </div>
         </div>
       </div>
     </div>

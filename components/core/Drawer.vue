@@ -100,8 +100,13 @@ export default {
       },
        {
         to: '/admin/contact',
-        icon: 'mdi-message',
+        icon: 'mdi-message-text',
         text: 'Message',
+      },
+      {
+        to: '/admin/blog',
+        icon: 'mdi-laptop-account',
+        text: 'Blog',
       },
 
     ],

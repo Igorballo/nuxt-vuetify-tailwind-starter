@@ -49,9 +49,8 @@
           <div class="tw-flex tw-flex-col tw-items-center lg:tw-items-start tw-text-sm lg:tw-mr-16">
             <img class="tw-h-18 tw-rounded-full tw-w-72 lg:tw-w-96 tw-mb-6" src="../assets/img/footer1.jpg"
                  alt="Manglam-logo">
-                 
-            <p class="tw-text-white tw-text-sm tw-text-justify">
 
+            <p class="tw-text-white tw-text-sm tw-text-justify">
               Depuis votre réservation jusqu'à votre arrivée au lieu de destination,
               MANGLAM Tours vous accompagne tout le long de votre voyage
                pour vous assurer un séjour de qualité.
@@ -145,6 +144,7 @@
       <div class="tw-py-3 tw-px-6 tw-bg-blue-800 tw-text-sm tw-flex tw-gap-2 tw-justify-evenly tw-inline-block tw-w-full">
         <span>© 2022 Copyright: Manglam</span>
         <div class="">
+
           <span>Developed By</span>
           <a href="https://mekengroup.com/" class="tw-text-white tw-font-semibold " target="_blank"
              rel="noopener noreferrer"> Meg
