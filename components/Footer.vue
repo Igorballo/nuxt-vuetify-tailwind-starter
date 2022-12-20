@@ -4,7 +4,7 @@
     <footer class="tw-text-center lg:tw-text-left tw-bg-red-600 tw-text-white">
       <div
         class="tw-flex tw-justify-center tw-items-center lg:tw-justify-between tw-p-6 tw-border-b tw-border-gray-300">
-        <div class="tw-mr-12 tw-hidden lg:tw-block">
+        <div class="tw-mr-12 tw-hidden tw-text-sm lg:tw-block">
           <span>Connectez-vous avec nous sur les réseaux sociaux :</span>
         </div>
         <div class="tw-flex tw-justify-center">
@@ -46,16 +46,16 @@
       </div>
       <div class="tw-mx-8 tw-py-10 tw-text-center md:tw-text-left">
         <div class="tw-grid grid-1 md:tw-grid-cols-2 lg:tw-grid-cols-4 tw-gap-4">
-          <div class="tw-flex tw-flex-col tw-items-center lg:tw-items-start">
+          <div class="tw-flex tw-flex-col tw-items-center lg:tw-items-start tw-text-sm lg:tw-mr-16">
             <img class="tw-h-18 tw-rounded-full tw-w-72 lg:tw-w-96 tw-mb-6" src="../assets/img/footer1.jpg"
                  alt="Manglam-logo">
-            <p class="tw-text-white tw-text-justify">
-              Depuis votre réservation jusqu'à votre arrivée au lieu de destination, 
+            <p class="tw-text-white tw-text-sm tw-text-justify">
+              Depuis votre réservation jusqu'à votre arrivée au lieu de destination,
               MANGLAM Tours vous accompagne tout le long de votre voyage
                pour vous assurer un séjour de qualité.
             </p>
           </div>
-          <div class="tw-text-white">
+          <div class="tw-text-white tw-text-sm">
             <h6 class="tw-uppercase tw-font-semibold tw-mb-4 tw-flex tw-justify-center md:tw-justify-start">
               Nos services
             </h6>
@@ -77,7 +77,7 @@
               <a href="#!" class="tw-text-white ">Visa & Assurance</a>
             </p>
           </div>
-          <div class="tw-text-white">
+          <div class="tw-text-white tw-text-sm">
             <h6 class="tw-uppercase tw-font-semibold tw-mb-4 tw-flex tw-justify-center md:tw-justify-start">
               Liens Utiles
             </h6>
@@ -94,7 +94,7 @@
               <a href="#!" class="tw-text-white ">Help</a>
             </p>
           </div>
-          <div class="">
+          <div class="tw-text-sm">
             <h6 class="tw-uppercase tw-font-semibold tw-mb-4 tw-flex tw-justify-center md:tw-justify-start">
               Contact
             </h6>
@@ -140,10 +140,10 @@
           </div>
         </div>
       </div>
-      <div class="tw-py-3 tw-px-6 tw-bg-blue-800 tw-flex tw-gap-2 tw-justify-evenly tw-inline-block tw-w-full">
+      <div class="tw-py-3 tw-px-6 tw-bg-blue-800 tw-text-sm tw-flex tw-gap-2 tw-justify-evenly tw-inline-block tw-w-full">
         <span>© 2022 Copyright: Manglam</span>
         <div class="">
-          <span>Develop By</span>
+          <span>Developed by</span>
           <a href="https://mekengroup.com/" class="tw-text-white tw-font-semibold " target="_blank"
              rel="noopener noreferrer"> Meg
           </a>

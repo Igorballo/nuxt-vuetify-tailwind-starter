@@ -22,6 +22,12 @@ export const actions = {
     const recherche_hotel_adresse = Cookies.get('recherche_hotel_adresse')
     const recherche_hotel_passengers = Cookies.get('recherche_hotel_passengers')
 
+    const acceptation_politique_de_confidentialite = Cookies.get('acceptation_politique_de_confidentialite')
+
+    if(acceptation_politique_de_confidentialite){
+      commit('user/SET_ACCEPT_POLITIQUE_DE_CONFIDENTIALITE', JSON.parse(acceptation_politique_de_confidentialite))
+    }
+
     if(recherche_hotel_date_arrive){
       commit('recherche-hotels/SET_RECHERCHE_HOTEL_DATE_ARRIVE', JSON.parse(recherche_hotel_date_arrive))
     }

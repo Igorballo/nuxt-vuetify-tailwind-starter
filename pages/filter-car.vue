@@ -456,7 +456,6 @@ export default {
       'selected_recherche_car_autre_lieu_restitution',
       'selected_recherche_car_lieu_prise_en_charge',
       'selected_recherche_car_lieu_restitution',
-
     ]),
   },
 }
