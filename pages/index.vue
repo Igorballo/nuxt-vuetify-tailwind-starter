@@ -49,7 +49,7 @@
             class="tw-mt-12 tw-mb-6 tw-text-xl tw-text-center lg:tw-text-3xl tw-font-bold tw-uppercase md:tw-ml-8 md:tw-ml-20 tw-font-extrabold tw-text-red-700">
             Decouvrez nos Services
           </h1>
-          <div class="tw-flex tw-justify-center tw-flex-col md:tw-flex-row md:tw-items-center tw-gap-2">
+          <div class="tw-flex tw-justify-center tw-flex-col lg:tw-flex-row md:tw-items-center tw-gap-2">
             <div @click="$router.push('/reservation-vols')"
                  class="tw-block tw-cursor-pointer tw-w-full md:tw-w-[fit-content] tw-rounded-lg tw-p-2 md:tw-p-4 tw-shadow-sm tw-shadow-indigo-100">
               <img
@@ -131,7 +131,6 @@
               </div>
             </div>
 
-
             <div @click="$router.push('/visa-assurance')"
                  class="tw-cursor-pointer tw-block tw-w-full md:tw-w-[fit-content] tw-rounded-lg tw-p-2 md:tw-p-4 tw-shadow-sm tw-shadow-indigo-100">
               <img
@@ -151,8 +150,6 @@
                 </div>
               </div>
             </div>
-
-
           </div>
         </div>
       </div>
@@ -171,7 +168,6 @@
 
 
     <div class="container tw-mx-auto tw-flex tw-flex-wrap tw-py-6">
-
       <!-- Posts Section -->
       <section class="tw-w-full md:tw-w-full tw-flex tw-flex-col tw-items-center tw-px-3">
 
