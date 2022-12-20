@@ -60,21 +60,21 @@
               Nos services
             </h6>
             <p class="tw-mb-4">
-              <a href="#!" class="tw-text-white ">Reservations de vols</a>
+              <NuxtLink to="/reservation-vols" class="tw-text-white ">Reservations de vols</NuxtLink>
             </p>
 
             <p>
-              <a href="#!" class="tw-text-white ">Tourisme</a>
+              <NuxtLink to="/tourisme" class="tw-text-white ">Tourisme</NuxtLink>
             </p>
             <p class="tw-mb-4">
-              <a href="#!" class="tw-text-white ">Hébergements</a>
+              <NuxtLink to="/hotel" class="tw-text-white ">Hébergements</NuxtLink>
             </p>
             <p class="tw-mb-4">
-              <a href="#!" class="tw-text-white ">Locations de voitures</a>
+              <NuxtLink to="/car-location" class="tw-text-white ">Locations de voitures</NuxtLink>
             </p>
 
             <p>
-              <a href="#!" class="tw-text-white ">Visa & Assurance</a>
+              <NuxtLink to="/visa-assurance" class="tw-text-white ">Visa & Assurance</NuxtLink>
             </p>
           </div>
           <div class="tw-text-white tw-text-sm">
@@ -82,16 +82,16 @@
               Liens Utiles
             </h6>
             <p class="tw-mb-4">
-              <a href="#!" class="tw-text-white ">Accueil</a>
+              <NuxtLink to="/" class="tw-text-white ">Accueil</NuxtLink>
             </p>
             <p class="tw-mb-4">
-              <a href="#!" class="tw-text-white ">Settings</a>
+              <NuxtLink to="/about" class="tw-text-white ">A Propos</NuxtLink>
             </p>
             <p class="tw-mb-4">
-              <a href="#!" class="tw-text-white ">Orders</a>
+              <NuxtLink to="/contact" class="tw-text-white ">Contact</NuxtLink>
             </p>
             <p>
-              <a href="#!" class="tw-text-white ">Help</a>
+              <NuxtLink to="#!" class="tw-text-white ">Help</NuxtLink>
             </p>
           </div>
           <div class="tw-text-sm">

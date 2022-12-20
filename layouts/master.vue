@@ -234,7 +234,6 @@ export default {
     })();
 
     this.showConfidentialPolicyForm =! this.selected_accept_politique_de_confifentialite
-
   }
 }
 </script>

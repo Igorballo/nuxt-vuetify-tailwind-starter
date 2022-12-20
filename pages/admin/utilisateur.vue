@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <div>
-   
+
     <v-data-table no-data-text="aucune donneé" :headers="headers" :items="users" class="elevation-1">
       <template v-slot:top>
         <v-toolbar flat>
@@ -28,19 +28,20 @@
                          <v-text-field :rules="nomRules" outlined required label="Nom Complet" placeholder="Nom Complet" v-model="form.name"></v-text-field>
                          <v-text-field :rules="emailRules" outlined required  label="Email" placeholder="Email" v-model="form.email"></v-text-field>
                          <v-text-field  outlined required  label="Mot de Passe" placeholder="Mot de Passe" v-model="form.password"></v-text-field>
+                        <v-text-field outlined required label="Confirmer le Mot de Passe" placeholder="Confirmer le Mot de Passe" v-model="form.confirm_password"></v-text-field>
                          <v-text-field  outlined required  label="Numero de Telephone" placeholder="Numero de Telephone" v-model="form.phone"></v-text-field>
                           <div>
                               <v-autocomplete
                               v-model="form.role"
                               outlined
-                              required 
+                              required
                               :items="roles"
                               :rules="roleRules"
                               label="Role"></v-autocomplete>
                           </div>
                         </div>
 
-                        
+
 
 
                   </v-form>
@@ -102,7 +103,7 @@
   </div>
   </v-container>
 
-  
+
 </template>
 
 <script>
@@ -132,6 +133,7 @@ export default {
      email: "",
      phone: "",
      password: "",
+     confirm_password: "",
      role: ""
     },
     formUser: false,
@@ -159,12 +161,12 @@ export default {
 
       { text: 'Actions', value: 'actions', sortable: false },
     ],
-    
+
     editedIndex: -1,
     isEditing: false,
-    
+
     btnloading: false,
-      
+
     };
   },
   computed: {
@@ -194,6 +196,7 @@ export default {
          email: "",
          phone: "",
          password: "",
+         confirm_password: "",
          role: ""
       }
     },
@@ -206,7 +209,7 @@ export default {
     },
     initialize() {
       this.getUser();
-    
+
     },
      editItem(item) {
       this.isEditing = true
@@ -220,7 +223,7 @@ export default {
         this.editedIndex = -1
       })
     },
-    
+
     deleteItem(item) {
       Swal.fire({
         icon: 'question',
@@ -267,6 +270,7 @@ export default {
               email: "",
               phone: "",
               password: "",
+              confirm_password: "",
               role: ""
           }
         })
@@ -294,6 +298,7 @@ export default {
               email: "",
               phone: "",
               password: "",
+              confirm_password: "",
               role: ""
             }
           }).catch(error => {

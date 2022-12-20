@@ -23,42 +23,36 @@
         </div>
         <div class="tw-basis-1/2 tw-text-center lg:tw-text-left">
           <p
-            class="tw-font-extrabold tw-text-red-700 tw-text-xl tw-font-bold lg:tw-text-left tw-uppercase tw-pt-3">
+            class="tw-font-extrabold tw-text-red-700 tw-text-2xl tw-font-bold lg:tw-text-left tw-uppercase tw-pt-3">
             QUI NOUS SOMMES</p>
           <img class="tw-h-2  tw-absolute tw-bottom-0 tw-left-0 tw-right-0"
                src="https://images.unsplash.com/photo-1486556813609-9a827fdc306f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2069&q=80">
 
-          <p class="lg:tw-text-justify tw-text-sm md:tw-text-md">
-            Lorem ipsum dolor sit amet, consectetur adipiscing
-            elit. Morbi quam faucibus nam lorem. Imperdiet a, nibh mauris nec nibh.
-            Interdum quisque morbi amet ut quam nunc facilisis velit. Ultrices quis elementum fringilla ut adipiscing.
-            Suscipit urna tristique ornare
-            ipsum commodo viverra habitant. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi quam
-            faucibus nam lorem. Imperdiet a, nibh mauris nec nibh.
-            Interdum quisque morbi amet ut quam nunc facilisis velit. Ultrices quis elementum fringilla ut adipiscing.
-            Suscipit urna tristique ornare ipsum commodo viverra habitant.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi quam faucibus nam lorem. Imperdiet a, nibh
-            mauris nec nibh. Interdum quisque morbi amet ut quam nunc
-            Suscipit urna tristique ornare ipsum commodo viverra habitant. </p>
+          <p class="lg:tw-text-justify tw-text-md md:tw-text-xl">
+            Manglam Tours & Travels est une agence de voyage basé à Lomé,
+            composé d’une équipe de professionnels œuvrant pour répondre
+            à toutes vos exigences.
+
+            </p>
 
           <p
-            class="tw-font-extrabold tw-text-red-700 tw-text-xl tw-font-bold lg:tw-text-left tw-uppercase tw-mb-2 tw-mt-10 tw-my-8">
-            L'HISTOIRE DE NOTRE ENTREPRISE</p>
+            class="tw-font-extrabold tw-text-red-700 tw-text-2xl tw-font-bold lg:tw-text-left tw-uppercase tw-mb-2 tw-mt-10 tw-my-8">
+            L'OBJECTIF DE NOTRE ENTREPRISE</p>
           <img class="tw-h-2 tw-absolute tw-bottom-0 tw-left-0 tw-right-0"
                src="https://images.unsplash.com/photo-1486556813609-9a827fdc306f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2069&q=80">
 
-          <p class="lg:tw-text-justify tw-text-md">
-            Lorem ipsum dolor sit amet, consectetur adipiscing
-            elit. Morbi quam faucibus nam lorem. Imperdiet a, nibh mauris nec nibh.
-            Interdum quisque morbi amet ut quam nunc facilisis velit. Ultrices quis elementum fringilla ut adipiscing.
-            Suscipit urna tristique ornare
-            ipsum commodo viverra habitant. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi quam
-            faucibus nam lorem. Imperdiet a, nibh mauris nec nibh.
-            Interdum quisque morbi amet ut quam nunc facilisis velit. Ultrices quis elementum fringilla ut adipiscing.
-            Suscipit urna tristique ornare ipsum commodo viverra habitant.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi quam faucibus nam lorem. Imperdiet a, nibh
-            mauris nec nibh. Interdum quisque morbi amet ut quam nunc
-            Suscipit urna tristique ornare ipsum commodo viverra habitant. </p>
+          <p class="lg:tw-text-justify tw-text-xl">
+            Manglam Tours & Travels vise un objectif primordial qui est de
+            vous satisfaire où que vous soyez en vous fournissant ce qu’il vous
+            faut afin que vous soyez comblé lors de votre séjour. Notre agence
+            vous planifie des voyages sur mesure, des voyages individuels ou
+            en groupe au niveau national et l’international. <br>
+            <br>
+            Vous n’avez qu’à choisir votre destination, et Manglam Tours &
+            Travels se chargera du reste en commençant par votre Visa, votre
+            hébergement ainsi que votre transport une fois arrivé à destination.
+            Avec nous, tout est fait pour que vous puissiez réussir votre projet
+            de voyage. </p>
         </div>
 
 
@@ -68,29 +62,33 @@
     <Partners/>
 
     <div
-      class="tw-px-8  tw-py-8 tw-text-white tw-bg-blue-800 tw-shadow-lg tw-text-center tw-mx-auto tw-my-20">
-
-      <div
-        class="tw-flex tw-flex-col lg:tw-flex-row tw-mt-10 tw-text-gray-900 tw-gap-6 tw-justify-center">
-        <div class="tw-text-lg lg:tw-text-2xl tw-flex tw-flex-col tw-text-white tw-cursor-pointer">
-          <i>250</i>
-          <strong> Agences </strong>
-        </div>
-        <div class="tw-text-lg lg:tw-text-2xl tw-flex tw-flex-col tw-text-white tw-cursor-pointer">
-
-
-          <i>50</i>
-          <strong> Pays </strong>
-
-        </div>
-        <div  class="tw-text-lg lg:tw-text-2xl tw-flex tw-flex-col tw-text-white tw-cursor-pointer">
-          <i>25</i>
-          <strong> Année d'experience </strong>
-        </div>
-        <div to="/tourisme" class="tw-text-lg lg:tw-text-2xl tw-flex tw-flex-col tw-text-white tw-cursor-pointer">
-
-          <i>4500</i>
-          <strong> Clients </strong>
+      class="tw-px-8  tw-py-8 tw-text-white tw-bg-blue-800 tw-shadow-lg tw-text-center tw-mx-auto tw-mt-20">
+      <div class="tw-px-4 tw-py-16 tw-mx-auto sm:tw-max-w-xl md:tw-max-w-full lg:tw-max-w-screen-xl md:tw-px-24 lg:tw-px-8 lg:tw-py-20">
+        <div class="tw-flex tw-flex-col md:tw-flex-row tw-justify-evenly tw-gap-6 md:tw-gap-12">
+          <div class="tw-text-center">
+            <h6 class="tw-mb-2 tw-text-3xl tw-font-bold lg:tw-text-4xl">250</h6>
+            <p class="tw-text-sm tw-font-medium tw-tracking-widest tw-text-gray-400 tw-uppercase lg:tw-text-base">
+              Agences
+            </p>
+          </div>
+          <div class="tw-text-center">
+            <h6 class="tw-mb-2 tw-text-3xl tw-font-bold lg:tw-text-4xl">50</h6>
+            <p class="tw-text-sm tw-font-medium tw-tracking-widest tw-text-gray-400 tw-uppercase lg:tw-text-base">
+              Pays
+            </p>
+          </div>
+          <div class="tw-text-center">
+            <h6 class="tw-mb-2 tw-text-3xl tw-font-bold lg:tw-text-4xl">25</h6>
+            <p class="tw-text-sm tw-font-medium tw-tracking-widest tw-text-gray-400 tw-uppercase lg:tw-text-base">
+              Année d'experience
+            </p>
+          </div>
+          <div class="tw-text-center">
+            <h6 class="tw-mb-2 tw-text-3xl tw-font-bold lg:tw-text-4xl">+1500</h6>
+            <p class="tw-text-sm tw-font-medium tw-tracking-widest tw-text-gray-400 tw-uppercase lg:tw-text-base">
+              Clients
+            </p>
+          </div>
         </div>
       </div>
     </div>

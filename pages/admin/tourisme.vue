@@ -5,7 +5,7 @@
     <v-data-table no-data-text="aucune donneé" :headers="headers" :items="tourisme" class="elevation-1">
       <template v-slot:top>
         <v-toolbar flat>
-          <v-toolbar-title>La Liste de Tous Les Demandes de Reservations de Tourisme</v-toolbar-title>
+          <v-toolbar-title>La Liste de Toutes Les Demandes de Reservations de Tourisme</v-toolbar-title>
           <v-divider class="mx-4" inset vertical></v-divider>
           <v-spacer></v-spacer>
           <v-btn class="mx-2" @click="initialize">
@@ -107,11 +107,15 @@ export default {
       },
        {
         text: 'Prenoms',
-        value: 'customer.lastname',
+        value: 'customer.firstname',
       },
       {
         text: 'Email',
         value: 'customer.email'
+      },
+        {
+        text: 'Code Numéro',
+        value: 'customer.lastPhoneNumber.code'
       },
       {
         text: 'Numéro de Telephone',

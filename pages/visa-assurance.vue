@@ -312,7 +312,7 @@
 
             <v-dialog
               v-model="userInfoDialog"
-              max-width="600px"
+              max-width="600"
 
 
             >
@@ -503,15 +503,22 @@
       </div>
       <v-carousel
         cycle
-        height="600px"
+        height="600"
         hide-delimiter-background
         show-arrows-on-hover
       >
         <v-carousel-item
-          v-for="(slide, i) in 3"
-          src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+          src="https://images.unsplash.com/photo-1640359993530-3dcbf809d783?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
           :key="i"
         >
+        </v-carousel-item>
+        <v-carousel-item
+          src="https://images.unsplash.com/photo-1487637419635-a2a471ff5c7b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1289&q=80"
+          :key="i">
+        </v-carousel-item>
+        <v-carousel-item
+          src="https://images.unsplash.com/photo-1655722725332-9925c96dd627?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+          :key="i">
         </v-carousel-item>
       </v-carousel>
     </div>
@@ -670,6 +677,7 @@ export default {
 
   methods: {
     async visaDemandeReservation() {
+      this.$refs.modal.validate()
       this.visaDemandeBtn = false
       await axios.post('/visa-request', this.visaReservationForm).then((response) => {
         if (response.data.error) {

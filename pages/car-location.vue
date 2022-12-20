@@ -167,16 +167,19 @@
       </div>
       <v-carousel
         cycle
-        height="500"
-        :height="carFilterForm.autre_lieu_restitution ? '600': '500'"
+        height="600"
+        :height="carFilterForm.autre_lieu_restitution ? '600': '600'"
         hide-delimiter-background
         show-arrows-on-hover
       >
+          <v-carousel-item
+            src="https://images.unsplash.com/photo-1614200179396-2bdb77ebf81b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80">
+        </v-carousel-item>
         <v-carousel-item
-          v-for="i in items.length"
-          :src="items[i]"
-          :key="i"
-        >
+          src="https://images.unsplash.com/photo-1589148938909-4d241c91ee52?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80">
+        </v-carousel-item>
+        <v-carousel-item
+              src="https://images.unsplash.com/flagged/photo-1553505192-acca7d4509be?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1190&q=80">
         </v-carousel-item>
       </v-carousel>
     </div>
@@ -216,11 +219,7 @@ export default {
       heureFinRules: [
         v => !!v || 'ce champs est obligatoire',
       ],
-      items: [
-        'https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
-        'https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
-        'https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
-      ],
+
       time: null,
 
       heure_debut_menu: false,

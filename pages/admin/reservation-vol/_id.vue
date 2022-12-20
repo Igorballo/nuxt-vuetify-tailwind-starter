@@ -259,7 +259,7 @@
             </v-container>
           </v-card-text>
           <v-card-actions class="tw-mb-6" v-if="offres.length > 0">
-            <v-btn color="primary" @click="" block>Envoyer cette offre au client</v-btn>
+            <v-btn :loading="sendSupplyToClientBtn" color="primary" @click="sendSupplyToClient()" block>Envoyer cette offre au client</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -549,6 +549,7 @@ export default {
   layout: "admin",
   data() {
     return {
+      sendSupplyToClientBtn: false,
       airlineRules: [
         v => !!v || 'ce champs est obligatoire',
       ],
@@ -622,6 +623,22 @@ export default {
   methods: {
     disablePastDates(val) {
       return val >= new Date().toISOString().substr(0, 10)
+    },
+    async sendSupplyToClient(){
+      this.sendSupplyToClientBtn = true
+      await axios.post(`/reservation-vol/send-offer-to-customer/6398d3e3a79ffe12c8267977`).then( res => {
+        if (res.data.error) {
+          this.sendSupplyToClientBtn = false
+          Swal.fire({
+            title: 'Echec',
+            text: 'Une Erreur s\'est produite',
+            icon: 'error'
+          })
+          return
+        }
+        this.sendSupplyToClientBtn = false
+        this.showToast('success', 'Offre de reservation de vol envoyée au client avec succès')
+      })
     },
     async getReservationInfos() {
       this.loadingReservation = true
