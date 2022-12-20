@@ -34,7 +34,7 @@
 
     <div @click.away="showMenu = false" style="z-index: 999"
          :class="showMenu ? 'tw-flex tw-flex-col': 'tw-hidden md:tw-flex md:tw-flex-row'"
-         class="tw-inset-x-0 tw-absolute tw-top-16 md:tw-sticky md:tw-top-0 tw-bg-red-600 tw-text-sm tw-py-2 tw-px-4 md:tw-px-12 md:tw-flex-row md:tw-items-center tw-justify-between">
+         class="tw-inset-x-0 tw-absolute tw-top-14 md:tw-sticky md:tw-top-0 tw-bg-red-600 tw-text-sm tw-py-2 tw-px-4 md:tw-px-12 md:tw-flex-row md:tw-items-center tw-justify-between">
       <ul class="tw-flex tw-flex-col md:tw-flex-row md:tw-items-center tw-text-md tw-pb-2 md:tw-pb-0 tw-px-0">
         <li class="tw-text-white tw-font-semifont-bold tw-cursor-pointer">
           <div :class="$route.path === '/' ? 'tw-bg-red-700': 'tw-bg-transparent hover:tw-bg-red-700'"
@@ -142,19 +142,12 @@
         >
           <v-card>
             <v-card-title>
-              <span class="text-h5">Politique de confidentialité de Manglan!</span>
+              <span class="tw-text-sm md:tw-text-lg">Politique de confidentialité de Manglan!</span>
             </v-card-title>
             <v-card-text>
-              Lorem ipsum dolor sit amet, semper quis, sapien id natoque elit. Nostra urna at, magna at neque sed sed
-              ante imperdiet, dolor mauris cursus velit, velit non, sem nec. Volutpat sem ridiculus placerat leo, augue
-              in, duis erat proin condimentum in a eget, sed fermentum sed vestibulum varius ac, vestibulum volutpat
-              orci ut elit eget tortor. Ultrices nascetur nulla gravida ante arcu. Pharetra rhoncus morbi ipsum, nunc
-              tempor debitis, ipsum pellentesque, vitae id quam ut mauris dui tempor, aptent non. Quisque turpis.
-              Phasellus quis lectus luctus orci eget rhoncus. Amet donec vestibulum mattis commodo, nulla aliquet, nibh
-              praesent, elementum nulla. Sit lacus pharetra tempus magna neque pellentesque, nulla vel erat.
-              Justo ex quisque nulla accusamus venenatis, sed quis. Nibh phasellus gravida metus in, fusce aenean ut
-              erat commodo eros. Ut turpis, dui integer, nonummy pede placeat nec in sit leo. Faucibus porttitor illo
-              taciti odio, amet viverra scelerisque quis quis et tortor, curabitur morbi .
+              Nous sommes les seuls propriétaires des informations recueillies sur ce site. Vos informations personnelles ne seront pas vendues, échangées, transférées, ou données à une
+              autre société pour n’importe quelle raison, sans votre consentement, en dehors de ce qui est nécessaire pour répondre à votre demande.
+              Nous mettons en œuvre une variété de mesures de sécurité pour préserver la sécurité de vos informations personnelles. Nous utilisons un cryptage à la pointe de la technologie pour protéger les informations sensibles transmises en ligne. Nous protégeons également vos informations hors ligne.
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
