@@ -164,7 +164,7 @@
         </v-select>
       </div>
 
-      <v-btn @click="searchCar"
+      <v-btn :loading="searchHotelBtn" @click="searchCar"
              class="tw-w-[fit-content] tw-rounded-full tw-py-6 tw-px-4 tw-text-white tw-ease-in tw-font-semibold tw-bg-red-600 tw-border-2 tw-border-red-700 tw-duration-300">
         Rechercher des voitures
       </v-btn>
@@ -181,6 +181,7 @@ import {mapGetters} from "vuex";
 export default {
   data() {
     return {
+      searchHotelBtn: false,
       carFilterDialog: false,
       dialog: false,
       heure_debut_menu: false,
@@ -208,11 +209,14 @@ export default {
 
   methods: {
     searchCar() {
+      this.searchHotelBtn = true
       axios.get('/hotels/get-hotels?pricemin=200&pricemax=10000&limit=4')
         .then(response => {
-          console.log(response);
+          this.searchHotelBtn = false
           this.hotels = response.data.hotels;
+          this.carFilterDialog = false
         })
+      this.searchHotelBtn = false
     },
   },
 

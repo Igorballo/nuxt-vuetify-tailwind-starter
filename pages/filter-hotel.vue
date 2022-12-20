@@ -1,7 +1,7 @@
 <template>
   <div class="tw-bg-gray-200 tw-p-4 md:tw-px-0 md:tw-py-12">
     <div class="tw-relative tw-container tw-mx-auto md:tw-px-4 md:tw-flex md:tw-gap-8 tw-w-full">
-      <div class="tw-hidden md:tw-sticky md:tw-top-24 lg:tw-block tw-w-1/3 tw-h-screen">
+      <div class="md:tw-sticky tw-mb-6 md:tw-mb-0 md:tw-top-24 lg:tw-block md:tw-w-1/3 md:tw-h-screen">
         <v-form class="tw-bg-white tw-text-sm tw-p-6 tw-bg-white tw-flex tw-flex-col tw-gap-2"
                 ref="form"
                 v-model="valid"

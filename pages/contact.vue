@@ -4,7 +4,7 @@
     <div class="banner tw-bg-green-500 tw-bg-black tw-bg-cover tw-bg-center lg:tw-p-12">
       <div class="tw-flex tw-items-center tw-justify-center tw-h-full">
         <h1
-          class="tw-justify-center tw-py-12 tw-text-center tw-text-white tw-font-fond tw-text-2xl md:tw-text-4xl lg:tw-text-5xl tw-uppercase tw-font-extrabold tw-text-red-700 tw-mb-4 tw-uppercase">
+          class="tw-justify-center tw-py-12 tw-text-center tw-text-white tw-font-fond tw-text-2xl md:tw-text-4xl lg:tw-text-5xl tw-uppercase tw-font-extrabold tw-text-white tw-mb-4 tw-uppercase">
           Contact</h1>
 
       </div>
@@ -23,7 +23,7 @@
       </div>
     </section>
 
-    <v-card class="tw-px-4 tw-shadow-lg tw-relative tw-pb-8">
+    <v-card class="tw-shadow-lg tw-relative tw-pb-8">
       <v-container fluid>
         <div class="tw-grid md:tw-grid-cols-2">
           <img class="tw-h-full tw-w-full tw-bg-cover tw-bg-center tw-rounded-lg"
@@ -33,7 +33,7 @@
             ref="form"
             v-model="valid"
             lazy-validation
-            class="tw-px-8 tw-py-8 tw-w-full tw-h-full tw-gap-4 tw-bg-white"
+            class="md:tw-px-8 tw-py-8 tw-w-full tw-h-full tw-gap-4 tw-bg-white"
           >
             <v-text-field
               v-model="form.nom"
