@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Annonce />
     <div class="tw-relative">
       <div style="z-index: 200" class="tw-flex tw-justify-center tw-items-center tw-absolute tw-inset-0">
         <v-form

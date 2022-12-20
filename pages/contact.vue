@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Annonce />
     <div class="banner tw-bg-green-500 tw-bg-black tw-bg-cover tw-bg-center lg:tw-p-12">
       <div class="tw-flex tw-items-center tw-justify-center tw-h-full">
         <h1

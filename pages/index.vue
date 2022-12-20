@@ -1,13 +1,7 @@
 <template>
   <div>
     <div>
-      <div class="tw-bg-blue-900 tw-opacity-80 tw-p-4 tw-text-white">
-        <vue-marquee style="height:20px" :showProgress="false">
-          <vue-marquee-slide v-for="i in 10" :key="i">
-            <span style="padding: 35px"> Bienvenue à Manglam. on vous souhaite un trés bon voyage</span>
-          </vue-marquee-slide>
-        </vue-marquee>
-      </div>
+      <Annonce />
 
       <v-carousel
         cycle
