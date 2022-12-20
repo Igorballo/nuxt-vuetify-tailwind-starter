@@ -5,7 +5,8 @@ export const state = () => ({
     adresse_depart: null,
     adresse_destination: null,
     date_depart: null,
-  }
+  },
+  accept_politique_de_confifentialite: null,
 });
 
 export const getters = {
@@ -13,6 +14,8 @@ export const getters = {
   selected_recherche_ticket_adresse_destination: state => state.criteres_recherche_ticket_bus.adresse_destination,
   selected_recherche_ticket_adresse_depart: state => state.criteres_recherche_ticket_bus.adresse_depart,
   selected_recherche_ticket_date_depart: state => state.criteres_recherche_ticket_bus.date_depart,
+
+  selected_accept_politique_de_confifentialite: state => state.accept_politique_de_confifentialite,
 }
 
 export const mutations = {
@@ -24,6 +27,10 @@ export const mutations = {
   },
   SET_RECHERCHE_TICKET_DATE_DEPART(state, date_depart) {
     state.criteres_recherche_ticket_bus.date_depart = date_depart
+  },
+
+  SET_ACCEPT_POLITIQUE_DE_CONFIDENTIALITE(state, acceptPolitique) {
+    state.accept_politique_de_confifentialite = acceptPolitique
   },
 }
 
@@ -42,7 +49,10 @@ export const actions = {
     commit('SET_RECHERCHE_TICKET_DATE_DEPART', date_depart)
     if(!!date_depart)
     Cookies.set('recherche_ticket_date_depart', JSON.stringify(date_depart), { expires: false ? 365 : null })
-  }
+  },
 
-
+  setAcceptPolitiqueDeConfidentialite: ({commit}, acceptPolitique) => {
+    commit('SET_ACCEPT_POLITIQUE_DE_CONFIDENTIALITE', acceptPolitique)
+      Cookies.set('acceptation_politique_de_confidentialite', JSON.stringify(acceptPolitique), { expires: false ? 365 : null })
+  },
 }

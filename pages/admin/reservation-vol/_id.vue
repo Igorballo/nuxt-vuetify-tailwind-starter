@@ -91,7 +91,7 @@
               <div class="tw-flex tw-justify-between">
                 <span class="tw-font-semibold tw-text-lg">Date de départ</span>
                 <div class="tw-flex tw-gap-2">
-                  <v-chip>{{ reservation.departDate|moment('d / MM / YYYY') }}</v-chip>
+                  <v-chip>{{ reservation.departDate|moment('DD / MM / YYYY') }}</v-chip>
                 </div>
               </div>
             </div>
@@ -101,7 +101,7 @@
               <div class="tw-flex tw-justify-between">
                 <span class="tw-font-semibold tw-text-lg">Date de retour</span>
                 <div class="tw-flex tw-gap-2">
-                  <v-chip v-if="reservation.hasOwnProperty('comebackDate')">{{ reservation.comebackDate|moment('d / MM / YYYY') }}</v-chip>
+                  <v-chip v-if="reservation.hasOwnProperty('comebackDate')">{{ reservation.comebackDate|moment('DD / MM / YYYY') }}</v-chip>
                   <v-chip v-else>Aller simple</v-chip>
                 </div>
               </div>
