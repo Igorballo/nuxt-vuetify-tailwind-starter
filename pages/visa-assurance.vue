@@ -312,7 +312,7 @@
 
             <v-dialog
               v-model="userInfoDialog"
-              max-width="600px"
+              max-width="600"
 
 
             >
@@ -677,6 +677,7 @@ export default {
 
   methods: {
     async visaDemandeReservation() {
+      this.$refs.modal.validate()
       this.visaDemandeBtn = false
       await axios.post('/visa-request', this.visaReservationForm).then((response) => {
         if (response.data.error) {

@@ -629,6 +629,7 @@ export default {
 
   methods: {
     async demandeSiteTouristique() {
+      this.$refs.modal.validate()
       this.sendTourismeBtn = true
       await axios.post('/tourisme-request', this.tourismeReservationForm)
         .then(response => {
