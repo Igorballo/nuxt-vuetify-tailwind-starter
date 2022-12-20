@@ -49,11 +49,9 @@
           <div class="tw-flex tw-flex-col tw-items-center lg:tw-items-start tw-text-sm lg:tw-mr-16">
             <img class="tw-h-18 tw-rounded-full tw-w-72 lg:tw-w-96 tw-mb-6" src="../assets/img/footer1.jpg"
                  alt="Manglam-logo">
-<<<<<<< HEAD
-            <p class="tw-text-white tw-text-justify">
-=======
+                 
             <p class="tw-text-white tw-text-sm tw-text-justify">
->>>>>>> 75ff70e9da6a995d5125d2482390deaa96160e1c
+
               Depuis votre réservation jusqu'à votre arrivée au lieu de destination,
               MANGLAM Tours vous accompagne tout le long de votre voyage
                pour vous assurer un séjour de qualité.
