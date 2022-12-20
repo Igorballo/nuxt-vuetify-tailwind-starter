@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Our partners section   -->
-    <div class="tw-bg-blue-900 tw-opacity-80 tw-p-4 tw-text-white">
+    <div class="tw-bg-blue-800 tw-opacity- tw-p-4 tw-text-white">
         <vue-marquee style="height:20px" :showProgress="false">
           <vue-marquee-slide v-for="i in 4" :key="i">
             <span style="padding: 55px"> Bienvenue à Manglam, bon voyage!!!</span>
