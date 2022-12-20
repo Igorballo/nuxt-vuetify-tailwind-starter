@@ -10,12 +10,12 @@
           <div class="tw-flex-row tw-items-center tw-gap-6">
 
             <div class="tw-flex tw-flex-col md:tw-flex-row tw-items-center tw-justify-between">
-              <v-radio-group row v-model="tourismeReservationForm.typevoyage">
+             <!--  <v-radio-group row v-model="tourismeReservationForm.typevoyage">
                 <v-radio
                   label="Destination multiple"
                   value="destinationmultiple"
                 ></v-radio>
-              </v-radio-group>
+              </v-radio-group> -->
             </div>
 
             <div class="tw-flex tw-items-center">
