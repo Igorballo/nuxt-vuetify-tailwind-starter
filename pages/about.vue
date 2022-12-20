@@ -23,42 +23,36 @@
         </div>
         <div class="tw-basis-1/2 tw-text-center lg:tw-text-left">
           <p
-            class="tw-font-extrabold tw-text-red-700 tw-text-xl tw-font-bold lg:tw-text-left tw-uppercase tw-pt-3">
+            class="tw-font-extrabold tw-text-red-700 tw-text-2xl tw-font-bold lg:tw-text-left tw-uppercase tw-pt-3">
             QUI NOUS SOMMES</p>
           <img class="tw-h-2  tw-absolute tw-bottom-0 tw-left-0 tw-right-0"
                src="https://images.unsplash.com/photo-1486556813609-9a827fdc306f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2069&q=80">
 
-          <p class="lg:tw-text-justify tw-text-sm md:tw-text-md">
-            Lorem ipsum dolor sit amet, consectetur adipiscing
-            elit. Morbi quam faucibus nam lorem. Imperdiet a, nibh mauris nec nibh.
-            Interdum quisque morbi amet ut quam nunc facilisis velit. Ultrices quis elementum fringilla ut adipiscing.
-            Suscipit urna tristique ornare
-            ipsum commodo viverra habitant. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi quam
-            faucibus nam lorem. Imperdiet a, nibh mauris nec nibh.
-            Interdum quisque morbi amet ut quam nunc facilisis velit. Ultrices quis elementum fringilla ut adipiscing.
-            Suscipit urna tristique ornare ipsum commodo viverra habitant.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi quam faucibus nam lorem. Imperdiet a, nibh
-            mauris nec nibh. Interdum quisque morbi amet ut quam nunc
-            Suscipit urna tristique ornare ipsum commodo viverra habitant. </p>
+          <p class="lg:tw-text-justify tw-text-md md:tw-text-xl">
+            Manglam Tours & Travels est une agence de voyage basé à Lomé,
+            composé d’une équipe de professionnels œuvrant pour répondre
+            à toutes vos exigences.
+
+            </p>
 
           <p
-            class="tw-font-extrabold tw-text-red-700 tw-text-xl tw-font-bold lg:tw-text-left tw-uppercase tw-mb-2 tw-mt-10 tw-my-8">
-            L'HISTOIRE DE NOTRE ENTREPRISE</p>
+            class="tw-font-extrabold tw-text-red-700 tw-text-2xl tw-font-bold lg:tw-text-left tw-uppercase tw-mb-2 tw-mt-10 tw-my-8">
+            L'OBJECTIF DE NOTRE ENTREPRISE</p>
           <img class="tw-h-2 tw-absolute tw-bottom-0 tw-left-0 tw-right-0"
                src="https://images.unsplash.com/photo-1486556813609-9a827fdc306f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2069&q=80">
 
-          <p class="lg:tw-text-justify tw-text-md">
-            Lorem ipsum dolor sit amet, consectetur adipiscing
-            elit. Morbi quam faucibus nam lorem. Imperdiet a, nibh mauris nec nibh.
-            Interdum quisque morbi amet ut quam nunc facilisis velit. Ultrices quis elementum fringilla ut adipiscing.
-            Suscipit urna tristique ornare
-            ipsum commodo viverra habitant. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi quam
-            faucibus nam lorem. Imperdiet a, nibh mauris nec nibh.
-            Interdum quisque morbi amet ut quam nunc facilisis velit. Ultrices quis elementum fringilla ut adipiscing.
-            Suscipit urna tristique ornare ipsum commodo viverra habitant.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi quam faucibus nam lorem. Imperdiet a, nibh
-            mauris nec nibh. Interdum quisque morbi amet ut quam nunc
-            Suscipit urna tristique ornare ipsum commodo viverra habitant. </p>
+          <p class="lg:tw-text-justify tw-text-xl">
+            Manglam Tours & Travels vise un objectif primordial qui est de
+            vous satisfaire où que vous soyez en vous fournissant ce qu’il vous
+            faut afin que vous soyez comblé lors de votre séjour. Notre agence
+            vous planifie des voyages sur mesure, des voyages individuels ou
+            en groupe au niveau national et l’international. <br>
+            <br>
+            Vous n’avez qu’à choisir votre destination, et Manglam Tours &
+            Travels se chargera du reste en commençant par votre Visa, votre
+            hébergement ainsi que votre transport une fois arrivé à destination.
+            Avec nous, tout est fait pour que vous puissiez réussir votre projet
+            de voyage. </p>
         </div>
 
 
