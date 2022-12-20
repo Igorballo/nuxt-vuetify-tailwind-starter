@@ -219,7 +219,7 @@
             class="tw-mt-12 tw-mb-6 tw-text-xl tw-text-center lg:tw-text-2xl tw-font-bold tw-uppercase md:tw-ml-8 md:tw-ml-20 tw-font-extrabold tw-text-red-700">
             Les hébergements que les clients adorent
           </h1>
-          <div class="tw-flex tw-flex-col tw-gap-6 lg:tw-flex-row tw-justify-center lg:tw-items-center tw-gap-6">
+          <div class="tw-flex-wrap tw-gap-6 tw-flex tw-justify-center tw-items-center tw-gap-6">
             <div href="#" class="tw-block tw-w-full md:tw-w-[fit-content] tw-rounded-lg tw-p-2 md:tw-p-4 tw-shadow-sm tw-shadow-indigo-100">
               <img
                 alt="Home"
