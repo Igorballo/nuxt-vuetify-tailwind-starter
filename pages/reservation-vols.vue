@@ -435,7 +435,9 @@
                     class=""
                     color="error darken-1"
                     :loading="btnLoading"
-                    @click="userInfoDialog = false, disclaimerDialog = true && $refs.modal.validate()"
+                    @click="reservation() && $refs.modal.validate()"
+
+
                   >
                     Envoyer la demande
                   </v-btn>
@@ -445,7 +447,7 @@
               </v-form>
             </v-dialog>
 
-            <v-dialog
+            <!-- <v-dialog
               v-model="disclaimerDialog"
               width="500"
             >
@@ -486,7 +488,7 @@
                   </v-btn>
                 </v-card-actions>
               </v-card>
-            </v-dialog>
+            </v-dialog> -->
           </div>
 
 

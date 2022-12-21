@@ -142,7 +142,7 @@
         </div>
       </div>
       <div class="tw-py-3 tw-px-6 tw-bg-blue-800 tw-text-sm tw-flex tw-gap-2 lg:tw-justify-evenly tw-inline-block tw-w-full">
-        <span>© 2022 Copyright: Manglam</span>
+        <span>Copyright: © 2022 Manglam</span>
         <div class="">
 
           <span>Developed By</span>

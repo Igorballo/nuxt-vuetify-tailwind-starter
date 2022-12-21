@@ -37,6 +37,7 @@
     </v-list>
 
     <template v-slot:append>
+
       <v-list nav>
         <v-list-item to="#">
           <v-list-item-action>
@@ -46,6 +47,15 @@
           <v-list-item-title class="font-weight-light">Paramètres</v-list-item-title>
         </v-list-item>
       </v-list>
+
+      <div class="tw-py-3 tw-px-6 tw-bg-red-600 tw-opacity-80 tw-text-sm tw-gap-4 tw-w-full">
+
+
+        <span class="tw-text-xs">© 2022 Developed By</span>
+        <a href="https://mekengroup.com/" class="tw-text-white tw-font-semibold " target="_blank" rel="noopener noreferrer">
+          Meg
+        </a>
+      </div>
     </template>
   </v-navigation-drawer>
 </template>
