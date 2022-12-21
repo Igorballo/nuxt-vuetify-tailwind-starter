@@ -180,7 +180,8 @@
 
               <h1 class="tw-text-base tw-font-semibold tw-underline tw-text-gray-800">Quels sont vos droits sur vos données personnelles ?</h1>
               <p class="tw-text-sm md:tw-text-base">
-                Si vous ne souhaitez plus que les données personnelles collectées lors de vos réservations figurent dans le système, il vous suffit d’envoyer un message à l’administrateur du site via le chat intégré disponible en bas à gauche du site. La même procédure est valable si vous souhaitez disposer d’une copie des données enregistrées dans le système. Dans ce dernier cas, vous devrez joindre à votre message l’adresse mail de réception.
+                Si vous ne souhaitez plus que les données personnelles collectées lors de vos réservations figurent dans le système, il vous suffit d’envoyer un message
+                à l’administrateur du site via le chat intégré disponible en bas à gauche du site ou par le biais du formulaire de contact disponible sur la page de contact. La même procédure est valable si vous souhaitez disposer d’une copie des données enregistrées dans le système. Dans ce dernier cas, vous devrez joindre à votre message l’adresse mail de réception.
                 <br>Vos données vous seront envoyées ou seront supprimées dans un délai de sept jours après votre demande
               </p>
 

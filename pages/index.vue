@@ -3,51 +3,23 @@
     <div>
       <Annonce />
       <v-carousel
-        cycle
+        cycl
         show-arrows-on-hover
         hide-delimiter-background
-        height="600"
+        height="500"
         v-model="model"
       >
         <v-carousel-item
           class="tw-h-full tw-w-full tw-bg-center tw-bg-cover tw-center tw-bg-auto"
           src="https://images.unsplash.com/photo-1587019158091-1a103c5dd17f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
         >
-          <div class="tw-flex tw-w-full tw-h-full">
-            <div class="tw-flex tw-items-center tw-justify-end tw-w-full tw-h-full">
-              <div class="tw-mb-12 lg:tw-mb-0 tw-w-full lg:tw-w-1/2 tw-w-full tw-h-full tw-flex tw-items-end lg:tw-items-center tw-justify-center">
-                <div class="tw-rounded tw-bg-white tw-bg-opacity-80 tw-p-4 md:tw-p-6 tw-m-4">
-                  <div class="tw-relative tw-text-center tw-text-blue-800 tw-bg-white tw-rounded tw-py-12">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" class="tw-absolute tw-top-2 tw-left-2 tw-w-8 tw-h-8 dark:tw-text-gray-700">
-                      <path d="M232,246.857V16H16V416H54.4ZM48,48H200V233.143L48,377.905Z"></path>
-                      <path d="M280,416h38.4L496,246.857V16H280ZM312,48H464V233.143L312,377.905Z"></path>
-                    </svg>
-                    <p class="tw-px-6 tw-py-1 tw-italic tw-text-3xl md:text-4xl lg:tw-text-5xl tw-font-extrabold">Manglam Tours & Travel toujours à votre service.</p>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" class="tw-absolute tw-bottom-2 tw-right-2 tw-w-8 tw-h-8 dark:tw-text-gray-700">
-                      <path d="M280,185.143V416H496V16H457.6ZM464,384H312V198.857L464,54.1Z"></path>
-                      <path d="M232,16H193.6L16,185.143V416H232ZM200,384H48V198.857L200,54.1Z"></path>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="tw-w-full tw-h-full tw-fle tw-hidden tw-flex-col tw-justify-end md:tw-justify-end">
-            <div class="tw-w-full tw-flex tw-p-4 md:tw-p-6 tw-mb-6 md:tw-mb-12">
-              <div class="tw-bg-white tw-bg-opacity-80 tw-rounded tw-p-4 md:tw-mx-6">
-                <div class="tw-relative tw-text-center tw-text-blue-800 tw-bg-opacity-80 tw-bg-white tw-rounded tw-py-12">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" class="tw-absolute tw-top-2 tw-left-2 tw-w-8 tw-h-8 dark:tw-text-gray-700">
-                    <path d="M232,246.857V16H16V416H54.4ZM48,48H200V233.143L48,377.905Z"></path>
-                    <path d="M280,416h38.4L496,246.857V16H280ZM312,48H464V233.143L312,377.905Z"></path>
-                  </svg>
-                  <p class="tw-px-6 tw-py-1 tw-italic tw-text-3xl md:tw-text-4xl lg:tw-text-5xl tw-font-extrabold">Manglam Tours & Travel toujours à votre service.</p>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" class="tw-absolute tw-bottom-2 tw-right-2 tw-w-8 tw-h-8 dark:tw-text-gray-700">
-                    <path d="M280,185.143V416H496V16H457.6ZM464,384H312V198.857L464,54.1Z"></path>
-                    <path d="M232,16H193.6L16,185.143V416H232ZM200,384H48V198.857L200,54.1Z"></path>
-                  </svg>
-                </div>
-              </div>
+          <div class="tw-flex tw-justify-center tw-items-center tw-w-full tw-h-full">
+            <div class="tw-mx-6 md:tw-mx-0 tw-w-full md:tw-w-2/3 tw-text-center tw-bg-gray-800 tw-bg-opacity-50 tw-p-8 tw-rounded-lg">
+              <h1 class="tw-text-3xl md:tw-text-4xl tw-text-white tw-font-extrabold">Lorem ipsum dolor sit amet <br class="tw-hidden md:tw-block"> consectetur adipisicing elit</h1>
+              <p class="tw-mt-8 tw-text-sm md:tw-text-base tw-text-gray-100">Maxime mollitia,
+                molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
+                numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
+                optio, eaque rerum! Provident similique accusantium nemo autem.</p>
             </div>
           </div>
 
@@ -56,29 +28,21 @@
           class="tw-h-full tw-w-full tw-bg-cover"
           src="https://images.unsplash.com/photo-1615460549969-36fa19521a4f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80"
         >
-          <div class="tw-w-full tw-h-full tw-flex tw-flex-col tw-justify-end md:tw-justify-end">
-            <div class="tw-w-full tw-flex tw-p-4 md:tw-p-6 tw-mb-6 md:tw-mb-12">
-            <div class="tw-bg-white tw-bg-opacity-80 tw-rounded tw-p-4 md:tw-mx-6">
-              <div class="tw-relative tw-text-center tw-text-blue-800 tw-bg-opacity-80 tw-bg-white tw-rounded tw-py-12">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" class="tw-absolute tw-top-2 tw-left-2 tw-w-8 tw-h-8 dark:tw-text-gray-700">
-                  <path d="M232,246.857V16H16V416H54.4ZM48,48H200V233.143L48,377.905Z"></path>
-                  <path d="M280,416h38.4L496,246.857V16H280ZM312,48H464V233.143L312,377.905Z"></path>
-                </svg>
-                <p class="tw-px-6 tw-py-1 tw-italic tw-text-3xl md:tw-text-4xl lg:tw-text-5xl tw-font-extrabold">Global Presence with local expertise.</p>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" class="tw-absolute tw-bottom-2 tw-right-2 tw-w-8 tw-h-8 dark:tw-text-gray-700">
-                  <path d="M280,185.143V416H496V16H457.6ZM464,384H312V198.857L464,54.1Z"></path>
-                  <path d="M232,16H193.6L16,185.143V416H232ZM200,384H48V198.857L200,54.1Z"></path>
-                </svg>
-              </div>
-            </div>
+          <div class="tw-flex tw-justify-center tw-items-center tw-w-full tw-h-full">
+            <div class="tw-mx-6 md:tw-mx-0 tw-w-full md:tw-w-2/3 tw-text-center tw-bg-gray-800 tw-bg-opacity-50 tw-p-8 tw-rounded-lg">
+              <h1 class="tw-text-3xl md:tw-text-4xl tw-text-white tw-font-extrabold">Lorem ipsum dolor sit amet <br class="tw-hidden md:tw-block"> consectetur adipisicing elit</h1>
+              <p class="tw-mt-8 tw-text-sm md:tw-text-base tw-text-gray-100">Maxime mollitia,
+                molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
+                numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
+                optio, eaque rerum! Provident similique accusantium nemo autem.</p>
             </div>
           </div>
         </v-carousel-item>
         <v-carousel-item class="tw-h-full tw-w-full tw-bg-cover"
-          src="https://images.unsplash.com/photo-1581553673739-c4906b5d0de8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80">
+          src="https://images.unsplash.com/photo-1561121864-3e4031788fdd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80">
         </v-carousel-item>
         <v-carousel-item class="tw-h-full tw-w-full tw-bg-cover"
-          src="https://images.unsplash.com/photo-1548103981-34316e50b924?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1266&q=80">
+          src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80">
         </v-carousel-item>
       </v-carousel>
 
@@ -205,7 +169,7 @@
         <article class="tw-flex tw-flex-col md:tw-flex-row tw-shadow tw-my-4">
           <!-- Article Image -->
           <a href="#" class="hover:tw-opacity-75 tw-basis-1/2">
-            <img class="tw-h-full tw-w-full" src="https://images.unsplash.com/photo-1587019158091-1a103c5dd17f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80">
+            <img class="tw-h-96 lg:tw-h-full tw-w-full" src="https://images.unsplash.com/photo-1587019158091-1a103c5dd17f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80">
           </a>
           <div class="tw-bg-white tw-flex tw-flex-col tw-justify-start tw-p-6">
             <a href="#" class="tw-text-blue-700 tw-text-sm tw-font-bold tw-uppercase tw-pb-4">Nouveauté</a>
@@ -225,7 +189,7 @@
         <article class="tw-flex tw-flex-col md:tw-flex-row tw-shadow tw-my-4">
           <!-- Article Image -->
           <a href="#" class="hover:tw-opacity-75 tw-basis-1/2">
-            <img class="tw-h-full tw-w-full" src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1174&q=80">
+            <img class="tw-h-96  lg:tw-h-full tw-w-full" src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1174&q=80">
           </a>
           <div class="tw-bg-white tw-flex tw-flex-col tw-justify-start tw-p-6">
             <a href="#" class="tw-text-blue-700 tw-text-sm tw-font-bold tw-uppercase tw-pb-4">Manglam Alerte</a>
@@ -243,27 +207,8 @@
         </article>
 
       </section>
-
     </div>
 
-   <!--  <div class="tw-relative tw-w-full tw-py-12 tw-px-12">
-      <div class="tw-relative tw-z-10 tw-text-center tw-py-12 md:tw-py-24">
-        <div
-          class="tw-text-white tw-text-center tw-text-3xl md:tw-text-4xl lg:tw-text-5xl xl:tw-text-6xl font-display tw-font-bold tw-mb-6">
-          Lorem Ipsum</div>
-        <p class="tw-text-white tw-mb-10 tw-text-base md:tw-text-lg tw-font-bold">Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Maxime mollitia,
-          molestiae quas vel sint commodi</p>
-        <a href="#"
-          class="tw-inline-block tw-b0 tw-text-white tw-uppercase tw-text-sm tw-tracking-widest font-heading tw-px-8 tw-py-4">Lorem
-          ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
-          molestiae quas vel sint commodi</a>
-      </div>
-
-      <img
-        src="https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
-        class="tw-w-full tw-h-full tw-absolute tw-inset-0 tw-object-cover" />
-    </div> -->
 
   </div>
 </template>
