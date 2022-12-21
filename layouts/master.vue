@@ -32,7 +32,7 @@
       </div>
     </div>
 
-    <div @click.away="showMenu = false" style="z-index: 999"
+    <div @click.away="showMenu = false" style="z-index: 500"
          :class="showMenu ? 'tw-flex tw-flex-col': 'tw-hidden md:tw-flex md:tw-flex-row'"
          class="tw-inset-x-0 tw-absolute tw-top-14 md:tw-sticky md:tw-top-0 tw-bg-red-600 tw-text-sm tw-py-2 tw-px-4 md:tw-px-12 md:tw-flex-row md:tw-items-center tw-justify-between">
       <ul class="tw-flex tw-flex-col md:tw-flex-row md:tw-items-center tw-text-md tw-pb-2 md:tw-pb-0 tw-px-0">
@@ -139,28 +139,71 @@
         <v-dialog
           v-model="showConfidentialPolicyForm"
           width="600px"
+          height="400px"
         >
           <v-card>
             <v-card-title>
-              <span class="tw-text-sm md:tw-text-lg">Politique de confidentialité de Manglan!</span>
+              <span class="tw-text-lg">Politique de confidentialité</span>
             </v-card-title>
             <v-card-text>
-              Nous sommes les seuls propriétaires des informations recueillies sur ce site. Vos informations personnelles ne seront pas vendues, échangées, transférées, ou données à une
-              autre société pour n’importe quelle raison, sans votre consentement, en dehors de ce qui est nécessaire pour répondre à votre demande.
-              Nous mettons en œuvre une variété de mesures de sécurité pour préserver la sécurité de vos informations personnelles. Nous utilisons un cryptage à la pointe de la technologie pour protéger les informations sensibles transmises en ligne. Nous protégeons également vos informations hors ligne.
+              <p class="tw-text-sm md:tw-text-base">Vous trouverez ici une vue d'ensemble de la manière dont nous traitons vos données personnelles, des objectifs pour lesquels nous les traitons et de la manière dont vous en bénéficiez. Vous verrez également quels sont vos droits et comment vous pouvez nous contacter.</p>
+
+              <h1 class="tw-text-base tw-font-semibold tw-underline tw-text-gray-800">Quelles sont les données que nous collectons ?</h1>
+              <p class="tw-text-sm md:tw-text-base">
+                Nous stockons les données personnelles que vous nous donnez lorsque vous faites une réservation ou enregistrez vos préférences. Celles-ci comprennent notamment :
+                -	Le nom et les prénoms
+                -	Le numéro de la carte d’identité ou du passeport
+                -	L’adresse e-mail
+                -	Le numéro de téléphone
+                -	L’adresse de départ et d’arrivée
+                -	La date de départ et d’arrivée
+                Les données de réservation sont automatiquement supprimées de la base de données du site <strong>un(1) an</strong> après leur enregistrement.
+                Les données sont collectées dès que vous souscrivez à un service sur notre site web.
+              </p>
+
+              <h1 class="tw-text-base tw-font-semibold tw-underline tw-text-gray-800">Pourquoi collectons-nous vos données personnelles ?</h1>
+              <div class="tw-text-sm md:tw-text-base">
+                Nous collectons vos données personnelles exclusivement pour l’accès aux services que nous proposons sur notre site, notamment :
+                <ul class="list-disc">
+                  <li>La réservation de billets de vols,</li>
+                  <li>La réservation de lieux d’hébergement,</li>
+                  <li>La réservation de voitures,</li>
+                  <li>La visitation de lieux touristiques,</li>
+                  <li>Les procédures d’obtention de visas</li>
+                </ul>
+              </div>
+
+              <h1 class="tw-text-base tw-font-semibold tw-underline tw-text-gray-800">Qui peut accéder à vos données personnelles et pourquoi ?</h1>
+              <p class="tw-text-sm md:tw-text-base">
+                Nous ne transférons pas vos données à des tiers, nous ne les utilisons pas pour des activités commerciales, et nous ne les partageons avec personne.
+              </p>
+
+              <h1 class="tw-text-base tw-font-semibold tw-underline tw-text-gray-800">Quels sont vos droits sur vos données personnelles ?</h1>
+              <p class="tw-text-sm md:tw-text-base">
+                Si vous ne souhaitez plus que les données personnelles collectées lors de vos réservations figurent dans le système, il vous suffit d’envoyer un message à l’administrateur du site via le chat intégré disponible en bas à gauche du site. La même procédure est valable si vous souhaitez disposer d’une copie des données enregistrées dans le système. Dans ce dernier cas, vous devrez joindre à votre message l’adresse mail de réception.
+                <br>Vos données vous seront envoyées ou seront supprimées dans un délai de sept jours après votre demande
+              </p>
+
+              <h1 class="tw-text-base tw-font-semibold tw-underline tw-text-gray-800">Sécurité et conservation des données.</h1>
+              <p class="tw-text-sm md:tw-text-base">Nous utilisons diverses mesures pour préserver la confidentialité et la sécurité de vos données personnelles, notamment en limitant l'accès à vos données personnelles en fonction des besoins et en suivant les normes de sécurité appropriées pour protéger vos données.</p>
+
+              <h1 class="tw-text-base tw-font-semibold tw-underline tw-text-gray-800">Nous contacter</h1>
+              <p class="tw-text-sm md:tw-text-base">Manglam Tours & Travels est situé à Lomé dans le quartier Dékon, en face de AKIF. Vous pouvez nous joindre par mail via l’adresse <strong>manglam@tour.com</strong> ou par téléphone en appelant le <strong>+ 228 96 69 09 81</strong> ou le <strong>+ 33 422 567 89</strong>.</p>
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn
                 color="green darken-1"
                 text
+                class="tw-underline tw-text-xs"
                 @click="setPolicyToCookie(false)"
               >
-                Plus tard
+                Continuer sans accepter
               </v-btn>
               <v-btn
                 color="green darken-1"
                 text
+                class=" tw-text-xs"
                 @click="setPolicyToCookie(true)"
               >
                 J'accepte

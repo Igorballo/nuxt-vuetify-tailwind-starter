@@ -10,39 +10,61 @@
         v-model="model"
       >
         <v-carousel-item
-          class="tw-h-full tw-w-full tw-bg-center tw-bg-cover tw-contain tw-bg-auto"
+          class="tw-h-full tw-w-full tw-bg-center tw-bg-cover tw-center tw-bg-auto"
           src="https://images.unsplash.com/photo-1587019158091-1a103c5dd17f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-
         >
           <div class="tw-flex tw-w-full tw-h-full">
-            <div class="sm:tw-bg-gradient-to-r tw-from-transparent tw-via-transparent tw-to-blue-200 tw-bg-opacity-60 tw-flex tw-items-center tw-justify-end tw-w-full tw-h-full">
-              <div class="tw-relative tw-text-center tw-text-blue-800 tw-w-1/2 tw-bg-white tw-rounded tw-py-12 tw-mr-4">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" class="tw-absolute tw-top-2 tw-left-2 tw-w-8 tw-h-8 dark:tw-text-gray-700">
-                  <path d="M232,246.857V16H16V416H54.4ZM48,48H200V233.143L48,377.905Z"></path>
-                  <path d="M280,416h38.4L496,246.857V16H280ZM312,48H464V233.143L312,377.905Z"></path>
-                </svg>
-                <p class="tw-px-6 tw-py-1 tw-italic tw-text-5xl tw-font-extrabold">Manglam Tours & Travel toujours à votre service.</p>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" class="tw-absolute tw-bottom-2 tw-right-2 tw-w-8 tw-h-8 dark:tw-text-gray-700">
-                  <path d="M280,185.143V416H496V16H457.6ZM464,384H312V198.857L464,54.1Z"></path>
-                  <path d="M232,16H193.6L16,185.143V416H232ZM200,384H48V198.857L200,54.1Z"></path>
-                </svg>
+            <div class="tw-flex tw-items-center tw-justify-end tw-w-full tw-h-full">
+              <div class="tw-mb-12 lg:tw-mb-0 tw-w-full lg:tw-w-1/2 tw-w-full tw-h-full tw-flex tw-items-end lg:tw-items-center tw-justify-center">
+                <div class="tw-rounded tw-bg-white tw-bg-opacity-80 tw-p-4 md:tw-p-6 tw-m-4">
+                  <div class="tw-relative tw-text-center tw-text-blue-800 tw-bg-white tw-rounded tw-py-12">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" class="tw-absolute tw-top-2 tw-left-2 tw-w-8 tw-h-8 dark:tw-text-gray-700">
+                      <path d="M232,246.857V16H16V416H54.4ZM48,48H200V233.143L48,377.905Z"></path>
+                      <path d="M280,416h38.4L496,246.857V16H280ZM312,48H464V233.143L312,377.905Z"></path>
+                    </svg>
+                    <p class="tw-px-6 tw-py-1 tw-italic tw-text-3xl md:text-4xl lg:tw-text-5xl tw-font-extrabold">Manglam Tours & Travel toujours à votre service.</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" class="tw-absolute tw-bottom-2 tw-right-2 tw-w-8 tw-h-8 dark:tw-text-gray-700">
+                      <path d="M280,185.143V416H496V16H457.6ZM464,384H312V198.857L464,54.1Z"></path>
+                      <path d="M232,16H193.6L16,185.143V416H232ZM200,384H48V198.857L200,54.1Z"></path>
+                    </svg>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
+
+          <div class="tw-w-full tw-h-full tw-fle tw-hidden tw-flex-col tw-justify-end md:tw-justify-end">
+            <div class="tw-w-full tw-flex tw-p-4 md:tw-p-6 tw-mb-6 md:tw-mb-12">
+              <div class="tw-bg-white tw-bg-opacity-80 tw-rounded tw-p-4 md:tw-mx-6">
+                <div class="tw-relative tw-text-center tw-text-blue-800 tw-bg-opacity-80 tw-bg-white tw-rounded tw-py-12">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" class="tw-absolute tw-top-2 tw-left-2 tw-w-8 tw-h-8 dark:tw-text-gray-700">
+                    <path d="M232,246.857V16H16V416H54.4ZM48,48H200V233.143L48,377.905Z"></path>
+                    <path d="M280,416h38.4L496,246.857V16H280ZM312,48H464V233.143L312,377.905Z"></path>
+                  </svg>
+                  <p class="tw-px-6 tw-py-1 tw-italic tw-text-3xl md:tw-text-4xl lg:tw-text-5xl tw-font-extrabold">Manglam Tours & Travel toujours à votre service.</p>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" class="tw-absolute tw-bottom-2 tw-right-2 tw-w-8 tw-h-8 dark:tw-text-gray-700">
+                    <path d="M280,185.143V416H496V16H457.6ZM464,384H312V198.857L464,54.1Z"></path>
+                    <path d="M232,16H193.6L16,185.143V416H232ZM200,384H48V198.857L200,54.1Z"></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </v-carousel-item>
         <v-carousel-item
           class="tw-h-full tw-w-full tw-bg-cover"
           src="https://images.unsplash.com/photo-1615460549969-36fa19521a4f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80"
         >
-          <div class="tw-w-full tw-h-full tw-flex tw-flex-col tw-justify-end">
-            <div class="tw-w-full tw-flex tw-m-6 tw-mb-12">
-            <div class="tw-bg-white tw-bg-opacity-80 tw-rounded tw-p-4 tw-mx-6">
-              <div class="tw-relative tw-text-center tw-text-blue-800 tw-bg-opacity-80 tw-bg-white tw-rounded tw-py-12 tw-m-2">
+          <div class="tw-w-full tw-h-full tw-flex tw-flex-col tw-justify-end md:tw-justify-end">
+            <div class="tw-w-full tw-flex tw-p-4 md:tw-p-6 tw-mb-6 md:tw-mb-12">
+            <div class="tw-bg-white tw-bg-opacity-80 tw-rounded tw-p-4 md:tw-mx-6">
+              <div class="tw-relative tw-text-center tw-text-blue-800 tw-bg-opacity-80 tw-bg-white tw-rounded tw-py-12">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" class="tw-absolute tw-top-2 tw-left-2 tw-w-8 tw-h-8 dark:tw-text-gray-700">
                   <path d="M232,246.857V16H16V416H54.4ZM48,48H200V233.143L48,377.905Z"></path>
                   <path d="M280,416h38.4L496,246.857V16H280ZM312,48H464V233.143L312,377.905Z"></path>
                 </svg>
-                <p class="tw-px-6 tw-py-1 tw-italic tw-text-5xl tw-font-extrabold">Global Presence with local expertise.</p>
+                <p class="tw-px-6 tw-py-1 tw-italic tw-text-3xl md:tw-text-4xl lg:tw-text-5xl tw-font-extrabold">Global Presence with local expertise.</p>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" class="tw-absolute tw-bottom-2 tw-right-2 tw-w-8 tw-h-8 dark:tw-text-gray-700">
                   <path d="M280,185.143V416H496V16H457.6ZM464,384H312V198.857L464,54.1Z"></path>
                   <path d="M232,16H193.6L16,185.143V416H232ZM200,384H48V198.857L200,54.1Z"></path>
