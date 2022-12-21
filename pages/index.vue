@@ -3,10 +3,10 @@
     <div>
       <Annonce />
       <v-carousel
-        cycl
+        cycle
         show-arrows-on-hover
         hide-delimiter-background
-        height="500"
+        height="600"
         v-model="model"
       >
         <v-carousel-item
@@ -26,7 +26,7 @@
         </v-carousel-item>
         <v-carousel-item
           class="tw-h-full tw-w-full tw-bg-cover"
-          src="https://images.unsplash.com/photo-1615460549969-36fa19521a4f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80"
+          src="https://images.unsplash.com/photo-1660896592505-d77826b40a2a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
         >
           <div class="tw-flex tw-justify-center tw-items-center tw-w-full tw-h-full">
             <div class="tw-mx-6 md:tw-mx-0 tw-w-full md:tw-w-2/3 tw-text-center tw-bg-gray-800 tw-bg-opacity-50 tw-p-8 tw-rounded-lg">
@@ -40,9 +40,27 @@
         </v-carousel-item>
         <v-carousel-item class="tw-h-full tw-w-full tw-bg-cover"
           src="https://images.unsplash.com/photo-1561121864-3e4031788fdd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80">
+          <div class="tw-flex tw-justify-center tw-items-center tw-w-full tw-h-full">
+            <div class="tw-mx-6 md:tw-mx-0 tw-w-full md:tw-w-2/3 tw-text-center tw-bg-gray-800 tw-bg-opacity-50 tw-p-8 tw-rounded-lg">
+              <h1 class="tw-text-3xl md:tw-text-4xl tw-text-white tw-font-extrabold">Lorem ipsum dolor sit amet <br class="tw-hidden md:tw-block"> consectetur adipisicing elit</h1>
+              <p class="tw-mt-8 tw-text-sm md:tw-text-base tw-text-gray-100">Maxime mollitia,
+                molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
+                numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
+                optio, eaque rerum! Provident similique accusantium nemo autem.</p>
+            </div>
+          </div>
         </v-carousel-item>
         <v-carousel-item class="tw-h-full tw-w-full tw-bg-cover"
           src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80">
+          <div class="tw-flex tw-justify-center tw-items-center tw-w-full tw-h-full">
+            <div class="tw-mx-6 md:tw-mx-0 tw-w-full md:tw-w-2/3 tw-text-center tw-bg-gray-800 tw-bg-opacity-50 tw-p-8 tw-rounded-lg">
+              <h1 class="tw-text-3xl md:tw-text-4xl tw-text-white tw-font-extrabold">Lorem ipsum dolor sit amet <br class="tw-hidden md:tw-block"> consectetur adipisicing elit</h1>
+              <p class="tw-mt-8 tw-text-sm md:tw-text-base tw-text-gray-100">Maxime mollitia,
+                molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
+                numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
+                optio, eaque rerum! Provident similique accusantium nemo autem.</p>
+            </div>
+          </div>
         </v-carousel-item>
       </v-carousel>
 
