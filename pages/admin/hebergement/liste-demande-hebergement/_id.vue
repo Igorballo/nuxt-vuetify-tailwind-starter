@@ -75,7 +75,8 @@
               <div class="tw-flex tw-justify-between">
                 <span class="tw-font-semibold tw-text-lg">Nom de l'hôtel</span>
                 <div class="tw-flex tw-gap-2">
-                  <v-chip>Nom de l'hôtel</v-chip>
+                  <v-chip>{{ demande_hotel.hotel.nom }}</v-chip>
+                  <v-icon v-for="i in demande_hotel.hotel.nombreEtoile" color="yellow darken-3">mdi-star</v-icon>
                 </div>
               </div>
             </div>
@@ -85,7 +86,7 @@
               <div class="tw-flex tw-justify-between">
                 <span class="tw-font-semibold tw-text-lg">Adresse de l'hôtel</span>
                 <div class="tw-flex tw-gap-2">
-                  <v-chip>{{ demande_hotel.adresse }}</v-chip>
+                  <v-chip>{{ demande_hotel.hotel.adresse }} - {{ demande_hotel.hotel.ville }}</v-chip>
                 </div>
               </div>
             </div>
@@ -110,6 +111,16 @@
               </div>
             </div>
             <v-divider/>
+
+<!--            <div class="tw-flex tw-flex-col">-->
+<!--              <div class="tw-flex tw-justify-between">-->
+<!--                <span class="tw-font-semibold tw-text-lg">Nombre de jour</span>-->
+<!--                <div class="tw-flex tw-gap-2">-->
+<!--                  <v-chip>date</v-chip>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <v-divider/>-->
 
             <div class="tw-flex tw-flex-col">
               <div class="tw-flex tw-justify-between">
@@ -170,8 +181,6 @@
         </v-card>
       </v-col>
     </v-row>
-
-
   </v-container>
 </template>
 
@@ -183,7 +192,7 @@ export default {
     return {
       demande_hotel: null,
       selectedFile: null,
-      files: []
+      files: [],
     }
   },
 
@@ -192,8 +201,8 @@ export default {
   },
 
   methods: {
-    getHotelReservationById() {
-      axios.get(`/reservation-hotel/${this.$route.params.id}`)
+    async getHotelReservationById() {
+      await axios.get(`/reservation-hotel/${this.$route.params.id}`)
         .then(response => {
           this.demande_hotel = response.data.reservation;
         })
