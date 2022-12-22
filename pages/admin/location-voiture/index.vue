@@ -1,7 +1,11 @@
 <template>
   <v-container fluid>
     <div>
-
+      <v-breadcrumbs :items="items">
+      <template v-slot:divider>
+        <v-icon>mdi-chevron-right</v-icon>
+      </template>
+    </v-breadcrumbs>
       <v-data-table no-data-text="aucune donneé" :headers="headers" :items="cars" class="elevation-1">
         <template v-slot:top>
           <v-toolbar flat>
@@ -157,6 +161,31 @@ export default {
   layout: "admin",
   data() {
     return {
+      items: [
+        {
+          text: 'Dashboard',
+          disabled: false,
+          href: '/admin/dashboard',
+        },
+        {
+          text: 'Liste des Voitures',
+          disabled: true,
+          href: 'breadcrumbs_link_2',
+        },
+      ],
+      roles: ['admin', 'user'],
+      nomRules: [
+        v => !!v || 'Nom de la Voitures est requis',
+        /* v => (v && v.length <= 10) || 'Name must be less than 10 characters', */
+      ],
+      marqueRules: [
+        v => !!v || 'La Marque de la voiture est requis',
+        /* v => (v && v.length <= 10) || 'Name must be less than 10 characters', */
+      ],
+      prixRules: [
+        v => !!v || 'Le prix de la Voiture est requis',
+        /* v => (v && v.length <= 10) || 'Name must be less than 10 characters', */
+      ],
       dialog: false,
       form: {
         nom: "",

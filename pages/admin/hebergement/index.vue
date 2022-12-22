@@ -2,6 +2,12 @@
   <v-container fluid>
     <div>
 
+      <v-breadcrumbs :items="items">
+      <template v-slot:divider>
+        <v-icon>mdi-chevron-right</v-icon>
+      </template>
+    </v-breadcrumbs>
+
       <v-data-table no-data-text="aucune donneé" :headers="headers" :items="hotels" class="elevation-1">
         <template v-slot:top>
           <v-toolbar flat>
@@ -160,6 +166,18 @@ export default {
   layout: "admin",
   data() {
     return {
+      items: [
+        {
+          text: 'Dashboard',
+          disabled: false,
+          href: '/admin/dashboard/',
+        },
+        {
+          text: 'Liste des Hotels',
+          disabled: true,
+          href: 'breadcrumbs_link_2',
+        },
+      ],
       roles: ['admin', 'user'],
       nomRules: [
         v => !!v || 'Nom de l\'Hôtel est requis',

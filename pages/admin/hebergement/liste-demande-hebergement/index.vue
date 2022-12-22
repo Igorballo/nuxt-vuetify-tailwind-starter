@@ -1,6 +1,11 @@
 <template>
   <v-container fluid>
     <div>
+      <v-breadcrumbs :items="items">
+      <template v-slot:divider>
+        <v-icon>mdi-chevron-right</v-icon>
+      </template>
+    </v-breadcrumbs>
 
       <v-data-table no-data-text="aucune donneé" :headers="headers" :items="hotels" class="elevation-1">
         <template v-slot:top>
@@ -54,6 +59,23 @@ export default {
         cluster: 'mt1'
       }),
       hotels: [],
+      items: [
+        {
+          text: 'Dashboard',
+          disabled: false,
+          href: '/admin/dashboard/',
+        },
+        {
+          text: 'Liste des Hotels',
+          disabled: false,
+          href: '/admin/hebergement/',
+        },
+        {
+          text: 'Demande de Reservation Hotels',
+          disabled: true,
+          href: 'breadcrumbs_link_2',
+        },
+      ],
       headers: [
         {
           text: 'Nom & Prénoms',

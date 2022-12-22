@@ -15,11 +15,11 @@
         >
           <div class="tw-flex tw-justify-center tw-items-center tw-w-full tw-h-full">
             <div class="tw-mx-6 md:tw-mx-0 tw-w-full md:tw-w-2/3 tw-text-center tw-bg-gray-800 tw-bg-opacity-50 tw-p-8 tw-rounded-lg">
-              <h1 class="tw-text-3xl md:tw-text-4xl tw-text-white tw-font-extrabold">Lorem ipsum dolor sit amet <br class="tw-hidden md:tw-block"> consectetur adipisicing elit</h1>
-              <p class="tw-mt-8 tw-text-sm md:tw-text-base tw-text-gray-100">Maxime mollitia,
-                molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
-                numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
-                optio, eaque rerum! Provident similique accusantium nemo autem.</p>
+              <h1 class="tw-text-3xl md:tw-text-4xl tw-text-white tw-font-extrabold">BIENVENUE SUR MANGLAM TOURS & TRVAVELS</h1>
+              <p class="tw-mt-8 tw-text-sm md:tw-text-base tw-text-gray-100">
+                Vous avez un projet de voyage et souhaitez avoir les informations <br class="tw-hidden md:tw-block">
+                nécessaires pour bien préparer votre séjour ? Vous êtes au bon endroit !
+              </p>
             </div>
           </div>
 
@@ -30,11 +30,11 @@
         >
           <div class="tw-flex tw-justify-center tw-items-center tw-w-full tw-h-full">
             <div class="tw-mx-6 md:tw-mx-0 tw-w-full md:tw-w-2/3 tw-text-center tw-bg-gray-800 tw-bg-opacity-50 tw-p-8 tw-rounded-lg">
-              <h1 class="tw-text-3xl md:tw-text-4xl tw-text-white tw-font-extrabold">Lorem ipsum dolor sit amet <br class="tw-hidden md:tw-block"> consectetur adipisicing elit</h1>
-              <p class="tw-mt-8 tw-text-sm md:tw-text-base tw-text-gray-100">Maxime mollitia,
-                molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
-                numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
-                optio, eaque rerum! Provident similique accusantium nemo autem.</p>
+              <h1 class="tw-text-3xl md:tw-text-4xl tw-text-white tw-font-extrabold">TOURISME</h1>
+              <p class="tw-mt-8 tw-text-sm md:tw-text-base tw-text-gray-100">
+                Des centaines de sites touristiques disponibles au bout de vos doigts. <br class="tw-hidden md:tw-block">
+                Depuis votre position, explorez-les et envisagez de vous y rendre !
+              </p>
             </div>
           </div>
         </v-carousel-item>
@@ -42,25 +42,25 @@
           src="https://images.unsplash.com/photo-1561121864-3e4031788fdd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80">
           <div class="tw-flex tw-justify-center tw-items-center tw-w-full tw-h-full">
             <div class="tw-mx-6 md:tw-mx-0 tw-w-full md:tw-w-2/3 tw-text-center tw-bg-gray-800 tw-bg-opacity-50 tw-p-8 tw-rounded-lg">
-              <h1 class="tw-text-3xl md:tw-text-4xl tw-text-white tw-font-extrabold">Lorem ipsum dolor sit amet <br class="tw-hidden md:tw-block"> consectetur adipisicing elit</h1>
-              <p class="tw-mt-8 tw-text-sm md:tw-text-base tw-text-gray-100">Maxime mollitia,
-                molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
-                numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
-                optio, eaque rerum! Provident similique accusantium nemo autem.</p>
+              <h1 class="tw-text-3xl md:tw-text-4xl tw-text-white tw-font-extrabold">VISA</h1>
+              <p class="tw-mt-8 tw-text-sm md:tw-text-base tw-text-gray-100">
+                Vous avez toujours eu des problèmes dans les procédures de VISA ? <br class="tw-hidden md:tw-block">
+                Entamez ici les démarches d’obtention et consultez l’avancée de votre dossier
+              </p>
             </div>
           </div>
         </v-carousel-item>
         <v-carousel-item class="tw-h-full tw-w-full tw-bg-cover"
-          src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80">
+          src="https://images.unsplash.com/photo-1620332372374-f108c53d2e03?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80">
           <div class="tw-flex tw-justify-center tw-items-center tw-w-full tw-h-full">
             <div class="tw-mx-6 md:tw-mx-0 tw-w-full md:tw-w-2/3 tw-text-center tw-bg-gray-800 tw-bg-opacity-50 tw-p-8 tw-rounded-lg">
-              <h1 class="tw-text-3xl md:tw-text-4xl tw-text-white tw-font-extrabold">Lorem ipsum dolor sit amet <br class="tw-hidden md:tw-block"> consectetur adipisicing elit</h1>
-              <p class="tw-mt-8 tw-text-sm md:tw-text-base tw-text-gray-100">Maxime mollitia,
-                molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
-                numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
-                optio, eaque rerum! Provident similique accusantium nemo autem.</p>
+              <h1 class="tw-text-3xl md:tw-text-4xl tw-text-white tw-font-extrabold">HEBERGEMENTS</h1>
+              <p class="tw-mt-8 tw-text-sm md:tw-text-base tw-text-gray-100">
+                Plusieurs hôtels et lieux d’hébergements n’attendent que votre réservation. <br class="tw-hidden md:tw-block">
+                Parcourez ceux qui sont disponibles en fonction de votre destination et lancez-vous.
+              </p>
             </div>
-          </div>
+          </div> 
         </v-carousel-item>
       </v-carousel>
 
