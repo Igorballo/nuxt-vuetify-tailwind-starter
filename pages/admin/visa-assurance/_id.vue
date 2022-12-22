@@ -1,5 +1,10 @@
 <template>
   <v-container fluid>
+     <v-breadcrumbs :items="items">
+      <template v-slot:divider>
+        <v-icon>mdi-chevron-right</v-icon>
+      </template>
+    </v-breadcrumbs>
     <v-overlay v-if="!demande_visa"/>
     <v-row v-else>
       <v-col cols="12">
@@ -158,7 +163,7 @@
           </v-card-title>
           <v-card-text class="tw-px-4 tw-flex tw-flex-col tw-gap-4">
             <v-card>
-              <v-file-input outlined v-model="selectedFile" accept="application/pdf" @change="handleFileChange" />
+              <v-file-input outlined v-model="selectedFile" accept="application/pdf" multiple @change="handleFileChange" />
               <v-card-actions class="tw-mb-6" v-if="">
                 <v-btn color="primary" @click="sendSupplyToClient()" block>Envoyer cette offre au client</v-btn>
               </v-card-actions>
@@ -182,6 +187,23 @@ export default {
   layout: "admin",
   data() {
     return {
+      items: [
+        {
+          text: 'Dashboard',
+          disabled: false,
+          href: '/admin/dashboard',
+        },
+        {
+          text: 'Liste de Demande de Visa & Assurance',
+          disabled: false,
+          href: '/admin/visa-assurance/',
+        },
+        {
+          text: 'Demande de Visa & Assurance',
+          disabled: true,
+          href: '/admin/location-voiture/',
+        },
+      ],
       selectedFile: null,
       demande_visa_loading: false,
       demande_visa: null,
