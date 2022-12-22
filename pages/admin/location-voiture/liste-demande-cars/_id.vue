@@ -101,7 +101,7 @@
           </v-card-title>
           <v-card-text class="tw-px-4 tw-flex tw-flex-col tw-gap-4">
             <v-card>
-              <v-file-input outlined v-model="selectedFile" accept="application/pdf" multiple @change="handleFileChange" />
+              <v-file-input outlined v-model="files" multiple label="Sélectionner les fichiers" />
               <v-card-actions class="tw-mb-6" v-if="">
                 <v-btn color="primary" @click="sendSupplyToClient()" block>Envoyer cette offre au client</v-btn>
               </v-card-actions>
@@ -151,6 +151,7 @@ export default {
       selectedFile: null,
       demande_car_loading: false,
       demande_car: null,
+      files: []
     }
   },
 
@@ -168,9 +169,18 @@ export default {
           console.log(error)
       })
     },
-  watch: {
-
-  },
+    async sendSupplyToClient() {
+      const formData = new FormData();
+  this.files.forEach((file) => {
+    formData.append('files', file);
+  });
+    await  axios.post('/send-car-offer', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      })
+    },
+ 
 }
 }
 </script>
