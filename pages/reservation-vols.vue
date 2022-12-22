@@ -630,6 +630,7 @@ export default {
           bebes: 0,
         },
       },
+      showConfidentialPolicyForm: null,
       value: null,
       date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
       depart_menu: false,
@@ -638,6 +639,10 @@ export default {
       menu: false,
       isEditing: false,
     }
+  },
+
+  mounted(){
+    this.showConfidentialPolicyForm = this.selected_accept_politique_de_confifentialite
   },
 
 
@@ -669,10 +674,11 @@ export default {
       return country.indexOf(searchText) > -1 || name.indexOf(searchText) > -1 || codeiata.indexOf(searchText) > -1
     },
     async reservation() {
-      this.btnLoading = false
+      this.btnLoading = true
       this.policybtnloading = false
       await axios.post('/reservation-vol/request-flight-reservation', this.reservationForm).then((response) => {
         if (response.data.error) {
+          this.btnLoading = false
           Swal.fire({
             title: 'Echec',
             text: 'Une Erreur s\'est produite',

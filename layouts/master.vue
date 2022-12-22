@@ -232,7 +232,6 @@ export default {
       showConfidentialPolicyForm: null,
       acceptPolitique:  false,
       showMenu: false,
-      // test: null,
     }
   },
 
@@ -245,13 +244,6 @@ export default {
   },
 
   computed: {
-    // showConfidentialPolicyForm(){
-    //   if(this.acceptPolitique){
-    //     return false
-    //   }
-    //   return true
-    // },
-
     ...mapGetters('user', [
       'selected_accept_politique_de_confifentialite',
     ]),
