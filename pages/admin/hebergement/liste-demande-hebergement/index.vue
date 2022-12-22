@@ -36,7 +36,7 @@
 
         <template v-slot:[`item.actions`]="{ item }">
           <td class="text-xs-right">
-            <v-btn @click="$router.push('/admin/hebergement/liste-demande-hebergement/0987756567')" ><v-icon color="grey arken-1">mdi-eye</v-icon></v-btn>
+            <v-btn @click="$router.push(`/admin/hebergement/liste-demande-hebergement/${item._id}`)" ><v-icon color="grey arken-1">mdi-eye</v-icon></v-btn>
           </td>
         </template>
       </v-data-table>
