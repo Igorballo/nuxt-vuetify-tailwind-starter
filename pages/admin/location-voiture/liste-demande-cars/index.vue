@@ -32,7 +32,7 @@
 
         <template v-slot:[`item.actions`]="{ item }">
           <td class="text-xs-right">
-            <v-btn @click="$router.push('/admin/location-voiture/liste-demande-cars/0987756567')" ><v-icon color="grey arken-1">mdi-eye</v-icon></v-btn>
+            <v-btn @click="$router.push(`/admin/location-voiture/liste-demande-cars/${item._id}`)" ><v-icon color="grey arken-1">mdi-eye</v-icon></v-btn>
           </td>
         </template>
       </v-data-table>

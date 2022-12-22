@@ -15,11 +15,7 @@
         </template>
 
         <template slot="items" slot-scope="props">
-          <td class="text-xs-right">{{ props.item.customer.lastname }}</td>
-          <td class="text-xs-right">{{ props.item.customer.firstname }}</td>
           <td class="text-xs-right">{{ props.item.customer.email }}</td>
-          <td class="text-xs-right">{{ props.item.customer.phone }}</td>
-          <td class="text-xs-right">{{ props.item.customer.passportId }}</td>
         </template>
 
         <template v-slot:[`item.name`]="{ item }">
@@ -32,56 +28,12 @@
 
         <template v-slot:[`item.actions`]="{ item }">
           <td class="text-xs-right">
-            <v-btn @click="$router.push('/admin/visa-assurance/0987756567')" ><v-icon color="grey arken-1">mdi-eye</v-icon></v-btn>
+            <v-btn @click="$router.push(`/admin/visa-assurance/${item._id}`)" ><v-icon color="grey arken-1">mdi-eye</v-icon></v-btn>
           </td>
         </template>
 
 
-        <template v-slot:[`item.actions`]="{ item }">
-          <div class="tw-inline-block">
-            <v-dialog
-              v-model="showMessage"
-              width="700"
-            >
-              <template v-slot:activator="{ on, attrs }">
-                <v-btn
-                  @click="$router.push('/admin/visa-assurance/55845452')"
-                  color=""
-                >
-                  <v-icon small color="grey darken-1">
-                    mdi-eye
-                  </v-icon>
-                </v-btn>
-              </template>
-              <v-card>
 
-                <v-card-title class="text-h5 grey lighten-2">
-                  {{ item.customer.lastname }} {{ item.customer.firstname }} (<span
-                  class="tw-text-red-600 tw-text-md"><a :href="`mailto:${item.customer.email }`">{{
-                    item.customer.email
-                  }}</a></span>, <a :href="`tel:${item.phone}`">{{ item.phone }}</a>)
-                </v-card-title>
-
-                <v-card-text class="text-h6 white lighten-2 tw-pt-2">
-                  {{ item.message }}
-                </v-card-text>
-
-                <v-divider></v-divider>
-
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-btn
-                    color="primary"
-                    text
-                    @click="showMessage = false"
-                  >
-                    OK
-                  </v-btn>
-                </v-card-actions>
-              </v-card>
-            </v-dialog>
-          </div>
-        </template>
       </v-data-table>
     </div>
   </v-container>
@@ -166,7 +118,6 @@ export default {
       this.getLatestVisaReservation();
 
     },
-
 
     suscribeToReceiveNewRequests() {
       let self = this

@@ -362,7 +362,6 @@ export default {
               text: 'Une Erreur s\'est produite',
               icon: 'error'
             })
-
           }
 
           this.btnloading = false
@@ -382,7 +381,6 @@ export default {
         return false
         console.log(error)
       })
-
 
     },
     triggerUpload() {

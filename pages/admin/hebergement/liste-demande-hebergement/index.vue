@@ -35,7 +35,6 @@
           </td>
         </template>
       </v-data-table>
-
     </div>
   </v-container>
 
