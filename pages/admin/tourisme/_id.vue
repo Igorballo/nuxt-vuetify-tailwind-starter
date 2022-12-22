@@ -219,10 +219,13 @@ export default {
   this.files.forEach((file) => {
     formData.append('files', file);
   });
-    await  axios.post('/send-tourisme-offer', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
+     await  axios.post(`/tourisme-request/send-offer/${this.$route.params.id}`, formData).then((response) => {
+        this.showToast('success', 'Message envoyé avec succès')
+        this.files = [];
+
+      }).catch(error => {
+        console.log(error)
+        this.showToast('error', 'Une erreur s\'est produite')
       })
     },
 }

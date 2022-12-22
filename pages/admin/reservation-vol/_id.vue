@@ -361,6 +361,7 @@ export default {
         },
       airlines: [],
       modal: "",
+      files: []
     }
   },
 
@@ -379,12 +380,16 @@ export default {
   this.files.forEach((file) => {
     formData.append('files', file);
   });
-     await axios.post('/reservation-vol/send-offer-to-customer/6398d3e3a79ffe12c8267977', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
+     await axios.post(`/reservation-vol/send-offer-to-customer/${this.$route.params.id}`, formData).then((response) => {
+        this.showToast('success', 'Message envoyé avec succès')
+        this.files = [];
+
+      }).catch(error => {
+        console.log(error)
+        this.showToast('error', 'Une erreur s\'est produite')
       })
     },
+    
    /*  async sendSupplyToClient(){
       this.sendSupplyToClientBtn = true
       await axios.post(``).then( res => {
