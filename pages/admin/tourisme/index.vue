@@ -1,7 +1,11 @@
 <template>
   <v-container fluid>
     <div>
-
+      <v-breadcrumbs :items="items">
+      <template v-slot:divider>
+        <v-icon>mdi-chevron-right</v-icon>
+      </template>
+    </v-breadcrumbs>
       <v-data-table no-data-text="aucune donneé" :headers="headers" :items="tourisme" class="elevation-1">
         <template v-slot:top>
           <v-toolbar flat>
@@ -49,6 +53,18 @@ export default {
   layout: "admin",
   data() {
     return {
+      items: [
+        {
+          text: 'Dashboard',
+          disabled: false,
+          href: '/admin/dashboard',
+        },
+        {
+          text: 'Reservation de Tourisme',
+          disabled: true,
+          href: '/admin/location-voiture/',
+        },
+      ],
       pusher: new Pusher('e81f2769b500679d8e80', {
         cluster: 'mt1'
       }),

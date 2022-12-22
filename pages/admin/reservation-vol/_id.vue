@@ -1,5 +1,10 @@
 <template>
   <v-container fluid>
+    <v-breadcrumbs :items="items">
+      <template v-slot:divider>
+        <v-icon>mdi-chevron-right</v-icon>
+      </template>
+    </v-breadcrumbs>
     <v-overlay v-if="loadingReservation"/>
     <v-row>
       <v-col cols="12">
@@ -549,6 +554,23 @@ export default {
   layout: "admin",
   data() {
     return {
+      items: [
+        {
+          text: 'Dashboard',
+          disabled: false,
+          href: '/admin/dashboard',
+        },
+        {
+          text: 'Reservation Vols',
+          disabled: false,
+          href: '/admin/reservation',
+        },
+        {
+          text: 'Demande de Réservation',
+          disabled: true,
+          href: 'breadcrumbs_link_2',
+        },
+      ],
       sendSupplyToClientBtn: false,
       airlineRules: [
         v => !!v || 'ce champs est obligatoire',
