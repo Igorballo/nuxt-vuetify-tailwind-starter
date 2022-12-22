@@ -523,16 +523,15 @@
       >
         <v-carousel-item
           src="https://images.unsplash.com/photo-1621331805847-bb27233e4ae1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-          :key="i"
         >
         </v-carousel-item>
         <v-carousel-item
           src="https://images.unsplash.com/photo-1501263025405-af2cd1ee2c73?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1981&q=80"
-          :key="i">
+        >
         </v-carousel-item>
         <v-carousel-item
           src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1174&q=80"
-          :key="i">
+        >
         </v-carousel-item>
       </v-carousel>
     </div>
@@ -548,6 +547,7 @@
 <script>
 import json from '../data/CountryCodes.json'
 import config from "../config";
+import {mapGetters} from "vuex";
 
 export default {
   name: 'ticket',
@@ -630,7 +630,6 @@ export default {
           bebes: 0,
         },
       },
-      showConfidentialPolicyForm: null,
       value: null,
       date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
       depart_menu: false,
@@ -639,10 +638,6 @@ export default {
       menu: false,
       isEditing: false,
     }
-  },
-
-  mounted(){
-    this.showConfidentialPolicyForm = this.selected_accept_politique_de_confifentialite
   },
 
 

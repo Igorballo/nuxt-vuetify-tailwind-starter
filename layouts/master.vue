@@ -222,6 +222,8 @@
 <script>
 
 import Header from "../components/Header";
+import Cookies from 'js-cookie'
+
 import {mapGetters} from "vuex";
 
 export default {
@@ -230,27 +232,32 @@ export default {
   data() {
     return {
       showConfidentialPolicyForm: null,
-      acceptPolitique:  false,
+      acceptPolitique: null,
       showMenu: false,
+      // accepted_politique_confidentialite: false,
     }
   },
 
   methods: {
     setPolicyToCookie(accept){
-      this.acceptPolitique = accept
-      this.$store.dispatch('user/setAcceptPolitiqueDeConfidentialite', this.acceptPolitique)
+      Cookies.set('accepted_politique_confidentialite', JSON.stringify(accept), { expires: false ? 365 : null })
       this.showConfidentialPolicyForm = false
     }
   },
 
-  computed: {
-    ...mapGetters('user', [
-      'selected_accept_politique_de_confifentialite',
-    ]),
-  },
-
-
   mounted() {
+    this.acceptPolitique = Cookies.get('accepted_politique_confidentialite')
+    if(Cookies.get('accepted_politique_confidentialite') === undefined){
+      Cookies.set('accepted_politique_confidentialite', JSON.stringify(false), { expires: false ? 365 : null })
+      this.showConfidentialPolicyForm = true
+    }else{
+      if(JSON.parse(Cookies.get('accepted_politique_confidentialite'))){
+        this.showConfidentialPolicyForm = false
+      }else{
+        this.showConfidentialPolicyForm = true
+      }
+    }
+
 
     var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
     (function () {
@@ -262,7 +269,15 @@ export default {
       s0.parentNode.insertBefore(s1, s0);
     })();
 
-    this.showConfidentialPolicyForm =! this.selected_accept_politique_de_confifentialite
+    // if(!localStorage.getItem('accepted_polconf')){
+    //   this.dialogPo = true
+    // }
+    // if(!Cookies.get('accepted_politique_confidentialite')){
+    //   this.dialogPo = true
+    // }
+
+
+    // this.showConfidentialPolicyForm =! this.selected_accept_politique_de_confifentialite
   }
 }
 </script>

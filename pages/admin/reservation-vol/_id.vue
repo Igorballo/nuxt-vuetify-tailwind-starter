@@ -554,6 +554,7 @@ export default {
   layout: "admin",
   data() {
     return {
+      valid: "",
       items: [
         {
           text: 'Dashboard',

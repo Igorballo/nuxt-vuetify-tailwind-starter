@@ -3,6 +3,11 @@ import Swal from "sweetalert2";
 
 export default {
   layout: "bus-manager",
+  data(){
+    return {
+
+    }
+  },
   mounted() {
     // if(this.globalStateMessage.show)
     // Swal.fire({
