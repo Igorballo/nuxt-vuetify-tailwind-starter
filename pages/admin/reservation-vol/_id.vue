@@ -263,287 +263,15 @@
               </div>
             </v-container>
           </v-card-text>
-          <v-card-actions class="tw-mb-6" v-if="offres.length > 0">
+          <v-file-input outlined v-model="files" multiple label="Sélectionner les fichiers"  />
+          <v-card-actions class="tw-mb-6" v-if="">
             <v-btn :loading="sendSupplyToClientBtn" color="primary" @click="sendSupplyToClient()" block>Envoyer cette offre au client</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
 
-    <v-dialog width="900px" v-model="dialogAddOffre">
-      <v-form
-        ref="form"
-        v-model="valid"
-        lazy-validation
-      >
-        <v-card>
-          <div class="tw-flex tw-px-12 tw-mt-6 tw-gap-2 tw-justify-between tw-items-center">
-            <div class="tw-flex tw-justify-between tw-gap-6 tw-mb-4 tw-items-center">
-              <div class="tw-text-md">
-                <span>Départ: </span>
-                <span class="tw-font-semibold">{{
-                    reservation?.airportDepart?.name
-                  }}, {{ reservation?.airportDepart?.country }}</span>
-              </div>
-              <v-icon>mdi-airplane</v-icon>
-              <div class="tw-text-md">
-                <span>Destination: </span>
-                <span class="tw-font-semibold">{{
-                    reservation?.airportDestination?.name
-                  }}, {{ reservation?.airportDestination?.country }}</span>
-              </div>
-            </div>
-          </div>
-          <v-card-text>
-            <v-card class="tw-mb-4">
-              <v-card-title class="tw-mt-2">
-                <v-btn @click="offre.escales.push({index: 0, airport: '', arrive: '', departure: ''})" small
-                       color="blue" dark>
-                  <v-icon>mdi-airplane-edit</v-icon>
-                  ajouter une escale
-                </v-btn>
-                <v-spacer/>
-              </v-card-title>
-              <v-card-text>
-                <v-autocomplete
-                  class="tw-mb-6"
-                  v-model="offre.airline"
-                  :items="airlines"
-                  clearable
-                  hide-details
-                  hide-selected
-                  item-text="name"
-                  item-value="_id"
-                  :rules="airlineRules"
-                  label="Compagnie de voyage"
-                  outlined
-                >
-                  <template v-slot:no-data>
-                    <v-list-item>
-                      <v-list-item-title>
-                        Tapez le nom de la compagnie aérienne
-                      </v-list-item-title>
-                    </v-list-item>
-                  </template>
-
-                  <template v-slot:item="{ item }">
-                    <v-list-item-avatar
-                      class="text-h5 font-weight-light white--text"
-                    >
-                      <v-icon>mdi-airplane</v-icon>
-                    </v-list-item-avatar>
-                    <v-list-item-content>
-                      <v-list-item-title v-text="item.name"></v-list-item-title>
-                    </v-list-item-content>
-                  </template>
-                </v-autocomplete>
-
-                <div class="tw-flex tw-gap-3 tw-mb-6 tw-items-center tw-bg-white">
-                  <v-autocomplete
-                    v-model="offre.airport_depart"
-                    :items="departs"
-                    :loading="loadingDeparts"
-                    :search-input.sync="searchDeparts"
-                    clearable
-                    hide-details
-                    :filter="customFilter"
-                    hide-selected
-                    item-text="name"
-                    item-value="_id"
-                    label="Choisissez l'aéroport de départ..."
-                    :rules="adresseDepartRules"
-                    outlined
-                  >
-                    <template v-slot:no-data>
-                      <v-list-item>
-                        <v-list-item-title>
-                          Tapez le nom d'une ville ou pays ou Code Iata
-                        </v-list-item-title>
-                      </v-list-item>
-                    </template>
-
-                    <template v-slot:item="{ item }">
-                      <v-list-item-avatar
-                        class="text-h5 font-weight-light white--text"
-                      >
-                        <v-icon>mdi-airplane</v-icon>
-                      </v-list-item-avatar>
-                      <v-list-item-content>
-                        <v-list-item-title v-text="item.name"></v-list-item-title>
-                        <v-list-item-subtitle>
-                          <v-row justify="between">
-                            <v-col><span>{{ item.country }}, {{ item.city }}</span></v-col>
-                            <v-col cols="3">
-                              <v-chip small>{{ item.iata_code }}</v-chip>
-                            </v-col>
-                          </v-row>
-                        </v-list-item-subtitle>
-                      </v-list-item-content>
-                    </template>
-                  </v-autocomplete>
-
-                  <v-autocomplete
-                    class=""
-                    v-model="offre.airport_destination"
-                    :items="destinations"
-                    :loading="loadingDestinations"
-                    :search-input.sync="searchDestinations"
-                    clearable
-                    hide-details
-                    :filter="customFilter"
-                    hide-selected
-                    item-text="name"
-                    item-value="_id"
-                    label="Choisissez l'adresse d'arrivée..."
-                    :rules="adresseArriveRules"
-                    outlined
-                  >
-                    <template v-slot:no-data>
-                      <v-list-item>
-                        <v-list-item-title>
-                          Tapez le nom d'une ville ou pays ou Code Iata
-                        </v-list-item-title>
-                      </v-list-item>
-                    </template>
-
-                    <template v-slot:item="{ item }">
-                      <v-list-item-avatar
-                        class="text-h5 font-weight-light white--text"
-                      >
-                        <v-icon>mdi-airplane</v-icon>
-                      </v-list-item-avatar>
-                      <v-list-item-content>
-                        <v-list-item-title v-text="item.name"></v-list-item-title>
-                        <v-list-item-subtitle>
-                          <v-row justify="between">
-                            <v-col><span>{{ item.country }}, {{ item.city }}</span></v-col>
-                            <v-col cols="3">
-                              <v-chip small>{{ item.iata_code }}</v-chip>
-                            </v-col>
-                          </v-row>
-                        </v-list-item-subtitle>
-                      </v-list-item-content>
-                    </template>
-                  </v-autocomplete>
-                </div>
-
-
-                <div class="tw-flex tw-items-center tw-justify-between tw-px-2 tw-mt-6 tw-gap-4">
-                  <v-datetime-picker outlined ships label="Jour et heure de départ"
-                                     :rules="dateHeureDepartRules"
-                                     v-model="offre.confirmed_depart_date">
-                    <template slot="dateIcon">
-                      <v-icon>mdi-calendar</v-icon>
-                    </template>
-                    <template slot="timeIcon">
-                      <v-icon>mdi-clock-outline</v-icon>
-                    </template>
-                  </v-datetime-picker>
-
-                  <v-datetime-picker
-                    :allowed-dates="disablePastDates"
-                    outlined ships label="Jour et heure de retour"
-                    :rules="dateHeureArriveRules"
-                    v-model="offre.confirmed_comeback_date">
-                    <template slot="dateIcon">
-                      <v-icon>mdi-calendar</v-icon>
-                    </template>
-                    <template slot="timeIcon">
-                      <v-icon>mdi-clock-outline</v-icon>
-                    </template>
-                  </v-datetime-picker>
-                </div>
-
-
-                <v-text-field outlined v-model="offre.amountbuy" label="Prix d'achat du billet" :rules="prixAchatRules"
-                              type="number"/>
-                <v-text-field outlined v-model="offre.amountsell" label="Prix de revente du billet"
-                              :rules="prixReventeRules" type="number"/>
-
-                <div v-for="(escale, escale_index) in offre.escales" :key="escale_index"
-                     class="tw-rounded tw-mb-6 tw-mt-8">
-                  <v-icon @click="offre.escales.splice(escale_index, 1)" color="red" class="tw-mx-2">mdi-delete</v-icon>
-                  <div class="tw-flex tw-items-center tw-justify-between tw-px-2 tw-gap-4">
-                  <span
-                    class="tw-rounded-full tw-p-2 tw-h-8 tw-w-8 tw-flex tw-items-center tw-justify-center tw-text-white tw-font-semibold tw-bg-blue-800">
-                    {{
-                      escale_index + 1
-                    }}</span>
-                    <v-autocomplete
-                      v-model="escale.airport"
-                      :items="escales"
-                      :loading="loadingEscales"
-                      :search-input.sync="searchEscales"
-                      clearable
-                      :filter="customFilter"
-                      hide-details
-                      hide-selected
-                      item-text="name"
-                      item-value="_id"
-                      label="Choisissez l'aéroport d'escale..."
-                      :rules="escaleRules"
-                      outlined
-                    >
-                      <template v-slot:no-data>
-                        <v-list-item>
-                          <v-list-item-title>
-                            Tapez le nom d'une ville ou pays ou Code Iata
-                          </v-list-item-title>
-                        </v-list-item>
-                      </template>
-
-                      <template v-slot:item="{ item }">
-                        <v-list-item-avatar
-                          class="text-h5 font-weight-light white--text"
-                        >
-                          <v-icon>mdi-airplane</v-icon>
-                        </v-list-item-avatar>
-                        <v-list-item-content>
-                          <v-list-item-title v-text="item.name"></v-list-item-title>
-                          <v-list-item-subtitle>
-                            <v-row justify="between">
-                              <v-col><span>{{ item.country }}, {{ item.city }}</span></v-col>
-                              <v-col cols="3">
-                                <v-chip small>{{ item.iata_code }}</v-chip>
-                              </v-col>
-                            </v-row>
-                          </v-list-item-subtitle>
-                        </v-list-item-content>
-                      </template>
-                    </v-autocomplete>
-                  </div>
-
-                  <div class="tw-flex tw-items-center tw-justify-between tw-px-2 tw-mt-6 tw-gap-4">
-                    <v-datetime-picker outlined ships label="Jour et heure d'arrivée" :rules="dateArriveRules"
-                                       v-model="escale.arrive">
-                      <template slot="dateIcon">
-                        <v-icon>mdi-calendar</v-icon>
-                      </template>
-                      <template slot="timeIcon">
-                        <v-icon>mdi-clock-outline</v-icon>
-                      </template>
-                    </v-datetime-picker>
-                    <v-datetime-picker outlined ships label="Jour et heure de départ" :rules="dateDepartRules"
-                                       v-model="escale.departure">
-                      <template slot="dateIcon">
-                        <v-icon>mdi-calendar</v-icon>
-                      </template>
-                      <template slot="timeIcon">
-                        <v-icon>mdi-clock-outline</v-icon>
-                      </template>
-                    </v-datetime-picker>
-                  </div>
-                  <v-divider></v-divider>
-                </div>
-              </v-card-text>
-            </v-card>
-            <v-btn @click="sendSupply()" color="red" :loading="sendSupplyBtn" class="tw-text-white tw-w-full tw-mt-8">
-              Enrégistrer cette offre
-            </v-btn>
-          </v-card-text>
-        </v-card>
-      </v-form>
-    </v-dialog>
+    
   </v-container>
 </template>
 
@@ -646,9 +374,20 @@ export default {
     disablePastDates(val) {
       return val >= new Date().toISOString().substr(0, 10)
     },
-    async sendSupplyToClient(){
+     async sendSupplyToClient() {
+      const formData = new FormData();
+  this.files.forEach((file) => {
+    formData.append('files', file);
+  });
+     await axios.post('/reservation-vol/send-offer-to-customer/6398d3e3a79ffe12c8267977', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      })
+    },
+   /*  async sendSupplyToClient(){
       this.sendSupplyToClientBtn = true
-      await axios.post(`/reservation-vol/send-offer-to-customer/6398d3e3a79ffe12c8267977`).then( res => {
+      await axios.post(``).then( res => {
         if (res.data.error) {
           this.sendSupplyToClientBtn = false
           Swal.fire({
@@ -661,7 +400,7 @@ export default {
         this.sendSupplyToClientBtn = false
         this.showToast('success', 'Offre de reservation de vol envoyée au client avec succès')
       })
-    },
+    }, */
     async getReservationInfos() {
       this.loadingReservation = true
       const response = await axios.get(`/reservation-vol/${this.$route.params.id}`)

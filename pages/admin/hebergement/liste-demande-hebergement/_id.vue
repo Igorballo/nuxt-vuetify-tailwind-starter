@@ -157,7 +157,7 @@
           </v-card-title>
           <v-card-text class="tw-px-4 tw-flex tw-flex-col tw-gap-4">
             <v-card>
-              <v-file-input multiple outlined v-model="selectedFile" accept="application/pdf" @change="handleFileChange" />
+              <v-file-input outlined v-model="files" multiple label="Sélectionner les fichiers"  />
               <v-card-actions class="tw-mb-6" v-if="">
                 <v-btn color="primary" @click="sendSupplyToClient()" block>Envoyer cette offre au client</v-btn>
               </v-card-actions>
@@ -183,6 +183,7 @@ export default {
     return {
       demande_hotel: null,
       selectedFile: null,
+      files: []
     }
   },
 
@@ -196,6 +197,18 @@ export default {
         .then(response => {
           this.demande_hotel = response.data.reservation;
         })
+    },
+
+     async sendSupplyToClient() {
+      const formData = new FormData();
+  this.files.forEach((file) => {
+    formData.append('files', file);
+  });
+      await axios.post('/send-tourisme-offer', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      })
     },
 
   }
