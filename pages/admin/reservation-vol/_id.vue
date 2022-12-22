@@ -1,5 +1,10 @@
 <template>
   <v-container fluid>
+    <v-breadcrumbs :items="items">
+      <template v-slot:divider>
+        <v-icon>mdi-chevron-right</v-icon>
+      </template>
+    </v-breadcrumbs>
     <v-overlay v-if="loadingReservation"/>
     <v-row>
       <v-col cols="12">
@@ -91,7 +96,7 @@
               <div class="tw-flex tw-justify-between">
                 <span class="tw-font-semibold tw-text-lg">Date de départ</span>
                 <div class="tw-flex tw-gap-2">
-                  <v-chip>{{ reservation.departDate|moment('d / MM / YYYY') }}</v-chip>
+                  <v-chip>{{ reservation.departDate|moment('DD / MM / YYYY') }}</v-chip>
                 </div>
               </div>
             </div>
@@ -100,8 +105,10 @@
             <div class="tw-flex tw-flex-col">
               <div class="tw-flex tw-justify-between">
                 <span class="tw-font-semibold tw-text-lg">Date de retour</span>
-                <v-chip v-if="reservation.comebackDate" class="tw-text-lg">{{ reservation.comebackDate }}</v-chip>
-                <v-chip v-else>Aller Simple</v-chip>
+                <div class="tw-flex tw-gap-2">
+                  <v-chip v-if="reservation.hasOwnProperty('comebackDate')">{{ reservation.comebackDate|moment('DD / MM / YYYY') }}</v-chip>
+                  <v-chip v-else>Aller simple</v-chip>
+                </div>
               </div>
             </div>
             <v-divider/>
@@ -110,7 +117,7 @@
               <div class="tw-flex tw-justify-between">
                 <span class="tw-font-semibold tw-text-lg">Type de classe</span>
                 <div class="tw-flex tw-gap-2">
-                  <v-chip>??</v-chip>
+                  <v-chip>{{ reservation.typeClasse }}</v-chip>
                 </div>
               </div>
             </div>
@@ -257,7 +264,7 @@
             </v-container>
           </v-card-text>
           <v-card-actions class="tw-mb-6" v-if="offres.length > 0">
-            <v-btn color="primary" @click="" block>Envoyer cette offre au client</v-btn>
+            <v-btn :loading="sendSupplyToClientBtn" color="primary" @click="sendSupplyToClient()" block>Envoyer cette offre au client</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -547,6 +554,24 @@ export default {
   layout: "admin",
   data() {
     return {
+      items: [
+        {
+          text: 'Dashboard',
+          disabled: false,
+          href: '/admin/dashboard',
+        },
+        {
+          text: 'Reservation Vols',
+          disabled: false,
+          href: '/admin/reservation',
+        },
+        {
+          text: 'Demande de Réservation',
+          disabled: true,
+          href: 'breadcrumbs_link_2',
+        },
+      ],
+      sendSupplyToClientBtn: false,
       airlineRules: [
         v => !!v || 'ce champs est obligatoire',
       ],
@@ -620,6 +645,22 @@ export default {
   methods: {
     disablePastDates(val) {
       return val >= new Date().toISOString().substr(0, 10)
+    },
+    async sendSupplyToClient(){
+      this.sendSupplyToClientBtn = true
+      await axios.post(`/reservation-vol/send-offer-to-customer/6398d3e3a79ffe12c8267977`).then( res => {
+        if (res.data.error) {
+          this.sendSupplyToClientBtn = false
+          Swal.fire({
+            title: 'Echec',
+            text: 'Une Erreur s\'est produite',
+            icon: 'error'
+          })
+          return
+        }
+        this.sendSupplyToClientBtn = false
+        this.showToast('success', 'Offre de reservation de vol envoyée au client avec succès')
+      })
     },
     async getReservationInfos() {
       this.loadingReservation = true

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form class="tw-flex tw-flex-col tw-rounded-lg tw-bg-white tw-p-4 md:tw-p-6 tw-w-full">
+    <form class="tw-flex tw-flex-col tw-rounded-lg tw-bg-white tw-p-2 md:tw-p-6 tw-w-full">
       <v-text-field
         label="Lieu de prise en charge"
         outlined
@@ -78,93 +78,97 @@
         v-model="carReservationForm.lieu_de_restitution"
       ></v-text-field>
 
-                    <div class="tw-flex tw-w-full">
-                      <v-menu
-                        ref="date_destination_ref"
-                        v-model="date_depart_menu"
-                        :return-value.sync="date"
-                        transition="scale-transition"
-                        offset-y
-                        min-width="auto"
-                      >
-                        <template v-slot:activator="{ on, attrs }">
-                          <v-text-field
-                            v-model="carReservationForm.date_fin"
-                            label="Date de prise en charge"
-                            readonly
-                            outlined
-                            v-bind="attrs"
-                            v-on="on"
-                            class="tw-rounded-r-none"
-                          ></v-text-field>
-                        </template>
-                        <v-date-picker
-                          v-model="carReservationForm.date_fin"
-                          no-title
-                          scrollable
-                        >
-                        </v-date-picker>
-                      </v-menu>
-                      <v-menu
-                        ref="restitution_heure_ref"
-                        v-model="heure_restitution_menu"
-                        :close-on-content-click="false"
-                        :nudge-right="40"
-                        :return-value.sync=carReservationForm.heure_fin
-                        transition="scale-transition"
-                        offset-y
-                        max-width="290px"
-                        min-width="290px"
-                      >
-                        <template v-slot:activator="{ on, attrs }">
-                          <v-text-field
-                            v-model="carReservationForm.heure_fin"
-                            label="Heure de restitution"
-                            class="tw-rounded-l-none"
-                            readonly
-                            v-bind="attrs"
-                            v-on="on"
-                            outlined
-                          ></v-text-field>
-                        </template>
-                        <v-time-picker
-                          v-if="heure_restitution_menu"
-                          v-model="carReservationForm.heure_fin"
-                          full-width
-                          @click:minute="$refs.restitution_heure_ref.save(carReservationForm.heure_fin)"
-                        ></v-time-picker>
-                      </v-menu>
-                    </div>
-                     <v-select
-                :items="lowPrice"
-                outlined
-                label="Plus bas prix"
-              >
-                <template v-slot:selection="{ item, index }">
-                  <v-chip >
-                    <span>{{ item }} XOF</span>
-                  </v-chip>
-                </template>
-              </v-select>
+      <div class="tw-flex tw-w-full">
+        <v-menu
+          ref="date_destination_ref"
+          v-model="date_depart_menu"
+          :return-value.sync="date"
+          transition="scale-transition"
+          offset-y
+          min-width="auto"
+        >
+          <template v-slot:activator="{ on, attrs }">
+            <v-text-field
+              v-model="carReservationForm.date_fin"
+              label="Date de prise en charge"
+              readonly
+              outlined
+              v-bind="attrs"
+              v-on="on"
+              class="tw-rounded-r-none"
+            ></v-text-field>
+          </template>
+          <v-date-picker
+            v-model="carReservationForm.date_fin"
+            no-title
+            scrollable
+          >
+          </v-date-picker>
+        </v-menu>
+        <v-menu
+          ref="restitution_heure_ref"
+          v-model="heure_restitution_menu"
+          :close-on-content-click="false"
+          :nudge-right="40"
+          :return-value.sync=carReservationForm.heure_fin
+          transition="scale-transition"
+          offset-y
+          max-width="290px"
+          min-width="290px"
+        >
+          <template v-slot:activator="{ on, attrs }">
+            <v-text-field
+              v-model="carReservationForm.heure_fin"
+              label="Heure de restitution"
+              class="tw-rounded-l-none"
+              readonly
+              v-bind="attrs"
+              v-on="on"
+              outlined
+            ></v-text-field>
+          </template>
+          <v-time-picker
+            v-if="heure_restitution_menu"
+            v-model="carReservationForm.heure_fin"
+            full-width
+            @click:minute="$refs.restitution_heure_ref.save(carReservationForm.heure_fin)"
+          ></v-time-picker>
+        </v-menu>
+      </div>
 
-              <v-select
-                :items="highPrice"
-                outlined
-                label="Plus haut prix"
-              >
-                <template v-slot:selection="{ item, index }">
-                  <v-chip >
-                    <span>{{ item }} XOF</span>
-                  </v-chip>
-                </template>
-              </v-select>
-            
+      <div class="tw-flex">
+        <v-select
+          :items="lowPrice"
+          outlined
+          label="Plus bas prix"
+          class="tw-rounded-r-none"
+        >
+          <template v-slot:selection="{ item, index }">
+            <v-chip>
+              <span>{{ item }} XOF</span>
+            </v-chip>
+          </template>
+        </v-select>
 
-                    <v-btn @click="searchCar"
-                           class="tw-w-[fit-content] tw-rounded-full tw-py-6 tw-px-4 tw-text-white tw-ease-in tw-font-semibold tw-bg-red-600 tw-border-2 tw-border-red-700 tw-duration-300">
-                      Rechercher des voitures
-                    </v-btn>
-                  
+        <v-select
+          :items="highPrice"
+          outlined
+          label="Plus haut prix"
+          class="tw-rounded-l-none"
+        >
+          <template v-slot:selection="{ item, index }">
+            <v-chip>
+              <span>{{ item }} XOF</span>
+            </v-chip>
+          </template>
+        </v-select>
+      </div>
+
+      <v-btn :loading="searchHotelBtn" @click="searchCar"
+             class="tw-w-[fit-content] tw-rounded-full tw-py-6 tw-px-4 tw-text-white tw-ease-in tw-font-semibold tw-bg-red-600 tw-border-2 tw-border-red-700 tw-duration-300">
+        Rechercher des voitures
+      </v-btn>
+
 
     </form>
 
@@ -177,6 +181,8 @@ import {mapGetters} from "vuex";
 export default {
   data() {
     return {
+      searchHotelBtn: false,
+      carFilterDialog: false,
       dialog: false,
       heure_debut_menu: false,
       heure_restitution_menu: false,
@@ -202,12 +208,15 @@ export default {
 
 
   methods: {
-     searchCar() {
+    searchCar() {
+      this.searchHotelBtn = true
       axios.get('/hotels/get-hotels?pricemin=200&pricemax=10000&limit=4')
         .then(response => {
-          console.log(response);
+          this.searchHotelBtn = false
           this.hotels = response.data.hotels;
+          this.carFilterDialog = false
         })
+      this.searchHotelBtn = false
     },
   },
 

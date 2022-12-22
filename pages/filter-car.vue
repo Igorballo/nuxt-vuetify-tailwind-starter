@@ -1,15 +1,22 @@
 <template>
   <div class="tw-bg-gray-200 tw-px-2 tw-p-4 md:tw-py-12">
-    <div class="tw-relative tw-container tw-mx-auto md:tw-px-4 md:tw-flex md:tw-gap-8 tw-w-full">
-      <div class="tw-hidden md:tw-sticky md:tw-top-24 lg:tw-block tw-w-1/3 tw-h-screen">
-        <div>
+    <div class="tw-relative tw-container tw-mx-auto md:tw-px-4 tw-flex tw-flex-col md:tw-flex-row md:tw-gap-8 tw-w-full">
+      <div class="tw-sticky md:tw-top-24 md:tw-block tw-w-full md:tw-w-1/3">
+        <div class="">
           <div
-            class="tw-flex tw-mb-4 tw-h-full tw-w-full tw-items-center tw-gap-2 tw-px-2 lg:tw-px-4 tw-py-4 tw-bg-white tw-rounded tw-text-red-600 tw-text-sm">
-            <h1><span class="tw-font-semibold tw-text-sm lg:tw-text-md">Départ: </span>{{ carReservationForm.lieu_prise_en_charge }} {{ carReservationForm.date_debut}} à {{ carReservationForm.heure_debut}}
-              - <span class="tw-font-semibold tw-text-sm lg:tw-text-md">Restitution: </span> <span v-if="carReservationForm.autre_lieu_restitution">{{ carReservationForm.lieu_prise_en_charge }}</span> <span v-if="!carReservationForm.autre_lieu_restitution">{{ carReservationForm.lieu_de_restitution }}</span> {{ carReservationForm.date_fin}} à {{ carReservationForm.heure_fin}}</h1>
-          </div>
-          <FilterCarForm/>
+            class="tw-flex tw-mb-2 tw-h-full tw-w-full tw-items-center tw-gap-2 tw-px-2 lg:tw-px-4 tw-py-4 tw-bg-white tw-rounded tw-text-red-600 tw-text-sm">
+            <h1><span class="tw-font-semibold tw-text-sm lg:tw-text-md">Départ: </span>{{
+                carReservationForm.lieu_prise_en_charge
+              }} {{ carReservationForm.date_debut }} à {{ carReservationForm.heure_debut }}
+              - <span class="tw-font-semibold tw-text-sm lg:tw-text-md">Restitution: </span>
 
+              <span v-if="!carReservationForm.autre_lieu_restitution">{{
+                  carReservationForm.lieu_prise_en_charge
+                }}</span>
+              <span v-if="carReservationForm.autre_lieu_restitution">{{ carReservationForm.lieu_de_restitution }}</span>
+              {{ carReservationForm.date_fin }} à {{ carReservationForm.heure_fin }}</h1>
+          </div>
+          <div class="tw-hidden md:tw-block"><FilterCarForm/></div>
         </div>
       </div>
 
@@ -125,8 +132,8 @@
               <v-btn
                 class=""
                 color="error darken-1"
-                :loading="btnLoading"
-                @click="userInfoDialog = false, disclaimerDialog = true && $refs.modal.validate()"
+                :loading="sendCardReservation"
+                @click="reserverCar()"
               >
                 Envoyer la demande
               </v-btn>
@@ -138,57 +145,52 @@
 
       <div justify="center" class="lg:tw-hidden">
         <v-dialog
-          v-model="filterFialog"
+          v-model="carFilterDialog"
           persistent
           max-width="600px"
         >
           <v-card class="tw-relative">
             <v-card-title>
-              <span class="text-h5">Recherchez une voiture de location</span>
+              <span class="tw-text-sm lg:tw-text-lg">Recherchez une voiture de location</span>
             </v-card-title>
-            <span @click="dialog = false" class="hover:tw-bg-gray-300 hover:tw-cursor-pointer tw-bg-white tw-p-2 tw-absolute tw-rounded-full tw-top-0 tw-right-0">
+            <span @click="carFilterDialog = false"
+                  class="hover:tw-bg-gray-300 hover:tw-cursor-pointer tw-bg-white tw-p-2 tw-absolute tw-rounded-full tw-top-0 tw-right-0">
               <v-icon>mdi-close</v-icon>
             </span>
             <v-card-text>
-              <v-container>
-                <div>
+              <div>
                   <FilterCarForm/>
-                </div>
-              </v-container>
+              </div>
               <small class="tw-hidden">*indicates required field</small>
             </v-card-text>
           </v-card>
         </v-dialog>
       </div>
 
-
-      <div class="tw-flex tw-flex-col tw-mt-6 md:tw-mt-0 tw-gap-4">
+      <div class="tw-flex tw-flex-col tw-gap-4">
+        <div class="tw-flex-col-reverse tw-flex md:tw-hidden tw-items-center tw-gap-2">
+          <button @click="carFilterDialog = true"
+                  class="tw-bg-red-600 tw-w-full lg:tw-w-[fit-content] tw-text-white tw-font-semibold tw-whitespace-nowrap tw-rounded tw-py-3 tw-px-4">
+            Filtrer de nouveau
+          </button>
+        </div>
         <div
-          class="tw-flex tw-items-center tw-gap-2 tw-px-2 tw-py-3 tw-border tw-border-red-600 tw-rounded tw-text-red-600 tw-text-xs lg:tw-text-sm">
+          class="tw-flex tw-items-center tw-gap-2 tw-mt-2 md:tw-mt-0 tw-px-2 tw-py-3 tw-border tw-border-red-600 tw-rounded tw-text-red-600 tw-text-xs lg:tw-text-sm">
           <v-icon color="red">mdi-alarm</v-icon>
           <h1>Il y a une forte demande à Lome Airport pour ces dates. Réservez tout de suite pour éviter d'être
             déçu!!</h1>
         </div>
 
-        <div class="tw-flex-col-reverse tw-flex lg:tw-hidden tw-items-center tw-gap-2">
-          <button @click="dialog = true"
-                  class="tw-bg-red-600 tw-w-full lg:tw-w-[fit-content] tw-text-white tw-font-semibold tw-whitespace-nowrap tw-rounded tw-py-3 tw-px-4">
-            Filtrer de nouveau
-          </button>
-          <div
-            class="tw-flex tw-h-full tw-w-full tw-items-center tw-gap-2 tw-px-2 lg:tw-px-4 tw-py-3 tw-bg-white tw-rounded tw-text-red-600 tw-text-sm">
-            <h1><span class="tw-font-semibold tw-text-sm lg:tw-text-md">Départ: </span>Lomé Airport 16 déc 2022 (09:30)
-              - 17 déc 2022 (10:30)</h1>
-          </div>
-        </div>
         <div class="tw-w-full tw-h-full tw-flex tw-flex-col tw-gap-8">
-          <div v-for="car in cars" class="tw-bg-blue-800 tw-pt-8 tw-p-2 tw-rounded-lg tw-w-full">
+          <div v-for="car in cars" class="tw-bg-blue-800 tw-px-2 tw-pb-2 tw-rounded-lg tw-w-full">
+            <div class="tw-text-white tw-py-2">Disponible Immédiatement</div>
+            <div v-if="false" class="tw-text-white tw-py-2">Disponible à partir de 02/01/2023</div>
             <div class="tw-bg-white tw-px-4">
-              <div class="tw-text-xl tw-font-semibold tw-py-3 tw-border-b"> {{ car.nom }} {{ car.marque}}
+              <div class="tw-text-xl tw-font-semibold tw-py-3 tw-border-b"> {{ car.nom }} {{ car.marque }}
               </div>
               <div class="tw-py-4 tw-flex tw-flex-wrap md:tw-flex-nowrap tw-gap-4 md:tw-gap-12 tw-text-sm">
                 <div class="tw-flex tw-flex-col tw-gap-2 md:tw-gap-6 tw-w-full">
-                  <img class="tw-h-full tw-w-full md:tw-w-64"
+                  <img class="tw-h-[25vh] tw-w-full md:tw-w-64"
                        :src="showImages(car)"
                        alt="voiture">
                   <div class="tw-flex tw-items-center tw-gap-8 lg:tw-gap-12 tw-font-semibold">
@@ -233,13 +235,22 @@
                 </div>
                 <div class="tw-flex tw-flex-col tw-w-full tw-text-sm">
                   <div class="tw-inline-flex tw-gap-4 tw-items-start">
-                    <v-icon>mdi-airplane</v-icon>
+                    <v-icon>mdi-map-marker-radius</v-icon>
                     <span>Lieu De Prise En Charge : <br> <p class="tw-font-semibold">Au Terminal</p> </span>
                   </div>
                   <div class="tw-inline-flex tw-gap-4 tw-items-start">
                     <v-icon>mdi-gas-station-outline</v-icon>
                     <span>Politique En Matière De Carburant : <br> <p
                       class="tw-font-semibold">Quart au quart</p> </span>
+                  </div>
+                  <div class="tw-inline-flex tw-gap-4 tw-items-start">
+                    <v-icon>mdi-train-car</v-icon>
+                    <span>Voiture à destination : <br> <p class="tw-font-semibold">Lomé uniquement</p> </span>
+                  </div>
+                  <div class="tw-inline-flex tw-gap-4 tw-items-start">
+                    <v-icon>mdi-gas-station-outline</v-icon>
+                    <span>Type De Carburant : <br> <p
+                      class="tw-font-semibold">Essence</p> </span>
                   </div>
                   <div class="tw-inline-flex tw-gap-4 tw-items-start">
                     <v-icon>mdi-speedometer</v-icon>
@@ -249,10 +260,10 @@
                   <div class="tw-flex tw-flex-col tw-gap-4">
                     <div class="tw-text-md">
                       <span class="tw-text-md tw-font-light tw-text-justify">
-                        {{car.description}}
-                      </span> 
+                        {{ car.description }}
+                      </span>
                     </div>
-                   
+
                   </div>
 
 
@@ -278,12 +289,12 @@
                   </div>
 
                   <div class="tw-flex tw-flex-col tw-gap-4">
-                    <div class="tw-text-lg"><span class="tw-text-2xl tw-font-extrabold">{{car.prix}} XOF/JOUR</span> 
+                    <div class="tw-text-lg"><span class="tw-text-2xl tw-font-extrabold">{{ car.prix }} XOF/JOUR</span>
                     </div>
-                    <button @click="userInfoDialog = true"
-                      class="tw-py-3 tw-px-12 tw-text-white tw-text-xl tw-font-semibold tw-rounded-lg tw-bg-red-600">
+                    <v-btn @click="saveCarId(car._id)"
+                            class="tw-py-3 tw-px-12 tw-text-white tw-text-xl tw-font-semibold tw-rounded-lg tw-bg-red-600">
                       Reservez
-                    </button>
+                    </v-btn>
                   </div>
                 </div>
               </div>
@@ -299,15 +310,18 @@
 import config from "../config";
 import FilterCarForm from "../components/FilterCarForm";
 import {mapGetters} from "vuex";
+import json from "../data/CountryCodes.json";
 
 export default {
   components: {FilterCarForm},
   layout: 'master',
   data() {
     return {
-      filterFialog: false,
+      carFilterDialog: false,
+      filterDialog: false,
       btnLoading: false,
       userInfoDialog: false,
+      sendCardReservation: false,
       carReservationForm: {
         autre_lieu_restitution: false,
         lieu_prise_en_charge: "",
@@ -316,6 +330,7 @@ export default {
         heure_fin: "",
         date_debut: "",
         date_fin: "",
+        car_id: "",
         lastname: "",
         firstname: "",
         email: "",
@@ -325,6 +340,7 @@ export default {
           number: '',
         },
       },
+      countries: json,
       date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
       lowPrice: ['0', '2000', '5000', '10000', '25000', '50000'],
       highPrice: ['2000', '5000', '10000', '25000', '+ 50000'],
@@ -333,37 +349,104 @@ export default {
     }
   },
   created() {
-      this.initialize()
+    this.initialize()
   },
   methods: {
-    showImages(item) {
-      console.log(item)    
-      console.log('hello')    
-     const url = config.app_local ?`${config.app_back_debug_url}/${item.images[0]}`:`${config.app_back_url}/${item.images[0]}` 
-     return url
+    saveCarId(car_id){
+      this.userInfoDialog = true
+      this.carReservationForm.car_id = car_id
     },
-     getCar() {
-        axios.get('/cars/get-cars?limit=25')
+    async searchCar() {
+      this.searchCarBtn = true
+      await axios.get(`/cars/get-cars?pricemin=2000&pricemax=30000&limit=100`)
+        .then(response => {
+          console.log(response);
+          this.hotels = response.data.hotels;
+          this.searchHotelBtn = false
+        }).catch(error => {
+          console.log(error)
+          this.searchHotelBtn = false
+        })
+    },
+    async reserverCar(){
+        this.sendCardReservation = true
+        await axios.post('/reservation-car/request-car-reservation', this.carReservationForm)
           .then(response => {
-            console.log(response);
-            this.cars = response.data.cars;
-          })
-      },
-      initialize() {
-        this.getCar();
+            if (response.data.error) {
+              this.userInfoDialog = false
+              this.sendCardReservation = false
 
-      },
+              Swal.fire({
+                title: 'Echec',
+                text: 'Une Erreur s\'est produite',
+                icon: 'error'
+              })
+              return
+            }
+
+            this.sendCardReservation = false
+            this.userInfoDialog = false
+            this.carReservationForm = {
+              autre_lieu_restitution: false,
+                lieu_prise_en_charge: '',
+                lieu_de_restitution: '',
+                heure_debut: '',
+                heure_fin: '',
+                date_debut: '',
+                date_fin: '',
+                car_id: '',
+                lastname: '',
+                firstname: '',
+                email: '',
+                passport_id: '',
+                phone_number: {
+                code: '',
+                  number: '',
+              },
+            }
+            this.showToast('success', 'Demande de reservation de voiture envoyée avec succès')
+          }).catch(error => {
+            console.log(error)
+          })
+
+    },
+    showImages(item) {
+      console.log(item)
+      console.log('hello')
+      const url = config.app_local ? `${config.app_back_debug_url}/${item.images[0]}` : `${config.app_back_url}/${item.images[0]}`
+      return url
+    },
+    async getCar() {
+      await axios.get('/cars/get-cars?limit=25')
+        .then(response => {
+          console.log(response);
+          this.cars = response.data.cars;
+        })
+    },
+    initialize() {
+      this.getCar();
+    },
   },
 
   mounted() {
-  this.carReservationForm.date_debut = this.selected_recherche_car_date_debut
-  this.carReservationForm.date_fin = this.selected_recherche_car_date_fin
-  this.carReservationForm.heure_debut = this.selected_recherche_car_heure_debut
-  this.carReservationForm.heure_fin = this.selected_recherche_car_heure_fin
-  this.carReservationForm.lieu_prise_en_charge = this.selected_recherche_car_lieu_prise_en_charge
-  this.carReservationForm.lieu_de_restitution = this.selected_recherche_car_lieu_restitution
-  this.carReservationForm.autre_lieu_restitution = this.selected_recherche_car_autre_lieu_restitution
-    },
+    this.carReservationForm.date_debut = this.selected_recherche_car_date_debut
+    this.carReservationForm.date_fin = this.selected_recherche_car_date_fin
+    this.carReservationForm.heure_debut = this.selected_recherche_car_heure_debut
+    this.carReservationForm.heure_fin = this.selected_recherche_car_heure_fin
+    this.carReservationForm.lieu_prise_en_charge = this.selected_recherche_car_lieu_prise_en_charge
+    this.carReservationForm.lieu_de_restitution = this.selected_recherche_car_lieu_restitution
+    this.carReservationForm.autre_lieu_restitution = this.selected_recherche_car_autre_lieu_restitution
+
+    if (localStorage.getItem('reloaded')) {
+      // The page was just reloaded. Clear the value from local storage
+      // so that it will reload the next time this page is visited.
+      localStorage.removeItem('reloaded');
+    } else {
+      // Set a flag so that we know not to reload the page twice.
+      localStorage.setItem('reloaded', '1');
+      location.reload();
+    }
+  },
   computed: {
     ...mapGetters('recherche-cars', [
       'selected_recherche_car_date_debut',
@@ -373,7 +456,6 @@ export default {
       'selected_recherche_car_autre_lieu_restitution',
       'selected_recherche_car_lieu_prise_en_charge',
       'selected_recherche_car_lieu_restitution',
-
     ]),
   },
 }

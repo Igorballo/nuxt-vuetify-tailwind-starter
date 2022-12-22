@@ -1,7 +1,8 @@
 <template>
   <div>
+    <Annonce />
     <div class="tw-relative">
-      <div style="z-index: 500" class="tw-flex tw-justify-center tw-items-center tw-absolute tw-inset-0">
+      <div style="z-index: 200" class="tw-flex tw-justify-center tw-items-center tw-absolute tw-inset-0">
         <v-form
           lazy-validation
           ref="form"
@@ -434,7 +435,9 @@
                     class=""
                     color="error darken-1"
                     :loading="btnLoading"
-                    @click="userInfoDialog = false, disclaimerDialog = true && $refs.modal.validate()"
+                    @click="reservation() && $refs.modal.validate()"
+
+
                   >
                     Envoyer la demande
                   </v-btn>
@@ -444,7 +447,7 @@
               </v-form>
             </v-dialog>
 
-            <v-dialog
+            <!-- <v-dialog
               v-model="disclaimerDialog"
               width="500"
             >
@@ -479,13 +482,13 @@
                     color="primary"
                     text
                     @click="reservation()"
-                    :loading="btnloading"
+                    :loading="policybtnloading"
                   >
                     J'accepte
                   </v-btn>
                 </v-card-actions>
               </v-card>
-            </v-dialog>
+            </v-dialog> -->
           </div>
 
 
@@ -514,15 +517,22 @@
       </div>
       <v-carousel
         cycle
-        height="600px"
+        height="600"
         hide-delimiter-background
         show-arrows-on-hover
       >
         <v-carousel-item
-          v-for="(slide, i) in 3"
-          src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+          src="https://images.unsplash.com/photo-1621331805847-bb27233e4ae1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
           :key="i"
         >
+        </v-carousel-item>
+        <v-carousel-item
+          src="https://images.unsplash.com/photo-1501263025405-af2cd1ee2c73?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1981&q=80"
+          :key="i">
+        </v-carousel-item>
+        <v-carousel-item
+          src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1174&q=80"
+          :key="i">
         </v-carousel-item>
       </v-carousel>
     </div>
@@ -545,6 +555,7 @@ export default {
   data() {
     return {
       btnloading: false,
+      policybtnloading: false,
       type_classe: ['Classe économique', 'Classe économique premium', 'Classe affaire', 'Première classe'],
        departRules: [
         v => !!v || 'Adresse de Depart est requis',
@@ -619,6 +630,7 @@ export default {
           bebes: 0,
         },
       },
+      showConfidentialPolicyForm: null,
       value: null,
       date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
       depart_menu: false,
@@ -627,6 +639,10 @@ export default {
       menu: false,
       isEditing: false,
     }
+  },
+
+  mounted(){
+    this.showConfidentialPolicyForm = this.selected_accept_politique_de_confifentialite
   },
 
 
@@ -658,17 +674,24 @@ export default {
       return country.indexOf(searchText) > -1 || name.indexOf(searchText) > -1 || codeiata.indexOf(searchText) > -1
     },
     async reservation() {
-      this.btnloading = true;
+      this.btnLoading = true
+      this.policybtnloading = false
       await axios.post('/reservation-vol/request-flight-reservation', this.reservationForm).then((response) => {
         if (response.data.error) {
+          this.btnLoading = false
           Swal.fire({
             title: 'Echec',
             text: 'Une Erreur s\'est produite',
             icon: 'error'
           })
+          this.btnLoading = false
+          this.policybtnloading = false
+          this.userInfoDialog = false
+          this.disclaimerDialog = false
           return
         }
         this.btnLoading = false
+        this.policybtnloading = false
         this.userInfoDialog = false
         this.disclaimerDialog = false
         this.reservationForm = {
@@ -696,6 +719,7 @@ export default {
           this.showToast('success', 'Demande de reservation envoyée avec succès')
       }).catch(error => {
         this.btnLoading = false
+        this.policybtnloading = true
         this.userInfoDialog = false
         this.disclaimerDialog = false
         this.showToast('error', "Une erreur s'est produite")

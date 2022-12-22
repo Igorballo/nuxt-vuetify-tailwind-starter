@@ -4,7 +4,7 @@
     <footer class="tw-text-center lg:tw-text-left tw-bg-red-600 tw-text-white">
       <div
         class="tw-flex tw-justify-center tw-items-center lg:tw-justify-between tw-p-6 tw-border-b tw-border-gray-300">
-        <div class="tw-mr-12 tw-hidden lg:tw-block">
+        <div class="tw-mr-12 tw-hidden tw-text-sm lg:tw-block">
           <span>Connectez-vous avec nous sur les réseaux sociaux :</span>
         </div>
         <div class="tw-flex tw-justify-center">
@@ -25,14 +25,6 @@
               </path>
             </svg>
           </a>
-          <a href="#!" class="tw-text-white tw-mr-6 ">
-            <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="google"
-                 class="tw-w-3.5" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512">
-              <path fill="currentColor"
-                    d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z">
-              </path>
-            </svg>
-          </a>
           <a href="https://www.instagram.com/manglam_tours_and_travels_228/" class="tw-text-white tw-mr-6 ">
             <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="instagram"
                  class="tw-w-3.5" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -41,7 +33,7 @@
               </path>
             </svg>
           </a>
-          <a href="#!" class="tw-text-white tw-mr-6 ">
+          <a href="https://www.linkedin.com/company/manglamtours228/" class="tw-text-white tw-mr-6 ">
             <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="linkedin-in"
                  class="tw-w-3.5" role="img" xmlns="http://www.w3.org/2000/svg"
                  viewBox="0 0 448 512">
@@ -52,56 +44,58 @@
           </a>
         </div>
       </div>
-      <div class="tw-mx-6 tw-py-10 tw-text-center md:tw-text-left">
-        <div class="tw-grid grid-1 md:tw-grid-cols-2 lg:tw-grid-cols-4 tw-gap-8">
-          <div class="tw-flex tw-flex-col tw-items-center lg:tw-items-start">
-            <img class="tw-h-14 tw-w-72 lg:tw-w-96 tw-mb-6" src="../assets/img/MANGLAM-IATA-LOGO-TEXTE.png"
+      <div class="tw-mx-8 tw-py-10 tw-text-center md:tw-text-left">
+        <div class="tw-grid grid-1 md:tw-grid-cols-2 lg:tw-grid-cols-4 tw-gap-4">
+          <div class="tw-flex tw-flex-col tw-items-center lg:tw-items-start tw-text-sm lg:tw-mr-16">
+            <img class="tw-h-18 tw-rounded-full tw-w-72 lg:tw-w-96 tw-mb-6" src="../assets/img/footer1.jpg"
                  alt="Manglam-logo">
-            <p class="tw-text-white">
-              Here you can use rows and columns to organize your footer content. Lorem ipsum dolor
-              sit amet, consectetur adipisicing elit.
+
+            <p class="tw-text-white tw-text-sm tw-text-justify">
+              Depuis votre réservation jusqu'à votre arrivée au lieu de destination,
+              MANGLAM Tours vous accompagne tout le long de votre voyage
+               pour vous assurer un séjour de qualité.
             </p>
           </div>
-          <div class="tw-text-white">
+          <div class="tw-text-white tw-text-sm">
             <h6 class="tw-uppercase tw-font-semibold tw-mb-4 tw-flex tw-justify-center md:tw-justify-start">
               Nos services
             </h6>
             <p class="tw-mb-4">
-              <a href="#!" class="tw-text-white ">Reservations de vols</a>
+              <NuxtLink to="/reservation-vols" class="tw-text-white ">Reservations de vols</NuxtLink>
             </p>
 
             <p>
-              <a href="#!" class="tw-text-white ">Tourisme</a>
+              <NuxtLink to="/tourisme" class="tw-text-white ">Tourisme</NuxtLink>
             </p>
             <p class="tw-mb-4">
-              <a href="#!" class="tw-text-white ">Hébergements</a>
+              <NuxtLink to="/hotel" class="tw-text-white ">Hébergements</NuxtLink>
             </p>
             <p class="tw-mb-4">
-              <a href="#!" class="tw-text-white ">Locations de voitures</a>
+              <NuxtLink to="/car-location" class="tw-text-white ">Locations de voitures</NuxtLink>
             </p>
 
             <p>
-              <a href="#!" class="tw-text-white ">Visa & Assurance</a>
+              <NuxtLink to="/visa-assurance" class="tw-text-white ">Visa & Assurance</NuxtLink>
             </p>
           </div>
-          <div class="tw-text-white">
+          <div class="tw-text-white tw-text-sm">
             <h6 class="tw-uppercase tw-font-semibold tw-mb-4 tw-flex tw-justify-center md:tw-justify-start">
               Liens Utiles
             </h6>
             <p class="tw-mb-4">
-              <a href="#!" class="tw-text-white ">Accueil</a>
+              <NuxtLink to="/" class="tw-text-white ">Accueil</NuxtLink>
             </p>
             <p class="tw-mb-4">
-              <a href="#!" class="tw-text-white ">Settings</a>
+              <NuxtLink to="/about" class="tw-text-white ">A Propos</NuxtLink>
             </p>
             <p class="tw-mb-4">
-              <a href="#!" class="tw-text-white ">Orders</a>
+              <NuxtLink to="/contact" class="tw-text-white ">Contact</NuxtLink>
             </p>
             <p>
-              <a href="#!" class="tw-text-white ">Help</a>
+              <NuxtLink to="#!" class="tw-text-white ">Help</NuxtLink>
             </p>
           </div>
-          <div class="">
+          <div class="tw-text-sm">
             <h6 class="tw-uppercase tw-font-semibold tw-mb-4 tw-flex tw-justify-center md:tw-justify-start">
               Contact
             </h6>
@@ -147,10 +141,11 @@
           </div>
         </div>
       </div>
-      <div class="tw-p-6 tw-bg-blue-800 tw-flex tw-justify-between tw-w-full">
-        <span>© 2022 Copyright: Manglam</span>
-        <div class="tw-items-center tw-flex tw-gap-2">
-          <span>Develop By</span>
+      <div class="tw-py-3 tw-px-6 tw-bg-blue-800 tw-text-sm tw-flex tw-gap-2 lg:tw-justify-evenly tw-inline-block tw-w-full">
+        <span>Copyright: © 2022 Manglam</span>
+        <div class="">
+
+          <span>Developed By</span>
           <a href="https://mekengroup.com/" class="tw-text-white tw-font-semibold " target="_blank"
              rel="noopener noreferrer"> Meg
           </a>

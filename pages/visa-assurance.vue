@@ -1,7 +1,8 @@
 <template>
   <div>
+    <Annonce />
     <div class="tw-relative">
-      <div style="z-index: 500" class="tw-flex tw-justify-center tw-items-center tw-absolute tw-inset-0">
+      <div style="z-index: 200" class="tw-flex tw-justify-center tw-items-center tw-absolute tw-inset-0">
         <v-form
           lazy-validation
           ref="form"
@@ -10,7 +11,7 @@
           <div class="tw-flex-row tw-items-center tw-gap-6">
 
             <div class="tw-flex tw-flex-col md:tw-flex-row tw-items-center tw-justify-between">
-              <v-radio-group row v-model="reservationForm.typevoyage">
+              <v-radio-group row v-model="visaReservationForm.typevoyage">
                 <v-radio
                   label="Aller-retour"
                   value="allerretour"
@@ -26,18 +27,6 @@
                   value="destinationmultiple"
                 ></v-radio>
               </v-radio-group>
-              <v-col
-                class="d-flex"
-                cols="12"
-                xs="12"
-                sm="3"
-              >
-                <v-select
-                  v-model="reservationForm.typeclasse"
-                  :items="type_classe"
-                  class="">
-                </v-select>
-              </v-col>
             </div>
 
             <div class="tw-flex tw-items-center">
@@ -47,7 +36,7 @@
                     <v-autocomplete
                       append-icon="" background-color="white"
                       class="tw-w-1/3 tw-duration-300 focus:tw-outline-none tw-rounded-l-md tw-rounded-r-none placeholder:tw-text-gray-800"
-                      v-model="reservationForm.airport_depart"
+                      v-model="visaReservationForm.airport_depart"
                       :items="departs"
                       :loading="loadingDeparts"
                       :search-input.sync="searchDeparts"
@@ -100,7 +89,7 @@
                       append-icon=""
                       background-color="white"
                       class="tw-w-1/3 focus:tw-outline-none tw-duration-300 placeholder:tw-text-gray-800 tw-rounded-l-none tw-rounded-r-md"
-                      v-model="reservationForm.airport_destination"
+                      v-model="visaReservationForm.airport_destination"
                       :items="destinations"
                       :loading="loadingDestinations"
                       :search-input.sync="searchDestinations"
@@ -153,7 +142,7 @@
                       >
                         <template v-slot:activator="{ on, attrs }">
                           <v-text-field
-                            v-model="reservationForm.depart_date"
+                            v-model="visaReservationForm.depart_date"
                             label="Date de départ"
                             :rules="departDateRules"
                             required
@@ -161,11 +150,11 @@
                             outlined
                             v-bind="attrs"
                             v-on="on"
-                            :class="{'tw-rounded-r-none':reservationForm.typevoyage === 'allerretour'}"
+                            :class="{'tw-rounded-r-none':visaReservationForm.typevoyage === 'allerretour'}"
                           ></v-text-field>
                         </template>
                         <v-date-picker
-                          v-model="reservationForm.depart_date"
+                          v-model="visaReservationForm.depart_date"
                           no-title
                           :allowed-dates="disablePastDates"
                           scrollable
@@ -173,7 +162,7 @@
                         </v-date-picker>
                       </v-menu>
                     </v-col>
-                    <v-col v-if="reservationForm.typevoyage === 'allerretour'" class="tw-px-0">
+                    <v-col v-if="visaReservationForm.typevoyage === 'allerretour'" class="tw-px-0">
                       <v-menu
                         ref="retour_menu"
                         v-model="retour_menu"
@@ -184,7 +173,7 @@
                       >
                         <template v-slot:activator="{ on, attrs }">
                           <v-text-field
-                            v-model="reservationForm.comeback_date"
+                            v-model="visaReservationForm.comeback_date"
                             label="Date de retour"
                             readonly
                             outlined
@@ -196,7 +185,7 @@
                           ></v-text-field>
                         </template>
                         <v-date-picker
-                          v-model="reservationForm.comeback_date"
+                          v-model="visaReservationForm.comeback_date"
                           no-title
                           :allowed-dates="disablePastDates"
                           scrollable
@@ -232,13 +221,14 @@
                       <v-list-item
                       >
                         <v-list-item-title>
-                          <div class="tw-flex tw-flex-col tw-gap-4 tw-text-sm md:tw-text-xl tw-w-full tw-p-2 md:tw-p-4 tw-bg-white">
+                          <div
+                            class="tw-flex tw-flex-col tw-gap-4 tw-text-sm md:tw-text-xl tw-w-full tw-p-2 md:tw-p-4 tw-bg-white">
                             <div class="tw-py-2 md:tw-py-4 tw-flex tw-justify-between tw-gap-12">
                               <span class="tw-font-bold tw-gray-800">Adultes (> 12 ans)</span>
                               <div class="tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
                                 <div
-                                  v-if="reservationForm.passengers.adultes > 1 && reservationForm.passengers.enfants + reservationForm.passengers.bebes <= (reservationForm.passengers.adultes - 1) *2">
-                                <span @click="reservationForm.passengers.adultes--" class="hover:tw-cursor-pointer"><v-icon
+                                  v-if="visaReservationForm.passengers.adultes > 1 && visaReservationForm.passengers.enfants + visaReservationForm.passengers.bebes <= (visaReservationForm.passengers.adultes - 1) *2">
+                                <span @click="visaReservationForm.passengers.adultes--" class="hover:tw-cursor-pointer"><v-icon
                                   color="red">mdi-minus-circle-outline</v-icon></span>
                                 </div>
                                 <div v-else>
@@ -246,10 +236,10 @@
                                     <v-icon color="grey">mdi-minus-circle-outline</v-icon>
                                   </div>
                                 </div>
-                                <span>{{ reservationForm.passengers.adultes }}</span>
+                                <span>{{ visaReservationForm.passengers.adultes }}</span>
 
-                                <div v-if="reservationForm.passengers.adultes < 9">
-                                <span @click="reservationForm.passengers.adultes++" class="hover:tw-cursor-pointer"><v-icon
+                                <div v-if="visaReservationForm.passengers.adultes < 9">
+                                <span @click="visaReservationForm.passengers.adultes++" class="hover:tw-cursor-pointer"><v-icon
                                   color="red">mdi-plus-circle-outline</v-icon></span>
                                 </div>
                                 <div v-else>
@@ -261,18 +251,18 @@
                             <div class="tw-py-2 md:tw-py-4 tw-flex tw-justify-between tw-gap-12">
                               <span class=" tw-font-bold tw-gray-800">Enfants (2-11 ans)</span>
                               <div class=" tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
-                                <div v-if="reservationForm.passengers.enfants > 0">
-                                <span @click="reservationForm.passengers.enfants--" class="hover:tw-cursor-pointer"><v-icon
+                                <div v-if="visaReservationForm.passengers.enfants > 0">
+                                <span @click="visaReservationForm.passengers.enfants--" class="hover:tw-cursor-pointer"><v-icon
                                   color="red">mdi-minus-circle-outline</v-icon></span>
                                 </div>
                                 <div v-else>
                                 <span class="hover:tw-cursor-no-drop"><v-icon
                                   color="grey">mdi-minus-circle-outline</v-icon></span>
                                 </div>
-                                <span>{{ reservationForm.passengers.enfants }}</span>
+                                <span>{{ visaReservationForm.passengers.enfants }}</span>
                                 <div
-                                  v-if="reservationForm.passengers.enfants + reservationForm.passengers.bebes < totalChildrens">
-                                <span @click="reservationForm.passengers.enfants++" class="hover:tw-cursor-pointer"><v-icon
+                                  v-if="visaReservationForm.passengers.enfants + visaReservationForm.passengers.bebes < totalChildrens">
+                                <span @click="visaReservationForm.passengers.enfants++" class="hover:tw-cursor-pointer"><v-icon
                                   color="red">mdi-plus-circle-outline</v-icon></span>
                                 </div>
                                 <div v-else>
@@ -284,17 +274,17 @@
                             <div class="tw-py-2 md:tw-py-4 tw-flex tw-justify-between tw-gap-12">
                               <span class=" tw-font-bold tw-gray-800">Bébés (< 2 ans)</span>
                               <div class=" tw-font-bold tw-gray-800 tw-flex tw-items-center tw-gap-4">
-                                <div v-if="reservationForm.passengers.bebes > 0">
-                                <span @click="reservationForm.passengers.bebes--" class="hover:tw-cursor-pointer"><v-icon
+                                <div v-if="visaReservationForm.passengers.bebes > 0">
+                                <span @click="visaReservationForm.passengers.bebes--" class="hover:tw-cursor-pointer"><v-icon
                                   color="red">mdi-minus-circle-outline</v-icon></span>
                                 </div>
                                 <div v-else>
                                   <span class=""><v-icon color="grey">mdi-minus-circle-outline</v-icon></span>
                                 </div>
-                                <span>{{ reservationForm.passengers.bebes }}</span>
+                                <span>{{ visaReservationForm.passengers.bebes }}</span>
                                 <div
-                                  v-if="reservationForm.passengers.enfants + reservationForm.passengers.bebes < totalChildrens">
-                                <span @click="reservationForm.passengers.bebes++" class="hover:tw-cursor-pointer"><v-icon
+                                  v-if="visaReservationForm.passengers.enfants + visaReservationForm.passengers.bebes < totalChildrens">
+                                <span @click="visaReservationForm.passengers.bebes++" class="hover:tw-cursor-pointer"><v-icon
                                   color="red">mdi-plus-circle-outline</v-icon></span>
                                 </div>
                                 <div v-else>
@@ -321,128 +311,127 @@
             </div>
 
 
-
             <v-dialog
               v-model="userInfoDialog"
-              max-width="600px"
+              max-width="600"
 
 
             >
-            <v-form
-                    ref="modal"
-                    v-model="valid"
-                    lazy-validation
-                    >
-              <v-card>
-                <v-card-title>
-                  <span class="text-h5">Une dernière étape</span>
-                </v-card-title>
-                <v-card-text>
-                  <v-container>
+              <v-form
+                ref="modal"
+                v-model="valid"
+                lazy-validation
+              >
+                <v-card>
+                  <v-card-title>
+                    <span class="text-h5">Une dernière étape</span>
+                  </v-card-title>
+                  <v-card-text>
+                    <v-container>
 
-                    <v-row>
-                      <v-col
-                        cols="12"
-                        sm="6"
-                      >
-                        <v-text-field
-                          label="Nom*"
-                          :rules="lastNameRules"
-                          required
-                          outlined
-                          v-model="reservationForm.lastname"
-                        ></v-text-field>
-                      </v-col>
-                      <v-col
-                        cols="12"
-                        sm="6"
-                      >
-                        <v-text-field
-                          label="Prénoms*"
-                          required outlined
-                          :rules="firstNameRules"
-                          v-model="reservationForm.firstname"
-                        ></v-text-field>
-                      </v-col>
-
-                      <v-col
-                        cols="12"
-                      >
-                        <v-text-field placeholder="XXXXXXXX" v-model="reservationForm.passport_id" required
-                                      :rules="passportIdRules"
-                                      label="Numéro passport*" outlined></v-text-field>
-                      </v-col>
-
-                      <v-col
-                        cols="12"
-                      >
-                        <v-text-field type="email" placeholder="ex: hfx@gmail.com" v-model="reservationForm.email"
-                                      required
-                                      :rules="emailRules"
-                                      label="Adresse email*" outlined></v-text-field>
-                      </v-col>
-
-                      <v-row
-                        cols="12" class="tw-mx-1"
-                      >
-                        <v-col sm="6">
-                          <v-autocomplete
-                            v-model="reservationForm.phone_number.code"
-                            :items="countries"
-                            :loading="isLoading"
-                            :search-input.sync="search"
-                            clearable
-                            item-text="dial_code"
-                            item-value="id"
-                            outlined
-                            :rules="codeNumberRules"
+                      <v-row>
+                        <v-col
+                          cols="12"
+                          sm="6"
+                        >
+                          <v-text-field
+                            label="Nom*"
+                            :rules="lastNameRules"
                             required
-                            label="Indicatif de votre numéro*"
-                          >
-                            <template v-slot:item="{ item }">
-                              <v-list-item-avatar
-                                color="indigo"
-                                class="text-h10 tw-p-4 font-weight-light white--text"
-                              >
-                                {{ item.dial_code }}
-                              </v-list-item-avatar>
-                              <v-list-item-content>
-                                <v-list-item-title>{{ item.name }}</v-list-item-title>
-                              </v-list-item-content>
-                            </template>
-                          </v-autocomplete>
+                            outlined
+                            v-model="visaReservationForm.lastname"
+                          ></v-text-field>
                         </v-col>
-                        <v-col>
-                          <v-text-field v-model="reservationForm.phone_number.number" required
-                            :rules="numberRules" type="number"
-                                        label="Numéro de télephone*" outlined></v-text-field>
+                        <v-col
+                          cols="12"
+                          sm="6"
+                        >
+                          <v-text-field
+                            label="Prénoms*"
+                            required outlined
+                            :rules="firstNameRules"
+                            v-model="visaReservationForm.firstname"
+                          ></v-text-field>
                         </v-col>
+
+                        <v-col
+                          cols="12"
+                        >
+                          <v-text-field placeholder="XXXXXXXX" v-model="visaReservationForm.passport_id" required
+                                        :rules="passportIdRules"
+                                        label="Numéro passport*" outlined></v-text-field>
+                        </v-col>
+
+                        <v-col
+                          cols="12"
+                        >
+                          <v-text-field type="email" placeholder="ex: hfx@gmail.com" v-model="visaReservationForm.email"
+                                        required
+                                        :rules="emailRules"
+                                        label="Adresse email*" outlined></v-text-field>
+                        </v-col>
+
+                        <v-row
+                          cols="12" class="tw-mx-1"
+                        >
+                          <v-col sm="6">
+                            <v-autocomplete
+                              v-model="visaReservationForm.phone_number.code"
+                              :items="countries"
+                              :loading="isLoading"
+                              :search-input.sync="search"
+                              clearable
+                              item-text="dial_code"
+                              item-value="id"
+                              outlined
+                              :rules="codeNumberRules"
+                              required
+                              label="Indicatif de votre numéro*"
+                            >
+                              <template v-slot:item="{ item }">
+                                <v-list-item-avatar
+                                  color="indigo"
+                                  class="text-h10 tw-p-4 font-weight-light white--text"
+                                >
+                                  {{ item.dial_code }}
+                                </v-list-item-avatar>
+                                <v-list-item-content>
+                                  <v-list-item-title>{{ item.name }}</v-list-item-title>
+                                </v-list-item-content>
+                              </template>
+                            </v-autocomplete>
+                          </v-col>
+                          <v-col>
+                            <v-text-field v-model="visaReservationForm.phone_number.number" required
+                                          :rules="numberRules" type="number"
+                                          label="Numéro de télephone*" outlined></v-text-field>
+                          </v-col>
+                        </v-row>
                       </v-row>
-                    </v-row>
 
-                  </v-container>
-                  <small>*Indique un champ obligatoire</small>
-                </v-card-text>
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-btn
-                    color="error darken-1"
-                    @click="userInfoDialog = false"
-                    text
-                  >
-                    Fermer
-                  </v-btn>
-                  <v-btn
-                    class=""
-                    color="error darken-1"
-                    :loading="btnLoading"
-                    @click="userInfoDialog = false, disclaimerDialog = true && $refs.modal.validate()"
-                  >
-                    Envoyer la demande
-                  </v-btn>
+                    </v-container>
+                    <small>*Indique un champ obligatoire</small>
+                  </v-card-text>
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn
+                      color="error darken-1"
+                      @click="userInfoDialog = false"
+                      text
+                    >
+                      Fermer
+                    </v-btn>
+                    <v-btn
+                      class=""
+                      color="error darken-1"
+                      :loading="visaDemandeBtn"
+                      @click="userInfoDialog = false, visaDemandeReservation()"
+                    >
+                      Envoyer la demande
+                    </v-btn>
 
-                </v-card-actions>
-              </v-card>
+                  </v-card-actions>
+                </v-card>
               </v-form>
             </v-dialog>
 
@@ -493,7 +482,7 @@
 
           <div class="tw-flex tw-justify-between">
             <div v-if="false"
-                 @click="reservationForm.escales.push({airport_depart: '', airport_destination: '', depart_date: '',})"
+                 @click="visaReservationForm.escales.push({airport_depart: '', airport_destination: '', depart_date: '',})"
                  class="tw-flex tw-items-center tw-mb-4 tw-text-sm tw-gap-2 tw-text-red-600 hover:tw-cursor-pointer">
               <svg style="width:20px;height:20px" viewBox="0 0 24 24">
                 <path fill="currentColor"
@@ -515,29 +504,34 @@
       </div>
       <v-carousel
         cycle
-        height="600px"
+        height="600"
         hide-delimiter-background
         show-arrows-on-hover
       >
         <v-carousel-item
-          v-for="(slide, i) in 3"
-          src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+          src="https://images.unsplash.com/photo-1640359993530-3dcbf809d783?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
           :key="i"
         >
+        </v-carousel-item>
+        <v-carousel-item
+          src="https://images.unsplash.com/photo-1487637419635-a2a471ff5c7b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1289&q=80"
+          :key="i">
+        </v-carousel-item>
+        <v-carousel-item
+          src="https://images.unsplash.com/photo-1655722725332-9925c96dd627?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+          :key="i">
         </v-carousel-item>
       </v-carousel>
     </div>
 
 
-
-
     <!-- Our partners section   -->
-    <Partners />
+    <Partners/>
 
     <section class="tw-pt-10 tw-pb-4 lg:tw-px-8 tw-px-4 tw-bg-white tw-flex-col tw-gap-4 tw-shadow-lg">
       <h1
         class="tw-mt-12 tw-mb-6 tw-text-xl tw-px-3 lg:tw-px-20 md:text-2xl tw-inline-flex tw-items-center tw-gap-3 tw-font-bold tw-uppercase tw-font-bold tw-font-extrabold tw-text-red-700">
-        Meilleures Sites Touristiques
+        Visa & Assurance Voyages
       </h1>
 
       <div class="tw-px-3 lg:tw-px-20">
@@ -547,45 +541,25 @@
             <div
               class="tw-col-span-1 tw-h-80 lg:tw-h-96 tw-w-full hover:tw-cursor-pointer tw-relative tw-bg-cover tw-rounded-lg">
               <img class="tw-h-full tw-w-full tw-relative tw-bg-cover tw-bg-center tw-rounded-lg"
-                   src="https://images.unsplash.com/photo-1581953636842-74649fd3e004?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80"
+                   src="https://images.unsplash.com/photo-1655722725332-9925c96dd627?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
                    alt="">
 
               <span
-                class="tw-absolute tw-left-6 tw-bottom-4 tw-text-lg lg:tw-text-2xl tw-font-bold tw-text-white tw-rounded tw-bg-blue-600 tw-px-6 tw-py-3">Mauritius
-                Islande</span>
+                class="tw-absolute tw-left-6 tw-bottom-4 tw-text-lg lg:tw-text-2xl tw-font-bold tw-text-white tw-rounded tw-bg-blue-600 tw-px-6 tw-py-3">Visa & Immigration</span>
             </div>
 
             <div
               class="tw-col-span-1 tw-h-80 lg:tw-h-96 tw-w-full hover:tw-cursor-pointer tw-relative tw-bg-cover tw-rounded-lg">
               <img class="tw-h-full tw-w-full tw-relative tw-bg-cover tw-bg-center tw-rounded-lg"
-                   src="https://images.unsplash.com/photo-1573843981267-be1999ff37cd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
+                   src="https://images.unsplash.com/photo-1640359993530-3dcbf809d783?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
                    alt="">
               <span
-                class="tw-absolute tw-left-6 tw-bottom-4 tw-text-lg lg:tw-text-2xl tw-font-bold tw-text-white tw-rounded tw-bg-blue-600 tw-px-6 tw-py-3">Maldives
-                Islande</span>
+                class="tw-absolute tw-left-6 tw-bottom-4 tw-text-lg lg:tw-text-2xl tw-font-bold tw-text-white tw-rounded tw-bg-blue-600 tw-px-6 tw-py-3">Assurance Voyage</span>
             </div>
+
           </div>
 
-          <div class="tw-grid md:tw-grid-cols-2 tw-gap-4">
-            <div
-              class="tw-col-span-1 tw-h-80 lg:tw-h-96 tw-w-full hover:tw-cursor-pointer tw-relative tw-bg-cover tw-rounded-lg">
-              <img class="tw-h-full tw-w-full tw-relative tw-bg-cover tw-bg-center tw-rounded-lg"
-                   src="https://images.unsplash.com/photo-1569288063643-5d29ad64df09?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80"
-                   alt="">
-              <span
-                class="tw-absolute tw-left-6 tw-bottom-4 tw-text-lg lg:tw-text-2xl tw-font-bold tw-text-white tw-rounded tw-bg-blue-600 tw-px-6 tw-py-3">Singapore</span>
-            </div>
 
-            <div
-              class="tw-col-span-1 tw-h-80 lg:tw-h-96 tw-w-full hover:tw-cursor-pointer tw-relative tw-bg-cover tw-rounded-lg">
-              <img class="tw-h-full tw-w-full tw-relative tw-bg-cover tw-bg-center tw-rounded-lg"
-                   src="https://images.unsplash.com/photo-1523428096881-5bd79d043006?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-                   alt="">
-              <span
-                class="tw-absolute tw-left-6 tw-bottom-4 tw-text-lg lg:tw-text-2xl tw-font-bold tw-text-white tw-rounded tw-bg-blue-600 tw-px-6 tw-py-3">Sydney</span>
-            </div>
-          </div>
-          
         </div>
 
 
@@ -594,8 +568,11 @@
 
     </section>
 
-    <div class="tw-bg-no-repeat tw-bg-cover tw-bg-center tw-w-full tw-h-[60vh]"
-         style="background-image: url(https://images.unsplash.com/photo-1546114609-6e384f564132?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80)">
+
+    <div class="tw-flex tw-justify-center tw-w-full tw-my-4">
+      <div class="tw-w-1/2">
+        <img class="tw-h-32 tw-w-full" src="https://assistance1.saham-it.net/image/logo_sanlam.jpg" alt="partners">
+      </div>
     </div>
   </div>
 </template>
@@ -603,6 +580,7 @@
 <script>
 import json from '../data/CountryCodes.json'
 import config from "../config";
+
 export default {
   name: 'Tourisme',
   layout: 'master',
@@ -610,8 +588,7 @@ export default {
   data() {
     return {
       btnloading: false,
-      type_classe: ['Classe économique', 'Classe économique premium', 'Classe affaire', 'Première classe'],
-       departRules: [
+      departRules: [
         v => !!v || 'Adresse de Depart est requis',
       ],
       arriveRules: [
@@ -644,6 +621,7 @@ export default {
       codeNumberRules: [
         v => !!v || 'Le code numero est requis',
       ],
+
       date_depart: null,
       modalDay: false,
       countries: json,
@@ -661,10 +639,8 @@ export default {
       searchDeparts: null,
       searchDestinations: null,
       tab: null,
-      reservationForm: {
-        aller_simple: true,
+      visaReservationForm: {
         typevoyage: 'allerretour',
-        typeclasse: "Classe économique",
         airport_depart: "",
         airport_destination: "",
         depart_date: "",
@@ -691,27 +667,6 @@ export default {
       retour_menu: false,
       menu: false,
       isEditing: false,
-
-      visaReservationForm: {
-          aller_simple: true,
-          typevoyage: 'allerretour',
-          airport_depart: "",
-          airport_destination: "",
-          depart_date: "",
-          comeback_date: "",
-          lastname: "",
-          firstname: "",
-          passport_id: "",
-          phone_number: {
-            code: "",
-            number: '',
-          },
-          passengers: {
-            adultes: 1,
-            enfants: 0,
-            bebes: 0,
-          }
-        },
       items: [{
         src: 'https://images.unsplash.com/photo-1520175480921-4edfa2983e0f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1467&q=80',
       },
@@ -728,21 +683,128 @@ export default {
     }
   },
 
+  methods: {
+    async visaDemandeReservation() {
+      this.$refs.modal.validate()
+      this.visaDemandeBtn = false
+      await axios.post('/visa-request', this.visaReservationForm).then((response) => {
+        if (response.data.error) {
+          Swal.fire({
+            title: 'Echec',
+            text: 'Une Erreur s\'est produite',
+            icon: 'error'
+          })
+          this.userInfoDialog = false
+          this.visaDemandeBtn = false
+          return
+        }
+        this.userInfoDialog = false
+        this.visaDemandeBtn = false
+        this.visaReservationForm = {
+          typevoyage: 'allerretour',
+          airport_depart: "",
+          airport_destination: "",
+          depart_date: "",
+          comeback_date: "",
+          lastname: "",
+          firstname: "",
+          email: "",
+          passport_id: "",
+          escales: [],
+          phone_number: {
+            code: "",
+            number: '',
+          },
+          passengers: {
+            adultes: 1,
+            enfants: 0,
+            bebes: 0,
+          },
+        },
+          this.showToast('success', 'Demande de visa envoyée avec succès')
+      }).catch(error => {
+        this.visaDemandeBtn = false
+
+        this.showToast('error', "Une erreur s'est produite")
+      });
+    }
+  },
+
+  watch: {
+    model(val) {
+      if (val != null) this.tab = 0
+      else this.tab = null
+    },
+    searchDeparts(val) {
+      this.loadingDeparts = true
+      // Lazily load input items
+      fetch(`${config.app_local ? config.app_api_debug_url : config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
+        .then(res => res.clone().json())
+        .then(res => {
+          this.departs = res.airports
+        })
+        .catch(err => {
+          console.log(err)
+        })
+        .finally(() => (this.loadingDeparts = false))
+    },
+
+    fetchAirports(val) {
+      if (val == null)
+        return
+      // Lazily load input items
+      fetch(`${config.app_local ? config.app_api_debug_url : config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
+        .then(res => res.clone().json())
+        .then(res => {
+          this.destinations = res.airports
+        })
+        .catch(err => {
+          console.log(err)
+        })
+        .finally(() => (this.loadingDestinations = false))
+    },
+    searchDestinations(val) {
+      if (val == null)
+        return
+      this.loadingDestinations = true
+      // Lazily load input items
+      fetch(`${config.app_local ? config.app_api_debug_url : config.app_api_base_url}/airports/get-by-name?filter_query=${val}`)
+        .then(res => res.clone().json())
+        .then(res => {
+          this.destinations = res.airports
+        })
+        .catch(err => {
+          console.log(err)
+        })
+        .finally(() => (this.loadingDestinations = false))
+    },
+    'reservationForm.typevoyage': function () {
+
+      if (this.reservationForm.typevoyage === 'destinationmultiple') {
+        this.reservationForm.escales.push({airport_depart: '', airport_destination: '', depart_date: '',})
+        return
+      }
+
+      this.reservationForm.escales = []
+    }
+  },
+
   computed: {
     totalPassagers() {
       // cette methode retourne le nombre total de passagers
-      return this.reservationForm.passengers.adultes + this.reservationForm.passengers.enfants + this.reservationForm.passengers.bebes
+      return this.visaReservationForm.passengers.adultes + this.visaReservationForm.passengers.enfants + this.visaReservationForm.passengers.bebes
     },
     totalChildrens() {
-      return this.reservationForm.passengers.adultes * 2
+      return this.visaReservationForm.passengers.adultes * 2
     },
 
     deleteEscales() {
-      if (this.reservationForm.typevoyage !== "destinationmultiple") {
-        this.reservationForm.escales = []
+      if (this.visaReservationForm.typevoyage !== "destinationmultiple") {
+        this.visaReservationForm.escales = []
       }
     },
   },
+
 }
 
 </script>

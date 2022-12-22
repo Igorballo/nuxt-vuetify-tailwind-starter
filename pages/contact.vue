@@ -1,9 +1,10 @@
 <template>
   <div>
+    <Annonce />
     <div class="banner tw-bg-green-500 tw-bg-black tw-bg-cover tw-bg-center lg:tw-p-12">
       <div class="tw-flex tw-items-center tw-justify-center tw-h-full">
         <h1
-          class="tw-justify-center tw-py-12 tw-text-center tw-text-white tw-font-fond tw-text-2xl md:tw-text-4xl lg:tw-text-5xl tw-uppercase tw-font-extrabold tw-text-red-700 tw-mb-4 tw-uppercase">
+          class="tw-justify-center tw-py-12 tw-text-center tw-text-white tw-font-fond tw-text-2xl md:tw-text-4xl lg:tw-text-5xl tw-uppercase tw-font-extrabold tw-text-white tw-mb-4 tw-uppercase">
           Contact</h1>
 
       </div>
@@ -22,7 +23,7 @@
       </div>
     </section>
 
-    <v-card class="tw-px-4 tw-shadow-lg tw-relative tw-pb-8">
+    <v-card class="tw-shadow-lg tw-relative tw-pb-8">
       <v-container fluid>
         <div class="tw-grid md:tw-grid-cols-2">
           <img class="tw-h-full tw-w-full tw-bg-cover tw-bg-center tw-rounded-lg"
@@ -32,7 +33,7 @@
             ref="form"
             v-model="valid"
             lazy-validation
-            class="tw-px-8 tw-py-8 tw-w-full tw-h-full tw-gap-4 tw-bg-white"
+            class="md:tw-px-8 tw-py-8 tw-w-full tw-h-full tw-gap-4 tw-bg-white"
           >
             <v-text-field
               v-model="form.nom"
@@ -77,7 +78,7 @@
               @click="sendMessage"
               :loading="btnloading"
             >
-              Send Message
+              Envoyer un Message
             </v-btn>
 
           </v-form>
@@ -92,24 +93,7 @@
           <iframe class="gmap_iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
                   src="https://maps.google.com/maps?width=1015&amp;height=500&amp;hl=en&amp;q=Lomé&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
           <a href="https://piratebay-proxys.com/">Piratebay</a></div>
-        <style>.mapouter {
-          position: relative;
-          text-align: center;
-          width: 100%;
-          height: 500px;
-        }
 
-        .gmap_canvas {
-          overflow: hidden;
-          background: none !important;
-          width: 100%;
-          height: 500px;
-        }
-
-        .gmap_iframe {
-          width: 100% !important;
-          height: 500px !important;
-        }</style>
       </div>
 
 
@@ -172,7 +156,6 @@ export default {
 </script>
 
 <style scoped>
-
 .banner {
   background-image: url(https://images.unsplash.com/photo-1573132223210-d65883b944aa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1494&q=80);
   background-color: #000;
@@ -181,4 +164,24 @@ export default {
   height: 30vh;
 }
 
+.mapouter {
+  position: relative;
+  text-align: center;
+  width: 100%;
+  height: 500px;
+}
+
+.gmap_canvas {
+  overflow: hidden;
+  background: none !important;
+  width: 100%;
+  height: 500px;
+}
+
+.gmap_iframe {
+  width: 100% !important;
+  height: 500px !important;
+}
 </style>
+
+
