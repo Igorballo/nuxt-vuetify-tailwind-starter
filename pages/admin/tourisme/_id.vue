@@ -46,6 +46,14 @@
 
             <div class="tw-flex tw-flex-col">
               <div class="tw-flex tw-justify-between">
+                <span class="tw-font-semibold tw-text-lg">Adresse</span>
+                <span class="tw-text-lg">{{ demande_tourisme.adresse }}</span>
+              </div>
+            </div>
+            <v-divider/>
+
+            <div class="tw-flex tw-flex-col">
+              <div class="tw-flex tw-justify-between">
                 <span class="tw-font-semibold tw-text-lg">Téléphone</span>
                 <span
                   class="tw-text-lg">
@@ -76,26 +84,7 @@
             <v-spacer/>
           </v-card-title>
           <v-card-text class="tw-px-8 tw-flex tw-flex-col tw-gap-4">
-            <div class="tw-flex tw-flex-col">
-              <div class="tw-flex tw-justify-between">
-                <span class="tw-font-semibold tw-text-lg">Aéroport de départ</span>
-                <v-chip>{{ demande_tourisme.airportDepart?.name }}, {{
-                    demande_tourisme.airportDepart?.country
-                  }}
-                </v-chip>
-              </div>
-            </div>
-            <v-divider/>
-
-            <div class="tw-flex tw-flex-col">
-              <div class="tw-flex tw-justify-between">
-                <span class="tw-font-semibold tw-text-lg">Aéroport d'arrivée</span>
-                <v-chip>{{ demande_tourisme.airportDestination?.name }}, {{ demande_tourisme.airportDestination?.country }}
-                </v-chip>
-              </div>
-            </div>
-            <v-divider/>
-
+            
             <div class="tw-flex tw-flex-col">
               <div class="tw-flex tw-justify-between">
                 <span class="tw-font-semibold tw-text-lg">Date de départ</span>
