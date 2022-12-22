@@ -80,7 +80,7 @@
 
         <v-card v-if="demande_tourisme" class="tw-mb-6">
           <v-card-title class="mb-4">
-            <h2 class="tw-text-xl">Informations du voyage</h2>
+            <h2 class="tw-text-xl">Informations de la demande de Tourisme</h2>
             <v-spacer/>
           </v-card-title>
           <v-card-text class="tw-px-8 tw-flex tw-flex-col tw-gap-4">
