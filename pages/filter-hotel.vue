@@ -473,7 +473,7 @@ export default {
     },
     async searchHotel() {
       this.searchHotelBtn = true
-      await axios.get(`/hotels/get-hotels?pricemin=${this.hotelReservationForm.prix.lowPrice}&pricemax=${this.hotelReservationForm.prix.highPrice}&limit=100`)
+      await axios.get(`/hotels/get-hotels?pricemin=${this.hotelReservationForm.prix.lowPrice}&pricemax=${this.hotelReservationForm.prix.highPrice}&query=${this.hotelReservationForm.adresse}&limit=100`)
         .then(response => {
           console.log(response);
           this.hotels = response.data.hotels;
