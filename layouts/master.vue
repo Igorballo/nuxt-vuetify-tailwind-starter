@@ -133,6 +133,7 @@
 
     <nuxt/>
 
+
     <!--    Politique de confidebtialité-->
     <div style="z-index: 999">
       <div justify="center">
@@ -193,28 +194,29 @@
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn
-                color="green darken-1"
-                text
-                class="tw-underline tw-text-xs"
-                @click="setPolicyToCookie(false)"
-              >
-                Continuer sans accepter
-              </v-btn>
-              <v-btn
-                color="green darken-1"
-                text
-                class=" tw-text-xs"
-                @click="setPolicyToCookie(true)"
-              >
-                J'accepte
-              </v-btn>
+              <div class="tw-flex tw-w-full tw-flex-col tw-justify-center md:tw-flex-row tw-items-center">
+                <v-btn
+                  color="green darken-1"
+                  text
+                  class="tw-underline tw-text-xs"
+                  @click="setPolicyToCookie(false)"
+                >
+                  Continuer sans accepter
+                </v-btn>
+                <v-btn
+                  color="green darken-1"
+                  text
+                  class="tw-text-xs"
+                  @click="setPolicyToCookie(true)"
+                >
+                  J'accepte
+                </v-btn>
+              </div>
             </v-card-actions>
           </v-card>
         </v-dialog>
       </div>
     </div>
-
     <Footer/>
   </v-app>
 </template>
@@ -231,10 +233,9 @@ export default {
   components: {Header},
   data() {
     return {
+      showMenu: false,
       showConfidentialPolicyForm: null,
       acceptPolitique: null,
-      showMenu: false,
-      // accepted_politique_confidentialite: false,
     }
   },
 
@@ -242,11 +243,10 @@ export default {
     setPolicyToCookie(accept){
       Cookies.set('accepted_politique_confidentialite', JSON.stringify(accept), { expires: false ? 365 : null })
       this.showConfidentialPolicyForm = false
-    }
+    },
   },
 
   mounted() {
-    this.acceptPolitique = Cookies.get('accepted_politique_confidentialite')
     if(Cookies.get('accepted_politique_confidentialite') === undefined){
       Cookies.set('accepted_politique_confidentialite', JSON.stringify(false), { expires: false ? 365 : null })
       this.showConfidentialPolicyForm = true
@@ -257,7 +257,6 @@ export default {
         this.showConfidentialPolicyForm = true
       }
     }
-
 
     var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
     (function () {
