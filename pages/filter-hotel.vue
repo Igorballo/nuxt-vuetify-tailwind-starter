@@ -426,7 +426,6 @@ export default {
       'selected_recherche_hotel_date_depart',
       'selected_recherche_hotel_adresse',
       'selected_recherche_hotel_passengers',
-
     ]),
   },
 

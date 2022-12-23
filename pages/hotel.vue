@@ -222,11 +222,7 @@
           <div class="tw-flex-wrap  tw-gap-6 tw-flex tw-justify-center tw-items-start tw-gap-6">
             <div v-for="(hotel, hotel_index) in hotels" href="#"
                  class="tw-block tw-w-full md:tw-w-96 tw-rounded-lg tw-p-2 md:tw-p-4 tw-shadow-sm tw-shadow-indigo-100">
-              <img
-                alt="Home"
-                src="${config.app_local ? `${config.app_back_debug_url}/${hotel.images[0]}` : `${config.app_back_url}/${hotel.images[0]}"
-                class="tw-h-56 tw-w-full tw-rounded-md tw-object-cover"
-              />
+              <div :style="{backgroundImage: `url(${showImages(hotel)})`}" class="tw-h-56 tw-w-full tw-rounded-md tw-bg-cover"></div>
 
               <div class="tw-mt-2">
                 <div>
@@ -269,6 +265,8 @@
 </template>
 
 <script>
+import config from "../config";
+
 export default {
   name: 'Tourisme',
   layout: 'master',
@@ -316,6 +314,10 @@ export default {
   },
 
   methods: {
+    showImages(item) {
+      const url = config.app_local ? `${config.app_back_debug_url}/${item.images[0]}` : `${config.app_back_url}/${item.images[0]}`
+      return url
+    },
     async getHotel() {
       await axios.get('/hotels/get-hotels?limit=5')
         .then(response => {
