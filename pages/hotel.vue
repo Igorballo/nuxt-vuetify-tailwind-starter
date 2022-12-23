@@ -195,7 +195,7 @@
             Rechercher des hotêls
           </v-btn>
 
-          <v-btn v-else @click="this.$router.push('/filter-hotel')"
+          <v-btn v-else @click="$router.push('/filter-hotel')"
                  class="tw-w-[fit-content] tw-rounded-full tw-py-6 tw-px-4 tw-text-white tw-ease-in tw-font-semibold tw-bg-red-600 tw-border-2 tw-border-red-700 tw-duration-300">
             voir les hotels disponibles
           </v-btn>
