@@ -352,6 +352,7 @@ export default {
             description: "",
             medias: ""
           }
+          this.media= ""
         }).catch(error => {
         this.btnloading = false
         return false
