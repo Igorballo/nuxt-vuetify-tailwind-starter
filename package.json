@@ -45,6 +45,7 @@
     "swiper": "^8.3.0",
     "v-click-outside": "^3.1.0",
     "v-mask": "^2.2.3",
+    "vee-validate": "^3.4.14",
     "vue-apexcharts": "^1.6.0",
     "vue-awesome-swiper": "^5.0.1",
     "vue-c3": "^1.2.11",

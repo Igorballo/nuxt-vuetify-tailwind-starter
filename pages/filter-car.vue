@@ -1,6 +1,7 @@
 <template>
   <div class="tw-bg-gray-200 tw-px-2 tw-p-4 md:tw-py-12">
-    <div class="tw-relative tw-container tw-mx-auto md:tw-px-4 tw-flex tw-flex-col md:tw-flex-row md:tw-gap-8 tw-w-full">
+    <div
+      class="tw-relative tw-container tw-mx-auto md:tw-px-4 tw-flex tw-flex-col md:tw-flex-row md:tw-gap-8 tw-w-full">
       <div class="tw-sticky md:tw-top-24 md:tw-block tw-w-full md:tw-w-1/3">
         <div class="">
           <div
@@ -16,7 +17,9 @@
               <span v-if="carReservationForm.autre_lieu_restitution">{{ carReservationForm.lieu_de_restitution }}</span>
               {{ carReservationForm.date_fin }} à {{ carReservationForm.heure_fin }}</h1>
           </div>
-          <div class="tw-hidden md:tw-block"><FilterCarForm/></div>
+          <div class="tw-hidden md:tw-block">
+            <FilterCarForm/>
+          </div>
         </div>
       </div>
 
@@ -159,7 +162,7 @@
             </span>
             <v-card-text>
               <div>
-                  <FilterCarForm/>
+                <FilterCarForm/>
               </div>
               <small class="tw-hidden">*indicates required field</small>
             </v-card-text>
@@ -292,7 +295,7 @@
                     <div class="tw-text-lg"><span class="tw-text-2xl tw-font-extrabold">{{ car.prix }} XOF/JOUR</span>
                     </div>
                     <v-btn @click="saveCarId(car._id)"
-                            class="tw-py-3 tw-px-12 tw-text-white tw-text-xl tw-font-semibold tw-rounded-lg tw-bg-red-600">
+                           class="tw-py-3 tw-px-12 tw-text-white tw-text-xl tw-font-semibold tw-rounded-lg tw-bg-red-600">
                       Reservez
                     </v-btn>
                   </div>
@@ -322,6 +325,24 @@ export default {
       btnLoading: false,
       userInfoDialog: false,
       sendCardReservation: false,
+      lastNameRules: [
+        v => !!v || 'Le Nom est requis',
+      ],
+      firstNameRules: [
+        v => !!v || 'Le prenom est requis',
+      ],
+      passportIdRules: [
+        v => !!v || 'Le Id Passport est requis',
+      ],
+      emailRules: [
+        v => !!v || 'Email est requis',
+      ],
+      numberRules: [
+        v => !!v || 'Le Numero de Telephone est requis',
+      ],
+      codeNumberRules: [
+        v => !!v || 'Le code numero est requis',
+      ],
       carReservationForm: {
         autre_lieu_restitution: false,
         lieu_prise_en_charge: "",
@@ -352,7 +373,7 @@ export default {
     this.initialize()
   },
   methods: {
-    saveCarId(car_id){
+    saveCarId(car_id) {
       this.userInfoDialog = true
       this.carReservationForm.car_id = car_id
     },
@@ -368,7 +389,8 @@ export default {
           this.searchHotelBtn = false
         })
     },
-    async reserverCar(){
+    async reserverCar() {
+      if (this.$refs.modal.validate()) {
         this.sendCardReservation = true
         await axios.post('/reservation-car/request-car-reservation', this.carReservationForm)
           .then(response => {
@@ -388,26 +410,27 @@ export default {
             this.userInfoDialog = false
             this.carReservationForm = {
               autre_lieu_restitution: false,
-                lieu_prise_en_charge: '',
-                lieu_de_restitution: '',
-                heure_debut: '',
-                heure_fin: '',
-                date_debut: '',
-                date_fin: '',
-                car_id: '',
-                lastname: '',
-                firstname: '',
-                email: '',
-                passport_id: '',
-                phone_number: {
+              lieu_prise_en_charge: '',
+              lieu_de_restitution: '',
+              heure_debut: '',
+              heure_fin: '',
+              date_debut: '',
+              date_fin: '',
+              car_id: '',
+              lastname: '',
+              firstname: '',
+              email: '',
+              passport_id: '',
+              phone_number: {
                 code: '',
-                  number: '',
+                number: '',
               },
             }
             this.showToast('success', 'Demande de reservation de voiture envoyée avec succès')
           }).catch(error => {
             console.log(error)
           })
+      }
 
     },
     showImages(item) {

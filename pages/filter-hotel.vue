@@ -367,6 +367,24 @@ export default {
       highPrixRules: [
         v => !!v || 'ce champs est obligatoire',
       ],
+      lastNameRules: [
+        v => !!v || 'Le Nom est requis',
+      ],
+      firstNameRules: [
+        v => !!v || 'Le prenom est requis',
+      ],
+      passportIdRules: [
+        v => !!v || 'Le Id Passport est requis',
+      ],
+      emailRules: [
+        v => !!v || 'Email est requis',
+      ],
+      numberRules: [
+        v => !!v || 'Le Numero de Telephone est requis',
+      ],
+      codeNumberRules: [
+        v => !!v || 'Le code numero est requis',
+      ],
       searchHotelBtn: false,
       date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
       menu: false,
@@ -436,27 +454,53 @@ export default {
       this.hotelReservationForm.hotel_id = hotel_id
     },
     async reserverHotel(){
-      this.sendHotelReservation = true
-      await axios.post('/reservation-hotel/request-hotel-reservation', this.hotelReservationForm)
-        .then(response => {
-          if (response.data.error) {
+      if(this.$refs.modal.validate()){
+        this.sendHotelReservation = true
+        await axios.post('/reservation-hotel/request-hotel-reservation', this.hotelReservationForm)
+          .then(response => {
+            if (response.data.error) {
+              this.userInfoDialog = false
+              this.sendHotelReservation = false
+
+              Swal.fire({
+                title: 'Echec',
+                text: 'Une Erreur s\'est produite',
+                icon: 'error'
+              })
+              return
+            }
+
+            this.hotelReservationForm = {
+              hotel_id: "",
+              lastname: "",
+              firstname: "",
+              email: "",
+              adresse: "",
+              passport_id: "",
+              phone_number: {
+                code: "",
+                number: '',
+              },
+              prix: {
+                lowPrice: "",
+                highPrice: "",
+              },
+              date_arrive: "",
+              date_depart: "",
+              nombre_etoiles: "",
+              passengers: {
+                adultes: 1,
+                enfants: 0,
+                bebes: 0,
+              }
+            },
+              this.sendHotelReservation = false
             this.userInfoDialog = false
-            this.sendHotelReservation = false
-
-            Swal.fire({
-              title: 'Echec',
-              text: 'Une Erreur s\'est produite',
-              icon: 'error'
-            })
-            return
-          }
-
-          this.sendHotelReservation = false
-          this.userInfoDialog = false
-          this.showToast('success', "Demande de reservation d'hôtel envoyée avec succès")
-        }).catch(error => {
-          console.log(error)
-        })
+            this.showToast('success', "Demande de reservation d'hôtel envoyée avec succès")
+          }).catch(error => {
+            console.log(error)
+          })
+      }
     },
     showImages(item) {
       const url = config.app_local ? `${config.app_back_debug_url}/${item.images[0]}` : `${config.app_back_url}/${item.images[0]}`

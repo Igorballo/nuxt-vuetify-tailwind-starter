@@ -425,7 +425,7 @@
                       class=""
                       color="error darken-1"
                       :loading="visaDemandeBtn"
-                      @click="userInfoDialog = false, visaDemandeReservation()"
+                      @click="visaDemandeReservation()"
                     >
                       Envoyer la demande
                     </v-btn>
@@ -434,51 +434,7 @@
                 </v-card>
               </v-form>
             </v-dialog>
-
-            <v-dialog
-              v-model="disclaimerDialog"
-              width="500"
-            >
-
-              <v-card>
-                <v-card-title class="text-h5 grey lighten-2">
-                  Politique de confidentialité
-                </v-card-title>
-
-                <v-card-text>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                  dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                  aliquip ex
-                  ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                  fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                  deserunt
-                  mollit anim id est laborum.
-                </v-card-text>
-
-                <v-divider></v-divider>
-
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-btn
-                    color="primary"
-                    text
-                    @click="disclaimerDialog = false"
-                  >
-                    Annuler
-                  </v-btn>
-                  <v-btn
-                    color="primary"
-                    text
-                    @click="reservation()"
-                    :loading="btnloading"
-                  >
-                    J'accepte
-                  </v-btn>
-                </v-card-actions>
-              </v-card>
-            </v-dialog>
           </div>
-
 
           <div class="tw-flex tw-justify-between">
             <div v-if="false"
@@ -539,7 +495,7 @@
 
           <div class="tw-grid md:tw-grid-cols-2 tw-gap-4">
             <div
-              
+
               class="tw-col-span-1 tw-h-80 lg:tw-h-96 tw-w-full hover:tw-cursor-pointer tw-relative tw-bg-cover tw-rounded-lg">
               <img class="tw-h-full tw-w-full tw-relative tw-bg-cover tw-bg-center tw-rounded-lg"
                    src="https://images.unsplash.com/photo-1655722725332-9925c96dd627?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
@@ -551,7 +507,7 @@
             </div>
 
             <div
-              
+
               class="tw-col-span-1 tw-h-80 lg:tw-h-96 tw-w-full hover:tw-cursor-pointer tw-relative tw-bg-cover tw-rounded-lg">
               <img class="tw-h-full tw-w-full tw-relative tw-bg-cover tw-bg-center tw-rounded-lg"
                    src="https://images.unsplash.com/photo-1640359993530-3dcbf809d783?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
@@ -591,6 +547,7 @@ export default {
 
   data() {
     return {
+      visaDemandeBtn: false,
       btnloading: false,
       departRules: [
         v => !!v || 'Adresse de Depart est requis',
@@ -689,48 +646,49 @@ export default {
 
   methods: {
     async visaDemandeReservation() {
-      this.$refs.modal.validate()
-      this.visaDemandeBtn = false
-      await axios.post('/visa-request', this.visaReservationForm).then((response) => {
-        if (response.data.error) {
-          Swal.fire({
-            title: 'Echec',
-            text: 'Une Erreur s\'est produite',
-            icon: 'error'
-          })
+      if(this.$refs.modal.validate()){
+        this.visaDemandeBtn = true
+        await axios.post('/visa-request', this.visaReservationForm).then((response) => {
+          if (response.data.error) {
+            Swal.fire({
+              title: 'Echec',
+              text: 'Une Erreur s\'est produite',
+              icon: 'error'
+            })
+            this.userInfoDialog = false
+            this.visaDemandeBtn = false
+            return
+          }
           this.userInfoDialog = false
           this.visaDemandeBtn = false
-          return
-        }
-        this.userInfoDialog = false
-        this.visaDemandeBtn = false
-        this.visaReservationForm = {
-          typevoyage: 'allerretour',
-          airport_depart: "",
-          airport_destination: "",
-          depart_date: "",
-          comeback_date: "",
-          lastname: "",
-          firstname: "",
-          email: "",
-          passport_id: "",
-          escales: [],
-          phone_number: {
-            code: "",
-            number: '',
+          this.visaReservationForm = {
+            typevoyage: 'allerretour',
+            airport_depart: "",
+            airport_destination: "",
+            depart_date: "",
+            comeback_date: "",
+            lastname: "",
+            firstname: "",
+            email: "",
+            passport_id: "",
+            escales: [],
+            phone_number: {
+              code: "",
+              number: '',
+            },
+            passengers: {
+              adultes: 1,
+              enfants: 0,
+              bebes: 0,
+            },
           },
-          passengers: {
-            adultes: 1,
-            enfants: 0,
-            bebes: 0,
-          },
-        },
-          this.showToast('success', 'Demande de visa envoyée avec succès')
-      }).catch(error => {
-        this.visaDemandeBtn = false
+            this.showToast('success', 'Demande de visa envoyée avec succès')
+        }).catch(error => {
+          this.visaDemandeBtn = false
 
-        this.showToast('error', "Une erreur s'est produite")
-      });
+          this.showToast('error', "Une erreur s'est produite")
+        });
+      }
     }
   },
 

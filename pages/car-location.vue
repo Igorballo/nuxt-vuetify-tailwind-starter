@@ -200,12 +200,14 @@
             class="tw-justify-start tw-w-full md:tw-w-1/4 tw-pb-4 tw-cursor-pointer hover:tw-bg-gray-200 tw-shadow-lg tw-rounded-lg tw-h-full">
             <div :style="{backgroundImage: `url(${showImages(car)})`}" class="tw-h-96 tw-w-full tw-relative tw-bg-cover tw-bg-center tw-rounded-lg"></div>
             <h1 class="tw-text-2xl tw-font-bold tw-px-4 tw-py-2 tw-text-black tw-uppercase">{{ car.marque}} - {{ car.nom}}</h1>
-            <p class="tw-truncate-line-4 tw-text-sm md:tw-text-base tw-px-4 tw-py-2 tw-italic">
+            <p class="tw-truncate-line-4 tw-text-sm md:tw-text-base tw-px-4 tw-pt-2 tw-italic">
               {{ car.description }}
             </p>
-            <span class="tw-text-sm lg:tw-text-xl tw-inline-flex tw-items-center tw-gap-3 tw-font-bold tw-px-4 tw-py-4 tw-italic ">
+            <span class="tw-text-sm lg:tw-text-lg tw-inline-flex tw-items-center tw-gap-3 tw-font-bold tw-px-4 tw-italic ">
               <img class="tw-h-10 tw-w-10" src="../assets/svg/car1.svg"> À partir de {{ car.prix }} XOF par jour
             </span>
+
+            <v-btn @click="$router.push('/filter-car')" color="red darken-1" class="tw-ml-4 tw-text-white">Reservez maintenant</v-btn>
           </div>
         </div>
       </div>

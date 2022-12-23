@@ -112,16 +112,6 @@
             </div>
             <v-divider/>
 
-<!--            <div class="tw-flex tw-flex-col">-->
-<!--              <div class="tw-flex tw-justify-between">-->
-<!--                <span class="tw-font-semibold tw-text-lg">Nombre de jour</span>-->
-<!--                <div class="tw-flex tw-gap-2">-->
-<!--                  <v-chip>date</v-chip>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--            <v-divider/>-->
-
             <div class="tw-flex tw-flex-col">
               <div class="tw-flex tw-justify-between">
                 <span class="tw-font-semibold tw-text-lg">Passagers</span>
@@ -181,6 +171,8 @@
         </v-card>
       </v-col>
     </v-row>
+
+
   </v-container>
 </template>
 
@@ -192,7 +184,7 @@ export default {
     return {
       demande_hotel: null,
       selectedFile: null,
-      files: [],
+      media: []
     }
   },
 
@@ -222,10 +214,12 @@ export default {
         this.showToast('error', 'Une erreur s\'est produite')
       })
     },
+    removeImageUploaded(index) {
+      this.media.splice(index, 1)
     },
 
   }
-
+}
 </script>
 
 <style scoped>
