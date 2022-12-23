@@ -55,7 +55,6 @@
                   <v-date-picker
                     v-model="carFilterForm.date_debut"
                     no-title
-                    :allowed-dates="disablePastDates"
                     scrollable
                     :allowed-dates="disablePastDates"
                   >
@@ -120,7 +119,6 @@
                   <v-date-picker
                     v-model="carFilterForm.date_fin"
                     no-title
-                    :allowed-dates="disablePastDates"
                     scrollable
                     :allowed-dates="disablePastDates"
                   >
