@@ -185,16 +185,37 @@
       </v-carousel>
     </div>
 
-
     <!-- Our partners section   -->
     <Partners/>
 
-    <Car/>
+    <section class="tw-pb-8 tw-px-4 tw-bg-white tw-flex-col tw-gap-4 tw-shadow-lg">
+      <h1
+        class="tw-mt-12 tw-mb-6 tw-text-xl lg:tw-px-20 md:tw-text-2xl tw-inline-flex tw-items-center tw-gap-3 tw-font-bold tw-uppercase tw-font-extrabold tw-text-red-700">
+        Meilleures Offres en ce moment
+      </h1>
+
+      <div class="tw-px-2 lg:tw-px-20 tw-gap-8 tw-flex tw-flex-col">
+        <div class="tw-flex tw-flex-col md:tw-flex-row md:tw-items-center tw-gap-4">
+          <div v-for="car in cars"
+            class="tw-justify-start tw-w-full md:tw-w-1/4 tw-pb-4 tw-cursor-pointer hover:tw-bg-gray-200 tw-shadow-lg tw-rounded-lg tw-h-full">
+            <div :style="{backgroundImage: `url(${showImages(car)})`}" class="tw-h-96 tw-w-full tw-relative tw-bg-cover tw-bg-center tw-rounded-lg"></div>
+            <h1 class="tw-text-2xl tw-font-bold tw-px-4 tw-py-2 tw-text-black tw-uppercase">{{ car.marque}} - {{ car.nom}}</h1>
+            <p class="tw-truncate-line-4 tw-text-sm md:tw-text-base tw-px-4 tw-py-2 tw-italic">
+              {{ car.description }}
+            </p>
+            <span class="tw-text-sm lg:tw-text-xl tw-inline-flex tw-items-center tw-gap-3 tw-font-bold tw-px-4 tw-py-4 tw-italic ">
+              <img class="tw-h-10 tw-w-10" src="../assets/svg/car1.svg"> À partir de {{ car.prix }} XOF par jour
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
 <script>
 import {mapGetters} from "vuex";
+import config from "../config";
 
 export default {
   name: 'car-location',
@@ -222,7 +243,7 @@ export default {
       ],
 
       time: null,
-
+      cars: [],
       heure_debut_menu: false,
       heure_restitution_menu: false,
       date_depart_menu: false,
@@ -253,7 +274,22 @@ export default {
 
   },
 
+  mounted(){
+    this.getCar()
+  },
+
   methods: {
+    showImages(item) {
+      const url = config.app_local ? `${config.app_back_debug_url}/${item.images[0]}` : `${config.app_back_url}/${item.images[0]}`
+      return url
+    },
+    async getCar() {
+      await axios.get('/cars/get-cars?limit=4')
+        .then(response => {
+          console.log(response);
+          this.cars = response.data.cars;
+        })
+    },
     disablePastDates(val) {
       return val > new Date().toISOString().substr(0, 10)
     },
@@ -296,5 +332,12 @@ export default {
 </script>
 
 <style scoped>
-
+.tw-truncate-line-4 {
+  /* Other styles */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+}
 </style>

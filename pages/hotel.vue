@@ -211,6 +211,128 @@
     <!-- Our partners section   -->
     <Partners/>
 
+    <!--   User form   -->
+    <v-dialog
+      v-model="userInfoDialog"
+      max-width="600px"
+    >
+      <v-form
+        ref="modal"
+        v-model="valid"
+        lazy-validation
+      >
+        <v-card>
+          <v-card-title>
+            <span class="text-h5">Information du client</span>
+          </v-card-title>
+          <v-card-text>
+            <v-container>
+
+              <v-row>
+                <v-col
+                  cols="12"
+                  sm="6"
+                >
+                  <v-text-field
+                    label="Nom*"
+                    :rules="lastNameRules"
+                    required
+                    outlined
+                    v-model="hotelReservationForm.lastname"
+                  ></v-text-field>
+                </v-col>
+                <v-col
+                  cols="12"
+                  sm="6"
+                >
+                  <v-text-field
+                    label="Prénoms*"
+                    required outlined
+                    :rules="firstNameRules"
+                    v-model="hotelReservationForm.firstname"
+                  ></v-text-field>
+                </v-col>
+
+                <v-col
+                  cols="12"
+                >
+                  <v-text-field placeholder="XXXXXXXX" v-model="hotelReservationForm.passport_id" required
+                                :rules="passportIdRules"
+                                label="Numéro passport ou Numéro carte d'identité*" outlined></v-text-field>
+                </v-col>
+
+                <v-col
+                  cols="12"
+                >
+                  <v-text-field type="email" placeholder="ex: hfx@gmail.com" v-model="hotelReservationForm.email"
+                                required
+                                :rules="emailRules"
+                                label="Adresse email*" outlined></v-text-field>
+                </v-col>
+
+                <v-row
+                  cols="12" class="tw-mx-1"
+                >
+                  <v-col sm="6">
+                    <v-autocomplete
+                      v-model="hotelReservationForm.phone_number.code"
+                      :items="countries"
+                      :loading="isLoading"
+                      :search-input.sync="search"
+                      clearable
+                      item-text="dial_code"
+                      item-value="id"
+                      outlined
+                      :rules="codeNumberRules"
+                      required
+                      label="Indicatif de votre numéro*"
+                    >
+                      <template v-slot:item="{ item }">
+                        <v-list-item-avatar
+                          color="indigo"
+                          class="text-h10 tw-p-4 font-weight-light white--text"
+                        >
+                          {{ item.dial_code }}
+                        </v-list-item-avatar>
+                        <v-list-item-content>
+                          <v-list-item-title>{{ item.name }}</v-list-item-title>
+                        </v-list-item-content>
+                      </template>
+                    </v-autocomplete>
+                  </v-col>
+                  <v-col>
+                    <v-text-field v-model="hotelReservationForm.phone_number.number" required
+                                  :rules="numberRules" type="number"
+                                  label="Numéro de télephone*" outlined></v-text-field>
+                  </v-col>
+                </v-row>
+              </v-row>
+
+            </v-container>
+            <small>*Indique un champ obligatoire</small>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+              color="error darken-1"
+              @click="userInfoDialog = false"
+              text
+            >
+              Fermer
+            </v-btn>
+            <v-btn
+              class=""
+              color="error darken-1"
+              :loading="sendHotelReservation"
+              @click="reserverHotel()"
+            >
+              Envoyer la demande
+            </v-btn>
+
+          </v-card-actions>
+        </v-card>
+      </v-form>
+    </v-dialog>
 
     <section class="tw-pt-4 tw-pb-8 lg:tw-pb-20 lg:tw-px-4 tw-flex-col tw-gap-4">
       <div class="">
@@ -254,7 +376,7 @@
                 </div>
               </div>
 
-              <v-btn color="red darken-1" class="tw-mt-4 tw-text-white">Reservez maintenant</v-btn>
+              <v-btn @click="$router.push('/filter-hotel')" color="red darken-1" class="tw-mt-4 tw-text-white">Reservez maintenant</v-btn>
             </div>
           </div>
         </div>
@@ -266,13 +388,41 @@
 
 <script>
 import config from "../config";
+import json from "../data/CountryCodes.json";
 
 export default {
   name: 'Tourisme',
   layout: 'master',
   data() {
     return {
+      sendHotelReservation: false,
+      userInfoDialog: false,
+      hotelReservationForm: {
+        hotel_id: "",
+        lastname: "",
+        firstname: "",
+        email: "",
+        adresse: "",
+        passport_id: "",
+        phone_number: {
+          code: "",
+          number: '',
+        },
+        prix: {
+          lowPrice: "",
+          highPrice: "",
+        },
+        date_arrive: "",
+        date_depart: "",
+        nombre_etoiles: "",
+        passengers: {
+          adultes: 1,
+          enfants: 0,
+          bebes: 0,
+        }
+      },
       hotels: [],
+      countries: json,
       villeRules: [
         v => !!v || 'ce champs est obligatoire',
       ],
@@ -281,6 +431,24 @@ export default {
       ],
       dateDepartRules: [
         v => !!v || 'ce champs est obligatoire',
+      ],
+      lastNameRules: [
+        v => !!v || 'Le Nom est requis',
+      ],
+      firstNameRules: [
+        v => !!v || 'Le prenom est requis',
+      ],
+      passportIdRules: [
+        v => !!v || 'Le Id Passport est requis',
+      ],
+      emailRules: [
+        v => !!v || 'Email est requis',
+      ],
+      numberRules: [
+        v => !!v || 'Le Numero de Telephone est requis',
+      ],
+      codeNumberRules: [
+        v => !!v || 'Le code numero est requis',
       ],
       hotelFilterForm: {
         adresse: "",
@@ -314,6 +482,35 @@ export default {
   },
 
   methods: {
+    saveHotelId(hotel_id){
+      this.userInfoDialog = true
+      this.hotelReservationForm.hotel_id = hotel_id
+    },
+    async reserverHotel(){
+      if(this.$refs.modal.validate()){
+        this.sendHotelReservation = true
+        await axios.post('/reservation-hotel/request-hotel-reservation', this.hotelReservationForm)
+          .then(response => {
+            if (response.data.error) {
+              this.userInfoDialog = false
+              this.sendHotelReservation = false
+
+              Swal.fire({
+                title: 'Echec',
+                text: 'Une Erreur s\'est produite',
+                icon: 'error'
+              })
+              return
+            }
+
+            this.sendHotelReservation = false
+            this.userInfoDialog = false
+            this.showToast('success', "Demande de reservation d'hôtel envoyée avec succès")
+          }).catch(error => {
+            console.log(error)
+          })
+      }
+    },
     showImages(item) {
       const url = config.app_local ? `${config.app_back_debug_url}/${item.images[0]}` : `${config.app_back_url}/${item.images[0]}`
       return url

@@ -630,47 +630,49 @@ export default {
 
   methods: {
     async demandeSiteTouristique() {
-      this.$refs.modal.validate()
-      this.sendTourismeBtn = true
-      await axios.post('/tourisme-request', this.tourismeReservationForm)
-        .then(response => {
-          if (response.data.error) {
-            this.userInfoDialog = false
-            this.sendTourismeBtn = false
+      if(this.$refs.modal.validate()) {
+        this.sendTourismeBtn = true
 
-            Swal.fire({
-              title: 'Echec',
-              text: 'Une Erreur s\'est produite',
-              icon: 'error'
-            })
-            return
-          }
+        await axios.post('/tourisme-request', this.tourismeReservationForm)
+          .then(response => {
+            if (response.data.error) {
+              this.userInfoDialog = false
+              this.sendTourismeBtn = false
 
-          this.tourismeReservationForm = {
-            aller_simple: true,
-            typevoyage: 'allerretour',
-            depart_date: "",
-            comeback_date: "",
-            lastname: "",
-            firstname: "",
-            passport_id: "",
-            phone_number: {
-              code: "",
-              number: '',
-            },
-            passengers: {
-              adultes: 1,
-              enfants: 0,
-              bebes: 0,
+              Swal.fire({
+                title: 'Echec',
+                text: 'Une Erreur s\'est produite',
+                icon: 'error'
+              })
+              return
             }
-          },
 
-            this.userInfoDialog = false
-          this.sendTourismeBtn = false
-          this.showToast('success', "Demande de reservation de site touristique envoyée avec succès")
-        }).catch(error => {
-          console.log(error)
-        })
+            this.tourismeReservationForm = {
+              aller_simple: true,
+              typevoyage: 'allerretour',
+              depart_date: "",
+              comeback_date: "",
+              lastname: "",
+              firstname: "",
+              passport_id: "",
+              phone_number: {
+                code: "",
+                number: '',
+              },
+              passengers: {
+                adultes: 1,
+                enfants: 0,
+                bebes: 0,
+              }
+            },
+
+              this.userInfoDialog = false
+            this.sendTourismeBtn = false
+            this.showToast('success', "Demande de reservation de site touristique envoyée avec succès")
+          }).catch(error => {
+            console.log(error)
+          })
+      }
     },
 
   },
