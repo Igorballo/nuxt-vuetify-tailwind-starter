@@ -225,7 +225,6 @@
 
 import Header from "../components/Header";
 import Cookies from 'js-cookie'
-
 import {mapGetters} from "vuex";
 
 export default {

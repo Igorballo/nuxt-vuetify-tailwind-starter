@@ -4,19 +4,32 @@
     <div class="tw-relative">
       <div style="z-index: 200"
            class="tw-flex tw-justify-center tw-items-center tw-absolute tw-inset-0">
+        <validation-observer
+          ref="observer"
+          v-slot="{ invalid }"
+          slim
+        >
         <v-form
           ref="form"
           v-model="valid"
           lazy-validation
           class="tw-flex tw-flex-col tw-rounded-lg tw-bg-white tw-shadow-md tw-p-4 md:tw-p-6 tw-w-[90%] md:tw-w-[75%]">
-          <div class="tw-flex tw-flex-col tw-pt-2 tw-gap-4 md:tw-flex-row md:tw-items-center md:tw-justify-between ">
+          <div class="tw-flex tw-flex-col tw-pt-2 tw-gap-4 md:tw-flex-row md:tw-items-center">
+            <validation-provider
+              v-slot="{ errors }"
+              name="lieu"
+              rules="required"
+              slim
+            >
             <v-text-field
               label="Ex: pays, ville, quartier ou nom de l'hôtel"
               outlined
               v-model="hotelFilterForm.adresse"
               :rules="villeRules"
               required
+              validation-observe="input, change"
             ></v-text-field>
+            </validation-provider>
             <div class="tw-flex tw-items-center">
               <v-col class="tw-px-0">
                 <v-menu
@@ -177,10 +190,17 @@
 
 
           <v-btn @click="hotelSearch"
+                 v-if="!invalid"
             class="tw-w-[fit-content] tw-rounded-full tw-py-6 tw-px-4 tw-text-white tw-ease-in tw-font-semibold tw-bg-red-600 tw-border-2 tw-border-red-700 tw-duration-300">
             Rechercher des hotêls
           </v-btn>
+
+          <v-btn v-else @click="this.$router.push('/filter-hotel')"
+                 class="tw-w-[fit-content] tw-rounded-full tw-py-6 tw-px-4 tw-text-white tw-ease-in tw-font-semibold tw-bg-red-600 tw-border-2 tw-border-red-700 tw-duration-300">
+            voir les hotels disponibles
+          </v-btn>
         </v-form>
+        </validation-observer>
       </div>
 
       <v-carousel
