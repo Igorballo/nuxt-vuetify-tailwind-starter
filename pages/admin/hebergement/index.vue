@@ -392,8 +392,10 @@ export default {
             prix_max: "",
             description: "",
             nombre_etoile: "",
-            adresse: ""
+            adresse: "",
+            
           }
+          this.media= ""
         }).catch(error => {
         this.btnloading = false
         return false
