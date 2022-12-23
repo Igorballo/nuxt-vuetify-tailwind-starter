@@ -137,7 +137,7 @@
       </div>
 
       <div class="tw-flex">
-        <v-select
+        <v-text-field
           :items="lowPrice"
           outlined
           label="Plus bas prix"
@@ -148,9 +148,9 @@
               <span>{{ item }} XOF</span>
             </v-chip>
           </template>
-        </v-select>
+        </v-text-field>
 
-        <v-select
+        <v-text-field
           :items="highPrice"
           outlined
           label="Plus haut prix"
@@ -161,7 +161,7 @@
               <span>{{ item }} XOF</span>
             </v-chip>
           </template>
-        </v-select>
+        </v-text-field>
       </div>
 
       <v-btn :loading="searchHotelBtn" @click="searchCar"

@@ -65,7 +65,7 @@
 
 
           <div class="tw-flex tw-gap-2">
-            <v-select
+            <v-text-field
               v-model="hotelReservationForm.prix.lowPrice"
               :items="lowPrice"
               outlined
@@ -76,9 +76,9 @@
                   <span>{{ item }} XOF</span>
                 </v-chip>
               </template>
-            </v-select>
+            </v-text-field>
 
-            <v-select
+            <v-text-field
               v-model="hotelReservationForm.prix.highPrice"
               :items="highPrice"
               outlined
@@ -89,7 +89,7 @@
                   <span>{{ item }} XOF</span>
                 </v-chip>
               </template>
-            </v-select>
+            </v-text-field>
           </div>
           <v-btn :loading="searchHotelBtn"
                  class="tw-text-white tw-bg-red-600 tw-font-semibold tw-rounded-lg tw-py-2 tw-px-6"
