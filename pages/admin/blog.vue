@@ -194,6 +194,7 @@ export default {
             nombre_etoile: "",
             adresse: ""
           }
+          this.media= ""
         }).catch(error => {
         this.btnloading = false
         return false

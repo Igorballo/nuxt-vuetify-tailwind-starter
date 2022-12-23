@@ -133,6 +133,7 @@
 
     <nuxt/>
 
+
     <!--    Politique de confidebtialité-->
     <div style="z-index: 999">
       <div justify="center">
@@ -193,28 +194,29 @@
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn
-                color="green darken-1"
-                text
-                class="tw-underline tw-text-xs"
-                @click="setPolicyToCookie(false)"
-              >
-                Continuer sans accepter
-              </v-btn>
-              <v-btn
-                color="green darken-1"
-                text
-                class=" tw-text-xs"
-                @click="setPolicyToCookie(true)"
-              >
-                J'accepte
-              </v-btn>
+              <div class="tw-flex tw-w-full tw-flex-col tw-justify-center md:tw-flex-row tw-items-center">
+                <v-btn
+                  color="green darken-1"
+                  text
+                  class="tw-underline tw-text-xs"
+                  @click="setPolicyToCookie(false)"
+                >
+                  Continuer sans accepter
+                </v-btn>
+                <v-btn
+                  color="green darken-1"
+                  text
+                  class="tw-text-xs"
+                  @click="setPolicyToCookie(true)"
+                >
+                  J'accepte
+                </v-btn>
+              </div>
             </v-card-actions>
           </v-card>
         </v-dialog>
       </div>
     </div>
-
     <Footer/>
   </v-app>
 </template>
@@ -222,6 +224,8 @@
 <script>
 
 import Header from "../components/Header";
+import Cookies from 'js-cookie'
+
 import {mapGetters} from "vuex";
 
 export default {
@@ -229,28 +233,30 @@ export default {
   components: {Header},
   data() {
     return {
-      showConfidentialPolicyForm: null,
-      acceptPolitique:  false,
       showMenu: false,
+      showConfidentialPolicyForm: null,
+      acceptPolitique: null,
     }
   },
 
   methods: {
     setPolicyToCookie(accept){
-      this.acceptPolitique = accept
-      this.$store.dispatch('user/setAcceptPolitiqueDeConfidentialite', this.acceptPolitique)
+      Cookies.set('accepted_politique_confidentialite', JSON.stringify(accept), { expires: false ? 365 : null })
       this.showConfidentialPolicyForm = false
-    }
+    },
   },
-
-  computed: {
-    ...mapGetters('user', [
-      'selected_accept_politique_de_confifentialite',
-    ]),
-  },
-
 
   mounted() {
+    if(Cookies.get('accepted_politique_confidentialite') === undefined){
+      Cookies.set('accepted_politique_confidentialite', JSON.stringify(false), { expires: false ? 365 : null })
+      this.showConfidentialPolicyForm = true
+    }else{
+      if(JSON.parse(Cookies.get('accepted_politique_confidentialite'))){
+        this.showConfidentialPolicyForm = false
+      }else{
+        this.showConfidentialPolicyForm = true
+      }
+    }
 
     var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
     (function () {
@@ -262,7 +268,15 @@ export default {
       s0.parentNode.insertBefore(s1, s0);
     })();
 
-    this.showConfidentialPolicyForm =! this.selected_accept_politique_de_confifentialite
+    // if(!localStorage.getItem('accepted_polconf')){
+    //   this.dialogPo = true
+    // }
+    // if(!Cookies.get('accepted_politique_confidentialite')){
+    //   this.dialogPo = true
+    // }
+
+
+    // this.showConfidentialPolicyForm =! this.selected_accept_politique_de_confifentialite
   }
 }
 </script>

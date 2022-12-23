@@ -1,17 +1,14 @@
 import {mapGetters} from "vuex";
 import Swal from "sweetalert2";
+import Cookies from "js-cookie";
 
 export default {
   layout: "bus-manager",
+  data(){
+    return {
+    }
+  },
   mounted() {
-    // if(this.globalStateMessage.show)
-    // Swal.fire({
-    //   icon: 'warning',
-    //   title: "",
-    //   text: "Veuillez vous inscrire ou vous connecter pour continuer",
-    //   reverseButtons: true,
-    //   confirmButtonText: "Ok",
-    // })
   },
   methods: {
     disablePastDates(val) {

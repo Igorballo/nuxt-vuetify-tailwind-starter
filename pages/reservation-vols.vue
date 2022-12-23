@@ -1,6 +1,7 @@
 <template>
   <div>
     <Annonce />
+
     <div class="tw-relative">
       <div style="z-index: 200" class="tw-flex tw-justify-center tw-items-center tw-absolute tw-inset-0">
         <v-form
@@ -523,37 +524,122 @@
       >
         <v-carousel-item
           src="https://images.unsplash.com/photo-1621331805847-bb27233e4ae1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-          :key="i"
         >
         </v-carousel-item>
         <v-carousel-item
           src="https://images.unsplash.com/photo-1501263025405-af2cd1ee2c73?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1981&q=80"
-          :key="i">
+        >
         </v-carousel-item>
         <v-carousel-item
           src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1174&q=80"
-          :key="i">
+        >
         </v-carousel-item>
       </v-carousel>
     </div>
-
 
     <!-- Our partners section   -->
      <Partners />
 
     <Cards/>
+
+    <!--    Politique de confidebtialité-->
+    <div style="z-index: 999">
+      <div justify="center">
+        <v-dialog
+          v-model="showPolicyDialog"
+          width="600px"
+          height="400px"
+        >
+          <v-card>
+            <v-card-title>
+              <span class="tw-text-lg">Politique de confidentialité</span>
+            </v-card-title>
+            <v-card-text>
+              <p class="tw-text-sm md:tw-text-base">Vous trouverez ici une vue d'ensemble de la manière dont nous traitons vos données personnelles, des objectifs pour lesquels nous les traitons et de la manière dont vous en bénéficiez. Vous verrez également quels sont vos droits et comment vous pouvez nous contacter.</p>
+
+              <h1 class="tw-text-base tw-font-semibold tw-underline tw-text-gray-800">Quelles sont les données que nous collectons ?</h1>
+              <p class="tw-text-sm md:tw-text-base">
+                Nous stockons les données personnelles que vous nous donnez lorsque vous faites une réservation ou enregistrez vos préférences. Celles-ci comprennent notamment :
+                -	Le nom et les prénoms
+                -	Le numéro de la carte d’identité ou du passeport
+                -	L’adresse e-mail
+                -	Le numéro de téléphone
+                -	L’adresse de départ et d’arrivée
+                -	La date de départ et d’arrivée
+                Les données de réservation sont automatiquement supprimées de la base de données du site <strong>un(1) an</strong> après leur enregistrement.
+                Les données sont collectées dès que vous souscrivez à un service sur notre site web.
+              </p>
+
+              <h1 class="tw-text-base tw-font-semibold tw-underline tw-text-gray-800">Pourquoi collectons-nous vos données personnelles ?</h1>
+              <div class="tw-text-sm md:tw-text-base">
+                Nous collectons vos données personnelles exclusivement pour l’accès aux services que nous proposons sur notre site, notamment :
+                <ul class="list-disc">
+                  <li>La réservation de billets de vols,</li>
+                  <li>La réservation de lieux d’hébergement,</li>
+                  <li>La réservation de voitures,</li>
+                  <li>La visitation de lieux touristiques,</li>
+                  <li>Les procédures d’obtention de visas</li>
+                </ul>
+              </div>
+
+              <h1 class="tw-text-base tw-font-semibold tw-underline tw-text-gray-800">Qui peut accéder à vos données personnelles et pourquoi ?</h1>
+              <p class="tw-text-sm md:tw-text-base">
+                Nous ne transférons pas vos données à des tiers, nous ne les utilisons pas pour des activités commerciales, et nous ne les partageons avec personne.
+              </p>
+
+              <h1 class="tw-text-base tw-font-semibold tw-underline tw-text-gray-800">Quels sont vos droits sur vos données personnelles ?</h1>
+              <p class="tw-text-sm md:tw-text-base">
+                Si vous ne souhaitez plus que les données personnelles collectées lors de vos réservations figurent dans le système, il vous suffit d’envoyer un message
+                à l’administrateur du site via le chat intégré disponible en bas à gauche du site ou par le biais du formulaire de contact disponible sur la page de contact. La même procédure est valable si vous souhaitez disposer d’une copie des données enregistrées dans le système. Dans ce dernier cas, vous devrez joindre à votre message l’adresse mail de réception.
+                <br>Vos données vous seront envoyées ou seront supprimées dans un délai de sept jours après votre demande
+              </p>
+
+              <h1 class="tw-text-base tw-font-semibold tw-underline tw-text-gray-800">Sécurité et conservation des données.</h1>
+              <p class="tw-text-sm md:tw-text-base">Nous utilisons diverses mesures pour préserver la confidentialité et la sécurité de vos données personnelles, notamment en limitant l'accès à vos données personnelles en fonction des besoins et en suivant les normes de sécurité appropriées pour protéger vos données.</p>
+
+              <h1 class="tw-text-base tw-font-semibold tw-underline tw-text-gray-800">Nous contacter</h1>
+              <p class="tw-text-sm md:tw-text-base">Manglam Tours & Travels est situé à Lomé dans le quartier Dékon, en face de AKIF. Vous pouvez nous joindre par mail via l’adresse <strong>manglam@tour.com</strong> ou par téléphone en appelant le <strong>+ 228 96 69 09 81</strong> ou le <strong>+ 33 422 567 89</strong>.</p>
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <div class="tw-flex tw-w-full tw-flex-col tw-justify-center md:tw-flex-row tw-items-center">
+                <v-btn
+                  color="green darken-1"
+                  text
+                  class="tw-underline tw-text-xs"
+                  @click="setPolicyToCookie(false)"
+                >
+                  Continuer sans accepter
+                </v-btn>
+                <v-btn
+                  color="green darken-1"
+                  text
+                  class="tw-text-xs"
+                  @click="setPolicyToCookie(true)"
+                >
+                  J'accepte
+                </v-btn>
+              </div>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import json from '../data/CountryCodes.json'
 import config from "../config";
+import {mapGetters} from "vuex";
+import Cookies from "js-cookie";
 
 export default {
   name: 'ticket',
   layout: 'master',
   data() {
     return {
+      showPolicyDialog: false,
       btnloading: false,
       policybtnloading: false,
       type_classe: ['Classe économique', 'Classe économique premium', 'Classe affaire', 'Première classe'],
@@ -630,7 +716,6 @@ export default {
           bebes: 0,
         },
       },
-      showConfidentialPolicyForm: null,
       value: null,
       date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
       depart_menu: false,
@@ -640,11 +725,6 @@ export default {
       isEditing: false,
     }
   },
-
-  mounted(){
-    this.showConfidentialPolicyForm = this.selected_accept_politique_de_confifentialite
-  },
-
 
   computed: {
     totalPassagers() {
@@ -674,57 +754,67 @@ export default {
       return country.indexOf(searchText) > -1 || name.indexOf(searchText) > -1 || codeiata.indexOf(searchText) > -1
     },
     async reservation() {
-      this.btnLoading = true
-      this.policybtnloading = false
-      await axios.post('/reservation-vol/request-flight-reservation', this.reservationForm).then((response) => {
-        if (response.data.error) {
-          this.btnLoading = false
-          Swal.fire({
-            title: 'Echec',
-            text: 'Une Erreur s\'est produite',
-            icon: 'error'
-          })
+
+      if(JSON.parse(Cookies.get('accepted_politique_confidentialite'))){
+        this.showPolicyDialog = true
+      }else{
+        this.btnLoading = true
+        await axios.post('/reservation-vol/request-flight-reservation', this.reservationForm).then((response) => {
+          if (response.data.error) {
+            this.btnLoading = false
+            Swal.fire({
+              title: 'Echec',
+              text: 'Une Erreur s\'est produite',
+              icon: 'error'
+            })
+            this.btnLoading = false
+            this.policybtnloading = false
+            this.userInfoDialog = false
+            this.disclaimerDialog = false
+            return
+          }
           this.btnLoading = false
           this.policybtnloading = false
           this.userInfoDialog = false
           this.disclaimerDialog = false
-          return
-        }
-        this.btnLoading = false
-        this.policybtnloading = false
-        this.userInfoDialog = false
-        this.disclaimerDialog = false
-        this.reservationForm = {
-          aller_simple: true,
-          typevoyage: 'allerretour',
-          typeclasse: "Classe économique",
-          airport_depart: "",
-          airport_destination: "",
-          depart_date: "",
-          comeback_date: "",
-          lastname: "",
-          firstname: "",
-          email: "",
-          passport_id: "",
-          phone_number: {
-            code: "",
-            number: '',
+          this.reservationForm = {
+            aller_simple: true,
+            typevoyage: 'allerretour',
+            typeclasse: "Classe économique",
+            airport_depart: "",
+            airport_destination: "",
+            depart_date: "",
+            comeback_date: "",
+            lastname: "",
+            firstname: "",
+            email: "",
+            passport_id: "",
+            phone_number: {
+              code: "",
+              number: '',
+            },
+            passengers: {
+              adultes: 1,
+              enfants: 0,
+              bebes: 0,
+            }
           },
-          passengers: {
-            adultes: 1,
-            enfants: 0,
-            bebes: 0,
-          }
-        },
-          this.showToast('success', 'Demande de reservation envoyée avec succès')
-      }).catch(error => {
-        this.btnLoading = false
-        this.policybtnloading = true
-        this.userInfoDialog = false
-        this.disclaimerDialog = false
-        this.showToast('error', "Une erreur s'est produite")
-      });
+            this.showToast('success', 'Demande de reservation envoyée avec succès')
+        }).catch(error => {
+          this.btnLoading = false
+          this.policybtnloading = true
+          this.userInfoDialog = false
+          this.disclaimerDialog = false
+          this.showToast('error', "Une erreur s'est produite")
+        });
+
+      }
+
     }
+  },
+  mounted() {
+    // this.showPolicyDialog = JSON.parse(Cookies.get('accepted_politique_confidentialite'))
+
   },
   watch: {
     model(val) {

@@ -75,7 +75,8 @@
               <div class="tw-flex tw-justify-between">
                 <span class="tw-font-semibold tw-text-lg">Nom de l'hôtel</span>
                 <div class="tw-flex tw-gap-2">
-                  <v-chip>Nom de l'hôtel</v-chip>
+                  <v-chip>{{ demande_hotel.hotel.nom }}</v-chip>
+                  <v-icon v-for="i in demande_hotel.hotel.nombreEtoile" color="yellow darken-3">mdi-star</v-icon>
                 </div>
               </div>
             </div>
@@ -85,7 +86,7 @@
               <div class="tw-flex tw-justify-between">
                 <span class="tw-font-semibold tw-text-lg">Adresse de l'hôtel</span>
                 <div class="tw-flex tw-gap-2">
-                  <v-chip>{{ demande_hotel.adresse }}</v-chip>
+                  <v-chip>{{ demande_hotel.hotel.adresse }} - {{ demande_hotel.hotel.ville }}</v-chip>
                 </div>
               </div>
             </div>
@@ -157,7 +158,7 @@
           </v-card-title>
           <v-card-text class="tw-px-4 tw-flex tw-flex-col tw-gap-4">
             <v-card>
-              <BaseDropzone @uploadchange="handleUploadChange"/>
+              <v-file-input outlined v-model="files" multiple label="Sélectionner les fichiers"  />
               <v-card-actions class="tw-mb-6" v-if="">
                 <v-btn color="primary" @click="sendSupplyToClient()" block>Envoyer cette offre au client</v-btn>
               </v-card-actions>
@@ -192,19 +193,26 @@ export default {
   },
 
   methods: {
-    getHotelReservationById() {
-      axios.get(`/reservation-hotel/${this.$route.params.id}`)
+    async getHotelReservationById() {
+      await axios.get(`/reservation-hotel/${this.$route.params.id}`)
         .then(response => {
           this.demande_hotel = response.data.reservation;
         })
     },
-    handleUploadChange(event){
-      console.log("ev")
-      console.log(event)
-    },
-    triggerUpload() {
-      let inputImage = document.getElementById("images-upload")
-      inputImage.click()
+
+     async sendSupplyToClient() {
+      const formData = new FormData();
+  this.files.forEach((file) => {
+    formData.append('files', file);
+  });
+       await  axios.post(`/hotels/send-offer/${this.$route.params.id}`, formData).then((response) => {
+        this.showToast('success', 'Message envoyé avec succès')
+        this.files = [];
+
+      }).catch(error => {
+        console.log(error)
+        this.showToast('error', 'Une erreur s\'est produite')
+      })
     },
     removeImageUploaded(index) {
       this.media.splice(index, 1)

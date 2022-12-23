@@ -41,7 +41,6 @@ export const actions = {
       commit('recherche-hotels/SET_RECHERCHE_HOTEL_PASSENGERS', JSON.parse(recherche_hotel_passengers))
     }
 
-
     if(recherche_car_date_debut){
       commit('recherche-cars/SET_RECHERCHE_CAR_DATE_DEBUT', JSON.parse(recherche_car_date_debut))
     }
@@ -64,12 +63,6 @@ export const actions = {
       commit('recherche-cars/SET_RECHERCHE_CAR_AUTRE_LIEU_RESTITUTION', JSON.parse(recherche_car_autre_lieu_restitution))
       commit('recherche-cars/SET_RECHERCHE_CAR_LIEU_RESTITUTION', JSON.parse(recherche_car_lieu_restitution))
     }
-
-
-
-
-
-
 
     if(recherche_ticket_adresse_depart){
       commit('user/SET_RECHERCHE_TICKET_ADRESSE_DEPART', JSON.parse(recherche_ticket_adresse_depart))

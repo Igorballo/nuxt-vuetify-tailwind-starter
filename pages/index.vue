@@ -2,6 +2,7 @@
   <div>
     <div>
       <Annonce />
+
       <v-carousel
         cycle
         show-arrows-on-hover
@@ -63,9 +64,7 @@
           </div>
         </v-carousel-item>
       </v-carousel>
-
     </div>
-
 
     <section class="tw-pt-4 tw-pb-8 lg:tw-pb-10 lg:tw-px-3 tw-flex-col tw-gap-4 tw-mt-8">
       <div class="">
@@ -179,7 +178,6 @@
       </div>
     </section>
 
-
     <div class="container tw-mx-auto tw-flex tw-flex-wrap tw-py-3">
       <!-- Posts Section -->
       <section class="tw-w-full md:tw-w-full tw-flex tw-flex-col tw-items-center tw-px-3">
@@ -226,8 +224,6 @@
 
       </section>
     </div>
-
-
   </div>
 </template>
 
@@ -236,11 +232,14 @@
     Marquee,
     Slide
   } from "vue-marquee-component"
+  import PolitiqueConfidentialite from "../components/PolitiqueConfidentialite";
+  import Cookies from "js-cookie";
 
   export default {
     name: 'Tourisme',
     layout: 'master',
     components: {
+      PolitiqueConfidentialite,
       [Marquee.name]: Marquee,
       [Slide.name]: Slide,
     },
@@ -271,6 +270,10 @@
           'https://images.unsplash.com/photo-1615460549969-36fa19521a4f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80',
         ],
       }
+    },
+
+    mounted(){
+
     },
 
     computed: {
