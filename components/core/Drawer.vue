@@ -15,11 +15,11 @@
       <v-img v-bind="attrs" gradient="to top, rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)"/>
     </template>
 
-    <v-list-item>
-      <div class="tw-bg-white tw-px-3 tw-py-2 tw-mx-2 tw-my-2 tw-w-full tw-rounded-md">
-        <img src="~/assets/img/logo.png" class="tw-h-24 tw-w-full" contain/>
-      </div>
-    </v-list-item>
+<!--    <v-list-item>-->
+<!--      <div class="tw-bg-white tw-px-3 tw-py-2 tw-mx-2 tw-my-2 tw-w-full tw-rounded-md">-->
+<!--        <img src="../assets/img/stat.png" class="tw-h-24 tw-w-full"/>-->
+<!--      </div>-->
+<!--    </v-list-item>-->
 
     <v-divider class="mx-3 mb-3"/>
 

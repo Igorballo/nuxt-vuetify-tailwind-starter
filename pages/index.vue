@@ -1,304 +1,299 @@
 <template>
-  <div>
-    <div>
-      <Annonce />
-
-      <v-carousel
-        cycle
-        show-arrows-on-hover
-        hide-delimiter-background
-        height="600"
-        v-model="model"
-      >
-        <v-carousel-item
-          class="tw-h-full tw-w-full tw-bg-center tw-bg-cover tw-center tw-bg-auto"
-          src="https://images.unsplash.com/photo-1587019158091-1a103c5dd17f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-        >
-          <div class="tw-flex tw-justify-center tw-items-center tw-w-full tw-h-full">
-            <div class="tw-mx-6 md:tw-mx-0 tw-w-full md:tw-w-2/3 tw-text-center tw-bg-gray-800 tw-bg-opacity-50 tw-p-8 tw-rounded-lg">
-              <h1 class="tw-text-3xl md:tw-text-5xl tw-text-white tw-font-extrabold">BIENVENUE SUR MANGLAM TOURS & TRVAVELS</h1>
-              <p class="tw-mt-8 tw-text-sm md:tw-text-lg tw-text-gray-100">
-                Vous avez un projet de voyage et souhaitez avoir les informations <br class="tw-hidden md:tw-block">
-                nécessaires pour bien préparer votre séjour ? Vous êtes au bon endroit !
-              </p>
-            </div>
+  <v-app>
+    <div class="">
+      <header class="tw-mx-auto tw-sticky tw-py-4 tw-top-0 tw-z-50 tw-bg-white">
+        <div class="tw-flex lg:tw-flex-row tw-items-center tw-justify-between lg:px-desktop tw-mx-12 tw-sticky tw-top-0">
+          <!-- Header logo -->
+          <div class="tw-flex tw-space-x-2 tw-justify-end tw-bg-white tw-rounded-r-full">
+            <h1 class="tw-font-bold tw-text-2xl">
+              <nuxt-link to="/"><img src="../assets/img/Ok1.png" alt=""></nuxt-link>
+            </h1>
           </div>
+          <ul class="tw-items-center tw-space-x-14 tw-hidden lg:tw-flex">
+            <li class="tw-space-x-10 tw-font-medium tw-text-md">
+              <NuxtLink class="tw-text-green-600 tw-border-b tw-border-green-600" to="/">Accueil</NuxtLink>
+              <NuxtLink class="tw-text-green-600" to="/service">Nos services</NuxtLink>
+              <NuxtLink class="tw-text-green-600" to="/service">Sociétés</NuxtLink>
+              <NuxtLink class="tw-text-green-600" to="/start-up">Les Startups</NuxtLink>
+              <NuxtLink class="tw-text-green-600" to="/top-entreprise">Top 10</NuxtLink>
+            </li>
+          </ul>
+          <div class="tw-font-serif tw-gap-8 tw-hidden lg:tw-inline-flex">
+            <button
+              class="tw-font-medium tw-text-amber-500 tw-text-lg tw-py-3 tw-border tw-border-blue-500 hover:tw-border-blue-600 tw-rounded"
+              @click="$modal.show('showLoginForm')">Connexion
+            </button>
 
-        </v-carousel-item>
-        <v-carousel-item
-          class="tw-h-full tw-w-full tw-bg-cover"
-          src="https://images.unsplash.com/photo-1660896592505-d77826b40a2a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
-        >
-          <div class="tw-flex tw-justify-center tw-items-center tw-w-full tw-h-full">
-            <div class="tw-mx-6 md:tw-mx-0 tw-w-full md:tw-w-2/3 tw-text-center tw-bg-gray-800 tw-bg-opacity-50 tw-p-8 tw-rounded-lg">
-              <h1 class="tw-text-3xl md:tw-text-5xl tw-text-white tw-font-extrabold">TOURISME</h1>
-              <p class="tw-mt-8 tw-text-sm md:tw-text-lg tw-text-gray-100">
-                Des centaines de sites touristiques disponibles au bout de vos doigts. <br class="tw-hidden md:tw-block">
-                Depuis votre position, explorez-les et envisagez de vous y rendre !
-              </p>
-            </div>
+            <button
+              class="tw-text-white tw-text-lg tw-px-7 tw-rounded-md tw-bg-amber-500 tw-font-medium hover:tw-bg-amber-600 hover:tw-text-white tw-transition-all"
+              @click="$modal.show('showRegisterForm')">Inscription
+            </button>
           </div>
-        </v-carousel-item>
-        <v-carousel-item class="tw-h-full tw-w-full tw-bg-cover"
-          src="https://images.unsplash.com/photo-1561121864-3e4031788fdd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80">
-          <div class="tw-flex tw-justify-center tw-items-center tw-w-full tw-h-full">
-            <div class="tw-mx-6 md:tw-mx-0 tw-w-full md:tw-w-2/3 tw-text-center tw-bg-gray-800 tw-bg-opacity-50 tw-p-8 tw-rounded-lg">
-              <h1 class="tw-text-3xl md:tw-text-5xl tw-text-white tw-font-extrabold">VISA</h1>
-              <p class="tw-mt-8 tw-text-sm md:tw-text-lg tw-text-gray-100">
-                Vous avez toujours eu des problèmes dans les procédures de VISA ? <br class="tw-hidden md:tw-block">
-                Entamez ici les démarches d’obtention et consultez l’avancée de votre dossier
-              </p>
-            </div>
-          </div>
-        </v-carousel-item>
-        <v-carousel-item class="tw-h-full tw-w-full tw-bg-cover"
-          src="https://images.unsplash.com/photo-1620332372374-f108c53d2e03?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80">
-          <div class="tw-flex tw-justify-center tw-items-center tw-w-full tw-h-full">
-            <div class="tw-mx-6 md:tw-mx-0 tw-w-full md:tw-w-2/3 tw-text-center tw-bg-gray-800 tw-bg-opacity-50 tw-p-8 tw-rounded-lg">
-              <h1 class="tw-text-3xl md:tw-text-5xl tw-text-white tw-font-extrabold">HEBERGEMENTS</h1>
-              <p class="tw-mt-8 tw-text-sm md:tw-text-lg tw-text-gray-100">
-                Plusieurs hôtels et lieux d’hébergements n’attendent que votre réservation. <br class="tw-hidden md:tw-block">
-                Parcourez ceux qui sont disponibles en fonction de votre destination et lancez-vous.
-              </p>
-            </div>
-          </div>
-        </v-carousel-item>
-      </v-carousel>
-    </div>
+        </div>
+      </header>
 
-    <section class="tw-pt-4 tw-pb-8 lg:tw-pb-10 lg:tw-px-3 tw-flex-col tw-gap-4 tw-mt-8">
-      <div class="">
-        <div class="tw-flex tw-flex-col tw-mb-6 tw-px-2 md:tw-px-6 lg:tw-px-10">
-          <h1
-            class="tw-mt-12 tw-mb-6 tw-text-xl tw-text-center lg:tw-text-3xl tw-font-bold tw-uppercase md:tw-ml-8 md:tw-ml-20 tw-font-extrabold tw-text-red-700">
-            Decouvrez nos Services
-          </h1>
-          <div class="tw-flex tw-justify-center tw-flex-col lg:tw-flex-row md:tw-items-center tw-gap-2">
-            <div @click="$router.push('/reservation-vols')"
-              class="tw-block tw-cursor-pointer tw-w-full md:tw-w-[fit-content] tw-rounded-lg tw-p-2 md:tw-p-4 tw-shadow-sm tw-shadow-indigo-100">
-              <img alt="ticket"
-                src="https://images.unsplash.com/photo-1483450388369-9ed95738483c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-                class="tw-h-56 tw-w-full tw-rounded-md tw-object-cover" />
+      <div class="tw-w-full">
+        <div class="tw-h-[60vh] tw-bg-center tw-bg-cover tw-w-full" style="background-image: url(https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260)">
+          <div class="tw-flex tw-items-center tw-justify-center tw-w-full tw-h-full tw-bg-opacity-60 tw-bg-green-600">
+            <div class="tw-flex tw-items-center tw-w-full tw-flex-col tw-gap-8">
+              <h1 class="tw-text-5xl tw-text-center tw-mb-10 tw-text-white tw-font-extrabold">Lorem ipsum dolor sit consectetur <br> amet adipisicing elit</h1>
+              <div class="tw-w-1/2 tw-flex tw-items-center tw-h-20 tw-bg-white tw-rounded-full">
+                <v-autocomplete
+                  :loading="loading"
+                  :items="items"
+                  :search-input.sync="search"
+                  cache-items
+                  class="tw-w-1/2 mx-4"
+                  height="60"
+                  flat
+                  hide-no-data
+                  hide-details
+                  label="What state are you from?"
+                  placeholder="De quoi avez-vous besoin ?"
+                  solo
+                ></v-autocomplete>
 
-              <div class="tw-mt-2">
-                <div class="tw-font-bold tw-text-xl tw-text-red-600">Réservation de Vols</div>
-                <div>
-                  <dd class="tw-font-light tw-text-sm tw-mt-3 tw-text-justify">
-                    Vous voyagez seul(e) ou accompagné(e) ? Quel que soit votre lieu de départ ou votre destination,
-                    réservez votre billet
-                    de vols en deux trois clics !
-
-                  </dd>
+                <div class="tw-inline-flex tw-w-1/2 tw-items-center">
+                  <v-icon color="green darken-2">mdi-map-marker-radius-outline</v-icon>
+                  <v-autocomplete
+                    :loading="loading"
+                    :items="items"
+                    :search-input.sync="search"
+                    cache-items
+                    class="mx-4"
+                    height="60"
+                    flat
+                    hide-no-data
+                    hide-details
+                    label="What state are you from?"
+                    placeholder="Adresse, Quartier, Ville, Pays"
+                    solo
+                  ></v-autocomplete>
                 </div>
-              </div>
-            </div>
 
-            <div @click="$router.push('/hotel')"
-              class="tw-block tw-cursor-pointer tw-w-full md:tw-w-[fit-content] tw-rounded-lg tw-p-2 md:tw-p-4 tw-shadow-sm tw-shadow-indigo-100">
-              <img alt="Home"
-                src="https://plus.unsplash.com/premium_photo-1661677878527-052034451487?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80"
-                class="tw-h-56 tw-w-full tw-rounded-md tw-object-cover" />
-
-              <div class="tw-mt-2">
-                <div class="tw-font-bold tw-text-xl tw-text-red-600">Hébergements</div>
-                <div>
-                  <dd class="tw-font-light tw-text-sm tw-mt-3 tw-text-justify">
-                    Trouvez ici les hôtels et les lieux d’hébergements qui vous conviennent afin de passer un séjour
-                    agréable et inoubliable
-                  </dd>
-                </div>
-              </div>
-            </div>
-
-
-            <div @click="$router.push('/car-location')"
-              class="tw-block tw-cursor-pointer tw-w-full md:tw-w-[fit-content] tw-rounded-lg tw-p-2 md:tw-p-4 tw-shadow-sm tw-shadow-indigo-100">
-              <img alt="Home"
-                src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-                class="tw-h-56 tw-w-full tw-rounded-md tw-object-cover" />
-
-              <div class="tw-mt-2">
-                <div class="tw-font-bold tw-text-xl tw-text-red-600">Location de voitures</div>
-                <div>
-                  <dd class="tw-font-light tw-text-sm tw-mt-3 tw-text-justify">
-                    Nous mettons à votre disposition des voitures pour vous accompagner tout au long de votre séjour.
-                    Découvrez celles qui
-                    sont disponibles ici.
-                  </dd>
-                </div>
-              </div>
-            </div>
-
-            <div @click="$router.push('/tourisme')"
-              class="tw-cursor-pointer tw-block tw-w-full md:tw-w-[fit-content] tw-rounded-lg tw-p-2 md:tw-p-4 tw-shadow-sm tw-shadow-indigo-100">
-              <img alt="Home"
-                src="https://images.unsplash.com/photo-1587474260584-136574528ed5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
-                class="tw-h-56 tw-w-full tw-rounded-md tw-object-cover" />
-
-              <div class="tw-mt-2">
-                <div class="tw-font-bold tw-text-xl tw-text-red-600">Tourisme</div>
-                <div>
-                  <dd class="tw-font-light tw-text-sm tw-mt-3 tw-text-justify">
-                    Pour rendre votre voyage mémorable, découvrez la liste les sites touristiques disponibles dans la
-                    ville où vous vous
-                    rendez.
-                  </dd>
-                </div>
-              </div>
-            </div>
-
-            <div @click="$router.push('/visa-assurance')"
-              class="tw-cursor-pointer tw-block tw-w-full md:tw-w-[fit-content] tw-rounded-lg tw-p-2 md:tw-p-4 tw-shadow-sm tw-shadow-indigo-100">
-              <img alt="Home"
-                src="https://images.unsplash.com/photo-1454496406107-dc34337da8d6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1300&q=80"
-                class="tw-h-56 tw-w-full tw-rounded-md tw-object-cover" />
-
-              <div class="tw-mt-2">
-                <div class="tw-font-bold tw-text-xl tw-text-red-600">Visa & Assurance Voyages</div>
-                <div>
-                  <dd class="tw-font-light tw-text-sm tw-mt-3 tw-text-justify">
-                    Nous vous proposons de vous accompagner dans vos procédures de demande de visas et d’assurance.
-                  </dd>
-                </div>
+                <span @click="" class="hover:cursor-pointer tw-bg-green-600 tw-mr-2 tw-h-16 tw-w-16 tw-rounded-full tw-flex tw-justify-center tw-items-center">
+                  <v-icon color="white">mdi-magnify</v-icon>
+                </span>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
 
-    <section class="tw-pt-4 tw-pb-8 lg:tw-pb-10 lg:tw-px-3 tw-flex-col tw-gap-4">
-      <div class="">
-        <div class="tw-flex tw-flex-col tw-mb-6 tw-px-2 md:tw-px-6 lg:tw-px-10">
-          <h1
-            class="tw-mt-12 tw-mb-6 tw-text-xl tw-text-center lg:tw-text-3xl tw-font-bold tw-uppercase md:tw-ml-8 md:tw-ml-20 tw-font-extrabold tw-text-red-700">
-            Nos Actualités
-          </h1>
-        </div>
+      <!-- component -->
+      <div class="tw-h-full tw-bg-white">
+        <!-- body -->
+        <main>
+          <section class="juice3 tw-bg-gray-100 tw-bg-opacity-90 tw-py-10">
+            <div class="container tw-mx-auto tw-px-4 tw-flex tw-flex-col lg:tw-flex-row">
+              <!-- left -->
+              <div class="juice tw-relative lg:tw-w-2/3 tw-rounded-xl bg-secondary-lite tw-bg-cover tw-p-8 md:tw-p-16">
+                <p class="tw-max-w-sm text-secondary tw-text-3xl md:tw-text-4xl tw-font-semibold">Active Summer With Juice Milk 300ml</p>
+                <p class="tw-max-w-xs tw-pr-10 text-secondary tw-font-semibold tw-mt-8">New arrivals with naturre fruits, juice milks, essential for summer</p>
+                <button class="tw-mt-20 tw-bg-white tw-font-semibold tw-px-8 tw-py-2 tw-rounded">Shop Now</button>
+                <div class="tw-absolute tw-bottom-8 tw-right-8 md:tw-bottom-5 md:tw-right-5 tw-flex">
+                  <a href class="tw-h-6 tw-w-6 tw-flex tw-items-center tw-justify-center tw-rounded-md tw-bg-white">
+                    <svg  aria-hidden="true" focusable="false" data-prefix="far" data-icon="chevron-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" class="tw-h-3 tw-text-gray-700 svg-inline--fa fa-chevron-left fa-w-8 fa-3x"><path fill="currentColor" d="M231.293 473.899l19.799-19.799c4.686-4.686 4.686-12.284 0-16.971L70.393 256 251.092 74.87c4.686-4.686 4.686-12.284 0-16.971L231.293 38.1c-4.686-4.686-12.284-4.686-16.971 0L4.908 247.515c-4.686 4.686-4.686 12.284 0 16.971L214.322 473.9c4.687 4.686 12.285 4.686 16.971-.001z"></path></svg>
+                  </a>
+                  <a href class="tw-ml-1.5 tw-h-6 tw-w-6 tw-flex tw-items-center tw-justify-center tw-rounded-md tw-bg-yellow-400">
+                    <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="chevron-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" class="tw-h-3 tw-text-gray-700 svg-inline--fa fa-chevron-right fa-w-8 fa-3x"><path fill="currentColor" d="M24.707 38.101L4.908 57.899c-4.686 4.686-4.686 12.284 0 16.971L185.607 256 4.908 437.13c-4.686 4.686-4.686 12.284 0 16.971L24.707 473.9c4.686 4.686 12.284 4.686 16.971 0l209.414-209.414c4.686-4.686 4.686-12.284 0-16.971L41.678 38.101c-4.687-4.687-12.285-4.687-16.971 0z"></path></svg>
+                  </a>
+                </div>
+              </div>
+              <!-- right -->
+              <div class="juice2 tw-mt-6 lg:tw-mt-0 lg:tw-ml-6 lg:tw-w-1/3 tw-rounded-xl bg-primary-lite tw-bg-cover tw-p-8 md:tw-p-16">
+                <div class="tw-max-w-sm">
+                  <p class="tw-text-3xl md:tw-text-4xl tw-font-semibold tw-uppercase">20% sale off</p>
+                  <p class="tw-mt-8 tw-font-semibold">Syncthetic seeds<br />2.0 OZ</p>
+                  <button class="tw-mt-20 tw-bg-white tw-font-semibold tw-px-8 tw-py-2 tw-rounded">Shop Now</button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="container tw-hidden tw-mx-auto tw-pt-12">
+            <!-- title -->
+            <div class="tw-relative tw-flex tw-items-end tw-font-bold">
+              <h2 class="tw-text-2xl">Featured Brands</h2>
+              <a href class="tw-ml-10 tw-flex tw-items-center tw-text-gray-400">
+                <span class="tw-text-sm">All Offers</span>
+                <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="chevron-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" class="tw-ml-3 tw-h-3.5 svg-inline--fa fa-chevron-right fa-w-8 fa-9x"><path fill="currentColor" d="M24.707 38.101L4.908 57.899c-4.686 4.686-4.686 12.284 0 16.971L185.607 256 4.908 437.13c-4.686 4.686-4.686 12.284 0 16.971L24.707 473.9c4.686 4.686 12.284 4.686 16.971 0l209.414-209.414c4.686-4.686 4.686-12.284 0-16.971L41.678 38.101c-4.687-4.687-12.285-4.687-16.971 0z"></path></svg>
+              </a>
+              <div class="tw-ml-auto tw-flex">
+                <a href class="tw-h-6 tw-w-6 tw-flex tw-items-center tw-justify-center tw-rounded-md tw-bg-gray-100">
+                  <svg  aria-hidden="true" focusable="false" data-prefix="far" data-icon="chevron-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" class="tw-h-3 tw-text-gray-700 svg-inline--fa fa-chevron-left fa-w-8 fa-3x"><path fill="currentColor" d="M231.293 473.899l19.799-19.799c4.686-4.686 4.686-12.284 0-16.971L70.393 256 251.092 74.87c4.686-4.686 4.686-12.284 0-16.971L231.293 38.1c-4.686-4.686-12.284-4.686-16.971 0L4.908 247.515c-4.686 4.686-4.686 12.284 0 16.971L214.322 473.9c4.687 4.686 12.285 4.686 16.971-.001z"></path></svg>
+                </a>
+                <a href class="tw-ml-1.5 tw-h-6 tw-w-6 tw-flex tw-items-center tw-justify-center tw-rounded-md tw-bg-gray-100">
+                  <svg  aria-hidden="true" focusable="false" data-prefix="far" data-icon="chevron-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" class="tw-h-3 tw-text-gray-700 svg-inline--fa fa-chevron-right fa-w-8 fa-3x"><path fill="currentColor" d="M24.707 38.101L4.908 57.899c-4.686 4.686-4.686 12.284 0 16.971L185.607 256 4.908 437.13c-4.686 4.686-4.686 12.284 0 16.971L24.707 473.9c4.686 4.686 12.284 4.686 16.971 0l209.414-209.414c4.686-4.686 4.686-12.284 0-16.971L41.678 38.101c-4.687-4.687-12.285-4.687-16.971 0z"></path></svg>
+                </a>
+              </div>
+            </div>
+            <!-- cards -->
+            <div class="tw-mt-10">
+              <ul class="tw--m-3.5 tw-flex">
+                <li class="product tw-m-3.5 tw-h-48 tw-w-1/4 tw-bg-cover tw-rounded-xl"></li>
+                <li class="product2 tw-m-3.5 tw-h-48 tw-w-1/4 tw-bg-cover tw-rounded-xl"></li>
+                <li class="product4 tw-m-3.5 tw-h-48 tw-w-1/4 tw-bg-cover tw-rounded-xl"></li>
+                <li class="product3 tw-m-3.5 tw-h-48 tw-w-1/4 tw-bg-cover tw-rounded-xl"></li>
+              </ul>
+            </div>
+          </section>
+        </main>
       </div>
-    </section>
 
-    <div class="container tw-mx-auto tw-flex tw-flex-wrap tw-py-3">
-      <!-- Posts Section -->
-      <section class="tw-w-full md:tw-w-full tw-flex tw-flex-col tw-items-center tw-px-3">
-
-        <article class="tw-flex tw-flex-col md:tw-flex-row tw-shadow tw-my-4">
-          <!-- Article Image -->
-          <a href="#" class="hover:tw-opacity-75 tw-basis-1/2">
-            <img class="tw-h-96 lg:tw-h-full tw-w-full" src="https://images.unsplash.com/photo-1587019158091-1a103c5dd17f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80">
-          </a>
-          <div class="tw-bg-white tw-flex tw-flex-col tw-justify-start tw-p-6">
-            <a href="#" class="tw-text-blue-700 tw-text-sm tw-font-bold tw-uppercase tw-pb-4">Nouveauté</a>
-            <a href="#" class="tw-text-3xl tw-font-bold hover:tw-text-gray-700 tw-pb-4">LANCEMENT OFFICIEL DU SITE MANGLAM TOUR AND TRAVEL</a>
-            <p href="#" class="tw-text-sm tw-pb-3">
-              By <a href="#" class="tw-font-semibold hover:tw-text-gray-800">Manglam Tours</a>, Publié le 21 Decembre 2022
-            </p>
-            <a href="#" class="tw-pb-6 tw-text-black">
-              Il vous sera désormais plus facile de faire des réservations en ligne pour vos séjours à l’étranger. En effet, ce mercredi 21 décembre 2022, le site MANGLAM TOUR AND TRAVEL a été officiellement lancé. Un tour dessus, et en quelques clics, vous pouvez réservez des billets d’avion, des chambres d’Hotels et même des voitures. Tout est conçu et mis en œuvre pour vous accompagner du début à la fin de vos séjours.
-            </a>
-            <a href="#" class="tw-uppercase tw-text-gray-800 hover:tw-text-black">Lire Plus <i
-                class="fas fa-arrow-right"></i></a>
-          </div>
-        </article>
-
-
-        <article class="tw-flex tw-flex-col md:tw-flex-row tw-shadow tw-my-4">
-          <!-- Article Image -->
-          <a href="#" class="hover:tw-opacity-75 tw-basis-1/2">
-            <img class="tw-h-96  lg:tw-h-full tw-w-full" src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1174&q=80">
-          </a>
-          <div class="tw-bg-white tw-flex tw-flex-col tw-justify-start tw-p-6">
-            <a href="#" class="tw-text-blue-700 tw-text-sm tw-font-bold tw-uppercase tw-pb-4">Manglam Alerte</a>
-            <a href="#" class="tw-text-3xl tw-font-bold hover:tw-text-gray-700 tw-pb-4">ATTENTION, NE VOUS FAITES PLUS AVOIR !</a>
-            <p href="#" class="tw-text-sm tw-pb-3">
-              By <a href="#" class="tw-font-semibold hover:tw-text-gray-800">Manglam Tours</a>, Publié le 21 Decembre 2022
-              2020
-            </p>
-            <a href="#" class="tw-pb-6 tw-text-black">
-              Un peu partout sur internet pullulent des faux sites de réservations de billets et de séjours à l’étranger. Ces derniers vous extorquent de l’argent et en retour, ne vous fournissent pas les services demandés. Avec MANGLAM TOUR AND TRAVEL, vous pouvez accéder à plusieurs destinations dans le monde depuis votre salon ou bureau et il n’est pas question de payer quoique ce soit. Faites un tour sur notre site et vous ne serez pas déçus.
-            </a>
-            <a href="#" class="tw-uppercase tw-text-gray-800 hover:tw-text-black">Lire Plus <i
-                class="fas fa-arrow-right"></i></a>
-          </div>
-        </article>
-
-      </section>
+      <!-- footer -->
+      <footer class="tw-mx-20 tw-mt-16 tw-h-48">
+        <hr>
+        <div class="tw-mx-auto tw-py-5">
+          <a href>&copy; 2022 <span class="tw-font-bold">Contact Pro</span> Tous droits reservé</a>
+        </div>
+      </footer>
     </div>
-  </div>
+  </v-app>
 </template>
 
 <script>
-  import {
-    Marquee,
-    Slide
-  } from "vue-marquee-component"
-  import PolitiqueConfidentialite from "../components/PolitiqueConfidentialite";
-  import Cookies from "js-cookie";
-
-  export default {
-    name: 'Tourisme',
-    layout: 'master',
-    components: {
-      PolitiqueConfidentialite,
-      [Marquee.name]: Marquee,
-      [Slide.name]: Slide,
-    },
-    data() {
-      return {
-        model: "",
-        villeRules: [
-          v => !!v || 'ce champs est obligatoire',
-        ],
-        dateArriveRules: [
-          v => !!v || 'ce champs est obligatoire',
-        ],
-        dateDepartRules: [
-          v => !!v || 'ce champs est obligatoire',
-        ],
-        hotelReservationForm: {
-          destination: "",
-          date_arrive: "",
-          date_depart: "",
-          passengers: {
-            adultes: 1,
-            enfants: 0,
-            bebes: 0,
-          }
-        },
-        items: [
-          'https://images.unsplash.com/photo-1615460549969-36fa19521a4f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80',
-          'https://images.unsplash.com/photo-1615460549969-36fa19521a4f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1974&q=80',
-        ],
-      }
-    },
-
-    mounted(){
-
-    },
-
-    computed: {
-      totalPassagers() {
-        // cette methode retourne le nombre total de passagers
-        return this.hotelReservationForm.passengers.adultes + this.hotelReservationForm.passengers.enfants + this
-          .hotelReservationForm.passengers.bebes
-      },
-      totalChildrens() {
-        return this.hotelReservationForm.passengers.adultes * 2
-      },
-    },
-
-    methods: {
-      validate() {
-        if (this.$refs.form.validate()) {
-          this.$router.push('/filter-hotel')
-        }
-      },
+export default {
+  data(){
+    return {
+      loading: false,
+      items: [],
+      search: null,
+      select: null,
+      states: [
+        'Alabama',
+        'Alaska',
+        'American Samoa',
+        'Arizona',
+        'Arkansas',
+        'California',
+        'Colorado',
+        'Connecticut',
+        'Delaware',
+        'Wyoming',
+      ],
     }
+  },
 
-  }
-
+  watch: {
+    search (val) {
+      val && val !== this.select && this.querySelections(val)
+    },
+  },
+  methods: {
+    querySelections (v) {
+      this.loading = true
+      // Simulated ajax query
+      setTimeout(() => {
+        this.items = this.states.filter(e => {
+          return (e || '').toLowerCase().indexOf((v || '').toLowerCase()) > -1
+        })
+        this.loading = false
+      }, 500)
+    },
+  },
+}
 </script>
 
 <style scoped>
+.bg-gradient-cover {
+  background-color: transparent;
+  background-image: linear-gradient(transparent,rgba(0,0,0,0.92));
+  background-position-y: -1px;
+}
+.max-h-98 {
+  max-height: 24.3rem;
+}
+.box-one > article:nth-child(1) {
+  padding-top: 0;
+  padding-bottom: 0.125rem;
+  padding-right: 0.125rem;
+}
+.box-one > article:nth-child(2) {
+  padding-top: 0;
+  padding-bottom: 0.125rem;
+  padding-left: 0.125rem;
+}
+.box-one > article:nth-child(3) {
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+  padding-right: 0.125rem;
+}
+.box-one > article:nth-child(4) {
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+  padding-left: 0.125rem;
+}
 
+
+
+.juice {
+  background-image: url('https://i.ibb.co/SN2Sp4T/juice.png');
+}
+
+.juice2 {
+  background-image: url('https://i.ibb.co/yyMXMSF/juice2.png');
+}
+
+.juice3 {
+  z-index: 10;
+  position: relative;
+}
+
+.juice3::after {
+  content: '';
+  position: absolute;
+  opacity: .2;
+  z-index: -999;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: url('https://previews.123rf.com/images/olgasiv/olgasiv1403/olgasiv140300026/27343111-image-en-noir-sur-un-fond-blanc-dessin-de-l%C3%A9gumes-de-fruits-et-de-baies-.jpg');
+}
+
+.text-primary {
+  color: #f9b529;
+}
+
+.text-primary-lite {
+  color: #fac251;
+}
+
+.text-secondary {
+  color: #294356;
+}
+
+.text-secondary-lite {
+  color: #d5dee5;
+}
+
+.bg-primary {
+  background-color: #f9b529;
+}
+
+.bg-primary-lite {
+  background-color: #fac251;
+}
+
+.bg-secondary {
+  background-color: #294356;
+}
+
+.bg-secondary-lite {
+  background-color: #d5dee5;
+}
+
+.product {
+  background-image: url('https://i.ibb.co/L00dH6V/2021-11-07-14h07-51.png');
+}
+.product2 {
+  background-image: url('https://i.ibb.co/1fZMKPh/2021-11-07-14h08-07.png');
+}
+.product3 {
+  background-image: url('https://i.ibb.co/f9tpvV3/2021-11-07-14h08-32.png');
+}
+.product4 {
+  background-image: url('https://i.ibb.co/42BsKQ2/2021-11-07-14h08-17.png');
+}
 </style>
