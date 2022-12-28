@@ -1,50 +1,21 @@
 <template>
   <v-app>
     <div class="">
-      <header class="tw-mx-auto tw-sticky tw-py-4 tw-top-0 tw-z-50 tw-bg-white">
-        <div class="tw-flex lg:tw-flex-row tw-items-center tw-justify-between lg:px-desktop tw-mx-12 tw-sticky tw-top-0">
-          <!-- Header logo -->
-          <div class="tw-flex tw-space-x-2 tw-justify-end tw-bg-white tw-rounded-r-full">
-            <h1 class="tw-font-bold tw-text-2xl">
-              <nuxt-link to="/"><img src="../assets/img/Ok1.png" alt=""></nuxt-link>
-            </h1>
-          </div>
-          <ul class="tw-items-center tw-space-x-14 tw-hidden lg:tw-flex">
-            <li class="tw-space-x-10 tw-font-medium tw-text-md">
-              <NuxtLink class="tw-text-green-600 tw-border-b tw-border-green-600" to="/">Accueil</NuxtLink>
-              <NuxtLink class="tw-text-green-600" to="/service">Nos services</NuxtLink>
-              <NuxtLink class="tw-text-green-600" to="/service">Sociétés</NuxtLink>
-              <NuxtLink class="tw-text-green-600" to="/start-up">Les Startups</NuxtLink>
-              <NuxtLink class="tw-text-green-600" to="/top-entreprise">Top 10</NuxtLink>
-            </li>
-          </ul>
-          <div class="tw-font-serif tw-gap-8 tw-hidden lg:tw-inline-flex">
-            <button
-              class="tw-font-medium tw-text-amber-500 tw-text-lg tw-py-3 tw-border tw-border-blue-500 hover:tw-border-blue-600 tw-rounded"
-              @click="$modal.show('showLoginForm')">Connexion
-            </button>
-
-            <button
-              class="tw-text-white tw-text-lg tw-px-7 tw-rounded-md tw-bg-amber-500 tw-font-medium hover:tw-bg-amber-600 hover:tw-text-white tw-transition-all"
-              @click="$modal.show('showRegisterForm')">Inscription
-            </button>
-          </div>
-        </div>
-      </header>
+      <Header/>
 
       <div class="tw-w-full">
-        <div class="tw-h-[60vh] tw-bg-center tw-bg-cover tw-w-full" style="background-image: url(https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260)">
-          <div class="tw-flex tw-items-center tw-justify-center tw-w-full tw-h-full tw-bg-opacity-60 tw-bg-green-600">
+        <div class="tw-h-[70vh] tw-bg-center tw-bg-cover tw-w-full" style="background-image: url(https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260)">
+          <div class="tw-px-4 tw-flex tw-items-center tw-justify-center tw-w-full tw-h-full tw-bg-opacity-60 tw-bg-green-600">
             <div class="tw-flex tw-items-center tw-w-full tw-flex-col tw-gap-8">
-              <h1 class="tw-text-5xl tw-text-center tw-mb-10 tw-text-white tw-font-extrabold">Lorem ipsum dolor sit consectetur <br> amet adipisicing elit</h1>
-              <div class="tw-w-1/2 tw-flex tw-items-center tw-h-20 tw-bg-white tw-rounded-full">
+              <h1 class="tw-text-2xl md:tw-text-4xl lg:tw-text-4xl tw-text-center tw-mb-4 lg:tw-mb-8 tw-text-white tw-font-extrabold">Lorem ipsum dolor sit consectetur <br> amet adipisicing elit</h1>
+              <div class="tw-w-full md:tw-w-2/3 lg:tw-w-1/2 lg:tw-px-0 tw-flex tw-flex-col tw-gap-4 md:tw-flex-row tw-items-center lg:tw-h-16 md:tw-bg-white tw-rounded-full">
                 <v-autocomplete
                   :loading="loading"
                   :items="items"
                   :search-input.sync="search"
                   cache-items
-                  class="tw-w-1/2 mx-4"
-                  height="60"
+                  class="tw-w-full md:tw-w-1/2 tw-rounded-full mx-4"
+                  height="50"
                   flat
                   hide-no-data
                   hide-details
@@ -53,15 +24,15 @@
                   solo
                 ></v-autocomplete>
 
-                <div class="tw-inline-flex tw-w-1/2 tw-items-center">
-                  <v-icon color="green darken-2">mdi-map-marker-radius-outline</v-icon>
+                <div class="tw-flex tw-flex-col tw-gap-6 lg:tw-gap-0 lg:tw-flex-row tw-w-full lg:tw-w-1/2 tw-items-center">
+                  <v-icon color="green darken-2" class="tw-hidden lg:tw-block">mdi-map-marker-radius-outline</v-icon>
                   <v-autocomplete
                     :loading="loading"
                     :items="items"
                     :search-input.sync="search"
                     cache-items
-                    class="mx-4"
-                    height="60"
+                    class="tw-w-full md:tw-w-1/2 tw-rounded-full mx-4 tw-text-sm"
+                    height="50"
                     flat
                     hide-no-data
                     hide-details
@@ -71,47 +42,34 @@
                   ></v-autocomplete>
                 </div>
 
-                <span @click="" class="hover:cursor-pointer tw-bg-green-600 tw-mr-2 tw-h-16 tw-w-16 tw-rounded-full tw-flex tw-justify-center tw-items-center">
+                <span @click="" class="tw-hidden tw-bg-green-600 md:tw-flex hover:cursor-pointer tw-mr-0.5 lg:tw-mr-1 tw-p-3 lg:tw-p-4 tw-rounded-full tw-justify-center tw-items-center">
                   <v-icon color="white">mdi-magnify</v-icon>
                 </span>
+
+                <span class="md:tw-hidden tw-mt-2 tw-w-full tw-text-center tw-text-lg tw-font-semibold tw-bg-green-700 tw-text-white tw-px-6 tw-py-2 tw-rounded-full">Rechercher</span>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- component -->
-      <div class="tw-h-full tw-bg-white">
-        <!-- body -->
-        <main>
-          <section class="juice3 tw-bg-gray-100 tw-bg-opacity-90 tw-py-10">
-            <div class="container tw-mx-auto tw-px-4 tw-flex tw-flex-col lg:tw-flex-row">
+      <!-- Pub Card -->
+      <div class="tw-bg-white">
+          <section class="bg-opacity-90 tw-py-10">
+            <div class="container tw-mx-auto tw-px-4 tw-gap-10 tw-flex tw-flex-col lg:tw-flex-row">
               <!-- left -->
-              <div class="juice tw-relative lg:tw-w-2/3 tw-rounded-xl bg-secondary-lite tw-bg-cover tw-p-8 md:tw-p-16">
-                <p class="tw-max-w-sm text-secondary tw-text-3xl md:tw-text-4xl tw-font-semibold">Active Summer With Juice Milk 300ml</p>
-                <p class="tw-max-w-xs tw-pr-10 text-secondary tw-font-semibold tw-mt-8">New arrivals with naturre fruits, juice milks, essential for summer</p>
-                <button class="tw-mt-20 tw-bg-white tw-font-semibold tw-px-8 tw-py-2 tw-rounded">Shop Now</button>
-                <div class="tw-absolute tw-bottom-8 tw-right-8 md:tw-bottom-5 md:tw-right-5 tw-flex">
-                  <a href class="tw-h-6 tw-w-6 tw-flex tw-items-center tw-justify-center tw-rounded-md tw-bg-white">
-                    <svg  aria-hidden="true" focusable="false" data-prefix="far" data-icon="chevron-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" class="tw-h-3 tw-text-gray-700 svg-inline--fa fa-chevron-left fa-w-8 fa-3x"><path fill="currentColor" d="M231.293 473.899l19.799-19.799c4.686-4.686 4.686-12.284 0-16.971L70.393 256 251.092 74.87c4.686-4.686 4.686-12.284 0-16.971L231.293 38.1c-4.686-4.686-12.284-4.686-16.971 0L4.908 247.515c-4.686 4.686-4.686 12.284 0 16.971L214.322 473.9c4.687 4.686 12.285 4.686 16.971-.001z"></path></svg>
-                  </a>
-                  <a href class="tw-ml-1.5 tw-h-6 tw-w-6 tw-flex tw-items-center tw-justify-center tw-rounded-md tw-bg-yellow-400">
-                    <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="chevron-right" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" class="tw-h-3 tw-text-gray-700 svg-inline--fa fa-chevron-right fa-w-8 fa-3x"><path fill="currentColor" d="M24.707 38.101L4.908 57.899c-4.686 4.686-4.686 12.284 0 16.971L185.607 256 4.908 437.13c-4.686 4.686-4.686 12.284 0 16.971L24.707 473.9c4.686 4.686 12.284 4.686 16.971 0l209.414-209.414c4.686-4.686 4.686-12.284 0-16.971L41.678 38.101c-4.687-4.687-12.285-4.687-16.971 0z"></path></svg>
-                  </a>
-                </div>
+              <div class="tw-relative lg:tw-w-2/3 tw-rounded-xl tw-bg-cover">
+                <img class="tw-h-[55vh] tw-w-full" src="https://nitter.net/pic/media%2FFKr2ZdyXoAI0WnT.jpg%3Fname%3Dsmall" alt="publicité">
               </div>
+
               <!-- right -->
-              <div class="juice2 tw-mt-6 lg:tw-mt-0 lg:tw-ml-6 lg:tw-w-1/3 tw-rounded-xl bg-primary-lite tw-bg-cover tw-p-8 md:tw-p-16">
-                <div class="tw-max-w-sm">
-                  <p class="tw-text-3xl md:tw-text-4xl tw-font-semibold tw-uppercase">20% sale off</p>
-                  <p class="tw-mt-8 tw-font-semibold">Syncthetic seeds<br />2.0 OZ</p>
-                  <button class="tw-mt-20 tw-bg-white tw-font-semibold tw-px-8 tw-py-2 tw-rounded">Shop Now</button>
-                </div>
+              <div class="tw-relative lg:tw-w-1/3 tw-bg-cover tw-bg-white">
+                <img class="tw-h-full tw-w-full" src="https://pbs.twimg.com/media/FFCEyqoXIAIIGCV.jpg" alt="publicité">
               </div>
             </div>
           </section>
 
-          <section class="container tw-hidden tw-mx-auto tw-pt-12">
+          <section class="tw-container tw-hidden tw-mx-auto tw-pt-12">
             <!-- title -->
             <div class="tw-relative tw-flex tw-items-end tw-font-bold">
               <h2 class="tw-text-2xl">Featured Brands</h2>
@@ -138,16 +96,9 @@
               </ul>
             </div>
           </section>
-        </main>
       </div>
 
-      <!-- footer -->
-      <footer class="tw-mx-20 tw-mt-16 tw-h-48">
-        <hr>
-        <div class="tw-mx-auto tw-py-5">
-          <a href>&copy; 2022 <span class="tw-font-bold">Contact Pro</span> Tous droits reservé</a>
-        </div>
-      </footer>
+      <Footer/>
     </div>
   </v-app>
 </template>
@@ -225,16 +176,6 @@ export default {
   padding-left: 0.125rem;
 }
 
-
-
-.juice {
-  background-image: url('https://i.ibb.co/SN2Sp4T/juice.png');
-}
-
-.juice2 {
-  background-image: url('https://i.ibb.co/yyMXMSF/juice2.png');
-}
-
 .juice3 {
   z-index: 10;
   position: relative;
@@ -272,9 +213,6 @@ export default {
   background-color: #f9b529;
 }
 
-.bg-primary-lite {
-  background-color: #fac251;
-}
 
 .bg-secondary {
   background-color: #294356;
