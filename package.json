@@ -64,7 +64,7 @@
     "vue-moment": "^4.1.0",
     "vue-multiselect": "^2.1.6",
     "vue-number-input-spinner": "^2.2.0",
-    "vue-phone-number-input": "^1.1.12",
+    "vue-phone-number-input": "^1.12.13",
     "vue-quill-editor": "^3.0.6",
     "vue-search-input": "^1.1.10",
     "vue-slick-carousel": "^1.0.6",

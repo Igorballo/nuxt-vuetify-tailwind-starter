@@ -1,10 +1,10 @@
 <template>
   <div>
-    <footer aria-label="Site Footer" class="tw-bg-white">
+    <div aria-label="Site Footer" class="tw-bg-green-500">
       <div class="tw-max-w-screen-xl tw-px-4 tw-py-16 tw-mx-auto sm:tw-px-6 lg:tw-px-8">
         <div class="lg:tw-flex lg:tw-items-start lg:tw-gap-8">
           <div class="tw-text-teal-600">
-            <img class="tw-h-12 tw-w-1/2 md:tw-w-full" src="../assets/img/Ok1.png" alt="logo">
+            <img class="tw-h-32 tw-w-96 md:tw-w-full" src="../assets/img/CPA-LOGO1.jpg" alt="logo">
           </div>
 
           <div
@@ -12,11 +12,11 @@
           >
             <div class="tw-col-span-2">
               <div>
-                <h2 class="tw-text-2xl tw-font-bold tw-text-gray-900">
+                <h2 class="tw-text-2xl tw-font-bold tw-text-white">
                   Recevez les dernières nouvelles !
                 </h2>
 
-                <p class="tw-mt-4 tw-text-gray-500">
+                <p class="tw-mt-4 tw-text-gray-200">
                   Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse non
                   cupiditate quae nam molestias.
                 </p>
@@ -34,7 +34,7 @@
                     type="email"
                     id="UserEmail"
                     placeholder="hfx@gmail.com"
-                    class="tw-w-full tw-border tw-border-red-600 focus:tw-border-transparent focus:tw-ring-transparent sm:tw-text-sm"
+                    class="tw-w-full tw-text-white tw-border focus:tw-outline-none focus:tw-border-transparent focus:tw-ring-transparent sm:tw-text-sm"
                   />
 
                   <button
@@ -47,36 +47,36 @@
             </div>
 
             <div class="tw-col-span-2 sm:tw-col-span-1">
-              <p class="tw-font-medium tw-text-gray-900">Services</p>
+              <p class="tw-font-medium tw-text-white">Services</p>
 
               <nav aria-label="Footer Navigation - Services" class="tw-mt-6">
                 <ul class="tw-text-sm">
                   <li>
-                    <a href="#" class="tw-text-gray-700 tw-transition hover:tw-opacity-75">
+                    <a href="#" class="tw-text-gray-200 tw-transition hover:tw-opacity-75">
                       1on1 Coaching
                     </a>
                   </li>
 
                   <li>
-                    <a href="#" class="tw-text-gray-700 tw-transition hover:tw-opacity-75">
+                    <a href="#" class="tw-text-gray-200 tw-transition hover:tw-opacity-75">
                       Company Review
                     </a>
                   </li>
 
                   <li>
-                    <a href="#" class="tw-text-gray-700 tw-transition hover:tw-opacity-75">
+                    <a href="#" class="tw-text-gray-200 tw-transition hover:tw-opacity-75">
                       Accounts Review
                     </a>
                   </li>
 
                   <li>
-                    <a href="#" class="tw-text-gray-700 tw-transition hover:tw-opacity-75">
+                    <a href="#" class="tw-text-gray-200 tw-transition hover:tw-opacity-75">
                       HR Consulting
                     </a>
                   </li>
 
                   <li>
-                    <a href="#" class="tw-text-gray-700 tw-transition hover:tw-opacity-75">
+                    <a href="#" class="tw-text-gray-200 tw-transition hover:tw-opacity-75">
                       SEO Optimisation
                     </a>
                   </li>
@@ -85,24 +85,24 @@
             </div>
 
             <div class="tw-col-span-2 sm:tw-col-span-1">
-              <p class="tw-font-medium tw-text-gray-900">Sociétés</p>
+              <p class="tw-font-medium tw-text-white">Sociétés</p>
 
               <nav aria-label="Footer Navigation - Company" class="tw-mt-6">
                 <ul class="tw-text-sm">
                   <li>
-                    <a href="#" class="tw-text-gray-700 tw-transition hover:tw-opacity-75">
+                    <a href="#" class="tw-text-gray-200 tw-transition hover:tw-opacity-75">
                       About
                     </a>
                   </li>
 
                   <li>
-                    <a href="#" class="tw-text-gray-700 tw-transition hover:tw-opacity-75">
+                    <a href="#" class="tw-text-gray-200 tw-transition hover:tw-opacity-75">
                       Meet the Team
                     </a>
                   </li>
 
                   <li>
-                    <a href="#" class="tw-text-gray-700 tw-transition hover:tw-opacity-75">
+                    <a href="#" class="tw-text-gray-200 tw-transition hover:tw-opacity-75">
                       Accounts Review
                     </a>
                   </li>
@@ -111,24 +111,24 @@
             </div>
 
             <div class="tw-col-span-2 sm:tw-col-span-1">
-              <p class="tw-font-medium tw-text-gray-900">Helpful Links</p>
+              <p class="tw-font-medium tw-text-white">Helpful Links</p>
 
               <nav aria-label="Footer Navigation - Company" class="tw-mt-6">
                 <ul class="tw-text-sm">
                   <li>
-                    <a href="#" class="tw-text-gray-700 tw-transition hover:tw-opacity-75">
+                    <a href="#" class="tw-text-gray-200 tw-transition hover:tw-opacity-75">
                       Contact
                     </a>
                   </li>
 
                   <li>
-                    <a href="#" class="tw-text-gray-700 tw-transition hover:tw-opacity-75">
+                    <a href="#" class="tw-text-gray-200 tw-transition hover:tw-opacity-75">
                       FAQs
                     </a>
                   </li>
 
                   <li>
-                    <a href="#" class="tw-text-gray-700 tw-transition hover:tw-opacity-75">
+                    <a href="#" class="tw-text-gray-200 tw-transition hover:tw-opacity-75">
                       Live Chat
                     </a>
                   </li>
@@ -137,30 +137,30 @@
             </div>
 
             <div class="tw-col-span-2 sm:tw-col-span-1">
-              <p class="tw-font-medium tw-text-gray-900">Legal</p>
+              <p class="tw-font-medium tw-text-white">Legal</p>
 
               <nav aria-label="Footer Navigation - Legal" class="tw-mt-6">
                 <ul class="tw-text-sm">
                   <li>
-                    <a href="#" class="tw-text-gray-700 tw-transition hover:tw-opacity-75">
+                    <a href="#" class="tw-text-gray-200 tw-transition hover:tw-opacity-75">
                       Accessibility
                     </a>
                   </li>
 
                   <li>
-                    <a href="#" class="tw-text-gray-700 tw-transition hover:tw-opacity-75">
+                    <a href="#" class="tw-text-gray-200 tw-transition hover:tw-opacity-75">
                       Returns Policy
                     </a>
                   </li>
 
                   <li>
-                    <a href="#" class="tw-text-gray-700 tw-transition hover:tw-opacity-75">
+                    <a href="#" class="tw-text-gray-200 tw-transition hover:tw-opacity-75">
                       Refund Policy
                     </a>
                   </li>
 
                   <li>
-                    <a href="#" class="tw-text-gray-700 tw-transition hover:tw-opacity-75">
+                    <a href="#" class="tw-text-gray-200 tw-transition hover:tw-opacity-75">
                       Hiring Statistics
                     </a>
                   </li>
@@ -169,18 +169,18 @@
             </div>
 
             <div class="tw-col-span-2 sm:tw-col-span-1">
-              <p class="tw-font-medium tw-text-gray-900">Downloads</p>
+              <p class="tw-font-medium tw-text-white">Downloads</p>
 
               <nav aria-label="Footer Navigation - Downloads" class="tw-mt-6">
                 <ul class="tw-text-sm">
                   <li>
-                    <a href="#" class="tw-text-gray-700 tw-transition hover:tw-opacity-75">
+                    <a href="#" class="tw-text-gray-200 tw-transition hover:tw-opacity-75">
                       Marketing Calendar
                     </a>
                   </li>
 
                   <li>
-                    <a href="#" class="tw-text-gray-700 tw-transition hover:tw-opacity-75">
+                    <a href="#" class="tw-text-gray-200 tw-transition hover:tw-opacity-75">
                       SEO Infographics
                     </a>
                   </li>
@@ -202,7 +202,7 @@
 
                   <svg
                     class="tw-w-6 tw-h-6"
-                    fill="currentColor"
+                    fill="white"
                     viewBox="0 0 24 24"
                     aria-hidden="true"
                   >
@@ -226,7 +226,7 @@
 
                   <svg
                     class="tw-w-6 tw-h-6"
-                    fill="currentColor"
+                    fill="white"
                     viewBox="0 0 24 24"
                     aria-hidden="true"
                   >
@@ -250,7 +250,7 @@
 
                   <svg
                     class="tw-w-6 tw-h-6"
-                    fill="currentColor"
+                    fill="white"
                     viewBox="0 0 24 24"
                     aria-hidden="true"
                   >
@@ -272,7 +272,7 @@
 
                   <svg
                     class="tw-w-6 tw-h-6"
-                    fill="currentColor"
+                    fill="white"
                     viewBox="0 0 24 24"
                     aria-hidden="true"
                   >
@@ -290,26 +290,26 @@
 
         <div class="tw-pt-8 tw-mt-8 tw-border-t tw-border-gray-100">
           <div class="tw-grid tw-grid-cols-1 tw-gap-8 lg:tw-grid-cols-2">
-            <p class="tw-text-xs tw-text-left tw-text-gray-500">
+            <p class="tw-text-xs tw-text-left tw-text-white">
               &copy; 2022. Contact Pro. Tous droits reservés.
             </p>
 
             <nav aria-label="Footer Navigation - Support">
               <ul class="tw-flex tw-flex-wrap tw-justify-start tw-gap-4 tw-text-xs lg:tw-justify-end">
                 <li>
-                  <a href="#" class="tw-text-gray-500 tw-transition hover:tw-opacity-75">
+                  <a href="#" class="tw-text-white tw-transition hover:tw-opacity-75">
                     Terms & Conditions
                   </a>
                 </li>
 
                 <li>
-                  <a href="#" class="tw-text-gray-500 tw-transition hover:tw-opacity-75">
+                  <a href="#" class="tw-text-white tw-transition hover:tw-opacity-75">
                     Privacy Policy
                   </a>
                 </li>
 
                 <li>
-                  <a href="#" class="tw-text-gray-500 tw-transition hover:tw-opacity-75">
+                  <a href="#" class="tw-text-white tw-transition hover:tw-opacity-75">
                     Cookies
                   </a>
                 </li>
@@ -318,7 +318,7 @@
           </div>
         </div>
       </div>
-    </footer>
+    </div>
   </div>
 </template>
 
