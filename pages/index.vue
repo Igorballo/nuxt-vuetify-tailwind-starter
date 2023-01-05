@@ -1,35 +1,23 @@
 <template>
   <div>
-    <div class="tw-bg-cover tw-relative" >
-      <img class="tw-h-screen tw-w-64" src="https://images.unsplash.com/photo-1541689592655-f5f52825a3b8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2150&q=80" alt="image">
-
+    <div class="tw-hidden tw-relative md:tw-block tw-h-screen tw-w-64"
+         style="background-image: url(https://images.unsplash.com/photo-1531651008558-ed1740375b39?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80)">
       <div
-        class="tw-hidden tw-bg-red-900 tw-bg-opacity-80 md:tw-left-0 md:tw-block md:tw-fixed md:tw-top-0 md:tw-bottom-0 md:tw-overflow-y-auto md:tw-flex-row md:tw-flex-nowrap md:tw-overflow-hidden tw-shadow-xl tw-flex tw-flex-wrap tw-items-center tw-justify-between tw-relative md:tw-w-64 tw-z-10 tw-py-4 tw-px-4"
+        class="tw-bg-[#322328] tw-text-white tw-bg-opacity-90 md:tw-absolute md:tw-inset-0 md:tw-overflow-y-auto md:tw-flex md:tw-flex-nowrap md:tw-overflow-hidden tw-shadow-xl tw-relative tw-z-10 tw-p-3"
       >
         <div
           class="md:tw-flex-col md:tw-items-stretch md:tw-min-h-full md:tw-flex-nowrap tw-px-0 tw-flex tw-flex-wrap tw-items-center tw-justify-between tw-w-full tw-mx-auto"
         >
-          <!-- Toggler -->
-          <button
-            class="tw-cursor-pointer tw-text-black tw-opacity-50 md:tw-hidden tw-px-3 tw-py-1 tw-text-xl tw-leading-none tw-bg-transparent tw-rounded tw-border tw-border-solid tw-border-transparent"
-            type="button"
-          >
-            <i class="fas fa-bars"></i>
-          </button>
-          <!-- Brand -->
-          <a
-            class="md:tw-block tw-text-left md:tw-pb-2 text-blueGray-600 tw-mr-0 tw-inline-block tw-whitespace-nowrap tw-text-sm tw-uppercase tw-font-bold tw-p-4 tw-px-0"
-            href="/"
-          >
-            Notus Svelte
-          </a>
+          <!-- Logo -->
+          <img class="tw-w-full tw-h-28 tw-hidden" src="@/assets/img/sheesh-logo.png" alt="...">
+
           <!-- User -->
           <ul class="md:tw-hidden tw-items-center tw-flex tw-flex-wrap tw-list-none">
             <li class="tw-inline-block tw-relative">
-              <NotificationDropdown />
+              <NotificationDropdown/>
             </li>
             <li class="tw-inline-block tw-relative">
-              <UserDropdown />
+              <UserDropdown/>
             </li>
           </ul>
           <!-- Collapse -->
@@ -71,7 +59,7 @@
             </form>
 
             <!-- Divider -->
-            <hr class="tw-my-4 md:tw-min-w-full" />
+            <hr class="tw-my-4 md:tw-min-w-full"/>
             <!-- Heading -->
             <h6
               class="md:tw-min-w-full text-blueGray-500 tw-text-xs tw-uppercase tw-font-bold tw-block tw-pt-1 tw-pb-4 tw-no-underline"
@@ -81,7 +69,7 @@
             <!-- Navigation -->
 
             <ul class="md:tw-flex-col md:tw-min-w-full tw-flex tw-flex-col tw-list-none">
-              <li class="tw-items-center tw-pl-1 hover:tw-bg-red-400 hover:tw-rounded">
+              <li class="tw-items-center tw-pl-1 hover:tw-bg-[#4a3e40] hover:tw-bg-opacity-60 hover:tw-rounded">
                 <NuxtLink
                   to="/"
                   class="tw-inline-flex tw-items-center tw-text-xs tw-capitalize tw-py-3 tw-font-bold tw-block"
@@ -89,128 +77,89 @@
                   <div
                     class="tw-mr-2 tw-text-sm"
                   >
-                    <v-icon size="22" color="red darken-1" style="color: red">mdi-view-dashboard-outline</v-icon>
+                    <v-icon size="22" color="red darken-1" style="color: red">mdi-play-circle-outline</v-icon>
+                  </div>
+                  écouter
+                </NuxtLink>
+              </li>
+
+              <li class="tw-items-center tw-pl-1 hover:tw-bg-[#4a3e40] hover:tw-bg-opacity-60 hover:tw-rounded">
+                <NuxtLink
+                  to="/"
+                  class="tw-inline-flex tw-items-center tw-text-xs tw-capitalize tw-py-3 tw-font-bold tw-block"
+                >
+                  <div
+                    class="tw-mr-2 tw-text-sm"
+                  >
+                    <v-icon size="22" color="red darken-1" style="color: red">mdi-radio-tower</v-icon>
                   </div>
                   écouter
                 </NuxtLink>
               </li>
 
               <li class="tw-items-center">
+                <div
+                  class="tw-text-xs tw-uppercase tw-py-3 tw-font-bold tw-block {location.href.indexOf('/admin/tables') !== -1 ? 'tw-text-red-500 hover:tw-text-red-600':'text-blueGray-700 hover:text-blueGray-500'}"
+                >
+                  Bibliothèque
+                </div>
+              </li>
+            </ul>
+
+            <!-- Divider -->
+            <hr class="tw-my-4 md:tw-min-w-full"/>
+            <h6
+              class="md:tw-min-w-full text-blueGray-500 tw-text-xs tw-uppercase tw-font-bold tw-block tw-pt-1 tw-pb-4 tw-no-underline"
+            >
+              Apple muzic
+            </h6>
+            <ul class="md:tw-flex-col md:tw-min-w-full tw-flex tw-flex-col tw-list-none">
+              <li class="tw-items-center tw-pl-1 hover:tw-bg-[#4a3e40] hover:tw-bg-opacity-60 hover:tw-rounded">
                 <NuxtLink
                   to="/"
-                  class="tw-inline-flex tw-items-center tw-text-xs tw-capitalize tw-py-3 tw-font-bold tw-block {location.href.indexOf('/admin/dashboard') !== -1 ? 'tw-text-red-500 hover:tw-text-red-600':'text-blueGray-700 hover:text-blueGray-500'}"
+                  class="tw-inline-flex tw-items-center tw-text-xs tw-capitalize tw-py-3 tw-font-bold tw-block"
                 >
                   <div
-                    class="tw-mr-2 tw-text-sm {location.href.indexOf('/admin/dashboard') !== -1 ? 'tw-opacity-75' : 'text-blueGray-300'}"
+                    class="tw-mr-2 tw-text-sm"
                   >
-                    <v-icon size="22" color="red darken-1">mdi-view-dashboard-outline</v-icon>
+                    <v-icon size="22" color="red darken-1" style="color: red">mdi-clock-time-nine-outline</v-icon>
                   </div>
-                  Radio
+                  Ajouts récents
                 </NuxtLink>
               </li>
 
-              <li class="tw-items-center">
-                <a
-                  href="/admin/tables"
-                  class="tw-text-xs tw-uppercase tw-py-3 tw-font-bold tw-block {location.href.indexOf('/admin/tables') !== -1 ? 'tw-text-red-500 hover:tw-text-red-600':'text-blueGray-700 hover:text-blueGray-500'}"
+              <li class="tw-items-center tw-pl-1 hover:tw-bg-[#4a3e40] hover:tw-bg-opacity-60 hover:tw-rounded">
+                <NuxtLink
+                  to="/"
+                  class="tw-inline-flex tw-items-center tw-text-xs tw-capitalize tw-py-3 tw-font-bold tw-block"
                 >
-                  <i
-                    class="fas fa-table tw-mr-2 tw-text-sm {location.href.indexOf('/admin/tables') !== -1 ? 'tw-opacity-75' : 'text-blueGray-300'}"
-                  ></i>
-                  Tables
-                </a>
+                  <div
+                    class="tw-mr-2 tw-text-sm"
+                  >
+                    <v-icon size="22" color="red darken-1" style="color: red">mdi-microphone-variant</v-icon>
+                  </div>
+                  Artistes
+                </NuxtLink>
               </li>
+              <li class="tw-items-center tw-pl-1 hover:tw-bg-[#4a3e40] hover:tw-bg-opacity-60 hover:tw-rounded">
+                <NuxtLink
+                  to="/"
+                  class="tw-inline-flex tw-items-center tw-text-xs tw-capitalize tw-py-3 tw-font-bold tw-block"
+                >
+                  <div
+                    class="tw-mr-2 tw-text-sm"
+                  >
+                    <v-icon size="22" color="red darken-1" style="color: red">mdi-album</v-icon>
+                  </div>
+                  Albums
+                </NuxtLink>
+              </li>
+
             </ul>
 
-            <!-- Divider -->
-            <hr class="tw-my-4 md:tw-min-w-full" />
-            <!-- Heading -->
-            <h6
-              class="md:tw-min-w-full text-blueGray-500 tw-text-xs tw-uppercase tw-font-bold tw-block tw-pt-1 tw-pb-4 tw-no-underline"
-            >
-              Auth Layout Pages
-            </h6>
-            <!-- Navigation -->
-
-            <ul class="md:tw-flex-col md:tw-min-w-full tw-flex tw-flex-col tw-list-none md:tw-mb-4">
-              <li class="tw-items-center">
-                <a
-                  class="text-blueGray-700 hover:text-blueGray-500 tw-text-xs tw-uppercase tw-py-3 tw-font-bold tw-block"
-                  href="/auth/login"
-                >
-                  <i class="fas fa-fingerprint text-blueGray-300 tw-mr-2 tw-text-sm"></i>
-                  Login
-                </a>
-              </li>
-
-              <li class="tw-items-center">
-                <a
-                  class="text-blueGray-700 hover:text-blueGray-500 tw-text-xs tw-uppercase tw-py-3 tw-font-bold tw-block"
-                  href="/auth/register"
-                >
-                  <i class="fas fa-clipboard-list text-blueGray-300 tw-mr-2 tw-text-sm"></i>
-                  Register
-                </a>
-              </li>
-            </ul>
-
-            <!-- Divider -->
-            <hr class="tw-my-4 md:tw-min-w-full" />
-            <!-- Heading -->
-            <h6
-              class="md:tw-min-w-full text-blueGray-500 tw-text-xs tw-uppercase tw-font-bold tw-block tw-pt-1 tw-pb-4 tw-no-underline"
-            >
-              No Layout Pages
-            </h6>
-            <!-- Navigation -->
-
-            <ul class="md:tw-flex-col md:tw-min-w-full tw-flex tw-flex-col tw-list-none md:tw-mb-4">
-              <li class="tw-items-center">
-                <a
-                  class="text-blueGray-700 hover:text-blueGray-500 tw-text-xs tw-uppercase tw-py-3 tw-font-bold tw-block"
-                  href="/landing"
-                >
-                  <i class="fas fa-newspaper text-blueGray-300 tw-mr-2 tw-text-sm"></i>
-                  Landing Page
-                </a>
-              </li>
-
-              <li class="tw-items-center">
-                <a
-                  class="text-blueGray-700 hover:text-blueGray-500 tw-text-xs tw-uppercase tw-py-3 tw-font-bold tw-block"
-                  href="/profile"
-                >
-                  <i class="fas fa-user-circle text-blueGray-300 tw-mr-2 tw-text-sm"></i>
-                  Profile Page
-                </a>
-              </li>
-            </ul>
-
-            <!-- Divider -->
-            <hr class="tw-my-4 md:tw-min-w-full" />
-            <!-- Heading -->
-            <h6
-              class="md:tw-min-w-full text-blueGray-500 tw-text-xs tw-uppercase tw-font-bold tw-block tw-pt-1 tw-pb-4 tw-no-underline"
-            >
-              Documentation
-            </h6>
-            <!-- Navigation -->
-            <ul class="md:tw-flex-col md:tw-min-w-full tw-flex tw-flex-col tw-list-none md:tw-mb-4">
-              <li class="tw-inline-flex">
-                <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/svelte/colors/notus"
-                  target="_blank"
-                  class="text-blueGray-700 hover:text-blueGray-500 tw-text-sm tw-block tw-mb-4 tw-no-underline tw-font-semibold"
-                >
-                  <i class="fas fa-paint-brush tw-mr-2 text-blueGray-300 tw-text-base"></i>
-                  Styles
-                </a>
-              </li>
-            </ul>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </template>
@@ -219,9 +168,7 @@
 export default {
   // layout: 'master',
   data() {
-    return {
-
-    }
+    return {}
   },
 
 
