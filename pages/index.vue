@@ -11,15 +11,6 @@
           <!-- Logo -->
           <img class="tw-w-full tw-h-28 tw-hidden" src="@/assets/img/sheesh-logo.png" alt="...">
 
-          <!-- User -->
-          <ul class="md:tw-hidden tw-items-center tw-flex tw-flex-wrap tw-list-none">
-            <li class="tw-inline-block tw-relative">
-              <NotificationDropdown/>
-            </li>
-            <li class="tw-inline-block tw-relative">
-              <UserDropdown/>
-            </li>
-          </ul>
           <!-- Collapse -->
           <div
             class="md:tw-flex md:tw-flex-col md:tw-items-stretch md:tw-opacity-100 md:tw-relative md:tw-mt-4 md:tw-shadow-none tw-shadow tw-absolute tw-top-0 tw-left-0 tw-right-0 tw-z-40 tw-overflow-y-auto tw-overflow-x-hidden tw-h-auto tw-items-center tw-flex-1 tw-rounded {collapseShow}"
@@ -48,21 +39,17 @@
               </div>
             </div>
             <!-- Form -->
-            <form class="tw-mt-6 tw-mb-4 md:tw-hidden">
-              <div class="tw-mb-3 tw-pt-0">
-                <input
-                  type="text"
-                  placeholder="Search"
-                  class="tw-border-0 tw-px-3 tw-py-2 tw-h-12 tw-border tw-border-solid tw-border-blueGray-500 placeholder-blueGray-300 text-blueGray-600 tw-bg-white tw-rounded tw-text-base tw-leading-snug tw-shadow-none tw-outline-none focus:tw-outline-none tw-w-full tw-font-normal"
-                />
+            <form class="tw-mt-6">
+              <div class="tw-relative tw-mb-6 tw-px-1">
+                <div class="tw-absolute tw-inset-y-0 tw-left-0 tw-flex tw-items-center tw-pl-3 tw-pointer-events-none">
+                  <v-icon color="white" class="tw-text-white" height="3" width="3">mdi-magnify</v-icon>
+                </div>
+                <input type="text" id="input-group-1" class="tw-text-white tw-bg-[#4a3e40] tw-border tw-text-gray-500 tw-text-md tw-rounded-lg focus:tw-ring-red-200 tw-block tw-w-full tw-pl-10 tw-p-2.5" placeholder="Rechercher">
               </div>
             </form>
 
-            <!-- Divider -->
-            <hr class="tw-my-4 md:tw-min-w-full"/>
-            <!-- Heading -->
             <h6
-              class="md:tw-min-w-full text-blueGray-500 tw-text-xs tw-uppercase tw-font-bold tw-block tw-pt-1 tw-pb-4 tw-no-underline"
+              class="md:tw-min-w-full tw-text-gray-400 tw-text-xs tw-uppercase tw-font-bold tw-block tw-pt-1 tw-pb-4 tw-no-underline"
             >
               Apple muzic
             </h6>
@@ -96,22 +83,12 @@
                   écouter
                 </NuxtLink>
               </li>
-
-              <li class="tw-items-center">
-                <div
-                  class="tw-text-xs tw-uppercase tw-py-3 tw-font-bold tw-block {location.href.indexOf('/admin/tables') !== -1 ? 'tw-text-red-500 hover:tw-text-red-600':'text-blueGray-700 hover:text-blueGray-500'}"
-                >
-                  Bibliothèque
-                </div>
-              </li>
             </ul>
 
-            <!-- Divider -->
-            <hr class="tw-my-4 md:tw-min-w-full"/>
             <h6
-              class="md:tw-min-w-full text-blueGray-500 tw-text-xs tw-uppercase tw-font-bold tw-block tw-pt-1 tw-pb-4 tw-no-underline"
+              class="tw-mt-4 md:tw-min-w-full tw-text-gray-400 tw-text-xs tw-uppercase tw-font-bold tw-block tw-pt-1 tw-pb-4 tw-no-underline"
             >
-              Apple muzic
+              Bibliothèque
             </h6>
             <ul class="md:tw-flex-col md:tw-min-w-full tw-flex tw-flex-col tw-list-none">
               <li class="tw-items-center tw-pl-1 hover:tw-bg-[#4a3e40] hover:tw-bg-opacity-60 hover:tw-rounded">
@@ -155,6 +132,41 @@
                 </NuxtLink>
               </li>
 
+            </ul>
+
+            <h6
+              class="tw-mt-4 md:tw-min-w-full tw-text-gray-400 tw-text-xs tw-uppercase tw-font-bold tw-block tw-pt-1 tw-pb-4 tw-no-underline"
+            >
+              Mon compte
+            </h6>
+            <ul class="md:tw-flex-col md:tw-min-w-full tw-flex tw-flex-col tw-list-none">
+              <li class="tw-items-center tw-pl-1 hover:tw-bg-[#4a3e40] hover:tw-bg-opacity-60 hover:tw-rounded">
+                <NuxtLink
+                  to="/"
+                  class="tw-inline-flex tw-items-center tw-text-xs tw-capitalize tw-py-3 tw-font-bold tw-block"
+                >
+                  <div
+                    class="tw-mr-2 tw-text-sm"
+                  >
+                    <v-icon size="22" color="red darken-1" style="color: red">mdi-account</v-icon>
+                  </div>
+                  Profile
+                </NuxtLink>
+              </li>
+
+              <li class="tw-items-center tw-pl-1 hover:tw-bg-[#4a3e40] hover:tw-bg-opacity-60 hover:tw-rounded">
+                <NuxtLink
+                  to="/"
+                  class="tw-inline-flex tw-items-center tw-text-xs tw-capitalize tw-py-3 tw-font-bold tw-block"
+                >
+                  <div
+                    class="tw-mr-2 tw-text-sm"
+                  >
+                    <v-icon size="22" color="red darken-1" style="color: red">mdi-logout</v-icon>
+                  </div>
+                  Déconnexion
+                </NuxtLink>
+              </li>
             </ul>
 
           </div>
